@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - Bingo Maker</title>
+      {% else %}
+      <title>Welcome to Bingo Maker </title>
+      {% endif %}
+    </head>
+    <body>
+        <div>Bingo Maker 
+          <a href="/index">Home</a>
+          <a href="/validate"> Validate</a>
+        </div>
+
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>
