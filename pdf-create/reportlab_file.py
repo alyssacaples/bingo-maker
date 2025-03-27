@@ -5,7 +5,7 @@ import random
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
 from reportlab.lib.enums import TA_CENTER
 from reportlab.lib.utils import simpleSplit
 from reportlab.pdfbase.pdfmetrics import stringWidth
@@ -51,7 +51,7 @@ def shrink_font_size(aW, aH, text, fontName, fontSize, leading, style):
     
     return fontSize, leading
 
-doc = SimpleDocTemplate("simple_table.pdf", pagesize=letter)
+doc = SimpleDocTemplate("output_pdfs/simple_table.pdf", pagesize=letter)
 styles = getSampleStyleSheet()
 story = []
 
@@ -62,7 +62,6 @@ bingo_square_style.alignment = TA_CENTER
 bingo_square_style.name = "Bingo-Square"
 bingo_square_style.fontSize = 12
 bingo_square_style.leading = 12
-bingo_square_style.splitLongWords
 
 print(bingo_square_style.fontName)
 
@@ -74,7 +73,7 @@ print(styles.byName)
 # open and parse data into an array
 # later this will need to be more flexible w the data type 
 bingo_phrases = []
-with open("input2.txt", "r") as file:
+with open("tests/input2.txt", "r") as file:
     for line in file:
 
         stripped_line = re.sub(r"\d+\.", "", line).strip()[:-1]
@@ -133,6 +132,22 @@ tblstyle = TableStyle([ ('FONT', (0,0), (-1, -1), 'Helvetica', 12),
 
 #in the future read in table name dynamically
 # in the mean time, create a table name and then spacer
+
+text = "Alyssa's Bingo"
+#styles['Normal'].alignment = TA_CENTER
+bingo_title = copy.deepcopy(styles['Title'])
+bingo_title.alignment = TA_CENTER
+bingo_title.name = "Bingo-Title"
+bingo_title.fontSize = 30
+bingo_title.leading = 30
+
+styles.add(bingo_title)
+para = Paragraph(text, style=styles["Bingo-Title"])
+story.append(para)
+
+spacer = Spacer(width=0, height=50)
+story.append(spacer)
+
 
 tbl = Table(data, colWidths=[SQUARE_SIZE_CONST for x in range(5)], rowHeights=[SQUARE_SIZE_CONST for x in range(len(data))])
 tbl.setStyle(tblstyle)
