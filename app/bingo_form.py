@@ -1,8 +1,12 @@
 from flask_wtf import FlaskForm
-from wtforms import Form, StringField, PasswordField, BooleanField, SubmitField, validators
+from wtforms import Form, StringField, TextAreaField, SelectField, PasswordField, BooleanField, SubmitField, validators
 from wtforms.validators import DataRequired
 
-class RegistrationForm(Form):
-    username     = StringField('Username', [validators.Length(min=4, max=25)])
-    email        = StringField('Email Address', [validators.Length(min=6, max=35)])
-    accept_rules = BooleanField('I accept the site rules', [validators.InputRequired()])
+BINGO_SIZE = [(9, "3x3"), (16, "4x4"), (25, "5x5")]
+
+class BingoCreationForm(Form):
+    bingo_input     = TextAreaField('Paste Bingo Info Here: ')
+    select_bingo_size = SelectField("Select Size of Bingo Board: ", choices=BINGO_SIZE)
+    free_space_bool = BooleanField("Free Space")
+    create_form = SubmitField("Create Form Now")
+    

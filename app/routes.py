@@ -1,24 +1,9 @@
 from flask import render_template
 from app import app
-from app.bingo_form import RegistrationForm
+from app.bingo_form import BingoCreationForm
 
 @app.route('/')
-@app.route('/index')
+@app.route('/home')
 def index():
-    user = {'username': 'Miguel'}
-    posts = [
-        {
-            'author': {'username': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'username': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        }
-    ]
-    return render_template('index.html', title='Home', user=user, posts=posts)
-
-@app.route('/validate')
-def login():
-    form = RegistrationForm()
-    return render_template('validate.html', title='Sign In', form=form)
+    form = BingoCreationForm()
+    return render_template('home.html', form=form)

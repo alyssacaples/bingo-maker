@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{%- block head_content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}" />
+{% endblock %}
+
+{% block content %}
+
+    <h1> Want to make your own custom bingo form? </h1>
+    <para> Fill in the below text with your desired bingo elements. </para>
+    <br> </br>
+
+    <form action="" method="post" novalidate>
+        <p>
+            <!-- {{form.bingo_input.label }} -->
+            {{form.bingo_input(rows='10',cols='50', placeholder="Paste Text Here")}}
+        </p>
+
+        <p>
+            
+            {{form.select_bingo_size.label }}
+            {{form.select_bingo_size}}
+            <!-- {{form.select_bingo_size(size=32)}} -->
+        </p>
+
+        <p>
+            {{form.free_space_bool.label }}
+            {{form.free_space_bool()}}
+        </p>
+
+        <p>
+            <!-- {{form.create_form.label }} -->
+            {{form.create_form()}}
+        </p>
+
+
+    </form>
+    
+
+{% endblock %}
+
+<!-- include more text on the limitations of the text box, the button, an option to choose number of boxes-->
