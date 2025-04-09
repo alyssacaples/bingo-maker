@@ -51,6 +51,7 @@ def shrink_font_size(aW, aH, text, fontName, fontSize, leading, style):
     
     return fontSize, leading
 
+# in the future make this a custom file name based on title
 doc = SimpleDocTemplate("output_pdfs/simple_table.pdf", pagesize=letter)
 styles = getSampleStyleSheet()
 story = []

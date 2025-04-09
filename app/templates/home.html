@@ -7,10 +7,15 @@
 {% block content %}
 
     <h1> Want to make your own custom bingo form? </h1>
-    <para> Fill in the below text with your desired bingo elements. </para>
+    <para> Fill out the form below to create your own custom bingo game! </para>
     <br> </br>
 
     <form action="" method="post" novalidate>
+        <p></p>
+            {{form.title.label }}
+            {{form.title()}}
+        </p>
+
         <p>
             <!-- {{form.bingo_input.label }} -->
             {{form.bingo_input(rows='10',cols='50', placeholder="Paste Text Here")}}
@@ -26,6 +31,16 @@
         <p>
             {{form.free_space_bool.label }}
             {{form.free_space_bool()}}
+        </p>
+
+        <p>
+            {{form.randomize.label }}
+            {{form.randomize()}}
+        </p>
+
+        <p>
+            {{form.copies.label }}
+            {{form.copies()}}
         </p>
 
         <p>
