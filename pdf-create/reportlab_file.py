@@ -64,10 +64,10 @@ bingo_square_style.name = "Bingo-Square"
 bingo_square_style.fontSize = 12
 bingo_square_style.leading = 12
 
-print(bingo_square_style.fontName)
+#print(bingo_square_style.fontName)
 
 styles.add(bingo_square_style)
-print(styles.byName)
+#print(styles.byName)
 
 
 
