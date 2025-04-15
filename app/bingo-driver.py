@@ -19,66 +19,111 @@ class BingoCard:
     # instance specific variables need to have the "self."" 
     # in order to be instance specific instead of globally common
     def __init__(self):
-        self.randomize = False
-        self.free_space = True
-        self.copies = 1
-        self.size = 25
-        self.title = Paragraph("BINGO", style=styles["Bingo-Title"])
-        self.bingo_phrases = []
-        self.middle = 12
-        self.bingo_array = None
         self.styles = getSampleStyleSheet()
 
+        # everything with double underscore
+        self.__creating_default_style()
+        self.__creating_title_style()
+        self.__randomize = False
+        self.__free_space = True
+        self.__copies = 1
+        self.__size = 25
+        self.__title = "Bingo" 
+        self.__bingo_phrases = self.parse_text_file()
+        self.__middle = 12
+        self.__bingo_array = None
+
+
+    def set_copies(self, copies):
+        self.__copies = copies
+        
+    def get_copies(self):
+        return self.__copies
+
     def set_title(self, title_name):
-        self.title = title_name
+        self.__title = title_name
 
     def get_title(self):
-        return self.title
+        return self.__title
 
     # def parse_input_text():
     #     # this funciton will be the main parser of the text
     #     pass
+    def toggle_randomize(self):
+        self.__randomize = not self.__randomize
+
+    def get_randomize(self):
+        return self.__randomize
     
-    def change_table_size(self, selected_size=None):
+    def get_middle(self):
+        return self.__middle
+    
+    def set_middle(self, middle):
+        self.__middle = middle
+
+    def set_size(self, size):
+        self.__size = size
+
+    def get_size(self):
+        return self.__size()
+    
+    def set_table_size(self, selected_size=None):
         #if the number of phrases are too little, create duplicates
         # need to determine middle
 
         # this function will change the size of the bingo table
         if selected_size == "3x3":
-            self.size = 9
-            self.middle = 4
+            self.set_size(9)
+            self.set_middle(4)
         elif selected_size == "4x4":
-            self.size = 16
-            self.middle = 8
+            self.set_size(16)
+            self.set_middle(8)
         else:
-            self.size = 25
-            self.middle = 12
+            self.set_size(25)
+            self.set_middle(12)
+
+    def get_table_size(self):
+        return self.__size
 
     def toggle_free_space(self):
         # if the toggle free space is selected
-        self.free_space = not self.free_space
+        self.__free_space = not self.__free_space
 
     def get_free_space(self):
-        return self.free_space
+        return self.__free_space
 
     # def change_paper_size():
     #     # possibly provide option to change paper size
     #     pass
 
+    def get_style(self, style_name):
+        return self.styles[style_name]
+    
+    def set_bingo_phrases(self, bingo_phrases):
+        self.__bingo_phrases = bingo_phrases
+
+    def get_bingo_phrases(self):
+        return self.__bingo_phrases
+
     def set_bingo_shape(self):
         # set new size
         # for now just keep at 25
         # convert to 5x5 array
-        while(len(self.bingo_phrases) > 25):
-            to_remove = random.choice(self.bingo_phrases)
+        while(len(self.__bingo_phrases) > 25):
+            to_remove = random.choice(self.__bingo_phrases)
             #print(to_remove)
-            self.bingo_phrases.remove(to_remove)
-        arr = np.array(self.bingo_phrases)
+            self.__bingo_phrases.remove(to_remove)
+
+
+        arr = np.array(self.__bingo_phrases)
         arr_reshape = arr.reshape(5,5)
-        self.bingo_array = arr_reshape.tolist()
+        self.__bingo_array = arr_reshape.tolist()
         return None
     
-    def creating_default_style(self):
+    def get_bingo_shape(self):
+        return self.__bingo_array
+    
+    def __creating_default_style(self):
         bingo_square_style = copy.deepcopy(styles['Normal'])
         bingo_square_style.alignment = TA_CENTER
         bingo_square_style.name = "Bingo-Square"
@@ -87,7 +132,7 @@ class BingoCard:
 
         self.styles.add(bingo_square_style)
     
-    def creating_title_style(self):
+    def __creating_title_style(self):
         bingo_title = copy.deepcopy(styles['Title'])
         bingo_title.alignment = TA_CENTER
         bingo_title.name = "Bingo-Title"
@@ -96,48 +141,22 @@ class BingoCard:
 
         self.styles.add(bingo_title)
 
+    def parse_text_file(self, text_file="tests/input2.txt"):
+        bingo_boxes = []
+        with open(text_file, "r") as file:
+            for line in file:
 
-    def generate_pdf(self):
-        doc = SimpleDocTemplate("output_pdfs/bingo_driver_test.pdf", pagesize=letter)
-        story = []
-        self.creating_default_style()
-        self.creating_title_style()
-
-        self.bingo_boxes = BingoCard.parse_text_file()
-
-        # set free space
-        if(self.get_free_space()):
-            self.bingo_phrases[self.middle] = 'FREE SPACE'
-
+                stripped_line = re.sub(r"\d+\.", "", line).strip()[:-1]
+                new_font_size, new_leading = BingoCard.__shrink_font_size(SQUARE_SIZE_FORMAT_CONST, SQUARE_SIZE_FORMAT_CONST, stripped_line, 'Helvetica', self.get_style('Bingo-Square').fontSize, self.get_style('Bingo-Square').leading, self.get_style('Bingo-Square'))
+                formatted_text = f'<para leading={new_leading}> <font color=black size={new_font_size}> {stripped_line} </font> </para>'
+                bingo_boxes.append(Paragraph(formatted_text, self.get_style('Bingo-Square')))
         
-        self.set_bingo_shape()
-        story.append(self.title)
-        story.append(Spacer(width=0, height=50))
-
-        self.set_bingo_shape()
-
-        tbl = Table(self.bingo_boxes, colWidths=[SQUARE_SIZE_CONST for x in range(5)], rowHeights=[SQUARE_SIZE_CONST for x in range(len(data))])
-        # formatting
-        tblstyle = TableStyle([ ('FONT', (0,0), (-1, -1), 'Helvetica', 12),
-                            ('ALIGN', (0,0), (-1, -1), 'CENTER'),
-                            ('VALIGN', (0,0), (-1, -1), 'MIDDLE'),
-                            ('TEXTCOLOR', (1, 4), (1, 5), colors.blue),
-                            ('FONT', (1, 4), (1,5), 'Helvetica', 10),
-                                ('GRID', (0,0), (-1, -1), 1, colors.black), ])
-        tbl.setStyle(tblstyle)
-        story.append(tbl)
-
-        doc.build(story)
-
-
-
-        
-
+        return bingo_boxes
 
 
 
     # HELPER FUNCTIONS
-    def shrink_font_size(aW, aH, text, fontName, fontSize, leading, style):
+    def __shrink_font_size(aW, aH, text, fontName, fontSize, leading, style):
         """Shrinks font size by using pdfmetrics to calculate the height
         of a paragraph, given the font name, size, and available width."""
         def break_lines(text, aW):
@@ -167,17 +186,51 @@ class BingoCard:
         # output title, otherwise use default title
         pass 
 
+    def generate_pdf(self):
+        doc = SimpleDocTemplate("output_pdfs/bingo_driver_test.pdf", pagesize=letter)
+        story = []
 
+        # randomize the order
+        if(self.get_randomize()):
+            bingo_list = self.get_bingo_phrases()
+            random.shuffle(bingo_list)
+            self.set_bingo_phrases(bingo_list)
 
-    def parse_text_file(text_file="tests/input2.txt"):
-        bingo_boxes = []
-        with open(text_file, "r") as file:
-            for line in file:
+        # set free space
+        if(self.get_free_space()):
+            print("free space")
+            print(self.get_middle())
+            bingo_list = self.get_bingo_phrases()
+            bingo_list[self.get_middle()] = 'FREE SPACE'
+            self.set_bingo_phrases(bingo_list)
 
-                stripped_line = re.sub(r"\d+\.", "", line).strip()[:-1]
-                new_font_size, new_leading = BingoCard.shrink_font_size(SQUARE_SIZE_FORMAT_CONST, SQUARE_SIZE_FORMAT_CONST, stripped_line, 'Helvetica', bingo_square_style.fontSize, bingo_square_style.leading, styles['Bingo-Square'])
-                formatted_text = f'<para leading={new_leading}> <font color=black size={new_font_size}> {stripped_line} </font> </para>'
-                bingo_boxes.append(Paragraph(formatted_text, styles['Bingo-Square']))
-        
-        return bingo_boxes
+        # remove formatting piece from text function and put it here
+
+        # free space is getting removed... find a way to set the free space during bingo shape
+
+        self.set_bingo_shape()
+        story.append(Paragraph(self.get_title(), style=self.get_style("Bingo-Title")))
+        story.append(Spacer(width=0, height=50))
+
+        self.set_bingo_shape()
+
+        tbl = Table(self.get_bingo_shape(), colWidths=[SQUARE_SIZE_CONST for x in range(5)], rowHeights=[SQUARE_SIZE_CONST for x in range(len(self.get_bingo_shape()))])
     
+        # formatting
+        tblstyle = TableStyle([ ('FONT', (0,0), (-1, -1), 'Helvetica', 12),
+                            ('ALIGN', (0,0), (-1, -1), 'CENTER'),
+                            ('VALIGN', (0,0), (-1, -1), 'MIDDLE'),
+                            ('TEXTCOLOR', (1, 4), (1, 5), colors.blue),
+                            ('FONT', (1, 4), (1,5), 'Helvetica', 10),
+                                ('GRID', (0,0), (-1, -1), 1, colors.black), ])
+        tbl.setStyle(tblstyle)
+        story.append(tbl)
+
+        doc.build(story)
+
+
+
+    
+test_sheet = BingoCard()
+test_sheet.toggle_randomize()
+test_sheet.generate_pdf()
