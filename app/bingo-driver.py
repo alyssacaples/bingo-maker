@@ -32,6 +32,7 @@ class BingoCard:
         self.__bingo_phrases = self.parse_text_file()
         self.__middle = 12
         self.__bingo_array = None
+        self.__formatted_bingo_phrases = []
 
 
     def set_copies(self, copies):
@@ -109,16 +110,31 @@ class BingoCard:
         # set new size
         # for now just keep at 25
         # convert to 5x5 array
+        arr = np.array(self.get_stylicized_bingo_phrases())
+        arr_reshape = arr.reshape(5,5)
+        self.__bingo_array = arr_reshape.tolist()
+        return None
+    
+    def get_stylicized_bingo_phrases(self):
+        return self.__formatted_bingo_phrases
+    
+    def set_stylicized_bingo_phrases(self, styled_bingo_phrases):
+        self.__formatted_bingo_phrases = styled_bingo_phrases
+
+    def remove_excess_phrases(self):
         while(len(self.__bingo_phrases) > 25):
             to_remove = random.choice(self.__bingo_phrases)
             #print(to_remove)
             self.__bingo_phrases.remove(to_remove)
-
-
-        arr = np.array(self.__bingo_phrases)
-        arr_reshape = arr.reshape(5,5)
-        self.__bingo_array = arr_reshape.tolist()
-        return None
+    
+    def format_bingo_phrases(self):
+        tiles = []
+        for stripped_line in self.get_bingo_phrases():
+            new_font_size, new_leading = BingoCard.__shrink_font_size(SQUARE_SIZE_FORMAT_CONST, SQUARE_SIZE_FORMAT_CONST, stripped_line, 'Helvetica', self.get_style('Bingo-Square').fontSize, self.get_style('Bingo-Square').leading, self.get_style('Bingo-Square'))
+            formatted_text = f'<para leading={new_leading}> <font color=black size={new_font_size}> {stripped_line} </font> </para>'
+            tiles.append(Paragraph(formatted_text, self.get_style('Bingo-Square')))
+        self.set_stylicized_bingo_phrases(tiles)
+        
     
     def get_bingo_shape(self):
         return self.__bingo_array
@@ -141,15 +157,16 @@ class BingoCard:
 
         self.styles.add(bingo_title)
 
-    def parse_text_file(self, text_file="tests/input2.txt"):
+    def parse_text_file(self, text_file="tests/numbers.txt"):
         bingo_boxes = []
         with open(text_file, "r") as file:
             for line in file:
 
-                stripped_line = re.sub(r"\d+\.", "", line).strip()[:-1]
-                new_font_size, new_leading = BingoCard.__shrink_font_size(SQUARE_SIZE_FORMAT_CONST, SQUARE_SIZE_FORMAT_CONST, stripped_line, 'Helvetica', self.get_style('Bingo-Square').fontSize, self.get_style('Bingo-Square').leading, self.get_style('Bingo-Square'))
-                formatted_text = f'<para leading={new_leading}> <font color=black size={new_font_size}> {stripped_line} </font> </para>'
-                bingo_boxes.append(Paragraph(formatted_text, self.get_style('Bingo-Square')))
+                #stripped_line = re.sub(r"\d+\.", "", line).strip()[:-1] # this line will work for input2.txt
+                stripped_line = line.strip()
+                # will need to parse better
+                #print(stripped_line)
+                bingo_boxes.append(stripped_line)
         
         return bingo_boxes
 
@@ -166,7 +183,11 @@ class BingoCard:
 
         def line_wrap(lines, style):
             # Get overall width of text by getting stringWidth of longest line
-            width = stringWidth(max(lines), style.fontName, style.fontSize)
+            longest_line = ""
+            if(lines != []):
+                longest_line = max(lines)
+
+            width = stringWidth(longest_line, style.fontName, style.fontSize)
             # Paragraph height can be calculated via line spacing and number of lines.
             height = leading * len(lines)
             return width, height
@@ -207,7 +228,8 @@ class BingoCard:
         # remove formatting piece from text function and put it here
 
         # free space is getting removed... find a way to set the free space during bingo shape
-
+        self.remove_excess_phrases() # remove any excess phrases above the size... this will need to be changed to store old phrases so we can make multiple copies
+        self.format_bingo_phrases()
         self.set_bingo_shape()
         story.append(Paragraph(self.get_title(), style=self.get_style("Bingo-Title")))
         story.append(Spacer(width=0, height=50))
