@@ -130,7 +130,10 @@ class BingoCard:
     def format_bingo_phrases(self):
         tiles = []
         for stripped_line in self.get_bingo_phrases():
+           # print("length of stripped line: ", len(stripped_line))
+            print(self.get_style('Bingo-Square').fontSize)
             new_font_size, new_leading = BingoCard.__shrink_font_size(SQUARE_SIZE_FORMAT_CONST, SQUARE_SIZE_FORMAT_CONST, stripped_line, 'Helvetica', self.get_style('Bingo-Square').fontSize, self.get_style('Bingo-Square').leading, self.get_style('Bingo-Square'))
+            print(new_font_size)
             formatted_text = f'<para leading={new_leading}> <font color=black size={new_font_size}> {stripped_line} </font> </para>'
             tiles.append(Paragraph(formatted_text, self.get_style('Bingo-Square')))
         self.set_stylicized_bingo_phrases(tiles)
@@ -143,8 +146,8 @@ class BingoCard:
         bingo_square_style = copy.deepcopy(styles['Normal'])
         bingo_square_style.alignment = TA_CENTER
         bingo_square_style.name = "Bingo-Square"
-        bingo_square_style.fontSize = 12
-        bingo_square_style.leading = 12
+        bingo_square_style.fontSize = 24
+        bingo_square_style.leading = 24
 
         self.styles.add(bingo_square_style)
     
@@ -152,8 +155,8 @@ class BingoCard:
         bingo_title = copy.deepcopy(styles['Title'])
         bingo_title.alignment = TA_CENTER
         bingo_title.name = "Bingo-Title"
-        bingo_title.fontSize = 30
-        bingo_title.leading = 30
+        bingo_title.fontSize = 50
+        bingo_title.leading = 50
 
         self.styles.add(bingo_title)
 
@@ -239,11 +242,11 @@ class BingoCard:
         tbl = Table(self.get_bingo_shape(), colWidths=[SQUARE_SIZE_CONST for x in range(5)], rowHeights=[SQUARE_SIZE_CONST for x in range(len(self.get_bingo_shape()))])
     
         # formatting
-        tblstyle = TableStyle([ ('FONT', (0,0), (-1, -1), 'Helvetica', 12),
+        tblstyle = TableStyle([ ('FONT', (0,0), (-1, -1), 'Helvetica', 150),
                             ('ALIGN', (0,0), (-1, -1), 'CENTER'),
                             ('VALIGN', (0,0), (-1, -1), 'MIDDLE'),
                             ('TEXTCOLOR', (1, 4), (1, 5), colors.blue),
-                            ('FONT', (1, 4), (1,5), 'Helvetica', 10),
+                            ('FONT', (1, 4), (1,5), 'Helvetica', 150),
                                 ('GRID', (0,0), (-1, -1), 1, colors.black), ])
         tbl.setStyle(tblstyle)
         story.append(tbl)
