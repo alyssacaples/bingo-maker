@@ -58,19 +58,28 @@ h1 {
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 125px);
+    grid-template-rows: repeat(5, 125px);
     grid-gap: 10px;
-    max-width: 400px;
-    /* margin: auto; Center the grid vertically and horizontally */
+    /* max-width: 500px; /* Set maximum width */
+   /* max-height: 500px; */
+   /* width: calc(5 * 126px + 4 * 10px); */
+    width: auto; /* Allow it to scale down if needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 15px;
 }
 
 .grid-item {
     background-color: #f0f0f0;
     border: 1px solid #ccc;
-    padding: 50px;
-    font-size: 20px;
-    font-weight: bold;
+    padding: 1em;
+    /* font-size: 20px; */
     display: flex;
-    /* justify-content: center; /* Center text horizontally 
-    align-items: center; Center text vertically */
+    width: 125px; /* Explicitly set width */
+    height: 125px;
+    box-sizing: border-box;
+    text-align: center;
+    justify-content: center; /* Center text horizontally */ 
+    align-items: center; /* Center text vertically */
+    border: 1px solid red;
 }

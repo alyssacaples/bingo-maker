@@ -8,10 +8,11 @@
 </head>
 <body>
   <h1>5x5 Random Number Grid</h1>
+  <pre>{{ pdf_data | tojson }}</pre>
   <div class="grid-container">
-    {% for row in pdf_data.test %}
-      {% for number in row %}
-        <div class="grid-item">{{ number }}</div>
+    {% for row in pdf_data.bingo_squares %}
+      {% for item in row %}
+        <div class="grid-item" style="font-size: {{ item.font_size | default('20px')}};">{{ item.phrase }} </div>
       {% endfor %}
     {% endfor %}
   </div>

@@ -112,8 +112,20 @@ class BingoCard:
     def set_bingo_shape(self):
         # set new size
         # for now just keep at 25
+        self.remove_excess_phrases()
+
+        bingo_list = []
+        tiles_size = {}
+        for i in self.get_bingo_phrases():
+            font_size = max(10, 20 - ((len(i) - 40) // 10))
+            font_size = str(font_size) + 'px'
+            tiles_size = {"font_size": font_size, "phrase:": i}
+            bingo_list.append(tiles_size)
+        # need to set the font size here
+        self.set_bingo_phrases(bingo_list)
+
         # convert to 5x5 array
-        arr = np.array(self.get_stylicized_bingo_phrases())
+        arr = np.array(self.get_bingo_phrases()) # convert to get_stylicized_bingo_phrases to work as normal
         arr_reshape = arr.reshape(5,5)
         self.__bingo_array = arr_reshape.tolist()
         return None
@@ -163,13 +175,13 @@ class BingoCard:
 
         self.styles.add(bingo_title)
 
-    def parse_text_file(self, text_file="tests/numbers.txt"):
+    def parse_text_file(self, text_file="tests/input2.txt"):
         bingo_boxes = []
         with open(text_file, "r") as file:
             for line in file:
 
-                #stripped_line = re.sub(r"\d+\.", "", line).strip()[:-1] # this line will work for input2.txt
-                stripped_line = line.strip()
+                stripped_line = re.sub(r"\d+\.", "", line).strip()[:-1] # this line will work for input2.txt
+                #stripped_line = line.strip()
                 # will need to parse better
                 #print(stripped_line)
                 bingo_boxes.append(stripped_line)
@@ -264,17 +276,23 @@ class BingoCard:
 # test_sheet.generate_pdf()
 
 test_sheet = BingoCard()
+test_sheet.set_bingo_shape()
+
+
+print(test_sheet.get_bingo_shape())
 
 my_dict = (
     {   
         "test": [[random.randint(0, 99) for _ in range(5)] for _ in range(5)],
-        "bingo_squares": test_sheet.get_bingo_phrases(),
+        "bingo_squares": test_sheet.get_bingo_shape(),
         "title": test_sheet.get_title(),
         "size": test_sheet.get_size(),
         "middle": test_sheet.get_middle(),
         "free_space": test_sheet.get_free_space()
     }
 )
+
+print(my_dict['bingo_squares'])
 
 # may need to export this to json or dictionary??
 def get_html(pdf_data):
