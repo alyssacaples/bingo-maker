@@ -1,4 +1,4 @@
-body {
+/* body {
     background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Hubble2005-01-barred-spiral-galaxy-NGC1300.jpg/2560px-Hubble2005-01-barred-spiral-galaxy-NGC1300.jpg");
     background-position: center;
     background-repeat: no-repeat;
@@ -7,7 +7,70 @@ body {
   }
   .text {
    /* color: white; */
-   color: red;
+   /* color: red;
     font-family: sans-serif;
     text-align: end;
+  }  */ 
+ 
+
+  /* body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  } */
+  /* h1 {
+    margin: 20px 0;
+  } */
+  /* .grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+    max-width: 400px;
+    margin: 0 auto;
   }
+  .grid-item {
+    background-color: #a05d5d;
+    border: 1px solid #ccc;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } */
+
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* text-align: center; */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+}
+
+h1 {
+    margin-top: 20px; /* Add spacing at the top */
+    margin-bottom: 20px; /* Add spacing between the title and the grid */
+    text-align: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+    max-width: 400px;
+    /* margin: auto; Center the grid vertically and horizontally */
+}
+
+.grid-item {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    /* justify-content: center; /* Center text horizontally 
+    align-items: center; Center text vertically */
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5x5 Random Number Grid</title>
+  <link rel="stylesheet" href="galaxy.css">
+</head>
+<body>
+  <h1>5x5 Random Number Grid</h1>
+  <div class="grid-container">
+    {% for row in pdf_data.test %}
+      {% for number in row %}
+        <div class="grid-item">{{ number }}</div>
+      {% endfor %}
+    {% endfor %}
+  </div>
+</body>
+</html>
