@@ -129,13 +129,26 @@ class BingoCard:
     
     def format_bingo_phrases(self):
         tiles = []
-        for stripped_line in self.get_bingo_phrases():
-           # print("length of stripped line: ", len(stripped_line))
-            print(self.get_style('Bingo-Square').fontSize)
-            new_font_size, new_leading = BingoCard.__shrink_font_size(SQUARE_SIZE_FORMAT_CONST, SQUARE_SIZE_FORMAT_CONST, stripped_line, 'Helvetica', self.get_style('Bingo-Square').fontSize, self.get_style('Bingo-Square').leading, self.get_style('Bingo-Square'))
-            print(new_font_size)
-            formatted_text = f'<para leading={new_leading}> <font color=black size={new_font_size}> {stripped_line} </font> </para>'
-            tiles.append(Paragraph(formatted_text, self.get_style('Bingo-Square')))
+        for i, stripped_line in enumerate(self.get_bingo_phrases()):
+            print(f"Processing phrase {i+1}: '{stripped_line[:20]}...' ({len(stripped_line)} chars)")
+            try:
+                new_font_size, new_leading = BingoCard.__shrink_font_size(
+                    SQUARE_SIZE_FORMAT_CONST, 
+                    SQUARE_SIZE_FORMAT_CONST, 
+                    stripped_line, 
+                    'Helvetica', 
+                    self.get_style('Bingo-Square').fontSize, 
+                    self.get_style('Bingo-Square').leading, 
+                    self.get_style('Bingo-Square')
+                )
+                print(f"  → Font size adjusted to {new_font_size}")
+                formatted_text = f'<para leading={new_leading}> <font color=black size={new_font_size}> {stripped_line} </font> </para>'
+                tiles.append(Paragraph(formatted_text, self.get_style('Bingo-Square')))
+            except Exception as e:
+                print(f"Error processing phrase {i+1}: {e}")
+                # Use a default format for problematic phrases
+                formatted_text = f'<para> <font color=black size=10> ERROR: Text too long </font> </para>'
+                tiles.append(Paragraph(formatted_text, self.get_style('Bingo-Square')))
         self.set_stylicized_bingo_phrases(tiles)
         
     
@@ -160,7 +173,7 @@ class BingoCard:
 
         self.styles.add(bingo_title)
 
-    def parse_text_file(self, text_file="tests/numbers.txt"):
+    def parse_text_file(self, text_file="tests/input2.txt"):
         bingo_boxes = []
         with open(text_file, "r") as file:
             for line in file:
@@ -179,6 +192,7 @@ class BingoCard:
     def __shrink_font_size(aW, aH, text, fontName, fontSize, leading, style):
         """Shrinks font size by using pdfmetrics to calculate the height
         of a paragraph, given the font name, size, and available width."""
+        MIN_FONT_SIZE = 6 
         def break_lines(text, aW):
             # simpleSplit calculates how reportlab will break up the lines for
             # display in a paragraph, by using width/fontsize.
@@ -198,6 +212,8 @@ class BingoCard:
         lines = break_lines(text, aW)
         width, height = line_wrap(lines, style)
         while height > aH or width > aW:
+            if fontSize <= MIN_FONT_SIZE:  # Add safety exit condition
+                break
             fontSize -= 1
             leading -= 1 # do this if you're leading is based on the fontSize
             lines = break_lines(text, aW)

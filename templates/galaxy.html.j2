@@ -12,7 +12,9 @@
   <div class="grid-container">
     {% for row in pdf_data.bingo_squares %}
       {% for item in row %}
-        <div class="grid-item" style="font-size: {{ item.font_size | default('20px')}};">{{ item.phrase }} </div>
+        <div class="grid-item" style="font-size: {{ item.font_size | default('20px') }};">
+  {{ item.phrase }}
+</div>
       {% endfor %}
     {% endfor %}
   </div>
