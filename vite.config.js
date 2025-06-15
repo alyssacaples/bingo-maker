@@ -9,8 +9,6 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     rollupOptions: {
-      // Handle CommonJS dependencies
-      external: [],
       output: {
         manualChunks: {
           // Separate React PDF into its own chunk
@@ -22,17 +20,12 @@ export default defineConfig({
         }
       }
     },
-    commonjsOptions: {
-      // Transform CommonJS modules to ES modules
-      transformMixedEsModules: true,
-      include: [/emoji-regex/, /node_modules/]
-    },
     // Increase chunk size warning limit for PDF library
     chunkSizeWarningLimit: 600
   },
   optimizeDeps: {
     // Force pre-bundling of problematic dependencies
-    include: ['@react-pdf/renderer', 'emoji-regex']
+    include: ['@react-pdf/renderer']
   },
   define: {
     // Fix for some CommonJS dependencies
