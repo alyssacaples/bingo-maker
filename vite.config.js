@@ -21,7 +21,7 @@ export default defineConfig({
       }
     },
     // Increase chunk size warning limit for PDF library
-    chunkSizeWarningLimit: 600
+    chunkSizeWarningLimit: 1600
   },
   optimizeDeps: {
     // Force pre-bundling of problematic dependencies
