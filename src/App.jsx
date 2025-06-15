@@ -90,20 +90,7 @@ const BingoCardMaker = () => {
       'You are capable of amazing things.',
       'Success is a journey, not a destination.'
     ],
-    simple: [
-      'hello',
-      'alyssa',
-      'i believe in you',
-      'hang in there',
-      'sweet baby',
-      'dobby',
-      'voldemort',
-      'cowabunga',
-      'balrog',
-      'you shall not pass',
-      'the skin of our teeth',
-      'perfectly fine'
-    ]
+    simple: [Array.from({length: 101}, (_, i) => i)]
   };
 
   // Auto-detect delimiters and parse phrases
@@ -259,7 +246,7 @@ const BingoCardMaker = () => {
     const centerIndex = Math.floor((gridSize * gridSize) / 2);
 
     return (
-      <Page size="A4" style={styles.page}>
+      <Page size="Letter" style={styles.page}>
         <Text style={styles.title}>{title || 'BINGO'}</Text>
         <View style={styles.grid}>
           {Array.from({ length: gridSize }, (_, rowIndex) => (
