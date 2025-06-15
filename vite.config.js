@@ -20,12 +20,16 @@ export default defineConfig({
         }
       }
     },
+    commonjsOptions: {
+      include: [/emoji-regex/, /node_modules/],
+      transformMixedEsModules: true
+    },
     // Increase chunk size warning limit for PDF library
     chunkSizeWarningLimit: 1600
   },
   optimizeDeps: {
     // Force pre-bundling of problematic dependencies
-    include: ['@react-pdf/renderer']
+    include: ['@react-pdf/renderer', 'emoji-regex']
   },
   define: {
     // Fix for some CommonJS dependencies
