@@ -64,9 +64,9 @@
   
   /* Header styling */
   .header-container {
-    @apply bg-gray-50 border-b border-gray-200;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    padding: 3rem 0;
+    @apply bg-blue-50 border-b border-blue-100;
+    box-shadow: 0 1px 3px rgba(59, 130, 246, 0.05);
+    padding: 2rem 0;
   }
   
   .header-background {
@@ -74,23 +74,23 @@
   }
   
   .header-title {
-    @apply text-4xl md:text-5xl font-bold text-gray-900;
+    @apply text-3xl md:text-4xl font-bold text-gray-900;
     background: linear-gradient(135deg, #1f2937, #374151, #4b5563);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin: 0.5rem 0;
+    margin: 0.25rem 0;
     line-height: 1.2;
     padding: 0.25rem 0;
   }
   
   .header-subtitle {
-    @apply text-lg md:text-xl text-gray-600 font-medium text-center max-w-2xl;
-    margin: 1rem 0 1.5rem 0;
+    @apply text-base md:text-lg text-gray-600 font-medium text-center max-w-2xl;
+    margin: 0.75rem 0 1rem 0;
   }
   
   .header-icon {
-    @apply w-8 h-8 md:w-10 md:h-10 text-blue-600;
+    @apply w-6 h-6 md:w-8 md:h-8 text-blue-600;
   }
   
   .header-accent-line {
@@ -100,9 +100,27 @@
   
   .btn-primary {
     @apply relative inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-semibold rounded-lg text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-lg hover:shadow-xl transform transition-all duration-150 hover:-translate-y-0.5;
+    font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', sans-serif;
+    letter-spacing: 0.025em;
   }
   
   .btn-primary:active {
+    @apply scale-95 shadow-inner bg-gradient-to-r from-blue-800 to-blue-900 translate-y-0;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Enhanced PDF download button */
+  .btn-download {
+    @apply w-full relative inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-semibold rounded-lg text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-lg hover:shadow-xl transform transition-all duration-150 hover:-translate-y-0.5;
+    font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .btn-download:active {
     @apply scale-95 shadow-inner bg-gradient-to-r from-blue-800 to-blue-900 translate-y-0;
     box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
   }

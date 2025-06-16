@@ -55,6 +55,26 @@ const PhraseInput = ({
               placeholder="Type your bingo phrases here...&#10;&#10;Examples:&#10;Has traveled to more than 3 countries&#10;Speaks more than one language&#10;Has a hidden talent&#10;&#10;Or use commas: Has traveled abroad, Speaks multiple languages, Has hidden talent"
             />
           </div>
+
+          {phrases.length > 0 && (
+            <div className="bg-gray-50 rounded-lg p-4">
+              <p className="text-sm text-gray-600 mb-2">Preview of detected phrases:</p>
+              <div className="max-h-32 overflow-y-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-xs">
+                  {phrases.slice(0, 10).map((phrase, index) => (
+                    <div key={index} className="text-gray-700 truncate">
+                      {index + 1}. {phrase}
+                    </div>
+                  ))}
+                  {phrases.length > 10 && (
+                    <div className="text-gray-500 italic">
+                      ...and {phrases.length - 10} more
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
           
           <div className="space-y-3">
             <div>
@@ -227,26 +247,6 @@ const PhraseInput = ({
               </div>
             </div>
           </div>
-
-          {phrases.length > 0 && (
-            <div className="bg-gray-50 rounded-lg p-4">
-              <p className="text-sm text-gray-600 mb-2">Preview of detected phrases:</p>
-              <div className="max-h-32 overflow-y-auto">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-xs">
-                  {phrases.slice(0, 10).map((phrase, index) => (
-                    <div key={index} className="text-gray-700 truncate">
-                      {index + 1}. {phrase}
-                    </div>
-                  ))}
-                  {phrases.length > 10 && (
-                    <div className="text-gray-500 italic">
-                      ...and {phrases.length - 10} more
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>

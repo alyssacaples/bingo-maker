@@ -148,7 +148,7 @@ const BingoCard = ({
         ))}
       </View>
       <Text style={styles.footer}>
-        Generated with Try Again? Bingo Card Maker • Card {cardIndex + 1} of {copies}
+        Generated with makebingocard.com • Card {cardIndex + 1} of {copies}
       </Text>
     </Page>
   );

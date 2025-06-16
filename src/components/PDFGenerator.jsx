@@ -30,14 +30,16 @@ const PDFGenerator = ({
               
               <PDFDownloadLink
                 document={<BingoDocument />}
-                fileName={`${(title || 'bingo').toLowerCase().replace(/\s+/g, '-')}-cards.pdf`}
-                className="btn-primary w-full text-center animate-bounce-gentle"
+                fileName={`${title || 'Bingo'}_Cards.pdf`}
+                className="btn-download animate-bounce-gentle hover-float"
               >
                 {({ loading }) => (
-                  <>
-                    <Download className="w-5 h-5 mr-2" />
-                    {loading ? 'Generating PDF...' : 'Download Bingo Cards'}
-                  </>
+                  loading ? 'Preparing PDF...' : (
+                    <>
+                      <Download className="w-5 h-5 mr-2" />
+                      Download Bingo Cards
+                    </>
+                  )
                 )}
               </PDFDownloadLink>
             </>

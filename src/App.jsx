@@ -81,7 +81,7 @@ function App() {
   ), [copies, title, gridSize, freeSpace, dynamicResize, fontSize, generateBingoCard, phrases]);
 
   return (
-    <div className="App min-h-screen bg-gray-50">
+    <div className="App min-h-screen bg-blue-25">
       <Header />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -98,7 +98,7 @@ function App() {
               </div>
               <div className="card-body">
                 <label className="title-input-label">
-                  Enter your bingo card title or use BINGO by default
+                  Enter your bingo card title or use Bingo by default
                 </label>
                 <input
                   type="text"
@@ -144,9 +144,6 @@ function App() {
               textOverflowWarning={textOverflowWarning}
             />
 
-            {/* Pro Tips */}
-            <ProTips />
-
             {/* PDF Generator */}
             <PDFGenerator
               hasEnoughPhrases={hasEnoughPhrases}
@@ -157,6 +154,9 @@ function App() {
               title={title}
               BingoDocument={BingoDocumentWithProps}
             />
+
+            {/* Pro Tips */}
+            <ProTips />
           </div>
         </div>
       </main>
