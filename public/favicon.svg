@@ -1,0 +1,42 @@
+<!-- filepath: /Users/alyssacaples/Documents/Coding Projects/bingo-maker/public/favicon.svg -->
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bingo card background -->
+  <rect x="4" y="6" width="24" height="20" rx="2" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+  
+  <!-- Grid lines -->
+  <line x1="10.67" y1="6" x2="10.67" y2="26" stroke="#2563eb" stroke-width="0.5"/>
+  <line x1="16" y1="6" x2="16" y2="26" stroke="#2563eb" stroke-width="0.5"/>
+  <line x1="21.33" y1="6" x2="21.33" y2="26" stroke="#2563eb" stroke-width="0.5"/>
+  
+  <line x1="4" y1="10" x2="28" y2="10" stroke="#2563eb" stroke-width="0.5"/>
+  <line x1="4" y1="14" x2="28" y2="14" stroke="#2563eb" stroke-width="0.5"/>
+  <line x1="4" y1="18" x2="28" y2="18" stroke="#2563eb" stroke-width="0.5"/>
+  <line x1="4" y1="22" x2="28" y2="22" stroke="#2563eb" stroke-width="0.5"/>
+  
+  <!-- Center FREE space with star -->
+  <rect x="13.33" y="14" width="5.34" height="4" fill="#dbeafe"/>
+  <path d="M16 15.5L16.5 16.8L18 16.8L16.75 17.7L17.25 19L16 18.1L14.75 19L15.25 17.7L14 16.8L15.5 16.8Z" fill="#2563eb"/>
+  
+  <!-- Small dots in other cells -->
+  <circle cx="7.33" cy="8" r="0.8" fill="#60a5fa"/>
+  <circle cx="13.67" cy="8" r="0.8" fill="#60a5fa"/>
+  <circle cx="20" cy="8" r="0.8" fill="#60a5fa"/>
+  <circle cx="25.33" cy="8" r="0.8" fill="#60a5fa"/>
+  
+  <circle cx="7.33" cy="12" r="0.8" fill="#60a5fa"/>
+  <circle cx="25.33" cy="12" r="0.8" fill="#60a5fa"/>
+  
+  <circle cx="7.33" cy="20" r="0.8" fill="#60a5fa"/>
+  <circle cx="25.33" cy="20" r="0.8" fill="#60a5fa"/>
+  
+  <circle cx="7.33" cy="24" r="0.8" fill="#60a5fa"/>
+  <circle cx="13.67" cy="24" r="0.8" fill="#60a5fa"/>
+  <circle cx="20" cy="24" r="0.8" fill="#60a5fa"/>
+  <circle cx="25.33" cy="24" r="0.8" fill="#60a5fa"/>
+  
+  <!-- Sparkle effects -->
+  <path d="M6 4L6.5 5L7.5 5L6.75 5.5L7 6.5L6 6L5 6.5L5.25 5.5L4.5 5L5.5 5Z" fill="#fbbf24"/>
+  <path d="M26 2L26.3 2.6L27 2.6L26.5 3L26.7 3.7L26 3.3L25.3 3.7L25.5 3L25 2.6L25.7 2.6Z" fill="#fbbf24"/>
+  <path d="M2 14L2.3 14.6L3 14.6L2.5 15L2.7 15.7L2 15.3L1.3 15.7L1.5 15L1 14.6L1.7 14.6Z" fill="#fbbf24"/>
+  <path d="M29 20L29.3 20.6L30 20.6L29.5 21L29.7 21.7L29 21.3L28.3 21.7L28.5 21L28 20.6L28.7 20.6Z" fill="#fbbf24"/>
+</svg>
