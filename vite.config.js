@@ -1,30 +1,9 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// Custom plugin to handle emoji-regex module
-const emojiRegexPlugin = () => {
-  return {
-    name: 'emoji-regex-fix',
-    resolveId(id) {
-      if (id === 'emoji-regex') {
-        return { id: 'emoji-regex-fixed', external: false }
-      }
-    },
-    load(id) {
-      if (id === 'emoji-regex-fixed') {
-        return `
-          import emojiRegex from 'emoji-regex/index.js';
-          export default emojiRegex;
-          export { emojiRegex };
-        `;
-      }
-    }
-  }
-}
-
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), emojiRegexPlugin()],
+  plugins: [react()],
   base: './',
   build: {
     outDir: 'dist',
@@ -42,7 +21,7 @@ export default defineConfig({
       }
     },
     commonjsOptions: {
-      include: [/emoji-regex/, /node_modules/],
+      include: [/node_modules/],
       transformMixedEsModules: true,
       defaultIsModuleExports: true
     },

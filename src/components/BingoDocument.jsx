@@ -87,6 +87,7 @@ const BingoCard = ({
   gridSize, 
   freeSpace, 
   dynamicResize, 
+  fontSize,
   generateBingoCard, 
   copies 
 }) => {
@@ -119,7 +120,7 @@ const BingoCard = ({
               
               // Get phrase from array or use FREE SPACE for center
               const phrase = cardPhrases[cellIndex] || '';
-              const fontSize = dynamicResize ? getDynamicFontSize(phrase, isCenter, gridSize) : 12;
+              const calculatedFontSize = dynamicResize ? getDynamicFontSize(phrase, isCenter, gridSize) : fontSize;
               
               // Debug logging
               if (isCenter) {
@@ -136,7 +137,7 @@ const BingoCard = ({
                       FREE SPACE
                     </Text>
                   ) : (
-                    <Text style={[styles.cellText, { fontSize }]}>
+                    <Text style={[styles.cellText, { fontSize: calculatedFontSize }]}>
                       {phrase}
                     </Text>
                   )}
@@ -159,6 +160,7 @@ const BingoDocument = ({
   gridSize, 
   freeSpace, 
   dynamicResize, 
+  fontSize,
   generateBingoCard 
 }) => (
   <Document>
@@ -170,6 +172,7 @@ const BingoDocument = ({
         gridSize={gridSize}
         freeSpace={freeSpace}
         dynamicResize={dynamicResize}
+        fontSize={fontSize}
         generateBingoCard={generateBingoCard}
         copies={copies}
       />

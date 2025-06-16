@@ -38,12 +38,16 @@ const App = () => {
     setDynamicResize,
     maxChars,
     setMaxChars,
+    fontSize,
+    setFontSize,
     generateBingoCard,
     requiredCells,
-    hasCenter
+    hasCenter,
+    getTextOverflowWarning
   } = useBingoConfiguration();
 
   const hasEnoughPhrases = phrases.length >= requiredCells;
+  const textOverflowWarning = getTextOverflowWarning();
 
   // Handler to add sample phrases and set suggested title
   const handleAddSamplePhrases = (type) => {
@@ -62,6 +66,7 @@ const App = () => {
       gridSize={gridSize}
       freeSpace={freeSpace}
       dynamicResize={dynamicResize}
+      fontSize={fontSize}
       generateBingoCard={boundGenerateBingoCard}
     />
   );
@@ -100,14 +105,17 @@ const App = () => {
               identicalCopies={identicalCopies}
               dynamicResize={dynamicResize}
               maxChars={maxChars}
+              fontSize={fontSize}
               copies={copies}
               hasCenter={hasCenter}
+              textOverflowWarning={textOverflowWarning}
               onGridSizeChange={setGridSize}
               onFreeSpaceChange={setFreeSpace}
               onRandomizeChange={setRandomize}
               onIdenticalCopiesChange={setIdenticalCopies}
               onDynamicResizeChange={setDynamicResize}
               onMaxCharsChange={setMaxChars}
+              onFontSizeChange={setFontSize}
               onCopiesChange={setCopies}
             />
 

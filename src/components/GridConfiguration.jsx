@@ -8,6 +8,7 @@ const GridConfiguration = ({
   identicalCopies,
   dynamicResize, 
   maxChars, 
+  fontSize,
   copies,
   onGridSizeChange,
   onFreeSpaceChange,
@@ -15,8 +16,10 @@ const GridConfiguration = ({
   onIdenticalCopiesChange,
   onDynamicResizeChange,
   onMaxCharsChange,
+  onFontSizeChange,
   onCopiesChange,
-  hasCenter
+  hasCenter,
+  textOverflowWarning
 }) => {
   return (
     <div className="card animate-slide-up">
@@ -120,18 +123,65 @@ const GridConfiguration = ({
         </div>
 
         {!dynamicResize && (
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Max Characters: {maxChars}
-            </label>
-            <input
-              type="range"
-              min="10"
-              max="80"
-              value={maxChars}
-              onChange={(e) => onMaxCharsChange(parseInt(e.target.value))}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-            />
+          <div className="space-y-4">
+            {/* Font Size Selector */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Font Size: {fontSize}px
+              </label>
+              <input
+                type="range"
+                min="8"
+                max="20"
+                value={fontSize}
+                onChange={(e) => onFontSizeChange(parseInt(e.target.value))}
+                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+              />
+              <div className="flex justify-between text-xs text-gray-500 mt-1">
+                <span>8px</span>
+                <span>20px</span>
+              </div>
+            </div>
+
+            {/* Max Characters */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Max Characters: {maxChars}
+              </label>
+              <input
+                type="range"
+                min="10"
+                max="80"
+                value={maxChars}
+                onChange={(e) => onMaxCharsChange(parseInt(e.target.value))}
+                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+              />
+            </div>
+
+            {/* Text Overflow Warning */}
+            {textOverflowWarning && (
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0">
+                    <svg className="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="ml-2">
+                    <h4 className="text-sm font-medium text-yellow-800">Text Overflow Warning</h4>
+                    <p className="text-sm text-yellow-700 mt-1">{textOverflowWarning.message}</p>
+                    {textOverflowWarning.suggestedMaxChars && (
+                      <button
+                        onClick={() => onMaxCharsChange(textOverflowWarning.suggestedMaxChars)}
+                        className="text-sm text-yellow-800 font-medium hover:text-yellow-900 mt-1 underline"
+                      >
+                        Set to recommended {textOverflowWarning.suggestedMaxChars} characters
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         )}
 

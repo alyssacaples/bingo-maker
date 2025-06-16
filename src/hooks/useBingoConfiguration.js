@@ -9,6 +9,7 @@ const useBingoConfiguration = () => {
   const [copies, setCopies] = useState(1);
   const [dynamicResize, setDynamicResize] = useState(true);
   const [maxChars, setMaxChars] = useState(25);
+  const [fontSize, setFontSize] = useState(12);
 
   const shuffleArray = useCallback((array) => {
     const shuffled = [...array];
@@ -65,6 +66,26 @@ const useBingoConfiguration = () => {
   const hasCenter = gridSize % 2 === 1;
   const requiredCells = (freeSpace && hasCenter) ? gridSize * gridSize - 1 : gridSize * gridSize;
 
+  // Calculate if current settings might cause text overflow
+  const getTextOverflowWarning = useCallback(() => {
+    if (dynamicResize) return null;
+    
+    // Rough estimation: larger fonts need fewer characters to fit
+    // Grid size also affects available space per cell
+    const baseLimit = gridSize === 3 ? 40 : gridSize === 4 ? 30 : 25;
+    const fontSizeMultiplier = fontSize / 12; // 12px is baseline
+    const adjustedLimit = Math.floor(baseLimit / fontSizeMultiplier);
+    
+    if (maxChars > adjustedLimit) {
+      return {
+        isWarning: true,
+        message: `With ${fontSize}px font size and ${gridSize}×${gridSize} grid, phrases longer than ~${adjustedLimit} characters may exceed cell boundaries. Current limit: ${maxChars} characters.`,
+        suggestedMaxChars: adjustedLimit
+      };
+    }
+    return null;
+  }, [dynamicResize, fontSize, gridSize, maxChars]);
+
   return {
     title,
     setTitle,
@@ -82,9 +103,12 @@ const useBingoConfiguration = () => {
     setDynamicResize,
     maxChars,
     setMaxChars,
+    fontSize,
+    setFontSize,
     generateBingoCard,
     requiredCells,
-    hasCenter
+    hasCenter,
+    getTextOverflowWarning
   };
 };
 
