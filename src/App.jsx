@@ -52,10 +52,14 @@ function App() {
   // Enhanced sample phrases handler
   const handleAddSamplePhrases = useCallback((type) => {
     const suggestedTitle = addSamplePhrases(type);
-    if (!title || title === 'BINGO') {
-      setTitle(suggestedTitle);
-    }
-  }, [addSamplePhrases, title, setTitle]);
+    setTitle(suggestedTitle);
+  }, [addSamplePhrases, setTitle]);
+
+  // Enhanced clear handler
+  const handleClearAll = useCallback(() => {
+    clearAll();
+    setTitle('BINGO');
+  }, [clearAll, setTitle]);
 
   // Check if we have enough phrases
   const hasEnoughPhrases = phrases.length >= requiredCells;
@@ -86,10 +90,15 @@ function App() {
           {/* Left Column - Phrase Input */}
           <div className="lg:col-span-2 space-y-6">
             {/* Title Input */}
-            <div className="card">
+            <div className="title-card">
+              <div className="card-header">
+                <div className="flex items-center space-x-2">
+                  <span className="text-lg font-semibold text-gray-900">Bingo Card Title</span>
+                </div>
+              </div>
               <div className="card-body">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Bingo Card Title
+                <label className="title-input-label">
+                  Enter your bingo card title or use BINGO by default
                 </label>
                 <input
                   type="text"
@@ -107,7 +116,7 @@ function App() {
               phrases={phrases}
               onPhraseInputChange={handlePhraseInputChange}
               onAddSamplePhrases={handleAddSamplePhrases}
-              onClearAll={clearAll}
+              onClearAll={handleClearAll}
             />
           </div>
 

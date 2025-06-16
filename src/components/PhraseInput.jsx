@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FileText, Plus, Trash2 } from 'lucide-react';
 
 const PhraseInput = ({ 
@@ -8,6 +8,18 @@ const PhraseInput = ({
   onAddSamplePhrases, 
   onClearAll 
 }) => {
+  const [selectedTemplate, setSelectedTemplate] = useState(null);
+
+  const handleSampleClick = (templateKey) => {
+    setSelectedTemplate(templateKey);
+    onAddSamplePhrases(templateKey);
+  };
+
+  const handleClearAll = () => {
+    setSelectedTemplate(null);
+    onClearAll();
+  };
+
   return (
     <div className="card animate-fade-in">
       <div className="card-header">
@@ -21,9 +33,20 @@ const PhraseInput = ({
       <div className="card-body">
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Enter your phrases (one per line, or separated by commas/semicolons)
-            </label>
+            <div className="flex items-center justify-between mb-2">
+              <label className="block text-sm font-medium text-gray-700">
+                Enter your phrases (one per line, or separated by commas/semicolons)
+              </label>
+              {phrases.length > 0 && (
+                <button
+                  onClick={handleClearAll}
+                  className="btn-secondary text-sm"
+                >
+                  <Trash2 className="w-4 h-4 mr-1" />
+                  Clear All
+                </button>
+              )}
+            </div>
             <textarea
               value={phraseInput}
               onChange={(e) => onPhraseInputChange(e.target.value)}
@@ -36,31 +59,31 @@ const PhraseInput = ({
           <div className="space-y-3">
             <div>
               <h4 className="text-sm font-medium text-gray-700 mb-2">Icebreakers & Party Games</h4>
-              <div className="flex flex-wrap gap-2">
+              <div className="btn-group">
                 <button
-                  onClick={() => onAddSamplePhrases('icebreakers')}
-                  className="btn-secondary text-sm"
+                  onClick={() => handleSampleClick('icebreakers')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'icebreakers' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Get to Know You
                 </button>
                 <button
-                  onClick={() => onAddSamplePhrases('party-icebreakers')}
-                  className="btn-secondary text-sm"
+                  onClick={() => handleSampleClick('party-icebreakers')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'party-icebreakers' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Party Icebreakers
                 </button>
                 <button
-                  onClick={() => onAddSamplePhrases('office-party')}
-                  className="btn-secondary text-sm"
+                  onClick={() => handleSampleClick('office-party')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'office-party' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Office Party
                 </button>
                 <button
-                  onClick={() => onAddSamplePhrases('college-life')}
-                  className="btn-secondary text-sm"
+                  onClick={() => handleSampleClick('college-life')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'college-life' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   College Life
@@ -70,31 +93,31 @@ const PhraseInput = ({
 
             <div>
               <h4 className="text-sm font-medium text-gray-700 mb-2">Special Events</h4>
-              <div className="flex flex-wrap gap-2">
+              <div className="btn-group">
                 <button
-                  onClick={() => onAddSamplePhrases('wedding-reception')}
-                  className="btn-secondary text-sm"
+                  onClick={() => handleSampleClick('wedding-reception')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'wedding-reception' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Wedding Reception
                 </button>
                 <button
-                  onClick={() => onAddSamplePhrases('baby-shower')}
-                  className="btn-secondary text-sm"
+                  onClick={() => handleSampleClick('baby-shower')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'baby-shower' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Baby Shower
                 </button>
                 <button
-                  onClick={() => onAddSamplePhrases('classroom-activities')}
-                  className="btn-secondary text-sm"
+                  onClick={() => handleSampleClick('classroom-activities')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'classroom-activities' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Classroom Fun
                 </button>
                 <button
-                  onClick={() => onAddSamplePhrases('holiday-traditions')}
-                  className="btn-secondary text-sm"
+                  onClick={() => handleSampleClick('holiday-traditions')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'holiday-traditions' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Holiday Traditions
@@ -104,31 +127,31 @@ const PhraseInput = ({
 
             <div>
               <h4 className="text-sm font-medium text-gray-700 mb-2">Seasonal Activities</h4>
-              <div className="flex flex-wrap gap-2">
+              <div className="btn-group">
                 <button
-                  onClick={() => onAddSamplePhrases('summer-bucketlist')}
-                  className="btn-secondary text-sm"
+                  onClick={() => handleSampleClick('summer-bucketlist')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'summer-bucketlist' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Summer Bucket List
                 </button>
                 <button
-                  onClick={() => onAddSamplePhrases('fall-activities')}
-                  className="btn-secondary text-sm"
+                  onClick={() => handleSampleClick('fall-activities')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'fall-activities' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Fall Activities
                 </button>
                 <button
-                  onClick={() => onAddSamplePhrases('winter-activities')}
-                  className="btn-secondary text-sm"
+                  onClick={() => handleSampleClick('winter-activities')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'winter-activities' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Winter Activities
                 </button>
                 <button
-                  onClick={() => onAddSamplePhrases('spring-activities')}
-                  className="btn-secondary text-sm"
+                  onClick={() => handleSampleClick('spring-activities')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'spring-activities' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Spring Activities
@@ -138,38 +161,38 @@ const PhraseInput = ({
 
             <div>
               <h4 className="text-sm font-medium text-gray-700 mb-2">Hobbies & Interests</h4>
-              <div className="flex flex-wrap gap-2">
+              <div className="btn-group">
                 <button
-                  onClick={() => onAddSamplePhrases('book-reading')}
-                  className="btn-secondary text-sm"
+                  onClick={() => handleSampleClick('book-reading')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'book-reading' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Reading Challenge
                 </button>
                 <button
-                  onClick={() => onAddSamplePhrases('acclaimed-books')}
-                  className="btn-secondary text-sm"
+                  onClick={() => handleSampleClick('acclaimed-books')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'acclaimed-books' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Acclaimed Books
                 </button>
                 <button
-                  onClick={() => onAddSamplePhrases('movies-2025')}
-                  className="btn-secondary text-sm"
+                  onClick={() => handleSampleClick('movies-2025')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'movies-2025' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Popular Movies
                 </button>
                 <button
-                  onClick={() => onAddSamplePhrases('hiking')}
-                  className="btn-secondary text-sm"
+                  onClick={() => handleSampleClick('hiking')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'hiking' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Hiking Adventures
                 </button>
                 <button
-                  onClick={() => onAddSamplePhrases('workout-fitness')}
-                  className="btn-secondary text-sm"
+                  onClick={() => handleSampleClick('workout-fitness')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'workout-fitness' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Fitness Challenge
@@ -179,39 +202,29 @@ const PhraseInput = ({
 
             <div>
               <h4 className="text-sm font-medium text-gray-700 mb-2">Experiences</h4>
-              <div className="flex flex-wrap gap-2">
+              <div className="btn-group">
                 <button
-                  onClick={() => onAddSamplePhrases('travel-experiences')}
-                  className="btn-secondary text-sm"
+                  onClick={() => handleSampleClick('travel-experiences')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'travel-experiences' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Travel Adventures
                 </button>
                 <button
-                  onClick={() => onAddSamplePhrases('food-adventures')}
-                  className="btn-secondary text-sm"
+                  onClick={() => handleSampleClick('food-adventures')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'food-adventures' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Foodie Adventures
                 </button>
                 <button
-                  onClick={() => onAddSamplePhrases('numbers')}
-                  className="btn-secondary text-sm"
+                  onClick={() => handleSampleClick('numbers')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'numbers' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Numbers
                 </button>
               </div>
-            </div>
-
-            <div className="pt-2 border-t border-gray-200">
-              <button
-                onClick={onClearAll}
-                className="btn-secondary text-sm"
-              >
-                <Trash2 className="w-4 h-4 mr-1" />
-                Clear All
-              </button>
             </div>
           </div>
 

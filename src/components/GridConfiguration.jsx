@@ -36,15 +36,13 @@ const GridConfiguration = ({
           <label className="block text-sm font-medium text-gray-700 mb-3">
             Grid Size
           </label>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-3 gap-4 px-2 py-4">
             {[3, 4, 5].map(size => (
               <button
                 key={size}
                 onClick={() => onGridSizeChange(size)}
-                className={`p-3 rounded-lg border-2 transition-all duration-200 ${
-                  gridSize === size 
-                    ? 'border-primary-500 bg-primary-50 text-primary-700' 
-                    : 'border-gray-200 hover:border-gray-300 text-gray-700'
+                className={`grid-size-btn ${
+                  gridSize === size ? 'selected' : ''
                 }`}
               >
                 <Grid3X3 className="w-5 h-5 mx-auto mb-1" />
