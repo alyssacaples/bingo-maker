@@ -5,6 +5,7 @@ const useBingoConfiguration = () => {
   const [gridSize, setGridSize] = useState(5);
   const [freeSpace, setFreeSpace] = useState(true);
   const [randomize, setRandomize] = useState(true);
+  const [identicalCopies, setIdenticalCopies] = useState(false);
   const [copies, setCopies] = useState(1);
   const [dynamicResize, setDynamicResize] = useState(true);
   const [maxChars, setMaxChars] = useState(25);
@@ -28,12 +29,15 @@ const useBingoConfiguration = () => {
     
     let availablePhrases = [...phrases];
     
-    if (randomize) {
+    if (randomize && !identicalCopies) {
       // Use cardIndex as seed for different randomization per card
       const seed = cardIndex * 1000;
       for (let i = 0; i < seed; i++) {
         Math.random();
       }
+      availablePhrases = shuffleArray(availablePhrases);
+    } else if (randomize && identicalCopies && cardIndex === 0) {
+      // Only shuffle once for the first card when identical copies is enabled
       availablePhrases = shuffleArray(availablePhrases);
     }
 
@@ -55,7 +59,7 @@ const useBingoConfiguration = () => {
     }
     
     return cardPhrases;
-  }, [gridSize, freeSpace, randomize, dynamicResize, maxChars, shuffleArray]);
+  }, [gridSize, freeSpace, randomize, identicalCopies, dynamicResize, maxChars, shuffleArray]);
 
   // Calculate required cells - for 4x4 grids, free space is not available
   const hasCenter = gridSize % 2 === 1;
@@ -70,6 +74,8 @@ const useBingoConfiguration = () => {
     setFreeSpace,
     randomize,
     setRandomize,
+    identicalCopies,
+    setIdenticalCopies,
     copies,
     setCopies,
     dynamicResize,

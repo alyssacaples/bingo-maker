@@ -5,16 +5,18 @@ const GridConfiguration = ({
   gridSize, 
   freeSpace, 
   randomize, 
+  identicalCopies,
   dynamicResize, 
   maxChars, 
   copies,
   onGridSizeChange,
   onFreeSpaceChange,
   onRandomizeChange,
+  onIdenticalCopiesChange,
   onDynamicResizeChange,
   onMaxCharsChange,
   onCopiesChange,
-  hasCenter // Add this prop
+  hasCenter
 }) => {
   return (
     <div className="card animate-slide-up">
@@ -77,12 +79,29 @@ const GridConfiguration = ({
           
           <div className="flex items-center justify-between">
             <label className="text-sm font-medium text-gray-700">
-              Randomize phrases
+              Randomize order of phrases
             </label>
             <input
               type="checkbox"
               checked={randomize}
               onChange={(e) => onRandomizeChange(e.target.checked)}
+              className="w-4 h-4 text-primary-600 rounded focus:ring-primary-500"
+            />
+          </div>
+          
+          <div className="flex items-center justify-between">
+            <div className="flex flex-col">
+              <label className="text-sm font-medium text-gray-700">
+                Generate identical copies
+              </label>
+              <span className="text-xs text-gray-500 mt-1">
+                When checked, all copies will have the same phrase arrangement
+              </span>
+            </div>
+            <input
+              type="checkbox"
+              checked={identicalCopies}
+              onChange={(e) => onIdenticalCopiesChange(e.target.checked)}
               className="w-4 h-4 text-primary-600 rounded focus:ring-primary-500"
             />
           </div>

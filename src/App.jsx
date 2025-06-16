@@ -17,6 +17,7 @@ const App = () => {
     phrases,
     handlePhraseInputChange,
     addSamplePhrases,
+    getSuggestedTitle,
     clearAll
   } = usePhraseManager();
 
@@ -29,6 +30,8 @@ const App = () => {
     setFreeSpace,
     randomize,
     setRandomize,
+    identicalCopies,
+    setIdenticalCopies,
     copies,
     setCopies,
     dynamicResize,
@@ -41,6 +44,12 @@ const App = () => {
   } = useBingoConfiguration();
 
   const hasEnoughPhrases = phrases.length >= requiredCells;
+
+  // Handler to add sample phrases and set suggested title
+  const handleAddSamplePhrases = (type) => {
+    const suggestedTitle = addSamplePhrases(type);
+    setTitle(suggestedTitle);
+  };
 
   // Create a bound version of generateBingoCard with current phrases
   const boundGenerateBingoCard = (cardIndex) => generateBingoCard(phrases, cardIndex);
@@ -71,7 +80,7 @@ const App = () => {
               phraseInput={phraseInput}
               phrases={phrases}
               onPhraseInputChange={handlePhraseInputChange}
-              onAddSamplePhrases={addSamplePhrases}
+              onAddSamplePhrases={handleAddSamplePhrases}
               onClearAll={clearAll}
             />
 
@@ -88,6 +97,7 @@ const App = () => {
               gridSize={gridSize}
               freeSpace={freeSpace}
               randomize={randomize}
+              identicalCopies={identicalCopies}
               dynamicResize={dynamicResize}
               maxChars={maxChars}
               copies={copies}
@@ -95,6 +105,7 @@ const App = () => {
               onGridSizeChange={setGridSize}
               onFreeSpaceChange={setFreeSpace}
               onRandomizeChange={setRandomize}
+              onIdenticalCopiesChange={setIdenticalCopies}
               onDynamicResizeChange={setDynamicResize}
               onMaxCharsChange={setMaxChars}
               onCopiesChange={setCopies}

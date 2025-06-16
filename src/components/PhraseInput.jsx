@@ -29,39 +29,190 @@ const PhraseInput = ({
               onChange={(e) => onPhraseInputChange(e.target.value)}
               className="input-field resize-none"
               rows={8}
-              placeholder="Type your bingo phrases here...&#10;&#10;Examples:&#10;Free parking&#10;Long checkout line&#10;Forgot shopping list&#10;&#10;Or use commas: Free parking, Long line, Forgot list"
+              placeholder="Type your bingo phrases here...&#10;&#10;Examples:&#10;Has traveled to more than 3 countries&#10;Speaks more than one language&#10;Has a hidden talent&#10;&#10;Or use commas: Has traveled abroad, Speaks multiple languages, Has hidden talent"
             />
           </div>
           
-          <div className="flex flex-wrap gap-3">
-            <button
-              onClick={() => onAddSamplePhrases('shopping')}
-              className="btn-secondary"
-            >
-              <Plus className="w-4 h-4 mr-2" />
-              Shopping Bingo
-            </button>
-            <button
-              onClick={() => onAddSamplePhrases('motivational')}
-              className="btn-secondary"
-            >
-              <Plus className="w-4 h-4 mr-2" />
-              Motivational
-            </button>
-            <button
-              onClick={() => onAddSamplePhrases('simple')}
-              className="btn-secondary"
-            >
-              <Plus className="w-4 h-4 mr-2" />
-              Numbers
-            </button>
-            <button
-              onClick={onClearAll}
-              className="btn-secondary"
-            >
-              <Trash2 className="w-4 h-4 mr-2" />
-              Clear All
-            </button>
+          <div className="space-y-3">
+            <div>
+              <h4 className="text-sm font-medium text-gray-700 mb-2">Icebreakers & Party Games</h4>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => onAddSamplePhrases('icebreakers')}
+                  className="btn-secondary text-sm"
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Get to Know You
+                </button>
+                <button
+                  onClick={() => onAddSamplePhrases('party-icebreakers')}
+                  className="btn-secondary text-sm"
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Party Icebreakers
+                </button>
+                <button
+                  onClick={() => onAddSamplePhrases('office-party')}
+                  className="btn-secondary text-sm"
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Office Party
+                </button>
+                <button
+                  onClick={() => onAddSamplePhrases('college-life')}
+                  className="btn-secondary text-sm"
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  College Life
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-medium text-gray-700 mb-2">Special Events</h4>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => onAddSamplePhrases('wedding-reception')}
+                  className="btn-secondary text-sm"
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Wedding Reception
+                </button>
+                <button
+                  onClick={() => onAddSamplePhrases('baby-shower')}
+                  className="btn-secondary text-sm"
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Baby Shower
+                </button>
+                <button
+                  onClick={() => onAddSamplePhrases('classroom-activities')}
+                  className="btn-secondary text-sm"
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Classroom Fun
+                </button>
+                <button
+                  onClick={() => onAddSamplePhrases('holiday-traditions')}
+                  className="btn-secondary text-sm"
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Holiday Traditions
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-medium text-gray-700 mb-2">Seasonal Activities</h4>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => onAddSamplePhrases('summer-bucketlist')}
+                  className="btn-secondary text-sm"
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Summer Bucket List
+                </button>
+                <button
+                  onClick={() => onAddSamplePhrases('fall-activities')}
+                  className="btn-secondary text-sm"
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Fall Activities
+                </button>
+                <button
+                  onClick={() => onAddSamplePhrases('winter-activities')}
+                  className="btn-secondary text-sm"
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Winter Activities
+                </button>
+                <button
+                  onClick={() => onAddSamplePhrases('spring-activities')}
+                  className="btn-secondary text-sm"
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Spring Activities
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-medium text-gray-700 mb-2">Hobbies & Interests</h4>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => onAddSamplePhrases('book-reading')}
+                  className="btn-secondary text-sm"
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Reading Challenge
+                </button>
+                <button
+                  onClick={() => onAddSamplePhrases('acclaimed-books')}
+                  className="btn-secondary text-sm"
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Acclaimed Books
+                </button>
+                <button
+                  onClick={() => onAddSamplePhrases('movies-2025')}
+                  className="btn-secondary text-sm"
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Popular Movies
+                </button>
+                <button
+                  onClick={() => onAddSamplePhrases('hiking')}
+                  className="btn-secondary text-sm"
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Hiking Adventures
+                </button>
+                <button
+                  onClick={() => onAddSamplePhrases('workout-fitness')}
+                  className="btn-secondary text-sm"
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Fitness Challenge
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-medium text-gray-700 mb-2">Experiences</h4>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => onAddSamplePhrases('travel-experiences')}
+                  className="btn-secondary text-sm"
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Travel Adventures
+                </button>
+                <button
+                  onClick={() => onAddSamplePhrases('food-adventures')}
+                  className="btn-secondary text-sm"
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Foodie Adventures
+                </button>
+                <button
+                  onClick={() => onAddSamplePhrases('numbers')}
+                  className="btn-secondary text-sm"
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Numbers
+                </button>
+              </div>
+            </div>
+
+            <div className="pt-2 border-t border-gray-200">
+              <button
+                onClick={onClearAll}
+                className="btn-secondary text-sm"
+              >
+                <Trash2 className="w-4 h-4 mr-1" />
+                Clear All
+              </button>
+            </div>
           </div>
 
           {phrases.length > 0 && (
