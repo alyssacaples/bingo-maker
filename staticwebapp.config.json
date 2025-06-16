@@ -7,7 +7,7 @@
     ".css": "text/css"
   },
   "globalHeaders": {
-    "Cache-Control": "public, max-age=3600"
+    "Cache-Control": "public, max-age=31536000"
   },
   "routes": [
     {
