@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import './App.css';
 
-import Header from './components/Header';
-import PhraseInput from './components/PhraseInput';
-import TitleConfiguration from './components/TitleConfiguration';
-import GridConfiguration from './components/GridConfiguration';
-import PDFGenerator from './components/PDFGenerator';
-import ProTips from './components/ProTips';
-import { BingoDocument } from './components/BingoDocument';
-
+// Import custom hooks
 import usePhraseManager from './hooks/usePhraseManager';
 import useBingoConfiguration from './hooks/useBingoConfiguration';
 
-const App = () => {
+// Import components
+import Header from './components/Header';
+import PhraseInput from './components/PhraseInput';
+import GridConfiguration from './components/GridConfiguration';
+import ProTips from './components/ProTips';
+import PDFGenerator from './components/PDFGenerator';
+import { BingoDocument } from './components/BingoDocument';
+
+function App() {
+  // Initialize hooks
   const {
     phraseInput,
     phrases,
@@ -46,20 +49,22 @@ const App = () => {
     getTextOverflowWarning
   } = useBingoConfiguration();
 
+  // Enhanced sample phrases handler
+  const handleAddSamplePhrases = useCallback((type) => {
+    const suggestedTitle = addSamplePhrases(type);
+    if (!title || title === 'BINGO') {
+      setTitle(suggestedTitle);
+    }
+  }, [addSamplePhrases, title, setTitle]);
+
+  // Check if we have enough phrases
   const hasEnoughPhrases = phrases.length >= requiredCells;
+  
+  // Get text overflow warning
   const textOverflowWarning = getTextOverflowWarning();
 
-  // Handler to add sample phrases and set suggested title
-  const handleAddSamplePhrases = (type) => {
-    const suggestedTitle = addSamplePhrases(type);
-    setTitle(suggestedTitle);
-  };
-
-  // Create a bound version of generateBingoCard with current phrases
-  const boundGenerateBingoCard = (cardIndex) => generateBingoCard(phrases, cardIndex);
-
-  // Create BingoDocument component with all needed props
-  const DocumentComponent = () => (
+  // Create BingoDocument component with current settings
+  const BingoDocumentWithProps = useCallback(() => (
     <BingoDocument
       copies={copies}
       title={title}
@@ -67,20 +72,36 @@ const App = () => {
       freeSpace={freeSpace}
       dynamicResize={dynamicResize}
       fontSize={fontSize}
-      generateBingoCard={boundGenerateBingoCard}
+      generateBingoCard={(cardIndex) => generateBingoCard(phrases, cardIndex)}
     />
-  );
+  ), [copies, title, gridSize, freeSpace, dynamicResize, fontSize, generateBingoCard, phrases]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <div className="App min-h-screen bg-gray-50">
       <Header />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid lg:grid-cols-3 gap-8">
+      
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
-          {/* Configuration Panel */}
+          {/* Left Column - Phrase Input */}
           <div className="lg:col-span-2 space-y-6">
-            
+            {/* Title Input */}
+            <div className="card">
+              <div className="card-body">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Bingo Card Title
+                </label>
+                <input
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  className="input-field"
+                  placeholder="Enter your bingo card title..."
+                />
+              </div>
+            </div>
+
+            {/* Phrase Input Component */}
             <PhraseInput
               phraseInput={phraseInput}
               phrases={phrases}
@@ -88,16 +109,11 @@ const App = () => {
               onAddSamplePhrases={handleAddSamplePhrases}
               onClearAll={clearAll}
             />
-
-            <TitleConfiguration
-              title={title}
-              onTitleChange={setTitle}
-            />
           </div>
 
-          {/* Settings Panel */}
+          {/* Right Column - Configuration and Generation */}
           <div className="space-y-6">
-            
+            {/* Grid Configuration */}
             <GridConfiguration
               gridSize={gridSize}
               freeSpace={freeSpace}
@@ -107,8 +123,6 @@ const App = () => {
               maxChars={maxChars}
               fontSize={fontSize}
               copies={copies}
-              hasCenter={hasCenter}
-              textOverflowWarning={textOverflowWarning}
               onGridSizeChange={setGridSize}
               onFreeSpaceChange={setFreeSpace}
               onRandomizeChange={setRandomize}
@@ -117,8 +131,14 @@ const App = () => {
               onMaxCharsChange={setMaxChars}
               onFontSizeChange={setFontSize}
               onCopiesChange={setCopies}
+              hasCenter={hasCenter}
+              textOverflowWarning={textOverflowWarning}
             />
 
+            {/* Pro Tips */}
+            <ProTips />
+
+            {/* PDF Generator */}
             <PDFGenerator
               hasEnoughPhrases={hasEnoughPhrases}
               requiredCells={requiredCells}
@@ -126,15 +146,13 @@ const App = () => {
               freeSpace={freeSpace}
               phrases={phrases}
               title={title}
-              BingoDocument={DocumentComponent}
+              BingoDocument={BingoDocumentWithProps}
             />
-
-            <ProTips />
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
-};
+}
 
 export default App;
