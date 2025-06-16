@@ -1,7 +1,0 @@
-{
-  "name": "emoji-regex-stub",
-  "version": "1.0.0",
-  "main": "index.js",
-  "module": "index.js",
-  "type": "module"
-}
