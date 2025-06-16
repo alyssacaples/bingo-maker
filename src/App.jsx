@@ -12,6 +12,7 @@ import GridConfiguration from './components/GridConfiguration';
 import ProTips from './components/ProTips';
 import PDFGenerator from './components/PDFGenerator';
 import { BingoDocument } from './components/BingoDocument';
+import BugReportButton from './components/BugReportButton';
 
 function App() {
   // Initialize hooks
@@ -160,6 +161,8 @@ function App() {
           </div>
         </div>
       </main>
+
+      <BugReportButton />
     </div>
   );
 }
