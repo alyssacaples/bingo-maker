@@ -31,7 +31,7 @@ export default defineConfig({
   optimizeDeps: {
     // Force pre-bundling of problematic dependencies
     include: ['@react-pdf/renderer'],
-    exclude: [],
+    exclude: ['emoji-regex'], // Add this line
   },
   define: {
     // Fix for some CommonJS dependencies
