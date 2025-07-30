@@ -144,12 +144,6 @@ const BugReportModal = ({ isOpen, onClose }) => {
               <p className="text-red-700 text-xs">
                 Environment configuration issue detected. Check browser console for details, or contact support directly.
               </p>
-              <details className="mt-2">
-                <summary className="text-red-600 text-xs cursor-pointer hover:underline">Technical Details</summary>
-                <div className="mt-1 text-xs text-red-600 font-mono bg-red-100 p-2 rounded">
-                  Check console for missing environment variables (VITE_EMAILJS_*)
-                </div>
-              </details>
             </div>
           )}
 
