@@ -40,14 +40,12 @@ const BugReportModal = ({ isOpen, onClose }) => {
     const serviceId = 'service_1peme0q';
     const templateId = 'template_khikxtg';
     const publicKey = 'eiigGPFYkbAapsJE7';
-    const supportEmail = 'lobstermaidenindustries@gmail.com';
 
     // Debug logging (can be removed later)
     console.log('EmailJS Configuration:');
     console.log('Service ID:', serviceId);
     console.log('Template ID:', templateId);
     console.log('Public Key:', publicKey.substring(0, 10) + '...');
-    console.log('Support Email:', supportEmail);
 
     if (!serviceId || !templateId || !publicKey) {
       console.error('EmailJS configuration error - this should not happen with hardcoded values');
@@ -65,8 +63,7 @@ const BugReportModal = ({ isOpen, onClose }) => {
         user_email: formData.userEmail || 'Anonymous',
         severity: formData.severity,
         browser_info: JSON.stringify(browserInfo, null, 2),
-        app_url: window.location.href,
-        to_email: supportEmail
+        app_url: window.location.href
       };
 
       console.log('Sending email with params:', templateParams);
