@@ -126,9 +126,6 @@ const BugReportModal = ({ isOpen, onClose }) => {
                 <AlertCircle className="w-4 h-4 text-red-500" />
                 <span className="text-red-800 text-sm font-medium">Failed to send report</span>
               </div>
-              <p className="text-red-700 text-xs">
-                Environment configuration issue detected. Check browser console for details, or contact support directly.
-              </p>
             </div>
           )}
 
