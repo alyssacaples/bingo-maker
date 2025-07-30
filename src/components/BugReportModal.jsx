@@ -41,11 +41,6 @@ const BugReportModal = ({ isOpen, onClose }) => {
     const templateId = 'template_khikxtg';
     const publicKey = 'eiigGPFYkbAapsJE7';
 
-    // Debug logging (can be removed later)
-    console.log('EmailJS Configuration:');
-    console.log('Service ID:', serviceId);
-    console.log('Template ID:', templateId);
-    console.log('Public Key:', publicKey.substring(0, 10) + '...');
 
     if (!serviceId || !templateId || !publicKey) {
       console.error('EmailJS configuration error - this should not happen with hardcoded values');
@@ -66,7 +61,6 @@ const BugReportModal = ({ isOpen, onClose }) => {
         app_url: window.location.href
       };
 
-      console.log('Sending email with params:', templateParams);
 
       const result = await emailjs.send(
         serviceId,
