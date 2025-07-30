@@ -49,6 +49,9 @@ const BugReportModal = ({ isOpen, onClose }) => {
     console.log('VITE_EMAILJS_PUBLIC_KEY:', publicKey ? `Set (${publicKey.substring(0, 10)}...)` : 'MISSING');
     console.log('VITE_SUPPORT_EMAIL:', supportEmail ? `Set (${supportEmail})` : 'MISSING');
     console.log('All environment variables available:', Object.keys(import.meta.env).filter(key => key.startsWith('VITE_')));
+    console.log('Build mode:', import.meta.env.MODE);
+    console.log('Base URL:', import.meta.env.BASE_URL);
+    console.log('All import.meta.env keys:', Object.keys(import.meta.env));
 
     if (!serviceId || !templateId || !publicKey) {
       const missingVars = [];
