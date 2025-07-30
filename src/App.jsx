@@ -13,6 +13,7 @@ import ProTips from './components/ProTips';
 import PDFGenerator from './components/PDFGenerator';
 import { BingoDocument } from './components/BingoDocument';
 import BugReportButton from './components/BugReportButton';
+import EnvDebugger from './components/EnvDebugger';
 
 function App() {
   // Initialize hooks
@@ -162,7 +163,9 @@ function App() {
         </div>
       </main>
 
+      {/* Bug reporting and debugging */}
       <BugReportButton />
+      <EnvDebugger />
     </div>
   );
 }

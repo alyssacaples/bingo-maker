@@ -36,17 +36,32 @@ const BugReportModal = ({ isOpen, onClose }) => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    // Validate environment variables
+    // Validate environment variables with detailed logging
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
     const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
     const supportEmail = import.meta.env.VITE_SUPPORT_EMAIL;
 
+    // Detailed environment variable debugging
+    console.log('Environment Variables Debug:');
+    console.log('VITE_EMAILJS_SERVICE_ID:', serviceId ? `Set (${serviceId.substring(0, 10)}...)` : 'MISSING');
+    console.log('VITE_EMAILJS_TEMPLATE_ID:', templateId ? `Set (${templateId.substring(0, 10)}...)` : 'MISSING');
+    console.log('VITE_EMAILJS_PUBLIC_KEY:', publicKey ? `Set (${publicKey.substring(0, 10)}...)` : 'MISSING');
+    console.log('VITE_SUPPORT_EMAIL:', supportEmail ? `Set (${supportEmail})` : 'MISSING');
+    console.log('All environment variables available:', Object.keys(import.meta.env).filter(key => key.startsWith('VITE_')));
+
     if (!serviceId || !templateId || !publicKey) {
-      console.error('Missing EmailJS configuration:', {
+      const missingVars = [];
+      if (!serviceId) missingVars.push('VITE_EMAILJS_SERVICE_ID');
+      if (!templateId) missingVars.push('VITE_EMAILJS_TEMPLATE_ID');
+      if (!publicKey) missingVars.push('VITE_EMAILJS_PUBLIC_KEY');
+      
+      console.error('Missing EmailJS configuration. Missing variables:', missingVars);
+      console.error('Configuration status:', {
         serviceId: !!serviceId,
         templateId: !!templateId,
-        publicKey: !!publicKey
+        publicKey: !!publicKey,
+        supportEmail: !!supportEmail
       });
       setSubmitStatus('error');
       setIsSubmitting(false);
@@ -118,9 +133,20 @@ const BugReportModal = ({ isOpen, onClose }) => {
           )}
 
           {submitStatus === 'error' && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center space-x-2">
-              <AlertCircle className="w-4 h-4 text-red-500" />
-              <span className="text-red-800 text-sm">Failed to send report. Please try again or contact support directly.</span>
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <div className="flex items-center space-x-2 mb-2">
+                <AlertCircle className="w-4 h-4 text-red-500" />
+                <span className="text-red-800 text-sm font-medium">Failed to send report</span>
+              </div>
+              <p className="text-red-700 text-xs">
+                Environment configuration issue detected. Check browser console for details, or contact support directly.
+              </p>
+              <details className="mt-2">
+                <summary className="text-red-600 text-xs cursor-pointer hover:underline">Technical Details</summary>
+                <div className="mt-1 text-xs text-red-600 font-mono bg-red-100 p-2 rounded">
+                  Check console for missing environment variables (VITE_EMAILJS_*)
+                </div>
+              </details>
             </div>
           )}
 
