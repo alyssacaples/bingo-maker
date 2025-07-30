@@ -36,36 +36,21 @@ const BugReportModal = ({ isOpen, onClose }) => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    // Validate environment variables with detailed logging
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-    const supportEmail = import.meta.env.VITE_SUPPORT_EMAIL;
+    // EmailJS configuration - these values are safe to expose publicly
+    const serviceId = 'service_1peme0q';
+    const templateId = 'template_khikxtg';
+    const publicKey = 'eiigGPFYkbAapsJE7';
+    const supportEmail = 'lobstermaidenindustries@gmail.com';
 
-    // Detailed environment variable debugging
-    console.log('Environment Variables Debug:');
-    console.log('VITE_EMAILJS_SERVICE_ID:', serviceId ? `Set (${serviceId.substring(0, 10)}...)` : 'MISSING');
-    console.log('VITE_EMAILJS_TEMPLATE_ID:', templateId ? `Set (${templateId.substring(0, 10)}...)` : 'MISSING');
-    console.log('VITE_EMAILJS_PUBLIC_KEY:', publicKey ? `Set (${publicKey.substring(0, 10)}...)` : 'MISSING');
-    console.log('VITE_SUPPORT_EMAIL:', supportEmail ? `Set (${supportEmail})` : 'MISSING');
-    console.log('All environment variables available:', Object.keys(import.meta.env).filter(key => key.startsWith('VITE_')));
-    console.log('Build mode:', import.meta.env.MODE);
-    console.log('Base URL:', import.meta.env.BASE_URL);
-    console.log('All import.meta.env keys:', Object.keys(import.meta.env));
+    // Debug logging (can be removed later)
+    console.log('EmailJS Configuration:');
+    console.log('Service ID:', serviceId);
+    console.log('Template ID:', templateId);
+    console.log('Public Key:', publicKey.substring(0, 10) + '...');
+    console.log('Support Email:', supportEmail);
 
     if (!serviceId || !templateId || !publicKey) {
-      const missingVars = [];
-      if (!serviceId) missingVars.push('VITE_EMAILJS_SERVICE_ID');
-      if (!templateId) missingVars.push('VITE_EMAILJS_TEMPLATE_ID');
-      if (!publicKey) missingVars.push('VITE_EMAILJS_PUBLIC_KEY');
-      
-      console.error('Missing EmailJS configuration. Missing variables:', missingVars);
-      console.error('Configuration status:', {
-        serviceId: !!serviceId,
-        templateId: !!templateId,
-        publicKey: !!publicKey,
-        supportEmail: !!supportEmail
-      });
+      console.error('EmailJS configuration error - this should not happen with hardcoded values');
       setSubmitStatus('error');
       setIsSubmitting(false);
       return;
