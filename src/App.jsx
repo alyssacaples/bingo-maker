@@ -28,6 +28,8 @@ function App() {
   const {
     title,
     setTitle,
+    subtitle,
+    setSubtitle,
     gridSize,
     setGridSize,
     freeSpace,
@@ -44,6 +46,26 @@ function App() {
     setMaxChars,
     fontSize,
     setFontSize,
+    titleFont,
+    setTitleFont,
+    titleColor,
+    setTitleColor,
+    cellFont,
+    setCellFont,
+    backgroundColor,
+    setBackgroundColor,
+    useGradient,
+    setUseGradient,
+    gradientColor1,
+    setGradientColor1,
+    gradientColor2,
+    setGradientColor2,
+    borderColor,
+    setBorderColor,
+    freeSpaceBackgroundColor,
+    setFreeSpaceBackgroundColor,
+    freeSpaceFontColor,
+    setFreeSpaceFontColor,
     generateBingoCard,
     requiredCells,
     hasCenter,
@@ -73,13 +95,24 @@ function App() {
     <BingoDocument
       copies={copies}
       title={title}
+      subtitle={subtitle}
       gridSize={gridSize}
       freeSpace={freeSpace}
       dynamicResize={dynamicResize}
       fontSize={fontSize}
       generateBingoCard={(cardIndex) => generateBingoCard(phrases, cardIndex)}
+      titleFont={titleFont}
+      titleColor={titleColor}
+      cellFont={cellFont}
+      backgroundColor={backgroundColor}
+      useGradient={useGradient}
+      gradientColor1={gradientColor1}
+      gradientColor2={gradientColor2}
+      borderColor={borderColor}
+      freeSpaceBackgroundColor={freeSpaceBackgroundColor}
+      freeSpaceFontColor={freeSpaceFontColor}
     />
-  ), [copies, title, gridSize, freeSpace, dynamicResize, fontSize, generateBingoCard, phrases]);
+  ), [copies, title, subtitle, gridSize, freeSpace, dynamicResize, fontSize, generateBingoCard, phrases, titleFont, titleColor, cellFont, backgroundColor, useGradient, gradientColor1, gradientColor2, borderColor, freeSpaceBackgroundColor, freeSpaceFontColor]);
 
   return (
     <div className="App min-h-screen bg-blue-25">
@@ -98,16 +131,30 @@ function App() {
                 </div>
               </div>
               <div className="card-body">
-                <label className="title-input-label">
-                  Enter your bingo card title or use Bingo by default
-                </label>
-                <input
-                  type="text"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  className="input-field"
-                  placeholder="Enter your bingo card title..."
-                />
+                <div>
+                  <label className="title-input-label">
+                    Enter your bingo card title or use Bingo by default
+                  </label>
+                  <input
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    className="input-field"
+                    placeholder="Enter your bingo card title..."
+                  />
+                </div>
+                <div>
+                  <label className="title-input-label">
+                    Subtitle/Instruction (optional)
+                  </label>
+                  <input
+                    type="text"
+                    value={subtitle}
+                    onChange={(e) => setSubtitle(e.target.value)}
+                    className="input-field"
+                    placeholder="e.g., First to get 5 in a row wins!"
+                  />
+                </div>
               </div>
             </div>
 
@@ -153,7 +200,29 @@ function App() {
               freeSpace={freeSpace}
               phrases={phrases}
               title={title}
+              subtitle={subtitle}
+              setSubtitle={setSubtitle}
               BingoDocument={BingoDocumentWithProps}
+              titleFont={titleFont}
+              setTitleFont={setTitleFont}
+              titleColor={titleColor}
+              setTitleColor={setTitleColor}
+              cellFont={cellFont}
+              setCellFont={setCellFont}
+              backgroundColor={backgroundColor}
+              setBackgroundColor={setBackgroundColor}
+              useGradient={useGradient}
+              setUseGradient={setUseGradient}
+              gradientColor1={gradientColor1}
+              setGradientColor1={setGradientColor1}
+              gradientColor2={gradientColor2}
+              setGradientColor2={setGradientColor2}
+              borderColor={borderColor}
+              setBorderColor={setBorderColor}
+              freeSpaceBackgroundColor={freeSpaceBackgroundColor}
+              setFreeSpaceBackgroundColor={setFreeSpaceBackgroundColor}
+              freeSpaceFontColor={freeSpaceFontColor}
+              setFreeSpaceFontColor={setFreeSpaceFontColor}
             />
 
             {/* Pro Tips */}

@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 
 const useBingoConfiguration = () => {
   const [title, setTitle] = useState('BINGO');
+  const [subtitle, setSubtitle] = useState('Walk around the room and get signatures of others who agree with the item in the box.');
   const [gridSize, setGridSize] = useState(5);
   const [freeSpace, setFreeSpace] = useState(true);
   const [randomize, setRandomize] = useState(true);
@@ -10,6 +11,16 @@ const useBingoConfiguration = () => {
   const [dynamicResize, setDynamicResize] = useState(true);
   const [maxChars, setMaxChars] = useState(25);
   const [fontSize, setFontSize] = useState(12);
+  const [titleFont, setTitleFont] = useState('Helvetica-Bold');
+  const [titleColor, setTitleColor] = useState('#000000');
+  const [cellFont, setCellFont] = useState('Helvetica');
+  const [backgroundColor, setBackgroundColor] = useState('#FFFFFF');
+  const [useGradient, setUseGradient] = useState(false);
+  const [gradientColor1, setGradientColor1] = useState('#FFFFFF');
+  const [gradientColor2, setGradientColor2] = useState('#E0E7FF');
+  const [borderColor, setBorderColor] = useState('#1e40af');
+  const [freeSpaceBackgroundColor, setFreeSpaceBackgroundColor] = useState('#dbeafe');
+  const [freeSpaceFontColor, setFreeSpaceFontColor] = useState('#1e40af');
 
   const shuffleArray = useCallback((array) => {
     const shuffled = [...array];
@@ -89,6 +100,8 @@ const useBingoConfiguration = () => {
   return {
     title,
     setTitle,
+    subtitle,
+    setSubtitle,
     gridSize,
     setGridSize,
     freeSpace,
@@ -105,6 +118,26 @@ const useBingoConfiguration = () => {
     setMaxChars,
     fontSize,
     setFontSize,
+    titleFont,
+    setTitleFont,
+    titleColor,
+    setTitleColor,
+    cellFont,
+    setCellFont,
+    backgroundColor,
+    setBackgroundColor,
+    useGradient,
+    setUseGradient,
+    gradientColor1,
+    setGradientColor1,
+    gradientColor2,
+    setGradientColor2,
+    borderColor,
+    setBorderColor,
+    freeSpaceBackgroundColor,
+    setFreeSpaceBackgroundColor,
+    freeSpaceFontColor,
+    setFreeSpaceFontColor,
     generateBingoCard,
     requiredCells,
     hasCenter,

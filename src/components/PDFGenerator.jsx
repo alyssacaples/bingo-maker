@@ -9,8 +9,30 @@ const PDFGenerator = ({
   gridSize, 
   freeSpace, 
   phrases, 
-  title, 
-  BingoDocument 
+  title,
+  subtitle,
+  setSubtitle,
+  BingoDocument,
+  titleFont,
+  setTitleFont,
+  titleColor,
+  setTitleColor,
+  cellFont,
+  setCellFont,
+  backgroundColor,
+  setBackgroundColor,
+  useGradient,
+  setUseGradient,
+  gradientColor1,
+  setGradientColor1,
+  gradientColor2,
+  setGradientColor2,
+  borderColor,
+  setBorderColor,
+  freeSpaceBackgroundColor,
+  setFreeSpaceBackgroundColor,
+  freeSpaceFontColor,
+  setFreeSpaceFontColor
 }) => {
   const [showPreview, setShowPreview] = useState(false);
 
@@ -63,6 +85,28 @@ const PDFGenerator = ({
         BingoDocument={BingoDocument}
         isOpen={showPreview}
         onClose={() => setShowPreview(false)}
+        subtitle={subtitle}
+        setSubtitle={setSubtitle}
+        titleFont={titleFont}
+        setTitleFont={setTitleFont}
+        titleColor={titleColor}
+        setTitleColor={setTitleColor}
+        cellFont={cellFont}
+        setCellFont={setCellFont}
+        backgroundColor={backgroundColor}
+        setBackgroundColor={setBackgroundColor}
+        useGradient={useGradient}
+        setUseGradient={setUseGradient}
+        gradientColor1={gradientColor1}
+        setGradientColor1={setGradientColor1}
+        gradientColor2={gradientColor2}
+        setGradientColor2={setGradientColor2}
+        borderColor={borderColor}
+        setBorderColor={setBorderColor}
+        freeSpaceBackgroundColor={freeSpaceBackgroundColor}
+        setFreeSpaceBackgroundColor={setFreeSpaceBackgroundColor}
+        freeSpaceFontColor={freeSpaceFontColor}
+        setFreeSpaceFontColor={setFreeSpaceFontColor}
       />
     </>
   );
