@@ -20,6 +20,13 @@ const PhraseInput = ({
     onClearAll();
   };
 
+  // Date-based section ordering logic
+  const now = new Date();
+  const feb1_2026 = new Date('2026-02-01');
+  const jan10_2026 = new Date('2026-01-10');
+  const show2025WrappedAtTop = now < feb1_2026;
+  const showHolidaySeasonalAtTop = now < jan10_2026;
+
   return (
     <div className="card animate-fade-in">
       <div className="card-header">
@@ -77,6 +84,127 @@ const PhraseInput = ({
           )}
           
           <div className="space-y-3">
+            {show2025WrappedAtTop && (
+              <div>
+                <h4 className="text-sm font-medium text-gray-700 mb-2">2025 Wrapped</h4>
+                <div className="btn-group">
+                  <button
+                    onClick={() => handleSampleClick('books-2025')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'books-2025' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    2025 Books
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('movies-2025-new')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'movies-2025-new' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    2025 Movies
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('tv-shows-2025')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'tv-shows-2025' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    2025 TV Shows
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('trends-2025')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'trends-2025' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    2025 Trends
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('resolutions-2025')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'resolutions-2025' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    2025 Resolutions
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('ultra-specific-resolutions')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'ultra-specific-resolutions' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    Ultra Specific Resolutions
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {showHolidaySeasonalAtTop && (
+              <div>
+                <h4 className="text-sm font-medium text-gray-700 mb-2">Holiday/Seasonal</h4>
+                <div className="btn-group">
+                  <button
+                    onClick={() => handleSampleClick('thanksgiving')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'thanksgiving' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    Thanksgiving
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('christmas-bucketlist')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'christmas-bucketlist' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    Christmas Bucket List
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('indoor-winter-adult')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'indoor-winter-adult' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    Indoor Winter (Adult)
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('indoor-winter-family')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'indoor-winter-family' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    Indoor Winter (Family)
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('outdoor-winter-adult')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'outdoor-winter-adult' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    Outdoor Winter (Adult)
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('outdoor-winter-family')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'outdoor-winter-family' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    Outdoor Winter (Family)
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('winter-adult-all')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'winter-adult-all' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    Winter All (Adult)
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('winter-family-all')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'winter-family-all' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    Winter All (Family)
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('family-gathering')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'family-gathering' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    Family Gathering
+                  </button>
+                </div>
+              </div>
+            )}
+
             <div>
               <h4 className="text-sm font-medium text-gray-700 mb-2">Icebreakers & Party Games</h4>
               <div className="btn-group">
@@ -93,6 +221,13 @@ const PhraseInput = ({
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Party Icebreakers
+                </button>
+                <button
+                  onClick={() => handleSampleClick('deep-questions')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'deep-questions' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Deep Questions
                 </button>
                 <button
                   onClick={() => handleSampleClick('office-party')}
@@ -246,6 +381,127 @@ const PhraseInput = ({
                 </button>
               </div>
             </div>
+
+            {!showHolidaySeasonalAtTop && (
+              <div>
+                <h4 className="text-sm font-medium text-gray-700 mb-2">Holiday/Seasonal</h4>
+                <div className="btn-group">
+                  <button
+                    onClick={() => handleSampleClick('thanksgiving')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'thanksgiving' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    Thanksgiving
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('christmas-bucketlist')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'christmas-bucketlist' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    Christmas Bucket List
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('indoor-winter-adult')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'indoor-winter-adult' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    Indoor Winter (Adult)
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('indoor-winter-family')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'indoor-winter-family' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    Indoor Winter (Family)
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('outdoor-winter-adult')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'outdoor-winter-adult' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    Outdoor Winter (Adult)
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('outdoor-winter-family')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'outdoor-winter-family' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    Outdoor Winter (Family)
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('winter-adult-all')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'winter-adult-all' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    Winter All (Adult)
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('winter-family-all')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'winter-family-all' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    Winter All (Family)
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('family-gathering')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'family-gathering' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    Family Gathering
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {!show2025WrappedAtTop && (
+              <div>
+                <h4 className="text-sm font-medium text-gray-700 mb-2">2025 Wrapped</h4>
+                <div className="btn-group">
+                  <button
+                    onClick={() => handleSampleClick('books-2025')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'books-2025' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    2025 Books
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('movies-2025-new')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'movies-2025-new' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    2025 Movies
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('tv-shows-2025')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'tv-shows-2025' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    2025 TV Shows
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('trends-2025')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'trends-2025' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    2025 Trends
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('resolutions-2025')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'resolutions-2025' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    2025 Resolutions
+                  </button>
+                  <button
+                    onClick={() => handleSampleClick('ultra-specific-resolutions')}
+                    className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'ultra-specific-resolutions' ? 'selected' : ''}`}
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    Ultra Specific Resolutions
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
