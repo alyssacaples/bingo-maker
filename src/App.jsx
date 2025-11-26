@@ -13,6 +13,7 @@ import ProTips from './components/ProTips';
 import PDFGenerator from './components/PDFGenerator';
 import { BingoDocument } from './components/BingoDocument';
 import BugReportButton from './components/BugReportButton';
+import AdBanner from './components/AdBanner';
 
 function App() {
   // Initialize hooks
@@ -117,6 +118,9 @@ function App() {
   return (
     <div className="App min-h-screen bg-blue-25">
       <Header />
+      
+      {/* Top Banner Ad */}
+      <AdBanner slot="" style={{ marginBottom: '20px' }} />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -227,9 +231,15 @@ function App() {
 
             {/* Pro Tips */}
             <ProTips />
+            
+            {/* Sidebar Ad */}
+            <AdBanner slot="" style={{ marginTop: '20px' }} />
           </div>
         </div>
       </main>
+      
+      {/* Bottom Banner Ad */}
+      <AdBanner slot="" style={{ marginTop: '40px', marginBottom: '20px' }} />
 
       <BugReportButton />
     </div>
