@@ -1,5 +1,406 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FileText, Plus, Trash2 } from 'lucide-react';
+
+const travelOptions = [
+  {
+    "key": "amsterdam-travel",
+    "label": "Amsterdam"
+  },
+  {
+    "key": "athens-travel",
+    "label": "Athens"
+  },
+  {
+    "key": "austin-travel",
+    "label": "Austin"
+  },
+  {
+    "key": "australia-travel",
+    "label": "Australia"
+  },
+  {
+    "key": "bali-travel",
+    "label": "Bali"
+  },
+  {
+    "key": "banff-travel",
+    "label": "Banff"
+  },
+  {
+    "key": "bangkok-travel",
+    "label": "Bangkok"
+  },
+  {
+    "key": "barcelona-travel",
+    "label": "Barcelona"
+  },
+  {
+    "key": "berlin-travel",
+    "label": "Berlin"
+  },
+  {
+    "key": "boston-travel",
+    "label": "Boston"
+  },
+  {
+    "key": "cartagena-travel",
+    "label": "Cartagena"
+  },
+  {
+    "key": "chicago-travel",
+    "label": "Chicago"
+  },
+  {
+    "key": "copenhagen-travel",
+    "label": "Copenhagen"
+  },
+  {
+    "key": "costa-rica-travel",
+    "label": "Costa Rica"
+  },
+  {
+    "key": "cusco-travel",
+    "label": "Cusco"
+  },
+  {
+    "key": "dublin-travel",
+    "label": "Dublin"
+  },
+  {
+    "key": "edinburgh-travel",
+    "label": "Edinburgh"
+  },
+  {
+    "key": "finland-travel",
+    "label": "Finland"
+  },
+  {
+    "key": "greece-travel",
+    "label": "Greece"
+  },
+  {
+    "key": "iceland-travel",
+    "label": "Iceland"
+  },
+  {
+    "key": "ireland-travel",
+    "label": "Ireland"
+  },
+  {
+    "key": "kyoto-travel",
+    "label": "Kyoto"
+  },
+  {
+    "key": "lisbon-travel",
+    "label": "Lisbon"
+  },
+  {
+    "key": "london-travel",
+    "label": "London"
+  },
+  {
+    "key": "los-angeles-travel",
+    "label": "Los Angeles"
+  },
+  {
+    "key": "marrakech-travel",
+    "label": "Marrakech"
+  },
+  {
+    "key": "maui-travel",
+    "label": "Maui"
+  },
+  {
+    "key": "mexico-city-travel",
+    "label": "Mexico City"
+  },
+  {
+    "key": "miami-travel",
+    "label": "Miami"
+  },
+  {
+    "key": "nashville-travel",
+    "label": "Nashville"
+  },
+  {
+    "key": "new-orleans-travel",
+    "label": "New Orleans"
+  },
+  {
+    "key": "new-york-city-travel",
+    "label": "New York City"
+  },
+  {
+    "key": "orlando-travel",
+    "label": "Orlando"
+  },
+  {
+    "key": "paris-travel",
+    "label": "Paris"
+  },
+  {
+    "key": "portland-travel",
+    "label": "Portland"
+  },
+  {
+    "key": "prague-travel",
+    "label": "Prague"
+  },
+  {
+    "key": "puerto-rico-travel",
+    "label": "Puerto Rico"
+  },
+  {
+    "key": "rome-travel",
+    "label": "Rome"
+  },
+  {
+    "key": "san-francisco-travel",
+    "label": "San Francisco"
+  },
+  {
+    "key": "san-juan-islands-travel",
+    "label": "San Juan Islands"
+  },
+  {
+    "key": "scotland-travel",
+    "label": "Scotland"
+  },
+  {
+    "key": "seattle-travel",
+    "label": "Seattle"
+  },
+  {
+    "key": "seoul-travel",
+    "label": "Seoul"
+  },
+  {
+    "key": "singapore-travel",
+    "label": "Singapore"
+  },
+  {
+    "key": "sydney-travel",
+    "label": "Sydney"
+  },
+  {
+    "key": "tokyo-travel",
+    "label": "Tokyo"
+  },
+  {
+    "key": "vancouver-bc-travel",
+    "label": "Vancouver BC"
+  },
+  {
+    "key": "vietnam-travel",
+    "label": "Vietnam"
+  }
+];
+
+const bookOptions = [
+  {
+    "key": "book-reading",
+    "label": "Reading Challenge"
+  },
+  {
+    "key": "acclaimed-books",
+    "label": "Acclaimed Books"
+  },
+  {
+    "key": "summer-stories-and-feelings",
+    "label": "Summer Stories and Feelings"
+  },
+  {
+    "key": "summer-reading-prompts",
+    "label": "Summer Reading Prompts"
+  },
+  {
+    "key": "more-summer-reading-prompts",
+    "label": "More Summer Reading Prompts"
+  },
+  {
+    "key": "teen-summer-reading",
+    "label": "Teen Summer Reading"
+  },
+  {
+    "key": "kids-summer-reading-bingo",
+    "label": "Kids Summer Reading Bingo"
+  },
+  {
+    "key": "summer-genre-challenge",
+    "label": "Summer Genre Challenge"
+  },
+  {
+    "key": "summer-reading-experiences",
+    "label": "Summer Reading Experiences"
+  },
+  {
+    "key": "elementary-summer-picks",
+    "label": "Elementary Summer Picks"
+  },
+  {
+    "key": "middle-school-summer-picks",
+    "label": "Middle School Summer Picks"
+  },
+  {
+    "key": "high-school-summer-picks",
+    "label": "High School Summer Picks"
+  },
+  {
+    "key": "nyt-fiction-bestsellers",
+    "label": "NYT Fiction Bestsellers"
+  },
+  {
+    "key": "most-anticipated-summer-2026",
+    "label": "Most Anticipated Summer 2026"
+  },
+  {
+    "key": "popular-book-club-picks",
+    "label": "Popular Book Club Picks"
+  },
+  {
+    "key": "pacific-northwest-books",
+    "label": "Pacific Northwest Books"
+  },
+  {
+    "key": "southern-books",
+    "label": "Southern Books"
+  },
+  {
+    "key": "new-england-books",
+    "label": "New England Books"
+  },
+  {
+    "key": "midwest-books",
+    "label": "Midwest Books"
+  },
+  {
+    "key": "california-books",
+    "label": "California Books"
+  }
+];
+
+const stateOptions = [
+  {
+    "key": "alaska-highlights",
+    "label": "Alaska"
+  },
+  {
+    "key": "arizona-highlights",
+    "label": "Arizona"
+  },
+  {
+    "key": "california-highlights",
+    "label": "California"
+  },
+  {
+    "key": "colorado-highlights",
+    "label": "Colorado"
+  },
+  {
+    "key": "florida-highlights",
+    "label": "Florida"
+  },
+  {
+    "key": "georgia-highlights",
+    "label": "Georgia"
+  },
+  {
+    "key": "hawaii-highlights",
+    "label": "Hawaii"
+  },
+  {
+    "key": "idaho-highlights",
+    "label": "Idaho"
+  },
+  {
+    "key": "louisiana-highlights",
+    "label": "Louisiana"
+  },
+  {
+    "key": "maine-highlights",
+    "label": "Maine"
+  },
+  {
+    "key": "massachusetts-highlights",
+    "label": "Massachusetts"
+  },
+  {
+    "key": "michigan-highlights",
+    "label": "Michigan"
+  },
+  {
+    "key": "minnesota-highlights",
+    "label": "Minnesota"
+  },
+  {
+    "key": "montana-highlights",
+    "label": "Montana"
+  },
+  {
+    "key": "nevada-highlights",
+    "label": "Nevada"
+  },
+  {
+    "key": "new-mexico-highlights",
+    "label": "New Mexico"
+  },
+  {
+    "key": "new-york-state-highlights",
+    "label": "New York State"
+  },
+  {
+    "key": "north-carolina-highlights",
+    "label": "North Carolina"
+  },
+  {
+    "key": "oregon-highlights",
+    "label": "Oregon"
+  },
+  {
+    "key": "pennsylvania-highlights",
+    "label": "Pennsylvania"
+  },
+  {
+    "key": "south-carolina-highlights",
+    "label": "South Carolina"
+  },
+  {
+    "key": "south-dakota-highlights",
+    "label": "South Dakota"
+  },
+  {
+    "key": "tennessee-highlights",
+    "label": "Tennessee"
+  },
+  {
+    "key": "texas-highlights",
+    "label": "Texas"
+  },
+  {
+    "key": "utah-highlights",
+    "label": "Utah"
+  },
+  {
+    "key": "vermont-highlights",
+    "label": "Vermont"
+  },
+  {
+    "key": "virginia-highlights",
+    "label": "Virginia"
+  },
+  {
+    "key": "washington-state-highlights",
+    "label": "Washington State"
+  },
+  {
+    "key": "wisconsin-highlights",
+    "label": "Wisconsin"
+  },
+  {
+    "key": "wyoming-highlights",
+    "label": "Wyoming"
+  }
+];
 
 const PhraseInput = ({ 
   phraseInput, 
@@ -9,6 +410,14 @@ const PhraseInput = ({
   onClearAll 
 }) => {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const template = params.get('template');
+    if (template) {
+      setSelectedTemplate(template);
+    }
+  }, []);
 
   const handleSampleClick = (templateKey) => {
     setSelectedTemplate(templateKey);
@@ -315,22 +724,31 @@ const PhraseInput = ({
             </div>
 
             <div>
+              <h4 className="text-sm font-medium text-gray-700 mb-2">Book & Reading Challenges</h4>
+              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 mb-3">
+                <label htmlFor="book-preset-select" className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">
+                  Select a Challenge or Genre
+                </label>
+                <select
+                  id="book-preset-select"
+                  value={bookOptions.some(opt => opt.key === selectedTemplate) ? selectedTemplate : ""}
+                  onChange={(e) => {
+                    if (e.target.value) handleSampleClick(e.target.value);
+                  }}
+                  className="input-field w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-sm bg-white cursor-pointer"
+                >
+                  <option value="">Select a reading template...</option>
+                  {bookOptions.map(opt => (
+                    <option key={opt.key} value={opt.key}>{opt.label}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div>
               <h4 className="text-sm font-medium text-gray-700 mb-2">Hobbies & Interests</h4>
               <div className="btn-group">
-                <button
-                  onClick={() => handleSampleClick('book-reading')}
-                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'book-reading' ? 'selected' : ''}`}
-                >
-                  <Plus className="w-4 h-4 mr-1" />
-                  Reading Challenge
-                </button>
-                <button
-                  onClick={() => handleSampleClick('acclaimed-books')}
-                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'acclaimed-books' ? 'selected' : ''}`}
-                >
-                  <Plus className="w-4 h-4 mr-1" />
-                  Acclaimed Books
-                </button>
+                
                 <button
                   onClick={() => handleSampleClick('movies-2025')}
                   className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'movies-2025' ? 'selected' : ''}`}
@@ -411,7 +829,7 @@ const PhraseInput = ({
             </div>
 
             <div>
-              <h4 className="text-sm font-medium text-gray-700 mb-2">Alyssa Outside</h4>
+              <h4 className="text-sm font-medium text-gray-700 mb-2">PNW & Outdoors</h4>
               <div className="btn-group">
                 <button
                   onClick={() => handleSampleClick('washington-trails')}
@@ -421,46 +839,39 @@ const PhraseInput = ({
                   Washington Trails
                 </button>
                 <button
-                  onClick={() => handleSampleClick('alyssa-outside-voice')}
-                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'alyssa-outside-voice' ? 'selected' : ''}`}
-                >
-                  <Plus className="w-4 h-4 mr-1" />
-                  Alyssa Outside Voice
-                </button>
-                <button
                   onClick={() => handleSampleClick('backpacking-gear')}
                   className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'backpacking-gear' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Backpacking Gear
                 </button>
-                <button
+                 <button
                   onClick={() => handleSampleClick('after-work-seattle')}
                   className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'after-work-seattle' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
-                  After-Work Seattle Hiking
+                  Seattle Hiking
                 </button>
                 <button
                   onClick={() => handleSampleClick('garmin-hike-stats')}
                   className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'garmin-hike-stats' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
-                  Garmin & Hike Stats Nerd
+                  Garmin & Hiking Stats
                 </button>
                 <button
                   onClick={() => handleSampleClick('enchantments-day')}
                   className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'enchantments-day' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
-                  Enchantments in a Day
+                  Enchantments Day Hike
                 </button>
                 <button
                   onClick={() => handleSampleClick('snow-camping-winter')}
                   className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'snow-camping-winter' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
-                  Snow Camping & Winter
+                  Winter Snow Camping
                 </button>
                 <button
                   onClick={() => handleSampleClick('pnw-ski-season')}
@@ -481,21 +892,14 @@ const PhraseInput = ({
                   className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'battling-seattle-freeze' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
-                  Battling the Seattle Freeze
-                </button>
-                <button
-                  onClick={() => handleSampleClick('vietnam-trip')}
-                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'vietnam-trip' ? 'selected' : ''}`}
-                >
-                  <Plus className="w-4 h-4 mr-1" />
-                  Vietnam Trip
+                  Seattle Freeze
                 </button>
                 <button
                   onClick={() => handleSampleClick('road-trip-west')}
                   className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'road-trip-west' ? 'selected' : ''}`}
                 >
                   <Plus className="w-4 h-4 mr-1" />
-                  Road Trip West
+                  West Coast Road Trip
                 </button>
               </div>
             </div>
@@ -620,6 +1024,103 @@ const PhraseInput = ({
                 </div>
               </div>
             )}
+
+            <div>
+              <h4 className="text-sm font-medium text-gray-700 mb-2">Places & Travel</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <div>
+                  <label htmlFor="travel-preset-select" className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">
+                    Travel Destinations
+                  </label>
+                  <select
+                    id="travel-preset-select"
+                    value={travelOptions.some(opt => opt.key === selectedTemplate) ? selectedTemplate : ""}
+                    onChange={(e) => {
+                      if (e.target.value) handleSampleClick(e.target.value);
+                    }}
+                    className="input-field w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-sm bg-white cursor-pointer"
+                  >
+                    <option value="">Select a city or country...</option>
+                    {travelOptions.map(opt => (
+                      <option key={opt.key} value={opt.key}>{opt.label}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="state-preset-select" className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">
+                    US State Highlights
+                  </label>
+                  <select
+                    id="state-preset-select"
+                    value={stateOptions.some(opt => opt.key === selectedTemplate) ? selectedTemplate : ""}
+                    onChange={(e) => {
+                      if (e.target.value) handleSampleClick(e.target.value);
+                    }}
+                    className="input-field w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-sm bg-white cursor-pointer"
+                  >
+                    <option value="">Select a US state...</option>
+                    {stateOptions.map(opt => (
+                      <option key={opt.key} value={opt.key}>{opt.label}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-medium text-gray-700 mb-2">2026 Wrapped</h4>
+              <div className="btn-group">
+                <button
+                  onClick={() => handleSampleClick('movies-out-now-2026')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'movies-out-now-2026' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  2026 Movies Out Now
+                </button>
+                <button
+                  onClick={() => handleSampleClick('movies-coming-soon-2026')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'movies-coming-soon-2026' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  2026 Movies Coming Soon
+                </button>
+                <button
+                  onClick={() => handleSampleClick('hit-songs-2026')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'hit-songs-2026' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  2026 Hit Songs
+                </button>
+                <button
+                  onClick={() => handleSampleClick('artists-2026')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'artists-2026' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  2026 Artists
+                </button>
+                <button
+                  onClick={() => handleSampleClick('albums-forward-2026')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'albums-forward-2026' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  2026 Albums
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-medium text-gray-700 mb-2">Good News</h4>
+              <div className="btn-group">
+                <button
+                  onClick={() => handleSampleClick('happy-news-2026')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'happy-news-2026' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Happy News 2026
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import './App.css';
 
 // Import custom hooks
@@ -77,13 +77,106 @@ function App() {
   const handleAddSamplePhrases = useCallback((type) => {
     const suggestedTitle = addSamplePhrases(type);
     setTitle(suggestedTitle);
+
+    // Update URL query parameter for shareability/crawling
+    const url = new URL(window.location.href);
+    url.searchParams.set('template', type);
+    window.history.pushState({}, '', url.toString());
   }, [addSamplePhrases, setTitle]);
 
   // Enhanced clear handler
   const handleClearAll = useCallback(() => {
     clearAll();
     setTitle('BINGO');
+
+    // Clear URL query parameter
+    const url = new URL(window.location.href);
+    url.searchParams.delete('template');
+    window.history.pushState({}, '', url.toString());
   }, [clearAll, setTitle]);
+
+  // Synchronize document title, description, canonical link, and Open Graph tags for SEO
+  useEffect(() => {
+    // Find or create canonical link tag
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalLink);
+    }
+
+    // Helpers to find or create meta tags
+    const setMetaTag = (property, val) => {
+      let meta = document.querySelector(`meta[property="${property}"]`);
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute('property', property);
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute('content', val);
+    };
+
+    const setMetaNameTag = (name, val) => {
+      let meta = document.querySelector(`meta[name="${name}"]`);
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute('name', name);
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute('content', val);
+    };
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const template = urlParams.get('template');
+
+    if (title && title !== 'BINGO') {
+      const fullTitle = `${title} - Free Bingo Card Maker`;
+      const fullDesc = `Generate and print custom cards for "${title}". Add your own phrases, customize colors, and download print-ready PDFs.`;
+      const fullUrl = template ? `https://makebingocard.com/?template=${template}` : 'https://makebingocard.com/';
+
+      document.title = fullTitle;
+      setMetaNameTag('description', fullDesc);
+      canonicalLink.setAttribute('href', fullUrl);
+
+      // Open Graph Tags
+      setMetaTag('og:title', fullTitle);
+      setMetaTag('og:description', fullDesc);
+      setMetaTag('og:url', fullUrl);
+
+      // Twitter Cards
+      setMetaNameTag('twitter:title', fullTitle);
+      setMetaNameTag('twitter:description', fullDesc);
+    } else {
+      const defaultTitle = 'Free Bingo Card Maker - Create Custom Printable Bingo Cards';
+      const defaultDesc = 'Create, customize, and print your own custom bingo cards for free. Generate PDF files with randomized squares for any event or theme.';
+      const defaultUrl = 'https://makebingocard.com/';
+
+      document.title = defaultTitle;
+      setMetaNameTag('description', defaultDesc);
+      canonicalLink.setAttribute('href', defaultUrl);
+
+      // Open Graph Tags
+      setMetaTag('og:title', defaultTitle);
+      setMetaTag('og:description', defaultDesc);
+      setMetaTag('og:url', defaultUrl);
+
+      // Twitter Cards
+      setMetaNameTag('twitter:title', defaultTitle);
+      setMetaNameTag('twitter:description', defaultDesc);
+    }
+  }, [title]);
+
+  // Check URL query parameter on load to populate template
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const template = params.get('template');
+    if (template) {
+      const timer = setTimeout(() => {
+        handleAddSamplePhrases(template);
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+  }, [handleAddSamplePhrases]);
 
   // Check if we have enough phrases
   const hasEnoughPhrases = phrases.length >= requiredCells;
@@ -117,7 +210,7 @@ function App() {
 
   return (
     <div className="App min-h-screen bg-blue-25">
-      <Header />
+      <Header activeTitle={title} />
       
       {/* Top Banner Ad */}
       <AdBanner slot="" style={{ marginBottom: '20px' }} />
