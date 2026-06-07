@@ -346,6 +346,34 @@ const PhraseInput = ({
                   Hiking Adventures
                 </button>
                 <button
+                  onClick={() => handleSampleClick('multi-day-backpacking')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'multi-day-backpacking' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Multi-Day Backpacking
+                </button>
+                <button
+                  onClick={() => handleSampleClick('bouldering-gym')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'bouldering-gym' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Bouldering Gym
+                </button>
+                <button
+                  onClick={() => handleSampleClick('progression-fantasy')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'progression-fantasy' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Progression Fantasy & LitRPG
+                </button>
+                <button
+                  onClick={() => handleSampleClick('crafting-fiber-arts')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'crafting-fiber-arts' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Crafting & Fiber Arts
+                </button>
+                <button
                   onClick={() => handleSampleClick('workout-fitness')}
                   className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'workout-fitness' ? 'selected' : ''}`}
                 >
@@ -378,6 +406,96 @@ const PhraseInput = ({
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Numbers
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-medium text-gray-700 mb-2">Alyssa Outside</h4>
+              <div className="btn-group">
+                <button
+                  onClick={() => handleSampleClick('washington-trails')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'washington-trails' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Washington Trails
+                </button>
+                <button
+                  onClick={() => handleSampleClick('alyssa-outside-voice')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'alyssa-outside-voice' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Alyssa Outside Voice
+                </button>
+                <button
+                  onClick={() => handleSampleClick('backpacking-gear')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'backpacking-gear' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Backpacking Gear
+                </button>
+                <button
+                  onClick={() => handleSampleClick('after-work-seattle')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'after-work-seattle' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  After-Work Seattle Hiking
+                </button>
+                <button
+                  onClick={() => handleSampleClick('garmin-hike-stats')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'garmin-hike-stats' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Garmin & Hike Stats Nerd
+                </button>
+                <button
+                  onClick={() => handleSampleClick('enchantments-day')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'enchantments-day' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Enchantments in a Day
+                </button>
+                <button
+                  onClick={() => handleSampleClick('snow-camping-winter')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'snow-camping-winter' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Snow Camping & Winter
+                </button>
+                <button
+                  onClick={() => handleSampleClick('pnw-ski-season')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'pnw-ski-season' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  PNW Ski Season
+                </button>
+                <button
+                  onClick={() => handleSampleClick('san-juan-islands')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'san-juan-islands' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  San Juan Islands Weekend
+                </button>
+                <button
+                  onClick={() => handleSampleClick('battling-seattle-freeze')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'battling-seattle-freeze' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Battling the Seattle Freeze
+                </button>
+                <button
+                  onClick={() => handleSampleClick('vietnam-trip')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'vietnam-trip' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Vietnam Trip
+                </button>
+                <button
+                  onClick={() => handleSampleClick('road-trip-west')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'road-trip-west' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Road Trip West
                 </button>
               </div>
             </div>
