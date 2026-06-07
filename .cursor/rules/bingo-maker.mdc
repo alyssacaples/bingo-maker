@@ -1,0 +1,40 @@
+---
+description: makebingocard.com agent execution — surgical edits, eval-driven verification
+alwaysApply: true
+---
+
+# Role: Bingo Maker Agent
+
+## Core Directives
+
+1. **Surgical edits only** — no broad refactors without approval
+2. **Phrase-first workflow** — customization lives in PDF preview modal only (`PDFPreview.jsx` → `CardCustomization.jsx`)
+3. **PDF single path** — cards render only via `BingoDocument.jsx` (`@react-pdf/renderer`); no HTML card preview
+4. **Build-once assets** — static PNGs in `public/` only; no AI backgrounds, uploads, or new npm deps without approval
+5. **Never edit** `dist/`
+
+## Golden Set
+
+| Layer | Path |
+|-------|------|
+| Config | `src/hooks/useBingoConfiguration.js` |
+| PDF render | `src/components/BingoDocument.jsx` |
+| Customization UI | `src/components/CardCustomization.jsx` (preview modal only) |
+| Themes | `src/utils/themes.js` |
+| Preview | `src/components/PDFPreview.jsx` |
+
+## Execution Protocol
+
+1. **Discovery** — read relevant golden-set files silently before editing
+2. **Execution plan** — state exact files and minimal edits
+3. **Implementation** — surgical edits only; wire new state hook → App → PDFGenerator → PDFPreview → BingoDocument
+4. **Verification** — run `npm run build` and `npm run lint`; review diff against `eval.md`
+
+## Agent Completion Clause
+
+When you believe you are done, do not stop. Run `npm run build` and `npm run lint`. Review your diff against `eval.md`. Fix any blocking failure (D1–D15) or rubric score below 4/5 before reporting completion.
+
+## Active Tickets
+
+- PDF customization: `.cursor/agents/pdf-customization.md`
+- Judge: `eval.md` (§ Post-Generation PDF Customization for visual work)

@@ -21,6 +21,19 @@ const useBingoConfiguration = () => {
   const [borderColor, setBorderColor] = useState('#1e40af');
   const [freeSpaceBackgroundColor, setFreeSpaceBackgroundColor] = useState('#dbeafe');
   const [freeSpaceFontColor, setFreeSpaceFontColor] = useState('#1e40af');
+  const [cellTextColor, setCellTextColor] = useState('#1f2937');
+  const [subtitleColor, setSubtitleColor] = useState('#4b5563');
+  const [borderWidth, setBorderWidth] = useState(1.5);
+  const [gridBorderRadius, setGridBorderRadius] = useState(8);
+  const [cellBackgroundMode, setCellBackgroundMode] = useState('white');
+  const [cellBackgroundTint, setCellBackgroundTint] = useState('#f8fafc');
+  const [freeSpaceLabel, setFreeSpaceLabel] = useState('FREE SPACE');
+  const [printerFriendly, setPrinterFriendly] = useState(false);
+  const [gradientDirection, setGradientDirection] = useState('vertical');
+  const [gradientColor3, setGradientColor3] = useState(null);
+  const [cardMatEnabled, setCardMatEnabled] = useState(false);
+  const [backgroundPattern, setBackgroundPattern] = useState(null);
+  const [backgroundPatternOpacity, setBackgroundPatternOpacity] = useState(0.15);
 
   const shuffleArray = useCallback((array) => {
     const shuffled = [...array];
@@ -57,7 +70,7 @@ const useBingoConfiguration = () => {
     for (let i = 0; i < totalCells; i++) {
       let currPhrase = '';
       if (freeSpace && hasCenter && i === centerIndex) {
-        currPhrase = 'FREE SPACE';
+        currPhrase = freeSpaceLabel;
       } else {
         const phraseIndex = (i + cardIndex * totalCells) % availablePhrases.length;
         let phrase = availablePhrases[phraseIndex] || '';
@@ -71,7 +84,7 @@ const useBingoConfiguration = () => {
     }
     
     return cardPhrases;
-  }, [gridSize, freeSpace, randomize, identicalCopies, dynamicResize, maxChars, shuffleArray]);
+  }, [gridSize, freeSpace, randomize, identicalCopies, dynamicResize, maxChars, freeSpaceLabel, shuffleArray]);
 
   // Calculate required cells - for 4x4 grids, free space is not available
   const hasCenter = gridSize % 2 === 1;
@@ -138,6 +151,32 @@ const useBingoConfiguration = () => {
     setFreeSpaceBackgroundColor,
     freeSpaceFontColor,
     setFreeSpaceFontColor,
+    cellTextColor,
+    setCellTextColor,
+    subtitleColor,
+    setSubtitleColor,
+    borderWidth,
+    setBorderWidth,
+    gridBorderRadius,
+    setGridBorderRadius,
+    cellBackgroundMode,
+    setCellBackgroundMode,
+    cellBackgroundTint,
+    setCellBackgroundTint,
+    freeSpaceLabel,
+    setFreeSpaceLabel,
+    printerFriendly,
+    setPrinterFriendly,
+    gradientDirection,
+    setGradientDirection,
+    gradientColor3,
+    setGradientColor3,
+    cardMatEnabled,
+    setCardMatEnabled,
+    backgroundPattern,
+    setBackgroundPattern,
+    backgroundPatternOpacity,
+    setBackgroundPatternOpacity,
     generateBingoCard,
     requiredCells,
     hasCenter,

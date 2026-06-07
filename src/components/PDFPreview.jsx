@@ -28,7 +28,34 @@ const PDFPreview = ({
   freeSpaceBackgroundColor,
   setFreeSpaceBackgroundColor,
   freeSpaceFontColor,
-  setFreeSpaceFontColor
+  setFreeSpaceFontColor,
+  
+  cellTextColor,
+  setCellTextColor,
+  subtitleColor,
+  setSubtitleColor,
+  borderWidth,
+  setBorderWidth,
+  gridBorderRadius,
+  setGridBorderRadius,
+  cellBackgroundMode,
+  setCellBackgroundMode,
+  cellBackgroundTint,
+  setCellBackgroundTint,
+  freeSpaceLabel,
+  setFreeSpaceLabel,
+  printerFriendly,
+  setPrinterFriendly,
+  gradientDirection,
+  setGradientDirection,
+  gradientColor3,
+  setGradientColor3,
+  cardMatEnabled,
+  setCardMatEnabled,
+  backgroundPattern,
+  setBackgroundPattern,
+  backgroundPatternOpacity,
+  setBackgroundPatternOpacity
 }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -46,7 +73,7 @@ const PDFPreview = ({
         URL.revokeObjectURL(pdfUrl);
       }
     };
-  }, [isOpen, BingoDocument, subtitle, titleFont, titleColor, cellFont, backgroundColor, useGradient, gradientColor1, gradientColor2, borderColor, freeSpaceBackgroundColor, freeSpaceFontColor]);
+  }, [isOpen, BingoDocument, subtitle, titleFont, titleColor, cellFont, backgroundColor, useGradient, gradientColor1, gradientColor2, borderColor, freeSpaceBackgroundColor, freeSpaceFontColor, cellTextColor, subtitleColor, borderWidth, gridBorderRadius, cellBackgroundMode, cellBackgroundTint, freeSpaceLabel, printerFriendly, gradientDirection, gradientColor3, cardMatEnabled, backgroundPattern, backgroundPatternOpacity]);
 
   const generatePreview = async () => {
     setLoading(true);
@@ -147,6 +174,32 @@ const PDFPreview = ({
                   setFreeSpaceBackgroundColor={setFreeSpaceBackgroundColor}
                   freeSpaceFontColor={freeSpaceFontColor}
                   setFreeSpaceFontColor={setFreeSpaceFontColor}
+                  cellTextColor={cellTextColor}
+                  setCellTextColor={setCellTextColor}
+                  subtitleColor={subtitleColor}
+                  setSubtitleColor={setSubtitleColor}
+                  borderWidth={borderWidth}
+                  setBorderWidth={setBorderWidth}
+                  gridBorderRadius={gridBorderRadius}
+                  setGridBorderRadius={setGridBorderRadius}
+                  cellBackgroundMode={cellBackgroundMode}
+                  setCellBackgroundMode={setCellBackgroundMode}
+                  cellBackgroundTint={cellBackgroundTint}
+                  setCellBackgroundTint={setCellBackgroundTint}
+                  freeSpaceLabel={freeSpaceLabel}
+                  setFreeSpaceLabel={setFreeSpaceLabel}
+                  printerFriendly={printerFriendly}
+                  setPrinterFriendly={setPrinterFriendly}
+                  gradientDirection={gradientDirection}
+                  setGradientDirection={setGradientDirection}
+                  gradientColor3={gradientColor3}
+                  setGradientColor3={setGradientColor3}
+                  cardMatEnabled={cardMatEnabled}
+                  setCardMatEnabled={setCardMatEnabled}
+                  backgroundPattern={backgroundPattern}
+                  setBackgroundPattern={setBackgroundPattern}
+                  backgroundPatternOpacity={backgroundPatternOpacity}
+                  setBackgroundPatternOpacity={setBackgroundPatternOpacity}
                   compact={true}
                 />
               </div>

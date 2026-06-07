@@ -32,7 +32,34 @@ const PDFGenerator = ({
   freeSpaceBackgroundColor,
   setFreeSpaceBackgroundColor,
   freeSpaceFontColor,
-  setFreeSpaceFontColor
+  setFreeSpaceFontColor,
+  
+  cellTextColor,
+  setCellTextColor,
+  subtitleColor,
+  setSubtitleColor,
+  borderWidth,
+  setBorderWidth,
+  gridBorderRadius,
+  setGridBorderRadius,
+  cellBackgroundMode,
+  setCellBackgroundMode,
+  cellBackgroundTint,
+  setCellBackgroundTint,
+  freeSpaceLabel,
+  setFreeSpaceLabel,
+  printerFriendly,
+  setPrinterFriendly,
+  gradientDirection,
+  setGradientDirection,
+  gradientColor3,
+  setGradientColor3,
+  cardMatEnabled,
+  setCardMatEnabled,
+  backgroundPattern,
+  setBackgroundPattern,
+  backgroundPatternOpacity,
+  setBackgroundPatternOpacity
 }) => {
   const [showPreview, setShowPreview] = useState(false);
 
@@ -107,6 +134,32 @@ const PDFGenerator = ({
         setFreeSpaceBackgroundColor={setFreeSpaceBackgroundColor}
         freeSpaceFontColor={freeSpaceFontColor}
         setFreeSpaceFontColor={setFreeSpaceFontColor}
+        cellTextColor={cellTextColor}
+        setCellTextColor={setCellTextColor}
+        subtitleColor={subtitleColor}
+        setSubtitleColor={setSubtitleColor}
+        borderWidth={borderWidth}
+        setBorderWidth={setBorderWidth}
+        gridBorderRadius={gridBorderRadius}
+        setGridBorderRadius={setGridBorderRadius}
+        cellBackgroundMode={cellBackgroundMode}
+        setCellBackgroundMode={setCellBackgroundMode}
+        cellBackgroundTint={cellBackgroundTint}
+        setCellBackgroundTint={setCellBackgroundTint}
+        freeSpaceLabel={freeSpaceLabel}
+        setFreeSpaceLabel={setFreeSpaceLabel}
+        printerFriendly={printerFriendly}
+        setPrinterFriendly={setPrinterFriendly}
+        gradientDirection={gradientDirection}
+        setGradientDirection={setGradientDirection}
+        gradientColor3={gradientColor3}
+        setGradientColor3={setGradientColor3}
+        cardMatEnabled={cardMatEnabled}
+        setCardMatEnabled={setCardMatEnabled}
+        backgroundPattern={backgroundPattern}
+        setBackgroundPattern={setBackgroundPattern}
+        backgroundPatternOpacity={backgroundPatternOpacity}
+        setBackgroundPatternOpacity={setBackgroundPatternOpacity}
       />
     </>
   );
