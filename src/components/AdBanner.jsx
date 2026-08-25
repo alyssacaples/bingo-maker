@@ -2,12 +2,15 @@ import React, { useEffect } from 'react';
 
 const AdBanner = ({ slot, style = {}, adFormat = "auto", className = "" }) => {
   useEffect(() => {
+    if (!slot) return;
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (err) {
       console.error(err);
     }
-  }, []);
+  }, [slot]);
+
+  if (!slot) return null;
 
   return (
     <div className={`text-center ${className}`} style={{ margin: '20px 0', ...style }}>
