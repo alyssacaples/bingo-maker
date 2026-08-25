@@ -1,4 +1,3 @@
-import React from 'react';
 
 const ProTips = () => {
   return (
@@ -33,11 +32,11 @@ const ProTips = () => {
           </li>
           <li className="pro-tips-item">
             <span className="pro-tips-bullet">•</span>
-            <span className="pro-tips-text">"Randomize order" creates unique cards for each copy</span>
+            <span className="pro-tips-text">&ldquo;Randomize order&rdquo; creates unique cards for each copy</span>
           </li>
           <li className="pro-tips-item">
             <span className="pro-tips-bullet">•</span>
-            <span className="pro-tips-text">"Identical copies" makes all cards have the same layout</span>
+            <span className="pro-tips-text">&ldquo;Identical copies&rdquo; makes all cards have the same layout</span>
           </li>
           <li className="pro-tips-item">
             <span className="pro-tips-bullet">•</span>

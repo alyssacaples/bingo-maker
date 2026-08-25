@@ -1,4 +1,3 @@
-import React from 'react';
 
 const TitleConfiguration = ({ title, onTitleChange }) => {
   return (

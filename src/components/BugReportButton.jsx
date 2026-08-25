@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Bug } from 'lucide-react';
 import BugReportModal from './BugReportModal';
 

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import './App.css';
 
 // Import custom hooks
@@ -22,7 +22,6 @@ function App() {
     phrases,
     handlePhraseInputChange,
     addSamplePhrases,
-    getSuggestedTitle,
     clearAll
   } = usePhraseManager();
 

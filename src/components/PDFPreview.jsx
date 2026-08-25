@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { pdf } from '@react-pdf/renderer';
 import { Eye, X, Download, Settings } from 'lucide-react';
 import CardCustomization from './CardCustomization';
@@ -61,16 +61,23 @@ const PDFPreview = ({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [showCustomization, setShowCustomization] = useState(true);
+  const pdfUrlRef = useRef(null);
+
+  useEffect(() => {
+    pdfUrlRef.current = pdfUrl;
+  }, [pdfUrl]);
 
   useEffect(() => {
     if (isOpen && BingoDocument) {
       generatePreview();
     }
-    
-    // Cleanup when component unmounts or closes
+
+    // Cleanup when component unmounts or closes. Reads pdfUrlRef (not pdfUrl)
+    // so it always revokes the latest blob URL, even though generatePreview
+    // sets it asynchronously after this effect's closure was created.
     return () => {
-      if (pdfUrl) {
-        URL.revokeObjectURL(pdfUrl);
+      if (pdfUrlRef.current) {
+        URL.revokeObjectURL(pdfUrlRef.current);
       }
     };
   }, [isOpen, BingoDocument, subtitle, titleFont, titleColor, cellFont, backgroundColor, useGradient, gradientColor1, gradientColor2, borderColor, freeSpaceBackgroundColor, freeSpaceFontColor, cellTextColor, subtitleColor, borderWidth, gridBorderRadius, cellBackgroundMode, cellBackgroundTint, freeSpaceLabel, printerFriendly, gradientDirection, gradientColor3, cardMatEnabled, backgroundPattern, backgroundPatternOpacity]);
