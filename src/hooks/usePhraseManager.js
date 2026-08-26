@@ -5551,10 +5551,12 @@ const usePhraseManager = () => {
     
     // Return the suggested title for this template
     return templateTitles[type] || 'BINGO!';
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- templateTitles/samplePhrases are static data, not props/state
   }, []);
 
   const getSuggestedTitle = useCallback((type) => {
     return templateTitles[type] || 'BINGO!';
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- templateTitles is static data, not props/state
   }, []);
 
   const clearAll = useCallback(() => {

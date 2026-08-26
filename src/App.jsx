@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, lazy, Suspense } from 'react';
 import './App.css';
 
 // Import custom hooks
@@ -10,10 +10,12 @@ import Header from './components/Header';
 import PhraseInput from './components/PhraseInput';
 import GridConfiguration from './components/GridConfiguration';
 import ProTips from './components/ProTips';
-import PDFGenerator from './components/PDFGenerator';
-import { BingoDocument } from './components/BingoDocument';
 import BugReportButton from './components/BugReportButton';
 import AdBanner from './components/AdBanner';
+
+// @react-pdf/renderer is a large dependency; defer it to its own chunk
+// so it's only downloaded once someone actually generates/previews a PDF.
+const PDFSection = lazy(() => import('./components/PDFSection'));
 
 function App() {
   // Initialize hooks
@@ -22,7 +24,6 @@ function App() {
     phrases,
     handlePhraseInputChange,
     addSamplePhrases,
-    getSuggestedTitle,
     clearAll
   } = usePhraseManager();
 
@@ -210,43 +211,6 @@ function App() {
   // Get text overflow warning
   const textOverflowWarning = getTextOverflowWarning();
 
-  // Create BingoDocument component with current settings
-  const BingoDocumentWithProps = useCallback(() => (
-    <BingoDocument
-      copies={copies}
-      title={title}
-      subtitle={subtitle}
-      gridSize={gridSize}
-      freeSpace={freeSpace}
-      dynamicResize={dynamicResize}
-      fontSize={fontSize}
-      generateBingoCard={(cardIndex) => generateBingoCard(phrases, cardIndex)}
-      titleFont={titleFont}
-      titleColor={titleColor}
-      cellFont={cellFont}
-      backgroundColor={backgroundColor}
-      useGradient={useGradient}
-      gradientColor1={gradientColor1}
-      gradientColor2={gradientColor2}
-      borderColor={borderColor}
-      freeSpaceBackgroundColor={freeSpaceBackgroundColor}
-      freeSpaceFontColor={freeSpaceFontColor}
-      cellTextColor={cellTextColor}
-      subtitleColor={subtitleColor}
-      borderWidth={borderWidth}
-      gridBorderRadius={gridBorderRadius}
-      cellBackgroundMode={cellBackgroundMode}
-      cellBackgroundTint={cellBackgroundTint}
-      freeSpaceLabel={freeSpaceLabel}
-      printerFriendly={printerFriendly}
-      gradientDirection={gradientDirection}
-      gradientColor3={gradientColor3}
-      cardMatEnabled={cardMatEnabled}
-      backgroundPattern={backgroundPattern}
-      backgroundPatternOpacity={backgroundPatternOpacity}
-    />
-  ), [copies, title, subtitle, gridSize, freeSpace, dynamicResize, fontSize, generateBingoCard, phrases, titleFont, titleColor, cellFont, backgroundColor, useGradient, gradientColor1, gradientColor2, borderColor, freeSpaceBackgroundColor, freeSpaceFontColor, cellTextColor, subtitleColor, borderWidth, gridBorderRadius, cellBackgroundMode, cellBackgroundTint, freeSpaceLabel, printerFriendly, gradientDirection, gradientColor3, cardMatEnabled, backgroundPattern, backgroundPatternOpacity]);
-
   return (
     <div className="App min-h-screen bg-blue-25">
       <Header activeTitle={title} />
@@ -329,7 +293,14 @@ function App() {
             />
 
             {/* PDF Generator */}
-            <PDFGenerator
+            <Suspense fallback={
+              <div className="card">
+                <div className="card-body text-center text-sm text-gray-500 py-6">
+                  Loading PDF tools...
+                </div>
+              </div>
+            }>
+            <PDFSection
               hasEnoughPhrases={hasEnoughPhrases}
               requiredCells={requiredCells}
               gridSize={gridSize}
@@ -338,7 +309,10 @@ function App() {
               title={title}
               subtitle={subtitle}
               setSubtitle={setSubtitle}
-              BingoDocument={BingoDocumentWithProps}
+              copies={copies}
+              dynamicResize={dynamicResize}
+              fontSize={fontSize}
+              generateBingoCard={generateBingoCard}
               titleFont={titleFont}
               setTitleFont={setTitleFont}
               titleColor={titleColor}
@@ -386,6 +360,7 @@ function App() {
               backgroundPatternOpacity={backgroundPatternOpacity}
               setBackgroundPatternOpacity={setBackgroundPatternOpacity}
             />
+            </Suspense>
 
             {/* Pro Tips */}
             <ProTips />

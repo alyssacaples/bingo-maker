@@ -68,9 +68,7 @@ const createStyles = (customization = {}) => {
     backgroundColor = '#FFFFFF',
     useGradient = false,
     gradientColor1 = '#FFFFFF',
-    gradientColor2 = '#E0E7FF',
     borderColor = '#1e40af',
-    freeSpaceBackgroundColor = '#dbeafe',
     freeSpaceFontColor = '#1e40af',
     
     cellTextColor = '#1f2937',
@@ -453,4 +451,4 @@ const BingoDocument = ({
   </Document>
 );
 
-export { BingoDocument, BingoCard, getDynamicFontSize };
+export { BingoDocument, BingoCard };

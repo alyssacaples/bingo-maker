@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 const AdBanner = ({ slot, style = {}, adFormat = "auto", className = "" }) => {
   useEffect(() => {

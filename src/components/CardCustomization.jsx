@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Palette, Layers, Grid, Sliders, Type, Printer } from 'lucide-react';
 import { themes, applyTheme } from '../utils/themes';
 
 const CardCustomization = ({
-  subtitle,
-  setSubtitle,
   titleFont,
   setTitleFont,
   titleColor,
