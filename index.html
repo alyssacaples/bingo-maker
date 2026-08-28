@@ -2,6 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- Redirect legacy ?template=<slug> URLs to their real /templates/<slug> path.
+         Runs before anything else loads so it's fast and never fights React's
+         own URL handling (see getTemplateSlugFromPath in src/App.jsx). -->
+    <script>
+      (function () {
+        var slug = new URLSearchParams(window.location.search).get('template');
+        if (slug && /^[a-z0-9-]+$/.test(slug)) {
+          window.location.replace('/templates/' + slug);
+        }
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
