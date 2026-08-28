@@ -104,7 +104,7 @@ function buildJsonLd(slug, title, content) {
     step: [
       { '@type': 'HowToStep', text: 'Print the card or open it on your phone.' },
       { '@type': 'HowToStep', text: 'Mark a square whenever that item happens.' },
-      { '@type': 'HowToStep', text: 'Get 5 in a row — across, down, or diagonal — to win.' },
+      { '@type': 'HowToStep', text: 'Get 5 in a row, across, down, or diagonal, to win.' },
     ],
   };
 
@@ -146,7 +146,7 @@ function buildContentHtml(slug, title, content, phrases) {
         <ol class="static-howto">
           <li>Print the card or open it on your phone.</li>
           <li>Mark a square whenever that item happens.</li>
-          <li>Get 5 in a row — across, down, or diagonal — to win.</li>
+          <li>Get 5 in a row, across, down, or diagonal, to win.</li>
         </ol>
 
         <h2>FAQ</h2>
