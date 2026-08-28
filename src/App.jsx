@@ -17,6 +17,12 @@ import AdBanner from './components/AdBanner';
 // so it's only downloaded once someone actually generates/previews a PDF.
 const PDFSection = lazy(() => import('./components/PDFSection'));
 
+// Reads the template slug from a real /templates/<slug> path, if present.
+const getTemplateSlugFromPath = () => {
+  const match = window.location.pathname.match(/^\/templates\/([a-z0-9-]+)\/?$/);
+  return match ? match[1] : null;
+};
+
 function App() {
   // Initialize hooks
   const {
@@ -105,21 +111,15 @@ function App() {
     const suggestedTitle = addSamplePhrases(type);
     setTitle(suggestedTitle);
 
-    // Update URL query parameter for shareability/crawling
-    const url = new URL(window.location.href);
-    url.searchParams.set('template', type);
-    window.history.pushState({}, '', url.toString());
+    // Normalize the URL to the real template path (idempotent if already there).
+    window.history.pushState({}, '', `/templates/${type}`);
   }, [addSamplePhrases, setTitle]);
 
   // Enhanced clear handler
   const handleClearAll = useCallback(() => {
     clearAll();
     setTitle('BINGO');
-
-    // Clear URL query parameter
-    const url = new URL(window.location.href);
-    url.searchParams.delete('template');
-    window.history.pushState({}, '', url.toString());
+    window.history.pushState({}, '', '/');
   }, [clearAll, setTitle]);
 
   // Synchronize document title, description, canonical link, and Open Graph tags for SEO
@@ -153,13 +153,14 @@ function App() {
       meta.setAttribute('content', val);
     };
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const template = urlParams.get('template');
+    const pathSlug = getTemplateSlugFromPath();
+    const queryTemplate = new URLSearchParams(window.location.search).get('template');
+    const slug = pathSlug || queryTemplate;
 
     if (title && title !== 'BINGO') {
       const fullTitle = `${title} - Free Bingo Card Maker`;
       const fullDesc = `Generate and print custom cards for "${title}". Add your own phrases, customize colors, and download print-ready PDFs.`;
-      const fullUrl = template ? `https://makebingocard.com/?template=${template}` : 'https://makebingocard.com/';
+      const fullUrl = slug ? `https://makebingocard.com/templates/${slug}` : 'https://makebingocard.com/';
 
       document.title = fullTitle;
       setMetaNameTag('description', fullDesc);
@@ -193,13 +194,14 @@ function App() {
     }
   }, [title]);
 
-  // Check URL query parameter on load to populate template
+  // Check the URL (path or legacy query param) on load to populate template
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const template = params.get('template');
-    if (template) {
+    const pathSlug = getTemplateSlugFromPath();
+    const queryTemplate = new URLSearchParams(window.location.search).get('template');
+    const slug = pathSlug || queryTemplate;
+    if (slug) {
       const timer = setTimeout(() => {
-        handleAddSamplePhrases(template);
+        handleAddSamplePhrases(slug);
       }, 0);
       return () => clearTimeout(timer);
     }

@@ -17,3 +17,103 @@ body {
 #root {
   min-height: 100vh;
 }
+
+/*
+ * Static SEO content injected by scripts/generate-template-pages.js into
+ * generated /templates/<slug> pages. Rendered as a sibling of #root (never
+ * a child — React's createRoot() would wipe it on mount otherwise), so it
+ * stays visible to crawlers without JS and to real visitors after JS loads.
+ */
+.static-content {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 1rem;
+  color: #1f2937;
+}
+
+.static-content h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 1rem;
+  line-height: 1.2;
+}
+
+.static-content h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 2rem 0 0.75rem;
+}
+
+.static-content h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 1rem 0 0.25rem;
+}
+
+.static-intro {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: #374151;
+}
+
+.static-board-items {
+  columns: 2;
+  column-gap: 2rem;
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+.static-board-items li {
+  break-inside: avoid;
+  margin-bottom: 0.4rem;
+  color: #374151;
+}
+
+.static-howto {
+  padding-left: 1.25rem;
+  color: #374151;
+}
+
+.static-howto li {
+  margin-bottom: 0.35rem;
+}
+
+.static-faq-item p {
+  color: #4b5563;
+  margin: 0.25rem 0 0;
+  line-height: 1.6;
+}
+
+.static-related {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.static-related a {
+  display: inline-block;
+  padding: 0.4rem 0.85rem;
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+  border-radius: 9999px;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.static-related a:hover {
+  background: #dbeafe;
+}
+
+@media (max-width: 640px) {
+  .static-board-items {
+    columns: 1;
+  }
+}

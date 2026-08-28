@@ -13,9 +13,9 @@ const Header = ({ activeTitle }) => {
         <div className="flex-center-col space-y-4">
           <div className="flex items-center space-x-3">
             <Sparkles className="header-icon animate-float" />
-            <h1 className="header-title text-center">
+            <h2 className="header-title text-center">
               {displayTitle}
-            </h1>
+            </h2>
             <Sparkles className="header-icon animate-float" style={{animationDelay: '1s'}} />
           </div>
           <p className="header-subtitle text-center">
