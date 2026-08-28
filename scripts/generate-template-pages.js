@@ -252,7 +252,7 @@ const llmsSlugs = [...slugsToGenerate]
 
 const llmsTxt = `# Bingo Card Maker
 
-> Free printable bingo card generator with ${Object.keys(templateTitles).length}+ ready-made templates — travel, holidays, hobbies, and more. No signup required.
+> Free printable bingo card generator with ${Object.keys(templateTitles).length}+ ready-made templates: travel, holidays, hobbies, and more. No signup required.
 
 ## Templates
 
