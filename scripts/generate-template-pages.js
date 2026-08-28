@@ -131,28 +131,33 @@ function buildContentHtml(slug, title, content, phrases) {
 
   return `
   <div id="static-content" class="static-content">
-    <h1>${escapeHtml(plainTitle(title))}</h1>
-    <p class="static-intro">${escapeHtml(content.intro)}</p>
+    <div class="static-card">
+      <div class="static-card-header">About this template</div>
+      <div class="static-card-body">
+        <h1>${escapeHtml(plainTitle(title))}</h1>
+        <p class="static-intro">${escapeHtml(content.intro)}</p>
 
-    <h2>All ${phrases.length} board items</h2>
-    <ul class="static-board-items">
+        <h2>All ${phrases.length} board items</h2>
+        <ul class="static-board-items">
         ${boardItems}
-    </ul>
+        </ul>
 
-    <h2>How to use this bingo card</h2>
-    <ol class="static-howto">
-      <li>Print the card or open it on your phone.</li>
-      <li>Mark a square whenever that item happens.</li>
-      <li>Get 5 in a row — across, down, or diagonal — to win.</li>
-    </ol>
+        <h2>How to use this bingo card</h2>
+        <ol class="static-howto">
+          <li>Print the card or open it on your phone.</li>
+          <li>Mark a square whenever that item happens.</li>
+          <li>Get 5 in a row — across, down, or diagonal — to win.</li>
+        </ol>
 
-    <h2>FAQ</h2>
-    ${faqItems}
+        <h2>FAQ</h2>
+        ${faqItems}
 
-    <h2>Related templates</h2>
-    <ul class="static-related">
+        <h2>Related templates</h2>
+        <ul class="static-related">
         ${relatedLinks}
-    </ul>
+        </ul>
+      </div>
+    </div>
   </div>`;
 }
 
@@ -196,7 +201,12 @@ for (const slug of slugsToGenerate) {
     $('head').append(`<script type="application/ld+json">${JSON.stringify(block)}</script>`);
   });
 
-  $('#root').before(buildContentHtml(slug, title, content, phrases));
+  // Placed after #root, not before: with JS disabled #root is empty, so
+  // this is still the first real content a non-JS crawler sees in the raw
+  // HTML. With JS enabled, real visitors see the actual branded app first
+  // (header, generator) and this reads as a normal "about this card" /
+  // FAQ section underneath it, not a wall of text bolted on top of the site.
+  $('#root').after(buildContentHtml(slug, title, content, phrases));
 
   const outDir = join(distDir, 'templates', slug);
   mkdirSync(outDir, { recursive: true });

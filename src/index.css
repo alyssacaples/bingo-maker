@@ -20,71 +20,126 @@ body {
 
 /*
  * Static SEO content injected by scripts/generate-template-pages.js into
- * generated /templates/<slug> pages. Rendered as a sibling of #root (never
- * a child — React's createRoot() would wipe it on mount otherwise), so it
- * stays visible to crawlers without JS and to real visitors after JS loads.
+ * generated /templates/<slug> pages. Rendered as a sibling of #root, placed
+ * AFTER it (never inside — React's createRoot() would wipe it on mount
+ * otherwise). With JS disabled #root is empty, so this is still the first
+ * real content a crawler sees in the raw HTML. With JS enabled, real
+ * visitors see the actual app first (header, generator) and this reads as
+ * a normal "about this card" section underneath it, styled to match the
+ * rest of the site rather than as a plain, unstyled wall of text.
  */
 .static-content {
-  max-width: 760px;
+  max-width: 80rem; /* matches <main class="max-w-7xl"> */
   margin: 0 auto;
-  padding: 2.5rem 1.5rem 1rem;
+  padding: 0 1rem 4rem;
   color: #1f2937;
+}
+
+@media (min-width: 640px) {
+  .static-content { padding-left: 1.5rem; padding-right: 1.5rem; }
+}
+
+@media (min-width: 1024px) {
+  .static-content { padding-left: 2rem; padding-right: 2rem; }
+}
+
+.static-card {
+  max-width: 48rem;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 1px solid #f3f4f6;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.static-card-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #f3f4f6;
+  background: linear-gradient(to right, #f9fafb, #eff6ff);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.static-card-body {
+  padding: 1.5rem;
 }
 
 .static-content h1 {
-  font-size: 1.875rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #111827;
-  margin: 0 0 1rem;
-  line-height: 1.2;
+  margin: 0 0 0.75rem;
+  line-height: 1.25;
 }
 
 .static-content h2 {
-  font-size: 1.25rem;
+  font-size: 1.0625rem;
   font-weight: 700;
   color: #111827;
-  margin: 2rem 0 0.75rem;
+  margin: 1.75rem 0 0.75rem;
+}
+
+.static-content h2:first-of-type {
+  margin-top: 0;
 }
 
 .static-content h3 {
-  font-size: 1rem;
+  font-size: 0.9375rem;
   font-weight: 600;
   color: #1f2937;
-  margin: 1rem 0 0.25rem;
+  margin: 1rem 0 0.2rem;
 }
 
 .static-intro {
-  font-size: 1.0625rem;
+  font-size: 1rem;
   line-height: 1.7;
-  color: #374151;
+  color: #4b5563;
+  margin: 0;
 }
 
 .static-board-items {
   columns: 2;
   column-gap: 2rem;
-  padding-left: 1.25rem;
+  padding-left: 1.1rem;
   margin: 0;
+  font-size: 0.9375rem;
 }
 
 .static-board-items li {
   break-inside: avoid;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.35rem;
   color: #374151;
 }
 
 .static-howto {
-  padding-left: 1.25rem;
+  padding-left: 1.1rem;
   color: #374151;
+  font-size: 0.9375rem;
 }
 
 .static-howto li {
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.3rem;
+}
+
+.static-faq-item {
+  padding: 0.85rem 0;
+  border-top: 1px solid #f3f4f6;
+}
+
+.static-faq-item:first-of-type {
+  border-top: none;
+  padding-top: 0;
 }
 
 .static-faq-item p {
   color: #4b5563;
-  margin: 0.25rem 0 0;
+  margin: 0.3rem 0 0;
   line-height: 1.6;
+  font-size: 0.9375rem;
 }
 
 .static-related {
@@ -104,8 +159,9 @@ body {
   border-radius: 9999px;
   color: #1d4ed8;
   text-decoration: none;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 500;
+  transition: background-color 0.15s ease;
 }
 
 .static-related a:hover {
