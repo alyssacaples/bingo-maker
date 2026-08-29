@@ -18,12 +18,12 @@
   --ink:        22  21  15;   /* #16150F  near-black             */
   --ink-2:      85  81  63;   /* #55513F  secondary text         */
   --rule:      201 192 168;   /* #C9C0A8  hairlines              */
-  --accent:    188  20  95;   /* #BC145F  dauber red             */
+  --accent:    186  26  26;   /* #BA1A1A  dauber red             */
   --marker:    241 196  63;   /* #F1C43F  highlighter, sparingly */
 
   /* Foreground for anything sitting ON an accent fill. The accent flips
      lightness between themes, so its foreground has to flip too: paper on
-     the deep light accent (5.81:1), ink on the light dark accent (5.49:1).
+     the deep light accent (6.08:1), ink on the light dark accent (5.78:1).
      Using --paper for both scored 3.13:1 in dark. */
   --on-accent: 251 248 238;
 
@@ -43,7 +43,7 @@
     --ink:      240 234 218;
     --ink-2:    169 164 146;
     --rule:      59  55  41;
-    --accent:   242  80 141;
+    --accent:   247  92  92;
     --marker:   244 206  85;
     --on-accent: 22 21 15;
     color-scheme: dark;
@@ -57,7 +57,7 @@
   --ink:      240 234 218;
   --ink-2:    169 164 146;
   --rule:      59  55  41;
-  --accent:   242  80 141;
+  --accent:   247  92  92;
   --marker:   244 206  85;
   --on-accent: 22 21 15;
   color-scheme: dark;
@@ -113,7 +113,7 @@ body::before {
     --ink: 0 0 0;
     --ink-2: 60 60 60;
     --rule: 180 180 180;
-    --accent: 160 20 85;
+    --accent: 150 20 20;
     --on-accent: 255 255 255;
     color-scheme: light;
   }
