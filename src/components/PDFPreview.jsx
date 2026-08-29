@@ -220,7 +220,7 @@ const PDFPreview = ({
               <div className="text-center">
                 <div className="animate-spin rounded-full h-7 w-7 border-b-2 border-accent mx-auto mb-4"></div>
                 <div className="text-ink">Generating preview…</div>
-                <div className="font-mono text-[11px] text-ink-2 mt-1">This may take a moment</div>
+                <div className="font-mono text-[10px] text-ink-2 mt-1">This may take a moment</div>
               </div>
             </div>
           ) : error ? (
@@ -258,7 +258,7 @@ const PDFPreview = ({
         {/* Footer */}
         {pdfUrl && (
           <div className="border-t border-rule bg-ground-2 px-4 py-2.5">
-            <div className="font-mono text-[10.5px] tracking-[0.06em] text-ink-2 text-center">
+            <div className="font-mono text-[10px] tracking-[0.06em] text-ink-2 text-center">
               Use the PDF viewer controls above to page through and zoom
             </div>
           </div>

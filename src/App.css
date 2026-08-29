@@ -36,7 +36,7 @@
   }
 
   .title-input-label {
-    @apply block font-mono text-[9.5px] uppercase tracking-[0.1em] text-ink-2 mb-1.5;
+    @apply block font-mono text-[10px] uppercase tracking-[0.1em] text-ink-2 mb-1.5;
   }
 
   /* ---------- header ---------- */
@@ -52,22 +52,23 @@
     margin: 0;
   }
 
-  /* Highlighter swipe — the one place marker yellow appears. */
+  /* Marker block — the one place marker yellow appears.
+
+     This was a partial swipe covering 58%-92% of the line box. That works in
+     light mode, where the dark ink reads on the cream ground AND on the yellow.
+     It breaks in dark mode: the text has to be dark to sit on the yellow, so
+     the top 58% of every letter fell onto the dark ground and vanished.
+     Covering the full line means one text color works in both themes. */
   .header-mark {
-    background: linear-gradient(
-      transparent 58%,
-      rgb(var(--marker)) 58%,
-      rgb(var(--marker)) 92%,
-      transparent 92%
-    );
-    padding: 0 0.1em;
-    /* Marker is an artifact color and does not flip with the theme, so the text
-       riding on it cannot use --ink. In dark mode that scored 1.27:1. */
+    background-color: rgb(var(--marker));
     color: rgb(var(--paper-ink));
+    padding: 0.06em 0.14em 0.1em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
   }
 
   .header-subtitle {
-    @apply font-mono text-[11px] tracking-[0.08em] text-ink-2;
+    @apply font-mono text-[10px] tracking-[0.08em] text-ink-2;
     margin: 0.55rem 0 0;
   }
 
@@ -101,7 +102,7 @@
 
   .btn-secondary {
     @apply inline-flex items-center justify-center px-3 py-2
-           font-mono text-[11px] tracking-[0.06em]
+           text-[13px] font-medium
            bg-transparent text-ink border border-ink
            focus:outline-none focus-visible:ring-2 focus-visible:ring-accent;
   }
@@ -111,7 +112,7 @@
 
   /* ---------- inputs ---------- */
   .input-field {
-    @apply w-full px-3 py-2.5 text-[14.5px]
+    @apply w-full px-3 py-2.5 text-[14px]
            bg-ground text-ink border border-rule
            focus:outline-none;
   }
@@ -211,13 +212,13 @@
     @apply card-header;
   }
   .pro-tips-title {
-    @apply font-display text-[11px] uppercase tracking-[0.03em] text-ink flex items-center;
+    @apply font-display text-[12px] uppercase tracking-[0.03em] text-ink flex items-center;
   }
   .pro-tips-body {
     @apply p-4;
   }
   .pro-tips-list {
-    @apply text-[13.5px] text-ink-2;
+    @apply text-[13px] text-ink-2;
   }
   .pro-tips-item {
     @apply relative flex items-start gap-2 py-1.5 border-b border-rule;

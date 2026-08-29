@@ -127,7 +127,7 @@ const GridConfiguration = ({
                       <button
                         type="button"
                         onClick={() => onMaxCharsChange(textOverflowWarning.suggestedMaxChars)}
-                        className="font-mono text-[11px] text-accent underline mt-1.5"
+                        className="font-mono text-[10px] text-accent underline mt-1.5"
                       >
                         Use {textOverflowWarning.suggestedMaxChars} characters
                       </button>

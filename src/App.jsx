@@ -291,7 +291,7 @@ function App() {
             {/* PDF Generator */}
             <Suspense fallback={
               <div className="card">
-                <div className="card-body text-center font-mono text-[11px] text-ink-2 py-6">
+                <div className="card-body text-center font-mono text-[10px] text-ink-2 py-6">
                   Loading PDF tools...
                 </div>
               </div>
