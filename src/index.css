@@ -1,145 +1,285 @@
+/* ============================================================
+   Design tokens.
+
+   Declared as space-separated RGB channels so Tailwind's
+   `rgb(var(--x) / <alpha-value>)` aliases support opacity
+   modifiers (bg-ground/50) as well as the plain form.
+
+   Three theme states are handled, not two:
+     :root                              -> light (default, un-stamped)
+     prefers-color-scheme: dark         -> dark, unless the user picked light
+     :root[data-theme="dark"]           -> dark, beating a light OS setting
+   ============================================================ */
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --ground:    242 237 224;   /* #F2EDE0  cream stock            */
+  --ground-2:  231 224 205;   /* #E7E0CD  recessed / inset areas */
+  --surface:   251 248 238;   /* #FBF8EE  panels                 */
+  --ink:        22  21  15;   /* #16150F  near-black             */
+  --ink-2:      85  81  63;   /* #55513F  secondary text         */
+  --rule:      201 192 168;   /* #C9C0A8  hairlines              */
+  --accent:    188  20  95;   /* #BC145F  dauber red             */
+  --marker:    241 196  63;   /* #F1C43F  highlighter, sparingly */
+
+  /* Foreground for anything sitting ON an accent fill. The accent flips
+     lightness between themes, so its foreground has to flip too: paper on
+     the deep light accent (5.81:1), ink on the light dark accent (5.49:1).
+     Using --paper for both scored 3.13:1 in dark. */
+  --on-accent: 251 248 238;
+
+  /* Artifact colors: the physical printed card. Identical in both
+     themes on purpose — see tailwind.config.js. */
+  --paper:     251 248 238;
+  --paper-ink:  22  21  15;
+
+  color-scheme: light;
 }
 
-* {
-  box-sizing: border-box;
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground:    19  18   9;
+    --ground-2:  38  36  26;
+    --surface:   29  27  19;
+    --ink:      240 234 218;
+    --ink-2:    169 164 146;
+    --rule:      59  55  41;
+    --accent:   242  80 141;
+    --marker:   244 206  85;
+    --on-accent: 22 21 15;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ground:    19  18   9;
+  --ground-2:  38  36  26;
+  --surface:   29  27  19;
+  --ink:      240 234 218;
+  --ink-2:    169 164 146;
+  --rule:      59  55  41;
+  --accent:   242  80 141;
+  --marker:   244 206  85;
+  --on-accent: 22 21 15;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  font-family: Archivo, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.55;
 }
 
 body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  /* Explicit background: without it, iOS overscroll shows white behind a dark page. */
+  background-color: rgb(var(--ground));
+  color: rgb(var(--ink));
+  -webkit-font-smoothing: antialiased;
 }
 
-#root {
-  min-height: 100vh;
+/* Halftone. The texture is what stops cream reading as a blog template. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: radial-gradient(rgb(var(--ink)) 0.5px, transparent 0.5px);
+  background-size: 4px 4px;
+  opacity: 0.045;
 }
 
-/*
- * Static SEO content injected by scripts/generate-template-pages.js into
- * generated /templates/<slug> pages. Rendered as a sibling of #root, placed
- * AFTER it (never inside — React's createRoot() would wipe it on mount
- * otherwise). With JS disabled #root is empty, so this is still the first
- * real content a crawler sees in the raw HTML. With JS enabled, real
- * visitors see the actual app first (header, generator) and this reads as
- * a normal "about this card" section underneath it, styled to match the
- * rest of the site rather than as a plain, unstyled wall of text.
- */
+#root { min-height: 100vh; }
+
+/* Same reason as .header-mark: marker never flips, so the text on it must not either. */
+::selection { background: rgb(var(--marker)); color: rgb(var(--paper-ink)); }
+
+/* Printing the app page (not the PDF) must not produce a dark sheet.
+
+   The selector list is not redundant: @media adds no specificity, so a bare
+   :root here (0,0,1) loses to :root[data-theme="dark"] (0,1,1) above. Without
+   the stamped selectors, printing while in dark mode kept --ink at near-white
+   and put invisible text on white paper. */
+@media print {
+  :root,
+  :root[data-theme="dark"],
+  :root[data-theme="light"] {
+    --ground: 255 255 255;
+    --ground-2: 255 255 255;
+    --surface: 255 255 255;
+    --ink: 0 0 0;
+    --ink-2: 60 60 60;
+    --rule: 180 180 180;
+    --accent: 160 20 85;
+    --on-accent: 255 255 255;
+    color-scheme: light;
+  }
+  body::before { display: none; }
+}
+
+/* ============================================================
+   Static SEO content, injected by scripts/generate-template-pages.js
+   into the 154 pre-rendered template pages.
+
+   Rendered as a SIBLING of #root (React's createRoot would wipe it
+   if it were a child), so it gets no React-level classes and needs
+   its own styling — but it inherits the tokens above, so it themes
+   correctly for free.
+   ============================================================ */
+
 .static-content {
-  max-width: 80rem; /* matches <main class="max-w-7xl"> */
+  max-width: 80rem;
   margin: 0 auto;
   padding: 0 1rem 4rem;
-  color: #1f2937;
+  color: rgb(var(--ink));
 }
 
 @media (min-width: 640px) {
   .static-content { padding-left: 1.5rem; padding-right: 1.5rem; }
 }
-
 @media (min-width: 1024px) {
   .static-content { padding-left: 2rem; padding-right: 2rem; }
 }
 
 .static-card {
-  max-width: 48rem;
+  max-width: 74rem;
   margin: 0 auto;
-  background: #ffffff;
-  border: 1px solid #f3f4f6;
-  border-radius: 0.75rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  background: rgb(var(--surface));
+  border: 1px solid rgb(var(--rule));
 }
 
 .static-card-header {
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid #f3f4f6;
-  background: linear-gradient(to right, #f9fafb, #eff6ff);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid rgb(var(--rule));
+  background: rgb(var(--ground-2));
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #6b7280;
+  color: rgb(var(--ink-2));
 }
 
-.static-card-body {
-  padding: 1.5rem;
-}
+.static-card-body { padding: 1.5rem 1.25rem 1.75rem; }
 
 .static-content h1 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #111827;
+  font-family: 'Archivo Black', 'Helvetica Neue', Impact, sans-serif;
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  color: rgb(var(--ink));
   margin: 0 0 0.75rem;
-  line-height: 1.25;
+  line-height: 0.98;
 }
 
 .static-content h2 {
-  font-size: 1.0625rem;
-  font-weight: 700;
-  color: #111827;
-  margin: 1.75rem 0 0.75rem;
+  font-family: 'Archivo Black', 'Helvetica Neue', Impact, sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  color: rgb(var(--ink));
+  margin: 2rem 0 0.85rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgb(var(--rule));
 }
 
-.static-content h2:first-of-type {
-  margin-top: 0;
-}
+.static-content h2:first-of-type { margin-top: 1.5rem; }
 
 .static-content h3 {
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: #1f2937;
-  margin: 1rem 0 0.2rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: rgb(var(--ink));
+  margin: 0 0 0.2rem;
 }
 
 .static-intro {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #4b5563;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: rgb(var(--ink-2));
   margin: 0;
+  max-width: 68ch;
 }
 
+/* Board items are literal bingo squares, so show them as a grid of cells. */
 .static-board-items {
-  columns: 2;
-  column-gap: 2rem;
-  padding-left: 1.1rem;
+  list-style: none;
+  padding: 0;
   margin: 0;
-  font-size: 0.9375rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: rgb(var(--rule));
+  border: 1px solid rgb(var(--rule));
 }
 
 .static-board-items li {
-  break-inside: avoid;
-  margin-bottom: 0.35rem;
-  color: #374151;
+  background: rgb(var(--surface));
+  padding: 0.65rem 0.6rem;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  min-height: 3.9rem;
+  display: flex;
+  align-items: center;
+  color: rgb(var(--ink));
+}
+
+@media (max-width: 860px) {
+  .static-board-items { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 520px) {
+  .static-board-items { grid-template-columns: repeat(2, 1fr); }
 }
 
 .static-howto {
-  padding-left: 1.1rem;
-  color: #374151;
-  font-size: 0.9375rem;
+  counter-reset: howto;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+@media (max-width: 700px) {
+  .static-howto { grid-template-columns: 1fr; }
 }
 
 .static-howto li {
-  margin-bottom: 0.3rem;
+  counter-increment: howto;
+  background: rgb(var(--ground-2));
+  padding: 0.9rem 1rem;
+  font-size: 0.9rem;
+  color: rgb(var(--ink));
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+}
+
+/* B / I / N — the card's own column letters, not decorative numbering */
+.static-howto li::before {
+  content: counter(howto, upper-alpha);
+  font-family: 'Archivo Black', 'Helvetica Neue', Impact, sans-serif;
+  font-size: 0.8rem;
+  color: rgb(var(--accent));
+  flex: none;
+  line-height: 1.5;
 }
 
 .static-faq-item {
+  border-top: 1px solid rgb(var(--rule));
   padding: 0.85rem 0;
-  border-top: 1px solid #f3f4f6;
+  max-width: 68ch;
 }
 
-.static-faq-item:first-of-type {
-  border-top: none;
-  padding-top: 0;
-}
+.static-faq-item:first-of-type { border-top: none; padding-top: 0.25rem; }
 
 .static-faq-item p {
-  color: #4b5563;
-  margin: 0.3rem 0 0;
+  color: rgb(var(--ink-2));
+  margin: 0.2rem 0 0;
   line-height: 1.6;
-  font-size: 0.9375rem;
+  font-size: 0.925rem;
 }
 
 .static-related {
@@ -148,28 +288,18 @@ body {
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 4px;
 }
 
 .static-related a {
   display: inline-block;
-  padding: 0.4rem 0.85rem;
-  background: #eff6ff;
-  border: 1px solid #dbeafe;
-  border-radius: 9999px;
-  color: #1d4ed8;
+  padding: 0.45rem 0.7rem;
+  background: rgb(var(--surface));
+  border: 1px solid rgb(var(--rule));
+  color: rgb(var(--ink));
   text-decoration: none;
-  font-size: 0.8125rem;
+  font-size: 0.85rem;
   font-weight: 500;
-  transition: background-color 0.15s ease;
 }
 
-.static-related a:hover {
-  background: #dbeafe;
-}
-
-@media (max-width: 640px) {
-  .static-board-items {
-    columns: 1;
-  }
-}
+.static-related a:hover { border-color: rgb(var(--ink)); }

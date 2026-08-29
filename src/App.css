@@ -2,234 +2,179 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom component classes */
+/* ============================================================
+   Printed-matter design system.
+
+   Rules this file follows:
+   - Flat surfaces + hairline rules. No blurred drop shadows, no
+     hover-lift: elevation comes from surface lightness, which is
+     the only thing that reads in dark mode.
+   - Hard corners (border radius is 0 across the Tailwind scale).
+   - Every color goes through a token, so a single var swap in
+     index.css re-themes everything and no `dark:` variants exist.
+   - Solid offset shadows only, on the one primary action.
+   ============================================================ */
+
 @layer components {
+
+  /* ---------- panels ---------- */
   .card {
-    @apply bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1;
-  }
-  
-  .card-header {
-    @apply px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-blue-50 rounded-t-xl;
-  }
-  
-  .card-body {
-    @apply p-6;
-  }
-  
-  /* Title card specific styling */
-  .title-card {
-    @apply card animate-fade-in;
-  }
-  
-  .title-card .card-body {
-    @apply space-y-0;
-  }
-  
-  .title-card .card-body > div:first-child {
-    @apply mb-6;
-  }
-  
-  .title-input-label {
-    @apply block text-sm font-medium text-gray-700 mb-2;
-  }
-  
-  /* Pro Tips styling */
-  .pro-tips {
-    @apply bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1;
-  }
-  
-  .pro-tips-header {
-    @apply px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-blue-50 rounded-t-xl;
-  }
-  
-  .pro-tips-title {
-    @apply text-lg font-semibold text-gray-900 flex items-center;
-  }
-  
-  .pro-tips-body {
-    @apply p-6;
-  }
-  
-  .pro-tips-list {
-    @apply text-sm text-gray-700 space-y-2 leading-relaxed;
-  }
-  
-  .pro-tips-item {
-    @apply flex items-start space-x-2;
-  }
-  
-  .pro-tips-bullet {
-    @apply text-blue-600 font-bold mt-0.5 flex-shrink-0;
-  }
-  
-  .pro-tips-text {
-    @apply font-medium;
-  }
-  
-  /* Header styling */
-  .header-container {
-    @apply bg-blue-50 border-b border-blue-100;
-    box-shadow: 0 1px 3px rgba(59, 130, 246, 0.05);
-    padding: 2rem 0;
-  }
-  
-  .header-background {
-    display: none;
-  }
-  
-  .header-title {
-    @apply text-3xl md:text-4xl font-bold text-gray-900;
-    background: linear-gradient(135deg, #1f2937, #374151, #4b5563);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin: 0.25rem 0;
-    line-height: 1.2;
-    padding: 0.25rem 0;
-  }
-  
-  .header-subtitle {
-    @apply text-base md:text-lg text-gray-600 font-medium text-center max-w-2xl;
-    margin: 0.75rem 0 1rem 0;
-  }
-  
-  .header-icon {
-    @apply w-6 h-6 md:w-8 md:h-8 text-blue-600;
-  }
-  
-  .header-accent-line {
-    @apply w-16 h-0.5 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 rounded-full;
-    margin-top: 0.5rem;
-  }
-  
-  .btn-primary {
-    @apply relative inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-semibold rounded-lg text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-lg hover:shadow-xl transform transition-all duration-150 hover:-translate-y-0.5;
-    font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', sans-serif;
-    letter-spacing: 0.025em;
-  }
-  
-  .btn-primary:active {
-    @apply scale-95 shadow-inner bg-gradient-to-r from-blue-800 to-blue-900 translate-y-0;
-    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Enhanced PDF download button */
-  .btn-download {
-    @apply w-full relative inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-semibold rounded-lg text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-lg hover:shadow-xl transform transition-all duration-150 hover:-translate-y-0.5;
-    font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', sans-serif;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  .btn-download:active {
-    @apply scale-95 shadow-inner bg-gradient-to-r from-blue-800 to-blue-900 translate-y-0;
-    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
-  
-  .btn-secondary {
-    @apply relative inline-flex items-center justify-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-sm hover:shadow-md transform transition-all duration-150 hover:-translate-y-0.5;
-  }
-  
-  .btn-secondary:hover {
-    @apply border-gray-400 text-gray-800;
-  }
-  
-  .btn-secondary:active {
-    @apply scale-95 bg-gray-100 border-gray-500 translate-y-0;
-    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.1);
-  }
-  
-  .input-field {
-    @apply w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 hover:border-gray-400;
-  }
-  
-  /* Grid size selector buttons */
-  .grid-size-btn {
-    @apply p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer transform hover:scale-105;
-  }
-  
-  .grid-size-btn:active {
-    @apply scale-95;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .grid-size-btn.selected {
-    @apply border-blue-400 bg-gradient-to-br from-blue-50 to-blue-100 text-blue-600 shadow-lg ring-2 ring-blue-100 transform scale-110 z-10;
-    position: relative;
-  }
-  
-  .grid-size-btn.selected:active {
-    @apply bg-gradient-to-br from-blue-100 to-blue-200 scale-105;
-    box-shadow: inset 0 2px 4px rgba(59, 130, 246, 0.15), 0 4px 15px rgba(59, 130, 246, 0.15);
-  }
-  
-  .grid-size-btn.selected:hover {
-    @apply scale-[1.15];
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.2);
-  }
-  
-  .grid-size-btn:not(.selected) {
-    @apply border-gray-200 hover:border-gray-300 text-gray-700 hover:bg-gray-50 shadow-sm hover:shadow-md;
-  }
-  
-  .grid-size-btn:not(.selected):active {
-    @apply bg-gray-100 border-gray-400;
-  }
-  
-  /* Sample phrase buttons */
-  .sample-btn {
-    @apply inline-flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-150 transform hover:scale-105 shadow-sm hover:shadow-md;
-  }
-  
-  .sample-btn:hover {
-    @apply -translate-y-0.5;
-  }
-  
-  .sample-btn:active {
-    @apply scale-95 translate-y-0;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.1);
-  }
-  
-  .sample-btn.selected {
-    @apply bg-gradient-to-r from-blue-50 to-blue-100 border-blue-400 text-blue-600 shadow-md ring-1 ring-blue-100;
-  }
-  
-  .sample-btn.selected:hover {
-    @apply from-blue-100 to-blue-200 shadow-lg;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.15);
-  }
-  
-  /* Checkbox styling */
-  .custom-checkbox {
-    @apply w-5 h-5 text-blue-600 rounded focus:ring-blue-500 focus:ring-2 transition-all duration-200 hover:scale-110;
-  }
-  
-  .custom-checkbox:active {
-    @apply scale-95;
-  }
-  
-  /* Range slider styling */
-  .custom-range {
-    @apply w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer transition-all duration-200;
-  }
-  
-  .custom-range::-webkit-slider-thumb {
-    @apply appearance-none w-5 h-5 bg-blue-600 rounded-full cursor-pointer shadow-lg hover:shadow-xl transition-all duration-150 hover:scale-110;
-  }
-  
-  .custom-range::-webkit-slider-thumb:active {
-    @apply scale-90;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .custom-range::-moz-range-thumb {
-    @apply w-5 h-5 bg-blue-600 rounded-full cursor-pointer border-0 shadow-lg hover:shadow-xl transition-all duration-150;
+    @apply bg-surface border border-rule;
   }
 
-  /* Color input styling for circular appearance */
+  .card-header {
+    @apply px-4 py-3 border-b border-rule bg-ground-2
+           font-mono text-[10px] uppercase tracking-[0.1em] text-ink-2;
+  }
+
+  .card-body {
+    @apply p-4;
+  }
+
+  .title-card {
+    @apply card;
+  }
+
+  .title-input-label {
+    @apply block font-mono text-[9.5px] uppercase tracking-[0.1em] text-ink-2 mb-1.5;
+  }
+
+  /* ---------- header ---------- */
+  .header-container {
+    @apply bg-surface border-b border-rule;
+    padding: 1.6rem 0 1.5rem;
+  }
+
+  .header-title {
+    @apply font-display text-3xl md:text-[2.6rem] text-ink uppercase;
+    line-height: 0.94;
+    letter-spacing: -0.025em;
+    margin: 0;
+  }
+
+  /* Highlighter swipe — the one place marker yellow appears. */
+  .header-mark {
+    background: linear-gradient(
+      transparent 58%,
+      rgb(var(--marker)) 58%,
+      rgb(var(--marker)) 92%,
+      transparent 92%
+    );
+    padding: 0 0.1em;
+    /* Marker is an artifact color and does not flip with the theme, so the text
+       riding on it cannot use --ink. In dark mode that scored 1.27:1. */
+    color: rgb(var(--paper-ink));
+  }
+
+  .header-subtitle {
+    @apply font-mono text-[11px] tracking-[0.08em] text-ink-2;
+    margin: 0.55rem 0 0;
+  }
+
+  /* ---------- buttons ---------- */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-5 py-3
+           font-display text-sm uppercase
+           bg-accent text-on-accent border-2 border-paper-ink
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-accent
+           focus-visible:ring-offset-2;
+    box-shadow: 4px 4px 0 rgb(var(--paper-ink));
+  }
+  .btn-primary:active {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+  }
+
+  .btn-download {
+    @apply block w-full text-center px-5 py-4
+           font-display text-base uppercase
+           bg-accent text-on-accent border-2 border-paper-ink
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-accent
+           focus-visible:ring-offset-2;
+    box-shadow: 4px 4px 0 rgb(var(--paper-ink));
+    text-decoration: none;
+  }
+  .btn-download:active {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-3 py-2
+           font-mono text-[11px] tracking-[0.06em]
+           bg-transparent text-ink border border-ink
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-accent;
+  }
+  .btn-secondary:hover {
+    @apply bg-ground-2;
+  }
+
+  /* ---------- inputs ---------- */
+  .input-field {
+    @apply w-full px-3 py-2.5 text-[14.5px]
+           bg-ground text-ink border border-rule
+           focus:outline-none;
+  }
+  .input-field:focus {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: -1px;
+  }
+  /* Preflight leaves this at gray-400, which is off-palette in light and
+     badly off in dark. The phrase textarea's placeholder is instructional
+     copy, so it is kept legible rather than pushed down to a faint hint. */
+  .input-field::placeholder {
+    color: rgb(var(--ink-2) / 0.85);
+    opacity: 1;
+  }
+
+  /* ---------- grid size selector ---------- */
+  .grid-size-btn {
+    @apply flex flex-col items-center justify-center gap-1 py-2.5
+           font-mono text-[11px]
+           bg-ground text-ink border border-rule cursor-pointer;
+  }
+  .grid-size-btn:hover {
+    @apply border-ink;
+  }
+  .grid-size-btn.selected {
+    @apply bg-ink text-surface border-ink;
+  }
+
+  /* ---------- template chips ---------- */
+  .sample-btn {
+    @apply inline-flex items-center px-2.5 py-1.5 text-[13px] font-medium
+           bg-ground text-ink border border-rule cursor-pointer;
+  }
+  .sample-btn:hover {
+    @apply border-ink;
+  }
+  .sample-btn.selected {
+    @apply bg-ink text-surface border-ink;
+  }
+
+  /* ---------- form controls ---------- */
+  .custom-checkbox {
+    @apply w-4 h-4 border border-rule cursor-pointer;
+    accent-color: rgb(var(--accent));
+  }
+
+  .custom-range {
+    @apply w-full h-1 bg-ground-2 appearance-none cursor-pointer;
+    accent-color: rgb(var(--accent));
+  }
+  .custom-range::-webkit-slider-thumb {
+    @apply appearance-none w-4 h-4 cursor-pointer;
+    background: rgb(var(--accent));
+    border-radius: 50%;
+  }
+  .custom-range::-moz-range-thumb {
+    @apply w-4 h-4 cursor-pointer border-0;
+    background: rgb(var(--accent));
+    border-radius: 50%;
+  }
+
+  /* Color swatches stay circular. The picker popup itself is OS chrome —
+     `color-scheme` on :root is what makes it render dark. */
   input[type="color"] {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -238,262 +183,100 @@
     border: none;
     cursor: pointer;
     padding: 0;
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 1.75rem;
+    height: 1.75rem;
   }
-
   input[type="color"]::-webkit-color-swatch-wrapper {
     padding: 0;
     border: none;
     border-radius: 50%;
     overflow: hidden;
   }
-
   input[type="color"]::-webkit-color-swatch {
-    border: none;
+    border: 1px solid rgb(var(--paper-ink));
     border-radius: 50%;
     padding: 0;
   }
-
   input[type="color"]::-moz-color-swatch {
-    border: none;
+    border: 1px solid rgb(var(--paper-ink));
     border-radius: 50%;
     padding: 0;
   }
-}
 
-/* Enhanced animations */
-@keyframes fade-in {
-  from { 
-    opacity: 0; 
-    transform: translateY(20px) scale(0.95); 
+  /* ---------- pro tips ---------- */
+  .pro-tips {
+    @apply card;
   }
-  to { 
-    opacity: 1; 
-    transform: translateY(0) scale(1); 
+  .pro-tips-header {
+    @apply card-header;
   }
-}
+  .pro-tips-title {
+    @apply font-display text-[11px] uppercase tracking-[0.03em] text-ink flex items-center;
+  }
+  .pro-tips-body {
+    @apply p-4;
+  }
+  .pro-tips-list {
+    @apply text-[13.5px] text-ink-2;
+  }
+  .pro-tips-item {
+    @apply relative flex items-start gap-2 py-1.5 border-b border-rule;
+  }
+  .pro-tips-item:last-child {
+    @apply border-b-0;
+  }
+  .pro-tips-bullet {
+    @apply flex-none mt-2;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgb(var(--accent));
+  }
+  .pro-tips-text {
+    @apply font-normal;
+  }
 
-@keyframes slide-up {
-  from { 
-    opacity: 0; 
-    transform: translateY(30px) scale(0.95); 
+  /* ---------- the printed card (artifact colors, never themed) ---------- */
+  .paper-frame {
+    @apply bg-paper border-2 border-paper-ink p-3;
+    box-shadow: 5px 5px 0 rgb(var(--paper-ink));
   }
-  to { 
-    opacity: 1; 
-    transform: translateY(0) scale(1); 
-  }
-}
 
-@keyframes bounce-gentle {
-  0%, 20%, 50%, 80%, 100% { 
-    transform: translateY(0) scale(1); 
+  /* ---------- layout helpers still in use ---------- */
+  .flex-center-col {
+    @apply flex flex-col items-center;
   }
-  40% { 
-    transform: translateY(-4px) scale(1.02); 
-  }
-  60% { 
-    transform: translateY(-2px) scale(1.01); 
-  }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { 
-    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); 
-  }
-  50% { 
-    box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); 
-  }
-}
-
-@keyframes float {
-  0%, 100% { 
-    transform: translateY(0px); 
-  }
-  50% { 
-    transform: translateY(-6px); 
+  .btn-group {
+    @apply flex flex-wrap gap-1;
   }
 }
 
-@keyframes wiggle {
-  0%, 7%, 100% { 
-    transform: rotate(0deg); 
-  }
-  15% { 
-    transform: rotate(-3deg); 
-  }
-  20% { 
-    transform: rotate(3deg); 
-  }
-  25% { 
-    transform: rotate(-3deg); 
-  }
-  30% { 
-    transform: rotate(3deg); 
-  }
-  35% { 
-    transform: rotate(-1deg); 
-  }
-  40% { 
-    transform: rotate(1deg); 
-  }
-  50% { 
-    transform: rotate(0deg); 
+/* The one animation: a dauber landing on a square. */
+@keyframes dauber-stamp {
+  from { transform: scale(0.4); opacity: 0; }
+  to   { transform: scale(1);   opacity: 0.85; }
+}
+
+.dauber-mark::after {
+  content: "";
+  position: absolute;
+  inset: 13%;
+  border-radius: 50%;
+  background: rgb(var(--accent));
+  opacity: 0.85;
+  mix-blend-mode: multiply;
+  animation: dauber-stamp 420ms cubic-bezier(0.2, 1.4, 0.5, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dauber-mark::after { animation: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
-@keyframes shimmer {
-  0% { 
-    background-position: -200% center; 
-  }
-  100% { 
-    background-position: 200% center; 
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 0.6s ease-out;
-}
-
-.animate-slide-up {
-  animation: slide-up 0.7s ease-out;
-}
-
-.animate-bounce-gentle {
-  animation: bounce-gentle 3s infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 2s infinite;
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-.animate-wiggle {
-  animation: wiggle 1s ease-in-out;
-}
-
-/* Hover animations for interactive elements */
-.hover-float:hover {
-  animation: float 1s ease-in-out infinite;
-}
-
-.hover-wiggle:hover {
-  animation: wiggle 0.5s ease-in-out;
-}
-
-/* Enhanced focus states */
-.focus-enhanced:focus {
-  @apply ring-4 ring-blue-200 ring-opacity-50 outline-none;
-}
-
-/* Custom utilities for better centering */
-.flex-center {
-  @apply flex items-center justify-center;
-}
-
-.flex-center-col {
-  @apply flex flex-col items-center justify-center;
-}
-
-.text-balance {
-  text-wrap: balance;
-}
-
-/* Improved responsive grid */
-.responsive-grid {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-
-/* Better button groups */
-.btn-group {
-  @apply flex flex-wrap gap-3 items-center justify-start;
-}
-
-.btn-group .btn-secondary {
-  @apply flex-shrink-0;
-}
-
-/* Enhanced card hover effects */
-.card-interactive {
-  @apply hover:shadow-2xl hover:scale-[1.02] transition-all duration-300;
-}
-
-/* Staggered animation delays for lists */
-.stagger-1 { animation-delay: 0.1s; }
-.stagger-2 { animation-delay: 0.2s; }
-.stagger-3 { animation-delay: 0.3s; }
-.stagger-4 { animation-delay: 0.4s; }
-.stagger-5 { animation-delay: 0.5s; }
-
-/* Improved text centering and spacing */
-.text-center-balance {
-  text-align: center;
-  text-wrap: balance;
-  line-height: 1.5;
-}
-
-/* Enhanced spacing utilities */
-.space-y-dynamic > * + * {
-  margin-top: clamp(1rem, 2vw, 1.5rem);
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Improved focus visibility */
-*:focus-visible {
-  @apply outline-2 outline-blue-500 outline-offset-2;
-}
-
-/* Loading states */
-.loading-shimmer {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-}
-
-/* Glass morphism effect */
-.glass {
-  @apply bg-white bg-opacity-80 backdrop-blur-sm border border-white border-opacity-20;
-}
-
-/* Enhanced shadows for depth */
-.shadow-depth-1 { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-.shadow-depth-2 { box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); }
-.shadow-depth-3 { box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); }
-.shadow-depth-4 { box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); }
-.shadow-depth-5 { box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); }
-
-/* Enhanced click feedback for all interactive elements */
-button:active,
-.clickable:active {
-  transform: scale(0.95) !important;
-  transition: transform 0.1s ease-out !important;
-}
-
-/* Special active states for different button types */
-.btn-group .btn-secondary:active {
-  background-color: rgb(243 244 246) !important;
-  border-color: rgb(156 163 175) !important;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-}
-
-/* Active state for preview and download buttons */
-.btn-primary.animate-bounce-gentle:active {
-  animation: none !important;
-  transform: scale(0.95) !important;
-  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3) !important;
-}
-
-/* Click feedback for icon buttons */
-.lucide:active {
-  transform: scale(0.9);
-  transition: transform 0.1s ease-out;
+:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 2px;
 }

@@ -214,9 +214,9 @@ function App() {
   const textOverflowWarning = getTextOverflowWarning();
 
   return (
-    <div className="App min-h-screen bg-blue-25">
+    <div className="App min-h-screen bg-ground">
       <Header activeTitle={title} />
-      
+
       {/* Top Banner Ad */}
       <AdBanner slot="" style={{ marginBottom: '20px' }} />
       
@@ -227,34 +227,28 @@ function App() {
           <div className="lg:col-span-2 space-y-6">
             {/* Title Input */}
             <div className="title-card">
-              <div className="card-header">
-                <div className="flex items-center space-x-2">
-                  <span className="text-lg font-semibold text-gray-900">Bingo Card Title</span>
-                </div>
-              </div>
-              <div className="card-body">
+              <div className="card-header">Your card</div>
+              <div className="card-body space-y-3.5">
                 <div>
-                  <label className="title-input-label">
-                    Enter your bingo card title or use Bingo by default
-                  </label>
+                  <label className="title-input-label" htmlFor="card-title">Title</label>
                   <input
+                    id="card-title"
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     className="input-field"
-                    placeholder="Enter your bingo card title..."
+                    placeholder="Name your card…"
                   />
                 </div>
                 <div>
-                  <label className="title-input-label">
-                    Subtitle/Instruction (optional)
-                  </label>
+                  <label className="title-input-label" htmlFor="card-subtitle">Subtitle</label>
                   <input
+                    id="card-subtitle"
                     type="text"
                     value={subtitle}
                     onChange={(e) => setSubtitle(e.target.value)}
                     className="input-field"
-                    placeholder="e.g., First to get 5 in a row wins!"
+                    placeholder="e.g. First to get 5 in a row wins"
                   />
                 </div>
               </div>
@@ -297,7 +291,7 @@ function App() {
             {/* PDF Generator */}
             <Suspense fallback={
               <div className="card">
-                <div className="card-body text-center text-sm text-gray-500 py-6">
+                <div className="card-body text-center font-mono text-[11px] text-ink-2 py-6">
                   Loading PDF tools...
                 </div>
               </div>

@@ -114,13 +114,13 @@ const PDFPreview = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className={`bg-white rounded-lg shadow-xl ${showCustomization ? 'max-w-7xl' : 'max-w-5xl'} max-h-[95vh] w-full flex flex-col`}>
+    <div className="fixed inset-0 bg-ink/60 flex items-center justify-center z-50 p-4">
+      <div className={`bg-surface border-2 border-ink ${showCustomization ? 'max-w-7xl' : 'max-w-5xl'} max-h-[95vh] w-full flex flex-col`}>
         {/* Header */}
-        <div className="flex justify-between items-center p-4 border-b bg-gray-50 rounded-t-lg">
+        <div className="flex justify-between items-center px-4 py-3 border-b-2 border-ink bg-ground-2">
           <div className="flex items-center space-x-2">
-            <Eye className="w-5 h-5 text-blue-600" />
-            <h3 className="text-lg font-semibold text-gray-900">PDF Preview</h3>
+            <Eye className="w-4 h-4 text-accent" />
+            <h3 className="font-display text-[14px] uppercase text-ink">PDF Preview</h3>
           </div>
           
           <div className="flex items-center space-x-2">
@@ -144,7 +144,7 @@ const PDFPreview = ({
             )}
             <button
               onClick={onClose}
-              className="p-2 hover:bg-gray-200 rounded-full transition-colors"
+              className="p-2 hover:bg-ground-2"
               title="Close preview"
             >
               <X className="w-5 h-5" />
@@ -156,7 +156,7 @@ const PDFPreview = ({
         <div className="flex-1 overflow-hidden flex">
           {/* Customization Panel */}
           {showCustomization && (
-            <div className="w-80 border-r bg-gray-50 overflow-y-auto">
+            <div className="w-80 border-r border-rule bg-surface overflow-y-auto">
               <div className="p-4">
                 <CardCustomization
                   subtitle={subtitle}
@@ -218,16 +218,16 @@ const PDFPreview = ({
           {loading ? (
             <div className="flex items-center justify-center h-96">
               <div className="text-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                <div className="text-gray-600">Generating preview...</div>
-                <div className="text-sm text-gray-500 mt-1">This may take a moment</div>
+                <div className="animate-spin rounded-full h-7 w-7 border-b-2 border-accent mx-auto mb-4"></div>
+                <div className="text-ink">Generating preview…</div>
+                <div className="font-mono text-[11px] text-ink-2 mt-1">This may take a moment</div>
               </div>
             </div>
           ) : error ? (
             <div className="flex items-center justify-center h-96">
               <div className="text-center">
-                <div className="text-red-600 mb-2">⚠️ Preview Error</div>
-                <div className="text-gray-600">{error}</div>
+                <div className="font-display text-[12px] uppercase text-accent mb-2">Preview error</div>
+                <div className="text-[13px] text-ink-2">{error}</div>
                 <button
                   onClick={generatePreview}
                   className="mt-4 btn-secondary text-sm"
@@ -240,14 +240,16 @@ const PDFPreview = ({
             <div className="h-full p-4">
               <iframe
                 src={`${pdfUrl}#toolbar=1&navpanes=1&scrollbar=1`}
-                className="w-full h-full border rounded-lg shadow-inner"
+                className="w-full h-full border border-rule"
                 title="PDF Preview"
-                style={{ minHeight: '70vh' }}
+                // colorScheme opts the embedded viewer OUT of a dark root so the
+                // browser's own PDF toolbar doesn't render dark against white paper.
+                style={{ minHeight: '70vh', colorScheme: 'light' }}
               />
             </div>
           ) : (
             <div className="flex items-center justify-center h-96">
-              <div className="text-gray-500">Unable to generate preview</div>
+              <div className="text-ink-2">Unable to generate preview</div>
             </div>
           )}
           </div>
@@ -255,9 +257,9 @@ const PDFPreview = ({
         
         {/* Footer */}
         {pdfUrl && (
-          <div className="border-t bg-gray-50 px-4 py-3 rounded-b-lg">
-            <div className="text-sm text-gray-600 text-center">
-              💡 Tip: Use the PDF viewer controls above to navigate between pages and zoom
+          <div className="border-t border-rule bg-ground-2 px-4 py-2.5">
+            <div className="font-mono text-[10.5px] tracking-[0.06em] text-ink-2 text-center">
+              Use the PDF viewer controls above to page through and zoom
             </div>
           </div>
         )}

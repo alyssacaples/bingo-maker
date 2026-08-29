@@ -66,43 +66,41 @@ const PDFGenerator = ({
   return (
     <>
       <div className="card">
-        <div className="card-body space-y-3">
+        <div className="card-body space-y-2">
           {hasEnoughPhrases ? (
             <>
-              <button
-                onClick={() => setShowPreview(true)}
-                className="btn-secondary w-full text-center"
-              >
-                <Eye className="w-5 h-5 mr-2" />
-                Preview PDF
-              </button>
-              
               <PDFDownloadLink
                 document={<BingoDocument />}
                 fileName={`${title || 'Bingo'}_Cards.pdf`}
-                className="btn-download animate-bounce-gentle hover-float"
+                className="btn-download"
               >
                 {({ loading }) => (
-                  loading ? 'Preparing PDF...' : (
-                    <>
-                      <Download className="w-5 h-5 mr-2" />
-                      Download Bingo Cards
-                    </>
+                  loading ? 'Preparing PDF…' : (
+                    <span className="inline-flex items-center">
+                      <Download className="w-4 h-4 mr-2" aria-hidden="true" />
+                      Download cards
+                    </span>
                   )
                 )}
               </PDFDownloadLink>
+
+              <button
+                onClick={() => setShowPreview(true)}
+                className="btn-secondary w-full"
+              >
+                <Eye className="w-3.5 h-3.5 mr-2" aria-hidden="true" />
+                Preview &amp; customize
+              </button>
             </>
           ) : (
-            <div className="text-center">
-              <div className="text-red-600 text-sm mb-2 font-medium">
-                Need at least {requiredCells} phrases
-              </div>
-              <div className="text-gray-500 text-xs">
-                for {gridSize}×{gridSize} grid{freeSpace && ' (with free space)'}
-              </div>
-              <div className="text-gray-500 text-xs mt-1">
-                Currently have: {phrases.length} phrases
-              </div>
+            <div className="border border-rule p-3">
+              <p className="font-display text-[11px] uppercase text-accent m-0">
+                Need {requiredCells} phrases
+              </p>
+              <p className="text-[13px] text-ink-2 mt-1 mb-0">
+                A {gridSize}×{gridSize} grid{freeSpace && hasEnoughPhrases === false ? ' with free space' : ''} needs {requiredCells}.
+                You have {phrases.length}.
+              </p>
             </div>
           )}
         </div>

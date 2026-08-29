@@ -441,7 +441,7 @@ const PhraseInput = ({
       <div className="card-header">
         <div className="flex items-center space-x-2">
           <FileText className="w-5 h-5 text-primary-600" />
-          <h2 className="text-xl font-semibold text-gray-900">
+          <h2 className="font-display text-[14px] uppercase tracking-[0.005em] text-ink">
             Bingo Phrases ({phrases.length})
           </h2>
         </div>
@@ -450,16 +450,16 @@ const PhraseInput = ({
         <div className="space-y-4">
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="title-input-label">
                 Enter your phrases (one per line, or separated by commas/semicolons)
               </label>
               {phrases.length > 0 && (
                 <button
                   onClick={handleClearAll}
-                  className="btn-secondary text-sm"
+                  className="btn-secondary text-sm whitespace-nowrap"
                 >
                   <Trash2 className="w-4 h-4 mr-1" />
-                  Clear All
+                  Clear all
                 </button>
               )}
             </div>
@@ -473,17 +473,17 @@ const PhraseInput = ({
           </div>
 
           {phrases.length > 0 && (
-            <div className="bg-gray-50 rounded-lg p-4">
-              <p className="text-sm text-gray-600 mb-2">Preview of detected phrases:</p>
+            <div className="bg-ground-2 border border-rule p-3">
+              <p className="title-input-label">Preview of detected phrases:</p>
               <div className="max-h-32 overflow-y-auto">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-xs">
                   {phrases.slice(0, 10).map((phrase, index) => (
-                    <div key={index} className="text-gray-700 truncate">
+                    <div key={index} className="text-ink truncate">
                       {index + 1}. {phrase}
                     </div>
                   ))}
                   {phrases.length > 10 && (
-                    <div className="text-gray-500 italic">
+                    <div className="text-ink-2 italic">
                       ...and {phrases.length - 10} more
                     </div>
                   )}
@@ -495,7 +495,7 @@ const PhraseInput = ({
           <div className="space-y-3">
             {show2025WrappedAtTop && (
               <div>
-                <h4 className="text-sm font-medium text-gray-700 mb-2">2025 Wrapped</h4>
+                <h4 className="title-input-label">2025 Wrapped</h4>
                 <div className="btn-group">
                   <button
                     onClick={() => handleSampleClick('books-2025')}
@@ -545,7 +545,7 @@ const PhraseInput = ({
 
             {showHolidaySeasonalAtTop && (
               <div>
-                <h4 className="text-sm font-medium text-gray-700 mb-2">Holiday/Seasonal</h4>
+                <h4 className="title-input-label">Holiday/Seasonal</h4>
                 <div className="btn-group">
                   <button
                     onClick={() => handleSampleClick('thanksgiving')}
@@ -615,7 +615,7 @@ const PhraseInput = ({
             )}
 
             <div>
-              <h4 className="text-sm font-medium text-gray-700 mb-2">Icebreakers & Party Games</h4>
+              <h4 className="title-input-label">Icebreakers & Party Games</h4>
               <div className="btn-group">
                 <button
                   onClick={() => handleSampleClick('icebreakers')}
@@ -656,7 +656,7 @@ const PhraseInput = ({
             </div>
 
             <div>
-              <h4 className="text-sm font-medium text-gray-700 mb-2">Special Events</h4>
+              <h4 className="title-input-label">Special Events</h4>
               <div className="btn-group">
                 <button
                   onClick={() => handleSampleClick('wedding-reception')}
@@ -690,7 +690,7 @@ const PhraseInput = ({
             </div>
 
             <div>
-              <h4 className="text-sm font-medium text-gray-700 mb-2">Seasonal Activities</h4>
+              <h4 className="title-input-label">Seasonal Activities</h4>
               <div className="btn-group">
                 <button
                   onClick={() => handleSampleClick('summer-bucketlist')}
@@ -724,9 +724,9 @@ const PhraseInput = ({
             </div>
 
             <div>
-              <h4 className="text-sm font-medium text-gray-700 mb-2">Book & Reading Challenges</h4>
-              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 mb-3">
-                <label htmlFor="book-preset-select" className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">
+              <h4 className="title-input-label">Book & Reading Challenges</h4>
+              <div className="bg-ground-2 border border-rule p-3 mb-3">
+                <label htmlFor="book-preset-select" className="title-input-label">
                   Select a Challenge or Genre
                 </label>
                 <select
@@ -735,7 +735,7 @@ const PhraseInput = ({
                   onChange={(e) => {
                     if (e.target.value) handleSampleClick(e.target.value);
                   }}
-                  className="input-field w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-sm bg-white cursor-pointer"
+                  className="input-field cursor-pointer"
                 >
                   <option value="">Select a reading template...</option>
                   {bookOptions.map(opt => (
@@ -746,7 +746,7 @@ const PhraseInput = ({
             </div>
 
             <div>
-              <h4 className="text-sm font-medium text-gray-700 mb-2">Hobbies & Interests</h4>
+              <h4 className="title-input-label">Hobbies & Interests</h4>
               <div className="btn-group">
                 
                 <button
@@ -802,7 +802,7 @@ const PhraseInput = ({
             </div>
 
             <div>
-              <h4 className="text-sm font-medium text-gray-700 mb-2">Experiences</h4>
+              <h4 className="title-input-label">Experiences</h4>
               <div className="btn-group">
                 <button
                   onClick={() => handleSampleClick('travel-experiences')}
@@ -829,7 +829,7 @@ const PhraseInput = ({
             </div>
 
             <div>
-              <h4 className="text-sm font-medium text-gray-700 mb-2">PNW & Outdoors</h4>
+              <h4 className="title-input-label">PNW & Outdoors</h4>
               <div className="btn-group">
                 <button
                   onClick={() => handleSampleClick('washington-trails')}
@@ -906,7 +906,7 @@ const PhraseInput = ({
 
             {!showHolidaySeasonalAtTop && (
               <div>
-                <h4 className="text-sm font-medium text-gray-700 mb-2">Holiday/Seasonal</h4>
+                <h4 className="title-input-label">Holiday/Seasonal</h4>
                 <div className="btn-group">
                   <button
                     onClick={() => handleSampleClick('thanksgiving')}
@@ -977,7 +977,7 @@ const PhraseInput = ({
 
             {!show2025WrappedAtTop && (
               <div>
-                <h4 className="text-sm font-medium text-gray-700 mb-2">2025 Wrapped</h4>
+                <h4 className="title-input-label">2025 Wrapped</h4>
                 <div className="btn-group">
                   <button
                     onClick={() => handleSampleClick('books-2025')}
@@ -1026,10 +1026,10 @@ const PhraseInput = ({
             )}
 
             <div>
-              <h4 className="text-sm font-medium text-gray-700 mb-2">Places & Travel</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 p-4 rounded-lg border border-gray-200">
+              <h4 className="title-input-label">Places & Travel</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 bg-ground-2 border border-rule p-3">
                 <div>
-                  <label htmlFor="travel-preset-select" className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">
+                  <label htmlFor="travel-preset-select" className="title-input-label">
                     Travel Destinations
                   </label>
                   <select
@@ -1038,7 +1038,7 @@ const PhraseInput = ({
                     onChange={(e) => {
                       if (e.target.value) handleSampleClick(e.target.value);
                     }}
-                    className="input-field w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-sm bg-white cursor-pointer"
+                    className="input-field cursor-pointer"
                   >
                     <option value="">Select a city or country...</option>
                     {travelOptions.map(opt => (
@@ -1048,7 +1048,7 @@ const PhraseInput = ({
                 </div>
 
                 <div>
-                  <label htmlFor="state-preset-select" className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">
+                  <label htmlFor="state-preset-select" className="title-input-label">
                     US State Highlights
                   </label>
                   <select
@@ -1057,7 +1057,7 @@ const PhraseInput = ({
                     onChange={(e) => {
                       if (e.target.value) handleSampleClick(e.target.value);
                     }}
-                    className="input-field w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-sm bg-white cursor-pointer"
+                    className="input-field cursor-pointer"
                   >
                     <option value="">Select a US state...</option>
                     {stateOptions.map(opt => (
@@ -1069,7 +1069,7 @@ const PhraseInput = ({
             </div>
 
             <div>
-              <h4 className="text-sm font-medium text-gray-700 mb-2">2026 Wrapped</h4>
+              <h4 className="title-input-label">2026 Wrapped</h4>
               <div className="btn-group">
                 <button
                   onClick={() => handleSampleClick('movies-out-now-2026')}
@@ -1110,7 +1110,7 @@ const PhraseInput = ({
             </div>
 
             <div>
-              <h4 className="text-sm font-medium text-gray-700 mb-2">Good News</h4>
+              <h4 className="title-input-label">Good News</h4>
               <div className="btn-group">
                 <button
                   onClick={() => handleSampleClick('happy-news-2026')}

@@ -88,16 +88,16 @@ const BugReportModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+    <div className="fixed inset-0 bg-ink/60 flex items-center justify-center z-50 p-4">
+      <div className="bg-surface border-2 border-ink max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="flex items-center justify-between px-5 py-4 border-b-2 border-ink bg-ground-2">
           <div className="flex items-center space-x-3">
-            <Bug className="w-6 h-6 text-red-600" />
-            <h2 className="text-xl font-semibold text-gray-900">Report a Bug</h2>
+            <Bug className="w-4 h-4 text-accent" />
+            <h2 className="font-display text-[14px] uppercase text-ink">Report a Bug</h2>
           </div>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 transition-colors"
+            className="text-ink-2 hover:text-ink"
           >
             <X className="w-6 h-6" />
           </button>
@@ -105,23 +105,23 @@ const BugReportModal = ({ isOpen, onClose }) => {
 
         <form onSubmit={handleSubmit} className="p-6 space-y-6">
           {submitStatus === 'success' && (
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span className="text-green-800 text-sm">Bug report sent successfully! Thank you for your feedback.</span>
+            <div className="border border-ink p-3 flex items-center space-x-2">
+              <div className="w-2 h-2 bg-accent rounded-full"></div>
+              <span className="text-ink text-sm">Bug report sent successfully! Thank you for your feedback.</span>
             </div>
           )}
 
           {submitStatus === 'error' && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div className="border border-accent p-3">
               <div className="flex items-center space-x-2 mb-2">
-                <AlertCircle className="w-4 h-4 text-red-500" />
-                <span className="text-red-800 text-sm font-medium">Failed to send report</span>
+                <AlertCircle className="w-4 h-4 text-accent" />
+                <span className="text-ink text-sm font-semibold">Failed to send report</span>
               </div>
             </div>
           )}
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="title-input-label">
               Bug Description *
             </label>
             <textarea
@@ -136,7 +136,7 @@ const BugReportModal = ({ isOpen, onClose }) => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="title-input-label">
               Steps to Reproduce
             </label>
             <textarea
@@ -151,7 +151,7 @@ const BugReportModal = ({ isOpen, onClose }) => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="title-input-label">
                 Website Area
               </label>
               <select
@@ -168,7 +168,7 @@ const BugReportModal = ({ isOpen, onClose }) => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="title-input-label">
                 Your Email (optional)
               </label>
               <input
@@ -179,12 +179,12 @@ const BugReportModal = ({ isOpen, onClose }) => {
                 className="input-field"
                 placeholder="your@email.com"
               />
-              <p className="text-xs text-gray-500 mt-1">For follow-up questions only</p>
+              <p className="font-mono text-[10px] text-ink-2 mt-1">For follow-up questions only</p>
             </div>
           </div>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <p className="text-sm text-blue-800">
+          <div className="bg-ground-2 border border-rule p-3">
+            <p className="text-[13px] text-ink-2">
               <strong>Automatic Info:</strong> Browser details and app state will be included to help us debug the issue.
             </p>
           </div>
@@ -205,7 +205,7 @@ const BugReportModal = ({ isOpen, onClose }) => {
             >
               {isSubmitting ? (
                 <>
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                  <div className="w-4 h-4 border-2 border-on-accent border-t-transparent rounded-full animate-spin mr-2"></div>
                   Sending...
                 </>
               ) : (
