@@ -1160,7 +1160,7 @@ export const templateContent = {
       },
       {
         "q": "Does it cost anything?",
-        "a": "No, it is free with no signup. For something broader than drive-thrus, Food Adventures Bingo covers everything people have eaten rather than where they bought it."
+        "a": "No, it is free with no signup. For something broader than drive-thrus, Foodie Adventures Bingo covers everything people have eaten rather than where they bought it."
       }
     ],
     "related": [
@@ -1199,6 +1199,93 @@ export const templateContent = {
       "food-adventures",
       "christmas-bucketlist",
       "icebreakers"
+    ]
+  },
+  "seattle-restaurants": {
+    "intro": "Seattle Restaurants Bingo is a printable card of 25 places worth eating at in Seattle, from Canlis and Musang to Paseo, Biscuit Bitch and The Walrus and the Carpenter. No chains on it anywhere. Use it to plan a year of dinners, or hand it to someone who just moved here and wants a real list instead of the first search result. Free, no signup. Print it for the fridge or keep it open on your phone.",
+    "faq": [
+      {
+        "q": "Which restaurants are on the card?",
+        "a": "43 in the pool, mixing bucket-list rooms like Canlis and Cafe Juanita, recent James Beard nominees including Homer, Musang and Pancita, whatever Resy is pushing this season, and the institutions nobody argues about: The Pink Door, Salumi, Paseo, Ezell's. Every card draws 25, so no two are the same."
+      },
+      {
+        "q": "Is this only for people who live here?",
+        "a": "It works either way. Locals treat it as a checklist of the places they keep meaning to try. Visitors get a shortlist that came from someone who actually eats here rather than from a list of the top ten results."
+      },
+      {
+        "q": "Can I add my own spots?",
+        "a": "Please do. Neighborhood loyalty is the whole point of a card like this, so edit the list before printing and put your corner place on it. Cutting it down to one neighborhood makes a good version too."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free, no signup and no account. If you want the coffee equivalent, Seattle Coffee Shops Bingo covers the roasters and cafes with Starbucks left off entirely."
+      }
+    ],
+    "related": [
+      "seattle-coffee",
+      "seattle-travel",
+      "after-work-seattle",
+      "battling-seattle-freeze",
+      "washington-state-highlights",
+      "food-adventures"
+    ]
+  },
+  "seattle-coffee": {
+    "intro": "Seattle Coffee Shops Bingo is a printable card of 25 local roasters and cafes, from Victrola and Espresso Vivace to Boon Boona, Monorail Espresso and Ghost Alley. Starbucks is not on it, which is the entire point in the city that invented the problem. Use it as a slow tour of the neighborhoods, or as a competition with whoever you drink coffee with. Free and no signup needed.",
+    "faq": [
+      {
+        "q": "Why is Starbucks not on the card?",
+        "a": "Because marking it off proves nothing here. The 35 places in the pool are independent roasters and cafes: the institutions like Vivace and Caffe Vita, newer rooms like Gloom and Nudibranch, and the walk-up windows including Monorail Espresso and Ghost Alley by the gum wall."
+      },
+      {
+        "q": "How long does it take to fill a card?",
+        "a": "Longer than you would think, which is the fun of it. Most people play it over a season rather than a weekend. If you want it faster, print a 3x3 instead of a 5x5 and it turns into a very achievable Saturday."
+      },
+      {
+        "q": "Can I swap in my neighborhood spots?",
+        "a": "Yes. Edit the list before you print. Seattle has far more good coffee than fits on one card, so building a Ballard or Beacon Hill version of this is a better card than the citywide one."
+      },
+      {
+        "q": "Does it cost anything?",
+        "a": "No, it is free with no signup. Seattle Restaurants Bingo is the same idea for dinner, also with no chains on it."
+      }
+    ],
+    "related": [
+      "seattle-restaurants",
+      "seattle-travel",
+      "after-work-seattle",
+      "battling-seattle-freeze",
+      "washington-trails",
+      "pacific-northwest-books"
+    ]
+  },
+  "cocktails": {
+    "intro": "Cocktail Order Bingo is a printable card of 25 drinks to order or make, from an Old Fashioned and a Hugo Spritz to a hot toddy, a mezcal margarita and a genuinely good mocktail. Use it across a season of nights out, or as a way to stop ordering the same thing every single time. Free, no signup. Print it for the bar cart or keep it on your phone.",
+    "faq": [
+      {
+        "q": "What drinks are on the card?",
+        "a": "36 in the pool: the classics people actually order, the spritz family that took over every summer menu, cold-weather drinks like mulled wine and an apple butter Old Fashioned, and the modern bar tricks including milk-washed cocktails and colour-changing ones. Low-ABV and mocktail squares are in there too."
+      },
+      {
+        "q": "Is this for a bar or for making drinks at home?",
+        "a": "Both, and they play at different speeds. At bars it turns into a slow game across a season. At home it becomes a list of things to learn, which is a better use of a bottle of Campari than letting it sit there for two years."
+      },
+      {
+        "q": "Can I make a version without alcohol?",
+        "a": "Yes. Edit the list before you print and build it entirely out of mocktails, spritzes without the prosecco, and the tea and citrus drinks. The card works exactly the same way."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free with no signup. If you would rather track the night than the drink, Office Party Bingo covers what actually happens once everyone is out."
+      }
+    ],
+    "related": [
+      "food-adventures",
+      "office-party",
+      "party-icebreakers",
+      "icebreakers",
+      "travel-experiences",
+      "after-work-seattle"
     ]
   },
   "outdoor-winter-adult": {

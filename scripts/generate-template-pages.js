@@ -18,6 +18,7 @@ import { dirname, join } from 'path';
 import * as cheerio from 'cheerio';
 import { templateTitles, samplePhrases } from '../src/data/templates.js';
 import { templateContent } from '../src/data/templateContent.js';
+import { metaDescription } from '../src/utils/metaDescription.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
@@ -76,28 +77,6 @@ function escapeHtml(str) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
-}
-
-// The intro is a 50-100 word direct-answer paragraph, which is right for the
-// page body and far too long for a meta description: every template was
-// emitting 400+ characters, so Google cut the snippet mid-sentence on all of
-// them. This trims to something that fits, preferring a natural break over a
-// hard cut.
-const META_MAX = 155;
-function metaDescription(intro) {
-  const text = String(intro).replace(/\s+/g, ' ').trim();
-  if (text.length <= META_MAX) return text;
-
-  // The house intro formula opens with the claim, then a colon or a "from X to
-  // Y" list of examples. Either is a clean place to stop.
-  for (const brk of [text.indexOf(':'), text.indexOf(', from ')]) {
-    if (brk >= 80 && brk <= META_MAX) return text.slice(0, brk).trim() + '.';
-  }
-
-  // Otherwise cut at the last word boundary that fits. No ellipsis: search
-  // engines add their own, and a trailing "..." just eats characters.
-  const cut = text.slice(0, META_MAX);
-  return cut.slice(0, cut.lastIndexOf(' ')).replace(/[,;:]$/, '') + '.';
 }
 
 function plainTitle(title) {

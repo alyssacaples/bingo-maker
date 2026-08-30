@@ -5,6 +5,8 @@ import './App.css';
 import usePhraseManager from './hooks/usePhraseManager';
 import { trackTemplateView, trackPdfPreview } from './utils/analytics';
 import { templateTitles } from './data/templates';
+import { templateContent } from './data/templateContent';
+import { metaDescription } from './utils/metaDescription';
 import useBingoConfiguration from './hooks/useBingoConfiguration';
 
 // Import components
@@ -199,7 +201,13 @@ function App() {
       setMetaTag('og:url', 'https://makebingocard.com/');
     } else if (title && title !== 'BINGO') {
       const fullTitle = `${title} - Free Bingo Card Maker`;
-      const fullDesc = `Generate and print custom cards for "${title}". Add your own phrases, customize colors, and download print-ready PDFs.`;
+      // Prefer the authored intro, trimmed the same way the generator trims it.
+      // The old boilerplate was identical on every template except the name,
+      // and it overwrote the specific description already in the HTML.
+      const authored = slug && templateContent[slug] ? templateContent[slug].intro : null;
+      const fullDesc = authored
+        ? metaDescription(authored)
+        : `Generate and print custom cards for "${title}". Add your own phrases, customize colors, and download print-ready PDFs.`;
       const fullUrl = slug ? `https://makebingocard.com/templates/${slug}` : 'https://makebingocard.com/';
 
       document.title = fullTitle;

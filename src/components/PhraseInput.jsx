@@ -830,6 +830,13 @@ const PhraseInput = ({
                   Foodie Adventures
                 </button>
                 <button
+                  onClick={() => handleSampleClick('cocktails')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'cocktails' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Cocktail Orders
+                </button>
+                <button
                   onClick={() => handleSampleClick('fast-food-brands')}
                   className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'fast-food-brands' ? 'selected' : ''}`}
                 >
@@ -918,6 +925,20 @@ const PhraseInput = ({
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Seattle Freeze
+                </button>
+                <button
+                  onClick={() => handleSampleClick('seattle-restaurants')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'seattle-restaurants' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Seattle Restaurants
+                </button>
+                <button
+                  onClick={() => handleSampleClick('seattle-coffee')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'seattle-coffee' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Seattle Coffee Shops
                 </button>
                 <button
                   onClick={() => handleSampleClick('road-trip-west')}
