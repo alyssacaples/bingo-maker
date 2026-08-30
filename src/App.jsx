@@ -1,8 +1,10 @@
-import { useCallback, useEffect, lazy, Suspense } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import './App.css';
 
 // Import custom hooks
 import usePhraseManager from './hooks/usePhraseManager';
+import { trackTemplateView, trackPdfPreview } from './utils/analytics';
+import { templateTitles } from './data/templates';
 import useBingoConfiguration from './hooks/useBingoConfiguration';
 
 // Import components
@@ -12,10 +14,13 @@ import GridConfiguration from './components/GridConfiguration';
 import ProTips from './components/ProTips';
 import BugReportButton from './components/BugReportButton';
 import AdBanner from './components/AdBanner';
+import PrintAffiliateButton from './components/PrintAffiliateButton';
+import EmailCapture from './components/EmailCapture';
 
-// @react-pdf/renderer is a large dependency; defer it to its own chunk
-// so it's only downloaded once someone actually generates/previews a PDF.
-const PDFSection = lazy(() => import('./components/PDFSection'));
+// @react-pdf/renderer is a large dependency. PDFSectionLoader owns the lazy
+// import and holds it back until someone signals intent to make a PDF; see the
+// note in that file for why the plain lazy() here wasn't enough.
+import PDFSectionLoader from './components/PDFSectionLoader';
 
 // Reads the template slug from a real /templates/<slug> path, if present.
 const getTemplateSlugFromPath = () => {
@@ -106,6 +111,11 @@ function App() {
     getTextOverflowWarning
   } = useBingoConfiguration();
 
+  // True when the URL points at /templates/<slug> for a slug we don't have.
+  // Azure's navigationFallback serves the app shell with a 200 for any unmatched
+  // path, so without this an arbitrary URL renders a real, indexable page.
+  const [unknownTemplate, setUnknownTemplate] = useState(false);
+
   // Enhanced sample phrases handler
   const handleAddSamplePhrases = useCallback((type) => {
     const suggestedTitle = addSamplePhrases(type);
@@ -157,7 +167,27 @@ function App() {
     const queryTemplate = new URLSearchParams(window.location.search).get('template');
     const slug = pathSlug || queryTemplate;
 
-    if (title && title !== 'BINGO') {
+    // A URL we have no template for must not be indexable, and must not claim
+    // itself as canonical. Kept in sync in both directions so a client-side
+    // navigation back to a real template clears it.
+    let robots = document.querySelector('meta[name="robots"]');
+    if (unknownTemplate) {
+      if (!robots) {
+        robots = document.createElement('meta');
+        robots.setAttribute('name', 'robots');
+        document.head.appendChild(robots);
+      }
+      robots.setAttribute('content', 'noindex, follow');
+    } else if (robots) {
+      robots.remove();
+    }
+
+    if (unknownTemplate) {
+      document.title = 'Template not found - Free Bingo Card Maker';
+      setMetaNameTag('description', 'That template does not exist. Browse the full library of free printable bingo cards.');
+      canonicalLink.setAttribute('href', 'https://makebingocard.com/');
+      setMetaTag('og:url', 'https://makebingocard.com/');
+    } else if (title && title !== 'BINGO') {
       const fullTitle = `${title} - Free Bingo Card Maker`;
       const fullDesc = `Generate and print custom cards for "${title}". Add your own phrases, customize colors, and download print-ready PDFs.`;
       const fullUrl = slug ? `https://makebingocard.com/templates/${slug}` : 'https://makebingocard.com/';
@@ -192,19 +222,63 @@ function App() {
       setMetaNameTag('twitter:title', defaultTitle);
       setMetaNameTag('twitter:description', defaultDesc);
     }
-  }, [title]);
+  }, [title, unknownTemplate]);
+
+  // Browser Back/Forward. pushState is used when a template is picked, but
+  // nothing listened for popstate, so going Back changed the URL while the card
+  // kept the previous template's title and phrases: the address bar and the
+  // page disagreed, and a reload would then show something different again.
+  useEffect(() => {
+    const onPopState = () => {
+      const slug = getTemplateSlugFromPath();
+      if (slug && templateTitles[slug]) {
+        setUnknownTemplate(false);
+        addSamplePhrases(slug);
+        setTitle(templateTitles[slug]);
+      } else if (slug) {
+        setUnknownTemplate(true);
+      } else {
+        // Back to the homepage: return the card to its empty state.
+        setUnknownTemplate(false);
+        clearAll();
+        setTitle('BINGO');
+      }
+    };
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, [addSamplePhrases, clearAll, setTitle]);
 
   // Check the URL (path or legacy query param) on load to populate template
   useEffect(() => {
     const pathSlug = getTemplateSlugFromPath();
     const queryTemplate = new URLSearchParams(window.location.search).get('template');
     const slug = pathSlug || queryTemplate;
-    if (slug) {
-      const timer = setTimeout(() => {
-        handleAddSamplePhrases(slug);
-      }, 0);
-      return () => clearTimeout(timer);
+    if (!slug) return;
+
+    // addSamplePhrases falls back to the icebreakers set for an unrecognised
+    // key, so without this guard /templates/anything served a working page of
+    // real icebreakers content under an arbitrary URL, canonicalised to itself.
+    // That is unlimited duplicate content on the URL space Block 1 introduced.
+    if (!templateTitles[slug]) {
+      setUnknownTemplate(true);
+      return;
     }
+
+    setUnknownTemplate(false);
+
+    // GA4 records the pageview on its own; this adds the slug, which is the
+    // dimension that tells us which of the 155 templates people arrive on.
+    //
+    // The title comes from the data, not from document.title: the metadata
+    // effect above runs first and has already replaced the pre-rendered title
+    // with the site default, because `title` is still 'BINGO' until the
+    // phrases load a tick later. Reading the DOM here reported the same
+    // generic string for every template.
+    trackTemplateView(slug, templateTitles[slug]);
+    const timer = setTimeout(() => {
+      handleAddSamplePhrases(slug);
+    }, 0);
+    return () => clearTimeout(timer);
   }, [handleAddSamplePhrases]);
 
   // Check if we have enough phrases
@@ -214,9 +288,9 @@ function App() {
   const textOverflowWarning = getTextOverflowWarning();
 
   return (
-    <div className="App min-h-screen bg-blue-25">
+    <div className="App min-h-screen bg-ground">
       <Header activeTitle={title} />
-      
+
       {/* Top Banner Ad */}
       <AdBanner slot="" style={{ marginBottom: '20px' }} />
       
@@ -227,34 +301,28 @@ function App() {
           <div className="lg:col-span-2 space-y-6">
             {/* Title Input */}
             <div className="title-card">
-              <div className="card-header">
-                <div className="flex items-center space-x-2">
-                  <span className="text-lg font-semibold text-gray-900">Bingo Card Title</span>
-                </div>
-              </div>
-              <div className="card-body">
+              <div className="card-header">Your card</div>
+              <div className="card-body space-y-3.5">
                 <div>
-                  <label className="title-input-label">
-                    Enter your bingo card title or use Bingo by default
-                  </label>
+                  <label className="title-input-label" htmlFor="card-title">Title</label>
                   <input
+                    id="card-title"
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     className="input-field"
-                    placeholder="Enter your bingo card title..."
+                    placeholder="Name your card…"
                   />
                 </div>
                 <div>
-                  <label className="title-input-label">
-                    Subtitle/Instruction (optional)
-                  </label>
+                  <label className="title-input-label" htmlFor="card-subtitle">Subtitle</label>
                   <input
+                    id="card-subtitle"
                     type="text"
                     value={subtitle}
                     onChange={(e) => setSubtitle(e.target.value)}
                     className="input-field"
-                    placeholder="e.g., First to get 5 in a row wins!"
+                    placeholder="e.g. First to get 5 in a row wins"
                   />
                 </div>
               </div>
@@ -295,14 +363,8 @@ function App() {
             />
 
             {/* PDF Generator */}
-            <Suspense fallback={
-              <div className="card">
-                <div className="card-body text-center text-sm text-gray-500 py-6">
-                  Loading PDF tools...
-                </div>
-              </div>
-            }>
-            <PDFSection
+            <PDFSectionLoader
+              onPreviewIntent={() => trackPdfPreview(title, gridSize)}
               hasEnoughPhrases={hasEnoughPhrases}
               requiredCells={requiredCells}
               gridSize={gridSize}
@@ -362,7 +424,13 @@ function App() {
               backgroundPatternOpacity={backgroundPatternOpacity}
               setBackgroundPatternOpacity={setBackgroundPatternOpacity}
             />
-            </Suspense>
+
+            {/* Order printed cards (renders only once the affiliate
+                programme is configured) */}
+            <PrintAffiliateButton title={title} />
+
+            {/* Weekly template list (renders only once a provider is set) */}
+            <EmailCapture source="sidebar" />
 
             {/* Pro Tips */}
             <ProTips />

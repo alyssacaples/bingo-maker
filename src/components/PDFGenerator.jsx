@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { Download, Eye } from 'lucide-react';
 import PDFPreview from './PDFPreview';
+import { trackPdfDownload, trackPdfPreview } from '../utils/analytics';
 
 const PDFGenerator = ({ 
+  copies,
+  autoOpenPreview = false,
+  autoStartDownload = false,
   hasEnoughPhrases, 
   requiredCells, 
   gridSize, 
@@ -63,46 +67,92 @@ const PDFGenerator = ({
 }) => {
   const [showPreview, setShowPreview] = useState(false);
 
+  // Someone clicked "Preview" on the lightweight placeholder and waited for
+  // this chunk to arrive. Honour that click instead of making them click again.
+  // The loader already reported the event, so this path stays untracked.
+  useEffect(() => {
+    if (autoOpenPreview) setShowPreview(true);
+  }, [autoOpenPreview]);
+
+  // Same idea for Download. PDFDownloadLink only becomes a real href once the
+  // blob is built, which is after the click that loaded this chunk, so the
+  // anchor is clicked on the user's behalf as soon as it goes live. Its own
+  // onClick fires from this too, so the event is still counted exactly once.
+  //
+  // If the browser refuses a programmatic download because the original user
+  // gesture has expired, nothing breaks: the link is on screen and labelled.
+  const downloadWrapRef = useRef(null);
+  const autoDownloadFired = useRef(false);
+  useEffect(() => {
+    if (!autoStartDownload || autoDownloadFired.current) return;
+    const wrap = downloadWrapRef.current;
+    if (!wrap) return;
+
+    const clickWhenLive = () => {
+      const a = wrap.querySelector('a[href^="blob:"]');
+      if (!a || autoDownloadFired.current) return false;
+      autoDownloadFired.current = true;
+      a.click();
+      return true;
+    };
+
+    if (clickWhenLive()) return;
+    const obs = new MutationObserver(() => {
+      if (clickWhenLive()) obs.disconnect();
+    });
+    obs.observe(wrap, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['href'],
+    });
+    return () => obs.disconnect();
+  }, [autoStartDownload]);
+
   return (
     <>
       <div className="card">
-        <div className="card-body space-y-3">
+        <div className="card-body space-y-2">
           {hasEnoughPhrases ? (
             <>
-              <button
-                onClick={() => setShowPreview(true)}
-                className="btn-secondary w-full text-center"
-              >
-                <Eye className="w-5 h-5 mr-2" />
-                Preview PDF
-              </button>
-              
+              <div ref={downloadWrapRef}>
               <PDFDownloadLink
                 document={<BingoDocument />}
                 fileName={`${title || 'Bingo'}_Cards.pdf`}
-                className="btn-download animate-bounce-gentle hover-float"
+                className="btn-download"
+                onClick={() => trackPdfDownload(title, gridSize, copies, phrases.length)}
               >
                 {({ loading }) => (
-                  loading ? 'Preparing PDF...' : (
-                    <>
-                      <Download className="w-5 h-5 mr-2" />
-                      Download Bingo Cards
-                    </>
+                  loading ? 'Preparing PDF…' : (
+                    <span className="inline-flex items-center">
+                      <Download className="w-4 h-4 mr-2" aria-hidden="true" />
+                      Download cards
+                    </span>
                   )
                 )}
               </PDFDownloadLink>
+              </div>
+
+              <button
+                onClick={() => {
+                  trackPdfPreview(title, gridSize);
+                  setShowPreview(true);
+                }}
+                className="btn-secondary w-full"
+              >
+                <Eye className="w-3.5 h-3.5 mr-2" aria-hidden="true" />
+                Preview &amp; customize
+              </button>
             </>
           ) : (
-            <div className="text-center">
-              <div className="text-red-600 text-sm mb-2 font-medium">
-                Need at least {requiredCells} phrases
-              </div>
-              <div className="text-gray-500 text-xs">
-                for {gridSize}×{gridSize} grid{freeSpace && ' (with free space)'}
-              </div>
-              <div className="text-gray-500 text-xs mt-1">
-                Currently have: {phrases.length} phrases
-              </div>
+            <div className="border border-rule p-3">
+              <p className="font-display text-[12px] uppercase text-accent m-0">
+                Need {requiredCells} phrases
+              </p>
+              <p className="text-[13px] text-ink-2 mt-1 mb-0">
+                A {gridSize}×{gridSize} grid{freeSpace && hasEnoughPhrases === false ? ' with free space' : ''} needs {requiredCells}.
+                You have {phrases.length}.
+              </p>
             </div>
           )}
         </div>
@@ -112,6 +162,10 @@ const PDFGenerator = ({
         BingoDocument={BingoDocument}
         isOpen={showPreview}
         onClose={() => setShowPreview(false)}
+        title={title}
+        gridSize={gridSize}
+        copies={copies}
+        phraseCount={phrases.length}
         subtitle={subtitle}
         setSubtitle={setSubtitle}
         titleFont={titleFont}

@@ -122,26 +122,26 @@ const CardCustomization = ({
     <div className={compact ? "space-y-6" : "card-body space-y-6"}>
       
       {/* 0. Printer Friendly Override */}
-      <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-center justify-between shadow-sm">
+      <div className="border border-ink p-3 flex items-center justify-between">
         <div className="flex items-center space-x-3">
-          <Printer className="w-5 h-5 text-amber-700" />
+          <Printer className="w-4 h-4 text-accent" />
           <div>
-            <h4 className="text-sm font-semibold text-amber-900">Printer-Friendly Mode</h4>
-            <p className="text-xs text-amber-700">Strips background colors & prints ink-safe B&W</p>
+            <h4 className="text-[13px] font-semibold text-ink">Printer-Friendly Mode</h4>
+            <p className="font-mono text-[10px] text-ink-2">Strips background colors & prints ink-safe B&W</p>
           </div>
         </div>
         <input
           type="checkbox"
           checked={printerFriendly}
           onChange={(e) => setPrinterFriendly(e.target.checked)}
-          className="w-5 h-5 text-amber-600 rounded focus:ring-amber-500 cursor-pointer"
+          className="custom-checkbox w-4 h-4 cursor-pointer"
         />
       </div>
 
       {/* 1. Theme Presets */}
       <div>
-        <h4 className="flex items-center text-sm font-semibold text-gray-950 mb-3">
-          <Palette className="w-4 h-4 mr-2 text-primary-600" /> Theme Presets
+        <h4 className="flex items-center font-display text-[12px] uppercase tracking-[0.03em] text-ink mb-3">
+          <Palette className="w-3.5 h-3.5 mr-2 text-accent" /> Theme Presets
         </h4>
         <div className="grid grid-cols-4 gap-2">
           {themes.map(theme => (
@@ -149,12 +149,10 @@ const CardCustomization = ({
               key={theme.id}
               onClick={() => handleThemeClick(theme)}
               disabled={printerFriendly}
-              className={`relative h-12 rounded-xl border transition-all duration-200 overflow-hidden shadow-sm ${
-                printerFriendly ? 'opacity-40 cursor-not-allowed' : 'hover:scale-[1.03] hover:shadow'
+              className={`relative h-12 border border-paper-ink overflow-hidden ${
+                printerFriendly ? 'opacity-40 cursor-not-allowed' : 'hover:ring-1 hover:ring-ink'
               } ${
-                activeTheme === theme.id && !printerFriendly
-                  ? 'border-primary-600 ring-2 ring-primary-200'
-                  : 'border-gray-200'
+                activeTheme === theme.id && !printerFriendly ? 'ring-2 ring-accent' : ''
               }`}
               title={theme.name}
             >
@@ -163,8 +161,8 @@ const CardCustomization = ({
                   <div className="flex-1" style={{ backgroundColor: theme.gradientColor1 || theme.backgroundColor }} />
                   <div className="flex-1" style={{ backgroundColor: theme.gradientColor2 || theme.backgroundColor }} />
                 </div>
-                <div className="h-1/3 flex border-t border-gray-100 bg-white items-center justify-center">
-                  <span className="text-[9px] font-medium text-gray-700 truncate px-1">{theme.name}</span>
+                <div className="h-1/3 flex border-t border-paper-ink bg-paper items-center justify-center">
+                  <span className="font-mono text-[8px] text-paper-ink truncate px-1">{theme.name}</span>
                 </div>
               </div>
             </button>
@@ -173,19 +171,19 @@ const CardCustomization = ({
       </div>
 
       {/* 2. Typography & Colors */}
-      <div className="border-t border-gray-100 pt-5">
-        <h4 className="flex items-center text-sm font-semibold text-gray-950 mb-3">
-          <Type className="w-4 h-4 mr-2 text-primary-600" /> Typography & Colors
+      <div className="border-t border-rule pt-4">
+        <h4 className="flex items-center font-display text-[12px] uppercase tracking-[0.03em] text-ink mb-3">
+          <Type className="w-3.5 h-3.5 mr-2 text-accent" /> Typography & Colors
         </h4>
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wider">Title Font</label>
-              <select
+              <label className="title-input-label" htmlFor="cc-title-font">Title Font</label>
+              <select id="cc-title-font"
                 value={titleFont}
                 onChange={(e) => setTitleFont(e.target.value)}
                 disabled={printerFriendly}
-                className="input-field rounded-xl text-sm py-2"
+                className="input-field text-sm py-2"
               >
                 {fontOptions.map(option => (
                   <option key={option.value} value={option.value}>{option.label}</option>
@@ -193,12 +191,12 @@ const CardCustomization = ({
               </select>
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wider">Cell Font</label>
-              <select
+              <label className="title-input-label" htmlFor="cc-cell-font">Cell Font</label>
+              <select id="cc-cell-font"
                 value={cellFont}
                 onChange={(e) => setCellFont(e.target.value)}
                 disabled={printerFriendly}
-                className="input-field rounded-xl text-sm py-2"
+                className="input-field text-sm py-2"
               >
                 {cellFontOptions.map(option => (
                   <option key={option.value} value={option.value}>{option.label}</option>
@@ -209,44 +207,44 @@ const CardCustomization = ({
 
           <div className="grid grid-cols-3 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wider">Title</label>
+              <label className="title-input-label" htmlFor="cc-title">Title</label>
               <div className="flex items-center space-x-1">
-                <input
+                <input id="cc-title"
                   type="color"
                   value={titleColor}
                   onChange={(e) => setTitleColor(e.target.value)}
                   disabled={printerFriendly}
-                  className="w-8 h-8 rounded-full border border-gray-300 cursor-pointer overflow-hidden p-0"
+                  className="w-7 h-7 rounded-full border border-paper-ink cursor-pointer overflow-hidden p-0"
                 />
-                <span className="text-xs text-gray-600 font-mono select-all truncate">{titleColor}</span>
+                <span className="text-[10px] text-ink-2 font-mono select-all truncate">{titleColor}</span>
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wider">Subtitle</label>
+              <label className="title-input-label" htmlFor="cc-subtitle">Subtitle</label>
               <div className="flex items-center space-x-1">
-                <input
+                <input id="cc-subtitle"
                   type="color"
                   value={subtitleColor}
                   onChange={(e) => setSubtitleColor(e.target.value)}
                   disabled={printerFriendly}
-                  className="w-8 h-8 rounded-full border border-gray-300 cursor-pointer overflow-hidden p-0"
+                  className="w-7 h-7 rounded-full border border-paper-ink cursor-pointer overflow-hidden p-0"
                 />
-                <span className="text-xs text-gray-600 font-mono select-all truncate">{subtitleColor}</span>
+                <span className="text-[10px] text-ink-2 font-mono select-all truncate">{subtitleColor}</span>
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wider">Cell Text</label>
+              <label className="title-input-label" htmlFor="cc-cell-text">Cell Text</label>
               <div className="flex items-center space-x-1">
-                <input
+                <input id="cc-cell-text"
                   type="color"
                   value={cellTextColor}
                   onChange={(e) => setCellTextColor(e.target.value)}
                   disabled={printerFriendly}
-                  className="w-8 h-8 rounded-full border border-gray-300 cursor-pointer overflow-hidden p-0"
+                  className="w-7 h-7 rounded-full border border-paper-ink cursor-pointer overflow-hidden p-0"
                 />
-                <span className="text-xs text-gray-600 font-mono select-all truncate">{cellTextColor}</span>
+                <span className="text-[10px] text-ink-2 font-mono select-all truncate">{cellTextColor}</span>
               </div>
             </div>
           </div>
@@ -254,36 +252,36 @@ const CardCustomization = ({
       </div>
 
       {/* 3. Grid Borders & Corners */}
-      <div className="border-t border-gray-100 pt-5">
-        <h4 className="flex items-center text-sm font-semibold text-gray-950 mb-3">
-          <Grid className="w-4 h-4 mr-2 text-primary-600" /> Grid Layout
+      <div className="border-t border-rule pt-4">
+        <h4 className="flex items-center font-display text-[12px] uppercase tracking-[0.03em] text-ink mb-3">
+          <Grid className="w-3.5 h-3.5 mr-2 text-accent" /> Grid Layout
         </h4>
         <div className="space-y-4">
           <div>
-            <label className="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wider">Grid Border Color</label>
+            <label className="title-input-label" htmlFor="cc-grid-border-color">Grid Border Color</label>
             <div className="flex items-center space-x-3">
-              <input
+              <input id="cc-grid-border-color"
                 type="color"
                 value={borderColor}
                 onChange={(e) => setBorderColor(e.target.value)}
                 disabled={printerFriendly}
-                className="w-10 h-10 rounded-xl border border-gray-300 cursor-pointer"
+                className="w-9 h-9 rounded-full border border-paper-ink cursor-pointer"
               />
               <input
                 type="text"
                 value={borderColor}
                 onChange={(e) => setBorderColor(e.target.value)}
                 disabled={printerFriendly}
-                className="input-field rounded-xl text-sm font-mono"
+                className="input-field text-sm font-mono"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="flex justify-between text-xs font-semibold text-gray-600 mb-1 uppercase tracking-wider">
+              <label className="flex justify-between title-input-label">
                 <span>Border Width</span>
-                <span className="text-gray-500 font-normal">{borderWidth} pt</span>
+                <span className="text-ink-2 font-normal">{borderWidth} pt</span>
               </label>
               <input
                 type="range"
@@ -293,14 +291,14 @@ const CardCustomization = ({
                 value={borderWidth}
                 onChange={(e) => setBorderWidth(parseFloat(e.target.value))}
                 disabled={printerFriendly}
-                className="w-full accent-primary-600 cursor-pointer"
+                className="w-full accent-accent cursor-pointer"
               />
             </div>
 
             <div>
-              <label className="flex justify-between text-xs font-semibold text-gray-600 mb-1 uppercase tracking-wider">
+              <label className="flex justify-between title-input-label">
                 <span>Corner Radius</span>
-                <span className="text-gray-500 font-normal">{gridBorderRadius} pt</span>
+                <span className="text-ink-2 font-normal">{gridBorderRadius} pt</span>
               </label>
               <input
                 type="range"
@@ -310,7 +308,7 @@ const CardCustomization = ({
                 value={gridBorderRadius}
                 onChange={(e) => setGridBorderRadius(parseInt(e.target.value))}
                 disabled={printerFriendly}
-                className="w-full accent-primary-600 cursor-pointer"
+                className="w-full accent-accent cursor-pointer"
               />
             </div>
           </div>
@@ -318,18 +316,18 @@ const CardCustomization = ({
       </div>
 
       {/* 4. Cell Background Config */}
-      <div className="border-t border-gray-100 pt-5">
-        <h4 className="flex items-center text-sm font-semibold text-gray-950 mb-3">
-          <Layers className="w-4 h-4 mr-2 text-primary-600" /> Cell Styles
+      <div className="border-t border-rule pt-4">
+        <h4 className="flex items-center font-display text-[12px] uppercase tracking-[0.03em] text-ink mb-3">
+          <Layers className="w-3.5 h-3.5 mr-2 text-accent" /> Cell Styles
         </h4>
         <div className="space-y-4">
           <div>
-            <label className="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wider">Background Mode</label>
-            <select
+            <label className="title-input-label" htmlFor="cc-background-mode">Background Mode</label>
+            <select id="cc-background-mode"
               value={cellBackgroundMode}
               onChange={(e) => setCellBackgroundMode(e.target.value)}
               disabled={printerFriendly}
-              className="input-field rounded-xl text-sm py-2"
+              className="input-field text-sm py-2"
             >
               <option value="white">All White Cells</option>
               <option value="softTint">Soft Tint Overlay</option>
@@ -339,21 +337,21 @@ const CardCustomization = ({
 
           {cellBackgroundMode !== 'white' && (
             <div>
-              <label className="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wider">Cell Tint Color</label>
+              <label className="title-input-label" htmlFor="cc-cell-tint-color">Cell Tint Color</label>
               <div className="flex items-center space-x-3">
-                <input
+                <input id="cc-cell-tint-color"
                   type="color"
                   value={cellBackgroundTint}
                   onChange={(e) => setCellBackgroundTint(e.target.value)}
                   disabled={printerFriendly}
-                  className="w-10 h-10 rounded-xl border border-gray-300 cursor-pointer"
+                  className="w-9 h-9 rounded-full border border-paper-ink cursor-pointer"
                 />
                 <input
                   type="text"
                   value={cellBackgroundTint}
                   onChange={(e) => setCellBackgroundTint(e.target.value)}
                   disabled={printerFriendly}
-                  className="input-field rounded-xl text-sm font-mono"
+                  className="input-field text-sm font-mono"
                 />
               </div>
             </div>
@@ -362,18 +360,18 @@ const CardCustomization = ({
       </div>
 
       {/* 5. Free Space Customizable Text */}
-      <div className="border-t border-gray-100 pt-5">
-        <h4 className="flex items-center text-sm font-semibold text-gray-950 mb-3">
-          <Palette className="w-4 h-4 mr-2 text-primary-600" /> Free Space Cell
+      <div className="border-t border-rule pt-4">
+        <h4 className="flex items-center font-display text-[12px] uppercase tracking-[0.03em] text-ink mb-3">
+          <Palette className="w-3.5 h-3.5 mr-2 text-accent" /> Free Space Cell
         </h4>
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wider">Label Preset</label>
-              <select
+              <label className="title-input-label" htmlFor="cc-label-preset">Label Preset</label>
+              <select id="cc-label-preset"
                 value={freeSpacePreset}
                 onChange={(e) => handleFreeSpacePresetChange(e.target.value)}
-                className="input-field rounded-xl text-sm py-2"
+                className="input-field text-sm py-2"
               >
                 {freeSpacePresets.map(preset => (
                   <option key={preset.value} value={preset.value}>{preset.label}</option>
@@ -383,13 +381,13 @@ const CardCustomization = ({
 
             {freeSpacePreset === 'custom' && (
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wider">Custom Text</label>
-                <input
+                <label className="title-input-label" htmlFor="cc-custom-text">Custom Text</label>
+                <input id="cc-custom-text"
                   type="text"
                   value={freeSpaceLabel}
                   onChange={(e) => handleCustomLabelChange(e.target.value)}
                   maxLength={12}
-                  className="input-field rounded-xl text-sm py-2"
+                  className="input-field text-sm py-2"
                   placeholder="Max 12 chars"
                 />
               </div>
@@ -398,30 +396,30 @@ const CardCustomization = ({
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wider">Background</label>
+              <label className="title-input-label" htmlFor="cc-background">Background</label>
               <div className="flex items-center space-x-1">
-                <input
+                <input id="cc-background"
                   type="color"
                   value={freeSpaceBackgroundColor}
                   onChange={(e) => setFreeSpaceBackgroundColor(e.target.value)}
                   disabled={printerFriendly}
-                  className="w-8 h-8 rounded-full border border-gray-300 cursor-pointer overflow-hidden p-0"
+                  className="w-7 h-7 rounded-full border border-paper-ink cursor-pointer overflow-hidden p-0"
                 />
-                <span className="text-xs text-gray-600 font-mono truncate">{freeSpaceBackgroundColor}</span>
+                <span className="text-[10px] text-ink-2 font-mono truncate">{freeSpaceBackgroundColor}</span>
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wider">Font Color</label>
+              <label className="title-input-label" htmlFor="cc-font-color">Font Color</label>
               <div className="flex items-center space-x-1">
-                <input
+                <input id="cc-font-color"
                   type="color"
                   value={freeSpaceFontColor}
                   onChange={(e) => setFreeSpaceFontColor(e.target.value)}
                   disabled={printerFriendly}
-                  className="w-8 h-8 rounded-full border border-gray-300 cursor-pointer overflow-hidden p-0"
+                  className="w-7 h-7 rounded-full border border-paper-ink cursor-pointer overflow-hidden p-0"
                 />
-                <span className="text-xs text-gray-600 font-mono truncate">{freeSpaceFontColor}</span>
+                <span className="text-[10px] text-ink-2 font-mono truncate">{freeSpaceFontColor}</span>
               </div>
             </div>
           </div>
@@ -429,51 +427,51 @@ const CardCustomization = ({
       </div>
 
       {/* 6. Background Gradients & Colors */}
-      <div className="border-t border-gray-100 pt-5">
-        <h4 className="flex items-center text-sm font-semibold text-gray-950 mb-3">
-          <Sliders className="w-4 h-4 mr-2 text-primary-600" /> Background style
+      <div className="border-t border-rule pt-4">
+        <h4 className="flex items-center font-display text-[12px] uppercase tracking-[0.03em] text-ink mb-3">
+          <Sliders className="w-3.5 h-3.5 mr-2 text-accent" /> Background style
         </h4>
         <div className="space-y-4">
-          <div className="flex items-center justify-between p-2 rounded-xl hover:bg-gray-50 transition-all duration-200">
-            <span className="text-sm text-gray-600 font-medium">Use Gradient Background</span>
+          <div className="flex items-center justify-between p-2 hover:bg-ground-2">
+            <span className="text-[13px] text-ink">Use Gradient Background</span>
             <input
               type="checkbox"
               checked={useGradient}
               onChange={(e) => setUseGradient(e.target.checked)}
               disabled={printerFriendly}
-              className="w-5 h-5 text-primary-600 rounded focus:ring-primary-500 cursor-pointer"
+              className="custom-checkbox w-4 h-4 cursor-pointer"
             />
           </div>
 
           {!useGradient ? (
             <div>
-              <label className="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wider">Solid Color</label>
+              <label className="title-input-label" htmlFor="cc-solid-color">Solid Color</label>
               <div className="flex items-center space-x-3">
-                <input
+                <input id="cc-solid-color"
                   type="color"
                   value={backgroundColor}
                   onChange={(e) => setBackgroundColor(e.target.value)}
                   disabled={printerFriendly}
-                  className="w-10 h-10 rounded-xl border border-gray-300 cursor-pointer"
+                  className="w-9 h-9 rounded-full border border-paper-ink cursor-pointer"
                 />
                 <input
                   type="text"
                   value={backgroundColor}
                   onChange={(e) => setBackgroundColor(e.target.value)}
                   disabled={printerFriendly}
-                  className="input-field rounded-xl text-sm font-mono"
+                  className="input-field text-sm font-mono"
                 />
               </div>
             </div>
           ) : (
-            <div className="space-y-3 bg-gray-50 p-3 rounded-xl border border-gray-200">
+            <div className="space-y-3 bg-ground-2 p-3 border border-rule">
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1 uppercase tracking-wider">Direction</label>
-                <select
+                <label className="title-input-label" htmlFor="cc-direction">Direction</label>
+                <select id="cc-direction"
                   value={gradientDirection}
                   onChange={(e) => setGradientDirection(e.target.value)}
                   disabled={printerFriendly}
-                  className="input-field rounded-xl text-xs py-1.5 bg-white"
+                  className="input-field text-[12px] py-1.5"
                 >
                   <option value="vertical">Vertical</option>
                   <option value="horizontal">Horizontal</option>
@@ -482,47 +480,47 @@ const CardCustomization = ({
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-500 mb-1 uppercase tracking-wider">Color 1 (Start)</label>
+                <label className="title-input-label" htmlFor="cc-color-1-start">Color 1 (Start)</label>
                 <div className="flex items-center space-x-2">
-                  <input
+                  <input id="cc-color-1-start"
                     type="color"
                     value={gradientColor1}
                     onChange={(e) => setGradientColor1(e.target.value)}
                     disabled={printerFriendly}
-                    className="w-8 h-8 rounded-lg cursor-pointer"
+                    className="w-7 h-7 rounded-full border border-paper-ink cursor-pointer overflow-hidden p-0"
                   />
                   <input
                     type="text"
                     value={gradientColor1}
                     onChange={(e) => setGradientColor1(e.target.value)}
                     disabled={printerFriendly}
-                    className="input-field rounded-lg text-xs font-mono py-1 bg-white"
+                    className="input-field text-[12px] font-mono py-1"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-500 mb-1 uppercase tracking-wider">Color 2 (Middle)</label>
+                <label className="title-input-label" htmlFor="cc-color-2-middle">Color 2 (Middle)</label>
                 <div className="flex items-center space-x-2">
-                  <input
+                  <input id="cc-color-2-middle"
                     type="color"
                     value={gradientColor2}
                     onChange={(e) => setGradientColor2(e.target.value)}
                     disabled={printerFriendly}
-                    className="w-8 h-8 rounded-lg cursor-pointer"
+                    className="w-7 h-7 rounded-full border border-paper-ink cursor-pointer overflow-hidden p-0"
                   />
                   <input
                     type="text"
                     value={gradientColor2}
                     onChange={(e) => setGradientColor2(e.target.value)}
                     disabled={printerFriendly}
-                    className="input-field rounded-lg text-xs font-mono py-1 bg-white"
+                    className="input-field text-[12px] font-mono py-1"
                   />
                 </div>
               </div>
 
-              <div className="flex items-center justify-between py-1.5 border-t border-gray-200 mt-2">
-                <span className="text-xs text-gray-600 font-medium">Use 3-Stop Gradient</span>
+              <div className="flex items-center justify-between py-1.5 border-t border-rule mt-2">
+                <span className="text-[12px] text-ink-2">Use 3-Stop Gradient</span>
                 <input
                   type="checkbox"
                   checked={use3rdColor}
@@ -532,27 +530,27 @@ const CardCustomization = ({
                     else if (!gradientColor3) setGradientColor3('#C7D2FE'); // Default nice pastel stop
                   }}
                   disabled={printerFriendly}
-                  className="w-4 h-4 text-primary-600 rounded focus:ring-primary-500 cursor-pointer"
+                  className="custom-checkbox w-4 h-4 cursor-pointer"
                 />
               </div>
 
               {use3rdColor && (
                 <div>
-                  <label className="block text-xs font-semibold text-gray-500 mb-1 uppercase tracking-wider">Color 3 (End)</label>
+                  <label className="title-input-label" htmlFor="cc-color-3-end">Color 3 (End)</label>
                   <div className="flex items-center space-x-2">
-                    <input
+                    <input id="cc-color-3-end"
                       type="color"
                       value={gradientColor3 || '#C7D2FE'}
                       onChange={(e) => setGradientColor3(e.target.value)}
                       disabled={printerFriendly}
-                      className="w-8 h-8 rounded-lg cursor-pointer"
+                      className="w-7 h-7 rounded-full border border-paper-ink cursor-pointer overflow-hidden p-0"
                     />
                     <input
                       type="text"
                       value={gradientColor3 || '#C7D2FE'}
                       onChange={(e) => setGradientColor3(e.target.value)}
                       disabled={printerFriendly}
-                      className="input-field rounded-lg text-xs font-mono py-1 bg-white"
+                      className="input-field text-[12px] font-mono py-1"
                     />
                   </div>
                 </div>
@@ -563,32 +561,32 @@ const CardCustomization = ({
       </div>
 
       {/* 7. Card Frame & Repeating Patterns */}
-      <div className="border-t border-gray-100 pt-5">
-        <h4 className="flex items-center text-sm font-semibold text-gray-950 mb-3">
-          <Layers className="w-4 h-4 mr-2 text-primary-600" /> Frame & Patterns
+      <div className="border-t border-rule pt-4">
+        <h4 className="flex items-center font-display text-[12px] uppercase tracking-[0.03em] text-ink mb-3">
+          <Layers className="w-3.5 h-3.5 mr-2 text-accent" /> Frame & Patterns
         </h4>
         <div className="space-y-4">
-          <div className="flex items-center justify-between p-2 rounded-xl hover:bg-gray-50 transition-all duration-200">
+          <div className="flex items-center justify-between p-2 hover:bg-ground-2">
             <div>
-              <span className="text-sm text-gray-600 font-medium block">Card Mat Frame</span>
-              <span className="text-xs text-gray-400">Adds white borders around the grid card</span>
+              <span className="text-[13px] text-ink block">Card Mat Frame</span>
+              <span className="text-[12px] text-ink-2">Adds white borders around the grid card</span>
             </div>
             <input
               type="checkbox"
               checked={cardMatEnabled}
               onChange={(e) => setCardMatEnabled(e.target.checked)}
               disabled={printerFriendly}
-              className="w-5 h-5 text-primary-600 rounded focus:ring-primary-500 cursor-pointer"
+              className="custom-checkbox w-4 h-4 cursor-pointer"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wider">Repeating Pattern</label>
-            <select
+            <label className="title-input-label" htmlFor="cc-repeating-pattern">Repeating Pattern</label>
+            <select id="cc-repeating-pattern"
               value={backgroundPattern || ""}
               onChange={(e) => setBackgroundPattern(e.target.value || null)}
               disabled={printerFriendly}
-              className="input-field rounded-xl text-sm py-2"
+              className="input-field text-sm py-2"
             >
               <option value="">None</option>
               <option value="dots">Dots Pattern</option>
@@ -601,9 +599,9 @@ const CardCustomization = ({
 
           {backgroundPattern && (
             <div>
-              <label className="flex justify-between text-xs font-semibold text-gray-600 mb-1 uppercase tracking-wider">
+              <label className="flex justify-between title-input-label">
                 <span>Pattern Opacity</span>
-                <span className="text-gray-500 font-normal">{Math.round(backgroundPatternOpacity * 100)}%</span>
+                <span className="text-ink-2 font-normal">{Math.round(backgroundPatternOpacity * 100)}%</span>
               </label>
               <input
                 type="range"
@@ -613,7 +611,7 @@ const CardCustomization = ({
                 value={backgroundPatternOpacity}
                 onChange={(e) => setBackgroundPatternOpacity(parseFloat(e.target.value))}
                 disabled={printerFriendly}
-                className="w-full accent-primary-600 cursor-pointer"
+                className="w-full accent-accent cursor-pointer"
               />
             </div>
           )}
@@ -631,8 +629,8 @@ const CardCustomization = ({
     <div className="card animate-slide-up">
       <div className="card-header">
         <div className="flex items-center space-x-2">
-          <Palette className="w-5 h-5 text-primary-600" />
-          <h3 className="text-lg font-semibold text-gray-900">Card Customization</h3>
+          <Palette className="w-4 h-4 text-accent" />
+          <h3 className="font-display text-[14px] uppercase text-ink">Card Customization</h3>
         </div>
       </div>
       {content}

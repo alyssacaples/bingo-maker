@@ -13,7 +13,12 @@ const AdBanner = ({ slot, style = {}, adFormat = "auto", className = "" }) => {
   if (!slot) return null;
 
   return (
-    <div className={`text-center ${className}`} style={{ margin: '20px 0', ...style }}>
+    <div
+      className={`text-center bg-paper border border-rule p-2 ${className}`}
+      // Ad creatives are always light artwork. Opting the subtree out of a dark
+      // root keeps them on paper instead of glaring off the dark ground.
+      style={{ margin: '20px 0', colorScheme: 'light', ...style }}
+    >
       <ins
         className="adsbygoogle"
         style={{ display: 'block' }}
@@ -27,4 +32,3 @@ const AdBanner = ({ slot, style = {}, adFormat = "auto", className = "" }) => {
 };
 
 export default AdBanner;
-
