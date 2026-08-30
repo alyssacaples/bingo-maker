@@ -1665,6 +1665,35 @@ export const templateContent = {
       "classroom-activities"
     ]
   },
+  "halloween-party": {
+    "intro": "Halloween Party Bingo is a printable card of 25 things that happen at every Halloween party: the costume that needs explaining, the group costume missing a member, the fog machine setting off the smoke alarm, and someone quoting Hocus Pocus by 10pm. Hand one to each guest at the door, or fill it in the next morning from the photos. Free, no signup, print as many as you need.",
+    "faq": [
+      {
+        "q": "What is on a Halloween party bingo card?",
+        "a": "34 squares in the pool, covering the costumes (the pun one, the last-minute closet build, the couples costume one half regrets), the party itself (Monster Mash opening the playlist, the candy bowl raided by an adult, trick-or-treaters at the door mid-party) and the aftermath, including decorations still up in November."
+      },
+      {
+        "q": "Is this for adults or for kids?",
+        "a": "Adults and older teenagers, since it is built around a house party rather than trick-or-treating. For younger children, Family Fall Bingo covers the pumpkin patch and trick-or-treating side of the season, and Elementary School Fall Bingo covers the classroom party."
+      },
+      {
+        "q": "When should I hand them out?",
+        "a": "At the door, one per guest. The squares shuffle, so everyone is watching for something different, which turns the whole room into the game instead of a card sitting on a table."
+      },
+      {
+        "q": "Can I write my own squares?",
+        "a": "Yes, and a card built around your specific friends is always funnier. Edit the list before printing and add the person who wears the same costume every year. Free either way, no signup."
+      }
+    ],
+    "related": [
+      "family-fall",
+      "elementary-fall",
+      "party-2026",
+      "fall-activities",
+      "cocktails",
+      "girls-night-out"
+    ]
+  },
   "outdoor-winter-adult": {
     "intro": "Outdoor Winter Activities (Adult) Bingo is a printable card of 25 cold-weather adventures, like backcountry ski touring, ice climbing, dog sledding, and chasing the Northern Lights. Use it to plan out an ambitious winter of trip ideas, or turn it into a challenge with your ski buddies to see who checks off the most. Free, no account required. Print it before the season starts or save it to your phone for trip planning.",
     "faq": [

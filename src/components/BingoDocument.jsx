@@ -1,4 +1,9 @@
 import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer';
+import { registerPdfFonts } from '../utils/pdfFonts';
+
+// Runs once, at module load, which only happens inside the lazily loaded PDF
+// chunk. Nothing is fetched until someone actually intends to make a PDF.
+registerPdfFonts();
 
 // Helper function to convert hex to RGB
 const hexToRgb = (hex) => {

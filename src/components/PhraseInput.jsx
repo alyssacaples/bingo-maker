@@ -792,6 +792,13 @@ const PhraseInput = ({
                   Family Fall
                 </button>
                 <button
+                  onClick={() => handleSampleClick('halloween-party')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'halloween-party' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Halloween Party
+                </button>
+                <button
                   onClick={() => handleSampleClick('winter-activities')}
                   className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'winter-activities' ? 'selected' : ''}`}
                 >
