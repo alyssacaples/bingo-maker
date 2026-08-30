@@ -53,7 +53,7 @@ const ThemeToggle = () => {
       type="button"
       onClick={cycle}
       className="inline-flex items-center gap-1.5 px-2 py-1 border border-rule
-                 font-mono text-[10px] tracking-[0.06em] text-ink hover:bg-ground-2"
+                 font-display font-medium text-[11px] uppercase tracking-[0.1em] text-ink hover:bg-ground-2"
       aria-label={`Color theme: ${mode}. Activate to change.`}
       title={`Theme: ${mode}`}
     >

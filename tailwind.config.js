@@ -42,7 +42,13 @@ export default {
       },
 
       fontFamily: {
-        display: ['"Archivo Black"', '"Helvetica Neue"', 'Impact', 'sans-serif'],
+        // One family across the whole site. Archivo Black was a separate
+        // single-weight family that duplicated Archivo's own 900, so the page
+        // was carrying two typefaces to say one thing. `display` is kept as a
+        // semantic alias rather than deleted, so call sites still read as
+        // headings; the ladder now comes from weight: 900 h1, 800 CTA,
+        // 700 card header, 400 everything else.
+        display: ['Archivo', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
         sans: ['Archivo', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },

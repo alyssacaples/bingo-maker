@@ -10,7 +10,7 @@ const Header = ({ activeTitle, templateMeta }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-12 flex items-center gap-3">
           <a
             href="/"
-            className="font-display text-[14px] uppercase tracking-[-0.01em] text-ink no-underline"
+            className="font-display font-extrabold text-[14px] uppercase tracking-[-0.01em] text-ink no-underline"
           >
             Make Bingo Card
           </a>
