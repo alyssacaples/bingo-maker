@@ -208,6 +208,10 @@ const bookOptions = [
     "label": "Acclaimed Books"
   },
   {
+    "key": "hs-literature",
+    "label": "High School Literature"
+  },
+  {
     "key": "summer-stories-and-feelings",
     "label": "Summer Stories and Feelings"
   },
@@ -712,6 +716,48 @@ const PhraseInput = ({
                   Classroom Fun
                 </button>
                 <button
+                  onClick={() => handleSampleClick('elementary-fall')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'elementary-fall' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Elementary School Fall
+                </button>
+                <button
+                  onClick={() => handleSampleClick('middle-school-fall')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'middle-school-fall' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Middle School Fall
+                </button>
+                <button
+                  onClick={() => handleSampleClick('high-school-fall')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'high-school-fall' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  High School Fall
+                </button>
+                <button
+                  onClick={() => handleSampleClick('fall-semester')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'fall-semester' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Fall Semester
+                </button>
+                <button
+                  onClick={() => handleSampleClick('world-history')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'world-history' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  World History
+                </button>
+                <button
+                  onClick={() => handleSampleClick('hs-math')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'hs-math' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  High School Math
+                </button>
+                <button
                   onClick={() => handleSampleClick('holiday-traditions')}
                   className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'holiday-traditions' ? 'selected' : ''}`}
                 >
@@ -737,6 +783,13 @@ const PhraseInput = ({
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Fall Activities
+                </button>
+                <button
+                  onClick={() => handleSampleClick('family-fall')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'family-fall' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Family Fall
                 </button>
                 <button
                   onClick={() => handleSampleClick('winter-activities')}

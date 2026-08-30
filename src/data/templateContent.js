@@ -1433,6 +1433,238 @@ export const templateContent = {
       "food-adventures"
     ]
   },
+  "elementary-fall": {
+    "intro": "Elementary School Fall Bingo is a printable card of 25 things that happen in a K through 5 classroom every autumn: the handprint turkey, the pumpkin patch field trip, the costume parade, the candy corn guessing jar. Use it as a class activity through October and November, or send it home so families can play along. Free, no signup, print one per student.",
+    "faq": [
+      {
+        "q": "What age is this for?",
+        "a": "Kindergarten through fifth grade. The 30 squares are all classroom-scale things: leaf rubbing art, the Scholastic book order, reading Five Little Pumpkins, pumpkin bowling, the fall party with cider and donuts."
+      },
+      {
+        "q": "How do teachers usually run it?",
+        "a": "One card per student, marked off across the season rather than in a single lesson. Because the squares shuffle, every child is watching for a different thing, which keeps them paying attention to what the class is actually doing."
+      },
+      {
+        "q": "Can I take out the Halloween squares?",
+        "a": "Yes, and plenty of schools need to. Edit the list before printing and drop the costume parade and class party, and there are still well over 25 squares left for a card."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free with no signup and no account, which matters when it is going home in thirty backpacks. Classroom Activities Bingo covers the rest of the school year."
+      }
+    ],
+    "related": [
+      "classroom-activities",
+      "family-fall",
+      "middle-school-fall",
+      "kids-summer-reading-bingo",
+      "fall-activities",
+      "thanksgiving"
+    ]
+  },
+  "middle-school-fall": {
+    "intro": "Middle School Fall Bingo is a printable card of 25 things that define a sixth through eighth grade autumn: the first school dance, spirit week, a Stanley on every desk, the group Halloween costume, the first C panic. Play it across the season with a class or a friend group. Free and no signup needed.",
+    "faq": [
+      {
+        "q": "What is on the card?",
+        "a": "30 squares covering the social side (locker decorating, sharing an AirPod at lunch, a new friend group forming, a TikTok trend moving through the halls) and the school side, from student council elections to the permission slip lost in the backpack."
+      },
+      {
+        "q": "Is this for teachers or for students?",
+        "a": "Either. Advisory periods and homerooms use it as a low-effort seasonal activity, and friend groups play it on their own, which is usually funnier."
+      },
+      {
+        "q": "Can I add things specific to our school?",
+        "a": "Yes, and it lands much better that way. Edit the list before printing and put in your spirit week themes, your rival school, the specific substitute everyone knows."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free, no signup. High School Fall Bingo is the same idea a few years older."
+      }
+    ],
+    "related": [
+      "high-school-fall",
+      "elementary-fall",
+      "classroom-activities",
+      "middle-school-summer-picks",
+      "fall-activities",
+      "teen-summer-reading"
+    ]
+  },
+  "high-school-fall": {
+    "intro": "High School Fall Bingo is a printable card of 25 things that happen every autumn between the first football game and Thanksgiving break: homecoming week, the student section going wild, Common App essay stress, the senior parking spot getting painted, a hoodie worn every single day. Play it across the season. Free, no signup required.",
+    "faq": [
+      {
+        "q": "What is on the card?",
+        "a": "30 squares spanning the whole term: the events (homecoming parade and dance, powderpuff, fall play auditions, NHS induction), the academic grind (first quarter progress report, midterm week, group project drama) and the small stuff, like the locker nobody ever actually uses."
+      },
+      {
+        "q": "Who plays this?",
+        "a": "Students across a friend group, and advisors looking for something seasonal that takes no preparation. It also works as a yearbook or student-newspaper activity."
+      },
+      {
+        "q": "How is this different from Fall Semester Bingo?",
+        "a": "They overlap a lot. This one leans into the student experience and the small daily details. Fall Semester Bingo tracks the calendar of events more strictly and runs through finals."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free with no signup. Edit the list before printing to add your school's own traditions."
+      }
+    ],
+    "related": [
+      "fall-semester",
+      "middle-school-fall",
+      "college-life",
+      "high-school-summer-picks",
+      "fall-activities",
+      "classroom-activities"
+    ]
+  },
+  "hs-literature": {
+    "intro": "High School Literature Bingo is a printable card of 25 books English teachers keep assigning, from To Kill a Mockingbird and The Great Gatsby to Beloved, Persepolis and four different Shakespeare plays. Use it to see how much of the canon you actually got through, or hand it to a class at the start of the year as a map of what is coming. Free, no signup.",
+    "faq": [
+      {
+        "q": "Which books are on the card?",
+        "a": "34 in the pool: the unavoidable ones (Mockingbird, Gatsby, Lord of the Flies, 1984), the Shakespeare rotation, the American canon from Steinbeck to Hurston to Morrison, and the newer assignments including Persepolis and The Perks of Being a Wallflower."
+      },
+      {
+        "q": "Is this for students or for adults?",
+        "a": "Both, and they play it differently. Students use it to see what is ahead. Adults use it to find out how many they actually finished versus how many they have simply absorbed enough about to nod along."
+      },
+      {
+        "q": "Can I build a version for my syllabus?",
+        "a": "Yes. Edit the list before printing so it matches what your department actually assigns, which turns it into a genuinely useful first-day handout."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free, no signup. Acclaimed Books Bingo covers prize winners and modern literary fiction if you want something past the syllabus."
+      }
+    ],
+    "related": [
+      "acclaimed-books",
+      "book-reading",
+      "teen-summer-reading",
+      "nyt-fiction-bestsellers",
+      "high-school-fall",
+      "classroom-activities"
+    ]
+  },
+  "world-history": {
+    "intro": "World History Bingo is a printable card of 25 eras and events from the standard survey course, from Mesopotamia and the Silk Road to the Treaty of Versailles and the fall of the Soviet Union. Use it as a review activity before an exam, or as a term-long card students mark off as each unit gets covered. Free and no signup.",
+    "faq": [
+      {
+        "q": "What does it cover?",
+        "a": "40 entries running the full sweep: the ancient world, the Middle Ages and the plague, the Renaissance and Reformation, revolutions from French to Industrial, both world wars, the Cold War and decolonisation."
+      },
+      {
+        "q": "How do teachers use it?",
+        "a": "Two ways. As a review game before a unit test, where students mark squares as terms come up. Or as a term-long card, marked off as each topic is taught, which gives the course a visible shape."
+      },
+      {
+        "q": "Can I narrow it to one unit?",
+        "a": "Yes, and for a single test that works better. Edit the list before printing and keep only the era you are covering, then use a 4x4 grid instead of a 5x5."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free with no signup. High School Math Bingo does the same job for the maths department."
+      }
+    ],
+    "related": [
+      "hs-math",
+      "hs-literature",
+      "classroom-activities",
+      "high-school-fall",
+      "college-life",
+      "fall-semester"
+    ]
+  },
+  "hs-math": {
+    "intro": "High School Math Bingo is a printable card of 25 concepts from Algebra 1 through Calculus: the quadratic formula, SOHCAHTOA, the unit circle, two-column proofs, limits and derivatives. Use it as a review activity, or as a card students mark off across four years to see how far they have come. Free, no signup needed.",
+    "faq": [
+      {
+        "q": "Which classes does it cover?",
+        "a": "35 entries across the whole sequence: Algebra 1 and 2, Geometry, Trigonometry, Pre-Calculus, Calculus and AP Statistics. Everything from FOIL and factoring to chain rule, matrices and standard deviation."
+      },
+      {
+        "q": "Is this a review game or a long-term card?",
+        "a": "It works as both. For a single class, edit it down to that course's topics and use it as an end-of-unit review. Across four years it becomes a record of everything a student has actually been taught."
+      },
+      {
+        "q": "Can I make one for a single course?",
+        "a": "Yes, and that is the better classroom version. Cut the list to one course before printing so every square is something the class has genuinely covered."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free, no signup. World History Bingo is the same idea for the history classroom."
+      }
+    ],
+    "related": [
+      "world-history",
+      "classroom-activities",
+      "hs-literature",
+      "high-school-fall",
+      "college-life",
+      "fall-semester"
+    ]
+  },
+  "fall-semester": {
+    "intro": "Fall Semester Bingo is a printable card of 25 milestones between schedule pickup and finals: the first football game, the tailgate, homecoming, picture retakes, the Common App deadline, midterms, and the semester grade panic that follows. Play it across the whole term, marking squares as the calendar delivers them. Free, no signup, print one per person and let the shuffle give everyone a different card.",
+    "faq": [
+      {
+        "q": "What is on the card?",
+        "a": "32 squares following the term in order: the opening weeks, football season and the marching band halftime show, the full homecoming run from parade to king and queen, then the academic stretch through midterms and into fall semester finals."
+      },
+      {
+        "q": "How is this different from High School Fall Bingo?",
+        "a": "They share a lot of squares. This one tracks the calendar of events and runs all the way through finals. High School Fall Bingo leans more into the day-to-day student experience and stops at Thanksgiving break."
+      },
+      {
+        "q": "Can I customise it for our school?",
+        "a": "Yes. Edit the list before printing and swap in your own spirit week themes, your rivalry game and whatever your school does that nobody else does."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free with no signup or account."
+      }
+    ],
+    "related": [
+      "high-school-fall",
+      "middle-school-fall",
+      "college-life",
+      "classroom-activities",
+      "fall-activities",
+      "world-history"
+    ]
+  },
+  "family-fall": {
+    "intro": "Family Fall Bingo is a printable card of 25 things to do together before winter: the pumpkin patch, the corn maze, carving pumpkins, trick-or-treating, Hocus Pocus, a bonfire with s'mores, and Thanksgiving at the end of it. Use it as a season-long bucket list stuck to the fridge, and let everyone mark off what the family actually gets to. Free, no signup.",
+    "faq": [
+      {
+        "q": "What is on the card?",
+        "a": "35 squares covering the whole season: the outings (apple picking, hayride, foliage drive, trunk-or-treat), the kitchen (apple pie, pumpkin bread, caramel apples, cider on the stove), the Halloween run from costumes to handing out candy, and Thanksgiving and the turkey trot at the end."
+      },
+      {
+        "q": "What ages does it work for?",
+        "a": "Most of it works from toddlers up, and the older kids tend to take over marking the card. Families with young children usually swap the later Thanksgiving squares for more Halloween ones."
+      },
+      {
+        "q": "Is it a game or a bucket list?",
+        "a": "Mostly a bucket list, which is why it goes on the fridge rather than the table. Some families race two cards against each other, one per parent, which is a good way to get things actually planned."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free, no signup. Elementary School Fall Bingo covers the classroom version of the same season."
+      }
+    ],
+    "related": [
+      "elementary-fall",
+      "fall-activities",
+      "thanksgiving",
+      "christmas-bucketlist",
+      "holiday-traditions",
+      "classroom-activities"
+    ]
+  },
   "outdoor-winter-adult": {
     "intro": "Outdoor Winter Activities (Adult) Bingo is a printable card of 25 cold-weather adventures, like backcountry ski touring, ice climbing, dog sledding, and chasing the Northern Lights. Use it to plan out an ambitious winter of trip ideas, or turn it into a challenge with your ski buddies to see who checks off the most. Free, no account required. Print it before the season starts or save it to your phone for trip planning.",
     "faq": [

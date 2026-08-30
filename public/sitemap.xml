@@ -246,6 +246,46 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://makebingocard.com/templates/elementary-fall</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://makebingocard.com/templates/middle-school-fall</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://makebingocard.com/templates/high-school-fall</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://makebingocard.com/templates/hs-literature</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://makebingocard.com/templates/world-history</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://makebingocard.com/templates/hs-math</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://makebingocard.com/templates/fall-semester</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://makebingocard.com/templates/family-fall</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://makebingocard.com/templates/outdoor-winter-adult</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
