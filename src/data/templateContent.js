@@ -1141,7 +1141,7 @@ export const templateContent = {
       "winter-adult-all",
       "snow-camping-winter",
       "pnw-ski-season",
-      "outdoor-winter"
+      "winter-activities"
     ]
   },
   "outdoor-winter-family": {
@@ -1170,7 +1170,7 @@ export const templateContent = {
       "winter-family-all",
       "snow-camping-winter",
       "christmas-bucketlist",
-      "outdoor-winter"
+      "winter-activities"
     ]
   },
   "ultra-specific-resolutions": {

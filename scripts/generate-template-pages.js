@@ -40,6 +40,11 @@ for (const slug of slugsToGenerate) {
   if (!Array.isArray(c.related) || c.related.length < 5) errors.push(`${slug}: related must list at least 5 slugs`);
   for (const r of c.related || []) {
     if (!templateTitles[r]) errors.push(`${slug}: related slug "${r}" doesn't exist in templateTitles`);
+    // Being in templateTitles is not enough. A slug awaiting its content has no
+    // generated page, so linking to it publishes an internal link to a thin,
+    // JS-only URL that is deliberately absent from the sitemap. This will keep
+    // happening while templates are authored in batches, so it fails the build.
+    else if (!templateContent[r]) errors.push(`${slug}: related slug "${r}" has no authored content yet, so it has no page to link to`);
   }
 }
 if (errors.length > 0) {
@@ -54,7 +59,13 @@ if (!existsSync(distIndexPath)) {
 }
 
 const notYetAuthored = Object.keys(templateTitles).filter(s => !templateContent[s]);
-console.log(`generate-template-pages: generating ${slugsToGenerate.length}/${Object.keys(templateTitles).length} template pages (${notYetAuthored.length} not yet authored, skipped for now).`);
+console.log(`generate-template-pages: generating ${slugsToGenerate.length}/${Object.keys(templateTitles).length} template pages.`);
+if (notYetAuthored.length) {
+  // Named, not just counted. An un-authored slug still resolves in the app and
+  // is indexable, it just has no static content and no sitemap entry, so it is
+  // worth being able to see which ones are in that state.
+  console.log(`generate-template-pages: ${notYetAuthored.length} awaiting content, no page generated: ${notYetAuthored.join(', ')}`);
+}
 
 const baseHtml = readFileSync(distIndexPath, 'utf-8');
 
@@ -113,7 +124,7 @@ function buildJsonLd(slug, title, content) {
 
 function buildContentHtml(slug, title, content, phrases) {
   const relatedLinks = content.related
-    .filter(r => templateTitles[r])
+    .filter(r => templateTitles[r] && templateContent[r])
     .map(r => `<li><a href="/templates/${r}">${escapeHtml(plainTitle(templateTitles[r]))}</a></li>`)
     .join('\n        ');
 

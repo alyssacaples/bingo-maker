@@ -1,5 +1,25 @@
 import { AlertTriangle } from 'lucide-react';
 
+// Defined at module scope on purpose. While this lived inside GridConfiguration
+// it was a brand new component type on every render, so React tore down and
+// rebuilt the checkbox each time one was toggled and focus fell back to <body>.
+// Toggling with the keyboard meant losing your place on every single option.
+const Option = ({ label, hint, checked, onChange, disabled }) => (
+  <div className="flex items-start justify-between gap-3 py-2.5 border-b border-rule last:border-b-0">
+    <span className="flex flex-col">
+      <span className="text-[14px] text-ink">{label}</span>
+      {hint && <span className="text-[12px] text-ink-2 mt-0.5">{hint}</span>}
+    </span>
+    <input
+      type="checkbox"
+      checked={checked}
+      disabled={disabled}
+      onChange={(e) => onChange(e.target.checked)}
+      className="custom-checkbox mt-0.5 flex-none disabled:opacity-40 disabled:cursor-not-allowed"
+    />
+  </div>
+);
+
 const GridConfiguration = ({
   gridSize,
   freeSpace,
@@ -20,22 +40,6 @@ const GridConfiguration = ({
   hasCenter,
   textOverflowWarning
 }) => {
-  const Option = ({ label, hint, checked, onChange, disabled }) => (
-    <div className="flex items-start justify-between gap-3 py-2.5 border-b border-rule last:border-b-0">
-      <span className="flex flex-col">
-        <span className="text-[14px] text-ink">{label}</span>
-        {hint && <span className="text-[12px] text-ink-2 mt-0.5">{hint}</span>}
-      </span>
-      <input
-        type="checkbox"
-        checked={checked}
-        disabled={disabled}
-        onChange={(e) => onChange(e.target.checked)}
-        className="custom-checkbox mt-0.5 flex-none disabled:opacity-40 disabled:cursor-not-allowed"
-      />
-    </div>
-  );
-
   return (
     <div className="card">
       <div className="card-header">Setup</div>
@@ -147,7 +151,9 @@ const GridConfiguration = ({
             min="1"
             max="50"
             value={copies}
-            onChange={(e) => onCopiesChange(Math.max(1, parseInt(e.target.value) || 1))}
+            onChange={(e) =>
+              onCopiesChange(Math.min(50, Math.max(1, parseInt(e.target.value, 10) || 1)))
+            }
             className="input-field"
           />
         </div>
