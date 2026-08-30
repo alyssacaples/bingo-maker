@@ -17,6 +17,7 @@ const PDFSection = lazy(() => import('./PDFSection'));
 const PDFSectionLoader = ({ onPreviewIntent, ...props }) => {
   const [wanted, setWanted] = useState(false);
   const [autoPreview, setAutoPreview] = useState(false);
+  const [autoDownload, setAutoDownload] = useState(false);
 
   const arm = useCallback(() => setWanted(true), []);
 
@@ -31,7 +32,11 @@ const PDFSectionLoader = ({ onPreviewIntent, ...props }) => {
           </div>
         }
       >
-        <PDFSection {...props} autoOpenPreview={autoPreview} />
+        <PDFSection
+          {...props}
+          autoOpenPreview={autoPreview}
+          autoStartDownload={autoDownload}
+        />
       </Suspense>
     );
   }
@@ -50,7 +55,17 @@ const PDFSectionLoader = ({ onPreviewIntent, ...props }) => {
             onFocusCapture={arm}
             className="space-y-2"
           >
-            <button onClick={arm} className="btn-download">
+            <button
+              type="button"
+              onClick={() => {
+                // Carries the click through: without this the chunk loads, a
+                // live download link appears, and the button looks like it did
+                // nothing until you press it a second time.
+                setAutoDownload(true);
+                arm();
+              }}
+              className="btn-download"
+            >
               <span className="inline-flex items-center">
                 <Download className="w-4 h-4 mr-2" aria-hidden="true" />
                 Download cards
@@ -58,6 +73,7 @@ const PDFSectionLoader = ({ onPreviewIntent, ...props }) => {
             </button>
 
             <button
+              type="button"
               onClick={() => {
                 // Tracked here rather than in PDFGenerator: this click is the
                 // intent, and the modal that opens once the chunk lands is the

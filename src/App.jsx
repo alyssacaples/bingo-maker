@@ -4,6 +4,7 @@ import './App.css';
 // Import custom hooks
 import usePhraseManager from './hooks/usePhraseManager';
 import { trackTemplateView, trackPdfPreview } from './utils/analytics';
+import { templateTitles } from './data/templates';
 import useBingoConfiguration from './hooks/useBingoConfiguration';
 
 // Import components
@@ -206,7 +207,13 @@ function App() {
     if (slug) {
       // GA4 records the pageview on its own; this adds the slug, which is the
       // dimension that tells us which of the 155 templates people arrive on.
-      trackTemplateView(slug, document.title);
+      //
+      // The title comes from the data, not from document.title: the metadata
+      // effect above runs first and has already replaced the pre-rendered title
+      // with the site default, because `title` is still 'BINGO' until the
+      // phrases load a tick later. Reading the DOM here reported the same
+      // generic string for every template.
+      trackTemplateView(slug, templateTitles[slug] || slug);
       const timer = setTimeout(() => {
         handleAddSamplePhrases(slug);
       }, 0);

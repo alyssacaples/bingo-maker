@@ -23,16 +23,26 @@ const ThemeToggle = () => {
   const cycle = () => {
     const next = MODES[(MODES.indexOf(mode) + 1) % MODES.length];
     setMode(next);
+
+    // Apply the theme FIRST. These used to share one try block with storage
+    // first, so a throwing localStorage (Safari private mode, quota exceeded)
+    // skipped the attribute entirely: the label moved but the page did not.
+    if (next === 'system') {
+      document.documentElement.removeAttribute('data-theme');
+    } else {
+      document.documentElement.setAttribute('data-theme', next);
+    }
+
+    // Persisting is the part that is allowed to fail. Losing it costs the
+    // choice on the next page load, not on this one.
     try {
       if (next === 'system') {
         localStorage.removeItem('theme');
-        document.documentElement.removeAttribute('data-theme');
       } else {
         localStorage.setItem('theme', next);
-        document.documentElement.setAttribute('data-theme', next);
       }
     } catch {
-      /* storage unavailable: the attribute still applies for this session */
+      /* storage unavailable; the theme still applies for this session */
     }
   };
 

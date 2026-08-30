@@ -198,7 +198,12 @@ for (const slug of slugsToGenerate) {
   canonical.attr('href', url);
 
   buildJsonLd(slug, title, content).forEach(block => {
-    $('head').append(`<script type="application/ld+json">${JSON.stringify(block)}</script>`);
+    // Escaping < is what stops a literal "</script>" inside any title, intro or
+    // FAQ answer from closing this tag early and spilling raw JSON into the page.
+    // JSON.stringify escapes quotes and backslashes but not slashes, so it is
+    // not enough on its own. \u003c is still valid JSON and parses identically.
+    const jsonLd = JSON.stringify(block).replace(/</g, '\\u003c');
+    $('head').append(`<script type="application/ld+json">${jsonLd}</script>`);
   });
 
   // Placed after #root, not before: with JS disabled #root is empty, so

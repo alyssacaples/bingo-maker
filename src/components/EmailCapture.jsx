@@ -20,13 +20,16 @@ const EmailCapture = ({ source = 'sidebar' }) => {
 
     setState('sending');
     try {
-      const body = new FormData();
+      // URLSearchParams, not FormData: this sends application/x-www-form-urlencoded,
+      // which is what the Buttondown / ConvertKit / Mailchimp embed endpoints
+      // accept. FormData would send multipart/form-data, which they reject, and
+      // no-cors would hide that rejection behind a success message.
+      const body = new URLSearchParams();
       body.append(emailCapture.fieldName, email.trim());
 
-      // no-cors because the free tiers of these providers don't send CORS
-      // headers on their form endpoints. The trade-off is that the response is
-      // opaque, so a rejected address still reads as success here. That is the
-      // same behaviour as the provider's own embedded form.
+      // no-cors because the free tiers don't send CORS headers on their form
+      // endpoints. The response is opaque either way, so this can only report
+      // network-level failure, the same as the provider's own embedded form.
       await fetch(emailCapture.endpoint, { method: 'POST', mode: 'no-cors', body });
 
       trackEmailSignup(source);

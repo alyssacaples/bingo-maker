@@ -36,8 +36,13 @@ export const trackTemplateSelect = (title, category) =>
 export const trackPdfPreview = (title, gridSize) =>
   track('pdf_preview_open', { template_title: title, grid_size: gridSize });
 
-export const trackPdfDownload = (title, gridSize, copies) =>
-  track('pdf_download', { template_title: title, grid_size: gridSize, copies });
+export const trackPdfDownload = (title, gridSize, copies, phraseCount) =>
+  track('pdf_download', {
+    template_title: title,
+    grid_size: gridSize,
+    copies,
+    phrase_count: phraseCount,
+  });
 
 export const trackAffiliateClick = (destination, title) =>
   track('affiliate_click', { destination, template_title: title });

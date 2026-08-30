@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { Download, Eye } from 'lucide-react';
 import PDFPreview from './PDFPreview';
 import { trackPdfDownload, trackPdfPreview } from '../utils/analytics';
 
 const PDFGenerator = ({ 
+  copies,
   autoOpenPreview = false,
+  autoStartDownload = false,
   hasEnoughPhrases, 
   requiredCells, 
   gridSize, 
@@ -72,17 +74,53 @@ const PDFGenerator = ({
     if (autoOpenPreview) setShowPreview(true);
   }, [autoOpenPreview]);
 
+  // Same idea for Download. PDFDownloadLink only becomes a real href once the
+  // blob is built, which is after the click that loaded this chunk, so the
+  // anchor is clicked on the user's behalf as soon as it goes live. Its own
+  // onClick fires from this too, so the event is still counted exactly once.
+  //
+  // If the browser refuses a programmatic download because the original user
+  // gesture has expired, nothing breaks: the link is on screen and labelled.
+  const downloadWrapRef = useRef(null);
+  const autoDownloadFired = useRef(false);
+  useEffect(() => {
+    if (!autoStartDownload || autoDownloadFired.current) return;
+    const wrap = downloadWrapRef.current;
+    if (!wrap) return;
+
+    const clickWhenLive = () => {
+      const a = wrap.querySelector('a[href^="blob:"]');
+      if (!a || autoDownloadFired.current) return false;
+      autoDownloadFired.current = true;
+      a.click();
+      return true;
+    };
+
+    if (clickWhenLive()) return;
+    const obs = new MutationObserver(() => {
+      if (clickWhenLive()) obs.disconnect();
+    });
+    obs.observe(wrap, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['href'],
+    });
+    return () => obs.disconnect();
+  }, [autoStartDownload]);
+
   return (
     <>
       <div className="card">
         <div className="card-body space-y-2">
           {hasEnoughPhrases ? (
             <>
+              <div ref={downloadWrapRef}>
               <PDFDownloadLink
                 document={<BingoDocument />}
                 fileName={`${title || 'Bingo'}_Cards.pdf`}
                 className="btn-download"
-                onClick={() => trackPdfDownload(title, gridSize, phrases.length)}
+                onClick={() => trackPdfDownload(title, gridSize, copies, phrases.length)}
               >
                 {({ loading }) => (
                   loading ? 'Preparing PDF…' : (
@@ -93,6 +131,7 @@ const PDFGenerator = ({
                   )
                 )}
               </PDFDownloadLink>
+              </div>
 
               <button
                 onClick={() => {

@@ -67,38 +67,72 @@ const PDFPreview = ({
     pdfUrlRef.current = pdfUrl;
   }, [pdfUrl]);
 
+  // Regenerate whenever the modal is open and any setting changes.
+  //
+  // This deliberately does NOT revoke on cleanup. Cleanup fires on every one of
+  // the ~25 dependencies below, so revoking here tore down the blob the iframe
+  // was still displaying and left it pointed at a dead URL until the next
+  // render finished. Revocation now happens where the replacement happens, in
+  // generatePreview, and on close/unmount in the two effects after this one.
   useEffect(() => {
     if (isOpen && BingoDocument) {
       generatePreview();
     }
-
-    // Cleanup when component unmounts or closes. Reads pdfUrlRef (not pdfUrl)
-    // so it always revokes the latest blob URL, even though generatePreview
-    // sets it asynchronously after this effect's closure was created.
-    return () => {
-      if (pdfUrlRef.current) {
-        URL.revokeObjectURL(pdfUrlRef.current);
-      }
-    };
   }, [isOpen, BingoDocument, subtitle, titleFont, titleColor, cellFont, backgroundColor, useGradient, gradientColor1, gradientColor2, borderColor, freeSpaceBackgroundColor, freeSpaceFontColor, cellTextColor, subtitleColor, borderWidth, gridBorderRadius, cellBackgroundMode, cellBackgroundTint, freeSpaceLabel, printerFriendly, gradientDirection, gradientColor3, cardMatEnabled, backgroundPattern, backgroundPatternOpacity]);
 
+  // Dragging a slider in the customization panel fires this on every change,
+  // and each render takes long enough that several are in flight at once. The
+  // run counter makes the newest request the only one allowed to land, so an
+  // earlier render finishing late can no longer overwrite a newer preview, and
+  // its blob is released instead of being stranded for the life of the page.
+  const runRef = useRef(0);
+
   const generatePreview = async () => {
+    const myRun = ++runRef.current;
     setLoading(true);
     setError(null);
-    
+
     try {
       const doc = <BingoDocument />;
       const asPdf = pdf(doc);
       const blob = await asPdf.toBlob();
+
+      // Superseded while rendering, or the modal closed. Drop it; never build
+      // an object URL we would only have to revoke.
+      if (myRun !== runRef.current) return;
+
       const url = URL.createObjectURL(blob);
-      setPdfUrl(url);
+      setPdfUrl((prev) => {
+        if (prev) URL.revokeObjectURL(prev);
+        return url;
+      });
     } catch (err) {
+      if (myRun !== runRef.current) return;
       console.error('Error generating preview:', err);
       setError('Failed to generate preview');
     } finally {
-      setLoading(false);
+      if (myRun === runRef.current) setLoading(false);
     }
   };
+
+  // Closing the modal releases the blob and invalidates any in-flight render,
+  // so reopening starts from the loading state rather than briefly showing a
+  // revoked URL in the iframe.
+  useEffect(() => {
+    if (isOpen) return;
+    runRef.current++;
+    if (pdfUrlRef.current) {
+      URL.revokeObjectURL(pdfUrlRef.current);
+      pdfUrlRef.current = null;
+    }
+    setPdfUrl(null);
+    setError(null);
+  }, [isOpen]);
+
+  // Last line of defence: unmounting while a preview is open.
+  useEffect(() => () => {
+    if (pdfUrlRef.current) URL.revokeObjectURL(pdfUrlRef.current);
+  }, []);
 
   const handleDownload = () => {
     if (pdfUrl) {
