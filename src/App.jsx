@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import './App.css';
 
 // Import custom hooks
@@ -111,6 +111,11 @@ function App() {
     getTextOverflowWarning
   } = useBingoConfiguration();
 
+  // True when the URL points at /templates/<slug> for a slug we don't have.
+  // Azure's navigationFallback serves the app shell with a 200 for any unmatched
+  // path, so without this an arbitrary URL renders a real, indexable page.
+  const [unknownTemplate, setUnknownTemplate] = useState(false);
+
   // Enhanced sample phrases handler
   const handleAddSamplePhrases = useCallback((type) => {
     const suggestedTitle = addSamplePhrases(type);
@@ -162,7 +167,27 @@ function App() {
     const queryTemplate = new URLSearchParams(window.location.search).get('template');
     const slug = pathSlug || queryTemplate;
 
-    if (title && title !== 'BINGO') {
+    // A URL we have no template for must not be indexable, and must not claim
+    // itself as canonical. Kept in sync in both directions so a client-side
+    // navigation back to a real template clears it.
+    let robots = document.querySelector('meta[name="robots"]');
+    if (unknownTemplate) {
+      if (!robots) {
+        robots = document.createElement('meta');
+        robots.setAttribute('name', 'robots');
+        document.head.appendChild(robots);
+      }
+      robots.setAttribute('content', 'noindex, follow');
+    } else if (robots) {
+      robots.remove();
+    }
+
+    if (unknownTemplate) {
+      document.title = 'Template not found - Free Bingo Card Maker';
+      setMetaNameTag('description', 'That template does not exist. Browse the full library of free printable bingo cards.');
+      canonicalLink.setAttribute('href', 'https://makebingocard.com/');
+      setMetaTag('og:url', 'https://makebingocard.com/');
+    } else if (title && title !== 'BINGO') {
       const fullTitle = `${title} - Free Bingo Card Maker`;
       const fullDesc = `Generate and print custom cards for "${title}". Add your own phrases, customize colors, and download print-ready PDFs.`;
       const fullUrl = slug ? `https://makebingocard.com/templates/${slug}` : 'https://makebingocard.com/';
@@ -197,28 +222,39 @@ function App() {
       setMetaNameTag('twitter:title', defaultTitle);
       setMetaNameTag('twitter:description', defaultDesc);
     }
-  }, [title]);
+  }, [title, unknownTemplate]);
 
   // Check the URL (path or legacy query param) on load to populate template
   useEffect(() => {
     const pathSlug = getTemplateSlugFromPath();
     const queryTemplate = new URLSearchParams(window.location.search).get('template');
     const slug = pathSlug || queryTemplate;
-    if (slug) {
-      // GA4 records the pageview on its own; this adds the slug, which is the
-      // dimension that tells us which of the 155 templates people arrive on.
-      //
-      // The title comes from the data, not from document.title: the metadata
-      // effect above runs first and has already replaced the pre-rendered title
-      // with the site default, because `title` is still 'BINGO' until the
-      // phrases load a tick later. Reading the DOM here reported the same
-      // generic string for every template.
-      trackTemplateView(slug, templateTitles[slug] || slug);
-      const timer = setTimeout(() => {
-        handleAddSamplePhrases(slug);
-      }, 0);
-      return () => clearTimeout(timer);
+    if (!slug) return;
+
+    // addSamplePhrases falls back to the icebreakers set for an unrecognised
+    // key, so without this guard /templates/anything served a working page of
+    // real icebreakers content under an arbitrary URL, canonicalised to itself.
+    // That is unlimited duplicate content on the URL space Block 1 introduced.
+    if (!templateTitles[slug]) {
+      setUnknownTemplate(true);
+      return;
     }
+
+    setUnknownTemplate(false);
+
+    // GA4 records the pageview on its own; this adds the slug, which is the
+    // dimension that tells us which of the 155 templates people arrive on.
+    //
+    // The title comes from the data, not from document.title: the metadata
+    // effect above runs first and has already replaced the pre-rendered title
+    // with the site default, because `title` is still 'BINGO' until the
+    // phrases load a tick later. Reading the DOM here reported the same
+    // generic string for every template.
+    trackTemplateView(slug, templateTitles[slug]);
+    const timer = setTimeout(() => {
+      handleAddSamplePhrases(slug);
+    }, 0);
+    return () => clearTimeout(timer);
   }, [handleAddSamplePhrases]);
 
   // Check if we have enough phrases

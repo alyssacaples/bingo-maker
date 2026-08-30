@@ -2,11 +2,16 @@ import { useState, useEffect, useRef } from 'react';
 import { pdf } from '@react-pdf/renderer';
 import { Eye, X, Download, Settings } from 'lucide-react';
 import CardCustomization from './CardCustomization';
+import { trackPdfDownload } from '../utils/analytics';
 
 const PDFPreview = ({ 
   BingoDocument, 
   isOpen, 
   onClose,
+  title,
+  gridSize,
+  copies,
+  phraseCount,
   subtitle,
   setSubtitle,
   titleFont,
@@ -61,11 +66,11 @@ const PDFPreview = ({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [showCustomization, setShowCustomization] = useState(true);
+  // pdfUrlRef is the authority on which blob is currently held, and is written
+  // in the same statement that sets state. It is deliberately not synced from
+  // pdfUrl by an effect: revocation has to be able to run outside React's
+  // render cycle.
   const pdfUrlRef = useRef(null);
-
-  useEffect(() => {
-    pdfUrlRef.current = pdfUrl;
-  }, [pdfUrl]);
 
   // Regenerate whenever the modal is open and any setting changes.
   //
@@ -101,11 +106,15 @@ const PDFPreview = ({
       // an object URL we would only have to revoke.
       if (myRun !== runRef.current) return;
 
+      // Revoked here rather than inside a setPdfUrl updater. StrictMode
+      // double-invokes updaters, and React may discard a render entirely, which
+      // would revoke the blob the iframe is still showing without ever
+      // committing its replacement.
+      const previous = pdfUrlRef.current;
       const url = URL.createObjectURL(blob);
-      setPdfUrl((prev) => {
-        if (prev) URL.revokeObjectURL(prev);
-        return url;
-      });
+      pdfUrlRef.current = url;
+      setPdfUrl(url);
+      if (previous) URL.revokeObjectURL(previous);
     } catch (err) {
       if (myRun !== runRef.current) return;
       console.error('Error generating preview:', err);
@@ -136,9 +145,15 @@ const PDFPreview = ({
 
   const handleDownload = () => {
     if (pdfUrl) {
+      // This path was invisible to analytics: everything downloaded from inside
+      // the preview went uncounted, and the preview is the main route to a
+      // customized card.
+      trackPdfDownload(title, gridSize, copies, phraseCount);
       const link = document.createElement('a');
       link.href = pdfUrl;
-      link.download = 'bingo-cards-preview.pdf';
+      // Was hardcoded to bingo-cards-preview.pdf, which did not match the
+      // filename the same card gets from the main download button.
+      link.download = `${title || 'Bingo'}_Cards.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);

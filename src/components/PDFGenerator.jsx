@@ -162,6 +162,10 @@ const PDFGenerator = ({
         BingoDocument={BingoDocument}
         isOpen={showPreview}
         onClose={() => setShowPreview(false)}
+        title={title}
+        gridSize={gridSize}
+        copies={copies}
+        phraseCount={phrases.length}
         subtitle={subtitle}
         setSubtitle={setSubtitle}
         titleFont={titleFont}

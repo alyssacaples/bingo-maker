@@ -30,8 +30,12 @@ export function track(name, params = {}) {
 export const trackTemplateView = (slug, title) =>
   track('template_view', { template_slug: slug, template_title: title });
 
-export const trackTemplateSelect = (title, category) =>
-  track('template_select', { template_title: title, template_category: category });
+// Mirrors trackTemplateView: the slug is what the call site actually has, and
+// the readable title is resolved from it. Previously the slug was being sent in
+// the template_title field, and template_category was declared but never
+// populated by any caller, so it only ever reported undefined.
+export const trackTemplateSelect = (slug, title) =>
+  track('template_select', { template_slug: slug, template_title: title });
 
 export const trackPdfPreview = (title, gridSize) =>
   track('pdf_preview_open', { template_title: title, grid_size: gridSize });
