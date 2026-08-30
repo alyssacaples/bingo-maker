@@ -16,7 +16,13 @@ const DANGLING = new Set([
 ]);
 
 export function metaDescription(intro) {
-  const text = String(intro).replace(/\s+/g, ' ').trim();
+  // Both current callers guard against this (the build fails on a missing
+  // intro, App falls back to boilerplate), but String(undefined) is the string
+  // "undefined", which would ship as a real description if a future caller
+  // forgets.
+  if (typeof intro !== 'string' || !intro.trim()) return '';
+
+  const text = intro.replace(/\s+/g, ' ').trim();
   if (text.length <= META_MAX) return text;
 
   // The house intro formula opens with the claim, then a colon or a "from X to
@@ -27,11 +33,15 @@ export function metaDescription(intro) {
 
   // Otherwise cut at a word boundary, then walk back over any trailing
   // connective so the sentence does not end on "and" or "from".
-  let words = text.slice(0, META_MAX).split(' ');
+  const words = text.slice(0, META_MAX).split(' ');
   words.pop(); // the word the cut landed inside
   while (words.length && DANGLING.has(words[words.length - 1].toLowerCase().replace(/[^a-z]/g, ''))) {
     words.pop();
   }
+
+  // Nothing survived the walk back, which means the text has no usable word
+  // break inside the limit. A hard cut beats returning a lone full stop.
+  if (!words.length) return text.slice(0, META_MAX).trim();
 
   // No ellipsis: search engines add their own, and it only eats characters.
   return words.join(' ').replace(/[,;:]$/, '') + '.';

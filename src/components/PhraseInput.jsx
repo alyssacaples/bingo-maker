@@ -195,6 +195,10 @@ const travelOptions = [
   {
     "key": "vietnam-travel",
     "label": "Vietnam"
+  },
+  {
+    "key": "vietnam-trip",
+    "label": "Vietnam Trip"
   }
 ];
 

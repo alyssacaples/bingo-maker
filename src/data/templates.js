@@ -421,7 +421,6 @@ export const samplePhrases = {
       "Jojo Rabbit",
       "Marriage Story",
       "1917",
-      "Parasite",
       "La La Land",
       "Moonlight",
       "Mad Max: Fury Road",
