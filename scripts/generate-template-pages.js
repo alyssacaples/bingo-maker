@@ -78,6 +78,28 @@ function escapeHtml(str) {
     .replace(/'/g, '&#39;');
 }
 
+// The intro is a 50-100 word direct-answer paragraph, which is right for the
+// page body and far too long for a meta description: every template was
+// emitting 400+ characters, so Google cut the snippet mid-sentence on all of
+// them. This trims to something that fits, preferring a natural break over a
+// hard cut.
+const META_MAX = 155;
+function metaDescription(intro) {
+  const text = String(intro).replace(/\s+/g, ' ').trim();
+  if (text.length <= META_MAX) return text;
+
+  // The house intro formula opens with the claim, then a colon or a "from X to
+  // Y" list of examples. Either is a clean place to stop.
+  for (const brk of [text.indexOf(':'), text.indexOf(', from ')]) {
+    if (brk >= 80 && brk <= META_MAX) return text.slice(0, brk).trim() + '.';
+  }
+
+  // Otherwise cut at the last word boundary that fits. No ellipsis: search
+  // engines add their own, and a trailing "..." just eats characters.
+  const cut = text.slice(0, META_MAX);
+  return cut.slice(0, cut.lastIndexOf(' ')).replace(/[,;:]$/, '') + '.';
+}
+
 function plainTitle(title) {
   return title.replace(/!$/, '');
 }
@@ -194,12 +216,12 @@ for (const slug of slugsToGenerate) {
 
   $('title').text(fullTitle);
 
-  setMetaTag($, 'meta[name="description"]', { name: 'description' }, content.intro);
+  setMetaTag($, 'meta[name="description"]', { name: 'description' }, metaDescription(content.intro));
   setMetaTag($, 'meta[property="og:title"]', { property: 'og:title' }, fullTitle);
-  setMetaTag($, 'meta[property="og:description"]', { property: 'og:description' }, content.intro);
+  setMetaTag($, 'meta[property="og:description"]', { property: 'og:description' }, metaDescription(content.intro));
   setMetaTag($, 'meta[property="og:url"]', { property: 'og:url' }, url);
   setMetaTag($, 'meta[name="twitter:title"]', { name: 'twitter:title' }, fullTitle);
-  setMetaTag($, 'meta[name="twitter:description"]', { name: 'twitter:description' }, content.intro);
+  setMetaTag($, 'meta[name="twitter:description"]', { name: 'twitter:description' }, metaDescription(content.intro));
 
   let canonical = $('link[rel="canonical"]');
   if (canonical.length === 0) {

@@ -409,17 +409,16 @@ const PhraseInput = ({
   phrases, 
   onPhraseInputChange, 
   onAddSamplePhrases, 
-  onClearAll 
+  onClearAll,
+  activeSlug
 }) => {
-  const [selectedTemplate, setSelectedTemplate] = useState(null);
+  const [selectedTemplate, setSelectedTemplate] = useState(activeSlug ?? null);
 
+  // Follow whatever App says is loaded, so a template picked from the homepage
+  // shortlist, or arrived at directly by URL, highlights its button here too.
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const template = params.get('template');
-    if (template) {
-      setSelectedTemplate(template);
-    }
-  }, []);
+    setSelectedTemplate(activeSlug ?? null);
+  }, [activeSlug]);
 
   const handleSampleClick = (templateKey) => {
     // Single funnel for all 155 template buttons and the category dropdowns,

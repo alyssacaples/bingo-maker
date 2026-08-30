@@ -10,6 +10,7 @@ import useBingoConfiguration from './hooks/useBingoConfiguration';
 // Import components
 import Header from './components/Header';
 import PhraseInput from './components/PhraseInput';
+import HomeIntro from './components/HomeIntro';
 import GridConfiguration from './components/GridConfiguration';
 import ProTips from './components/ProTips';
 import BugReportButton from './components/BugReportButton';
@@ -116,10 +117,18 @@ function App() {
   // path, so without this an arbitrary URL renders a real, indexable page.
   const [unknownTemplate, setUnknownTemplate] = useState(false);
 
+  // Which template is currently loaded. PhraseInput used to work this out on
+  // its own, but only from the legacy ?template= param, so arriving at a real
+  // /templates/<slug> path never highlighted the matching button. Holding it
+  // here keeps the homepage shortlist, the category buttons and the URL in
+  // agreement however the template was chosen.
+  const [activeSlug, setActiveSlug] = useState(null);
+
   // Enhanced sample phrases handler
   const handleAddSamplePhrases = useCallback((type) => {
     const suggestedTitle = addSamplePhrases(type);
     setTitle(suggestedTitle);
+    setActiveSlug(type);
 
     // Normalize the URL to the real template path (idempotent if already there).
     window.history.pushState({}, '', `/templates/${type}`);
@@ -129,6 +138,7 @@ function App() {
   const handleClearAll = useCallback(() => {
     clearAll();
     setTitle('BINGO');
+    setActiveSlug(null);
     window.history.pushState({}, '', '/');
   }, [clearAll, setTitle]);
 
@@ -242,6 +252,7 @@ function App() {
         setUnknownTemplate(false);
         clearAll();
         setTitle('BINGO');
+        setActiveSlug(null);
       }
     };
     window.addEventListener('popstate', onPopState);
@@ -281,6 +292,10 @@ function App() {
     return () => clearTimeout(timer);
   }, [handleAddSamplePhrases]);
 
+  // A template is loaded once the title has moved off the default. Same
+  // signal the header uses to decide whether to show the template name.
+  const hasActiveTemplate = Boolean(title && title !== 'BINGO' && title.trim() !== '');
+
   // Check if we have enough phrases
   const hasEnoughPhrases = phrases.length >= requiredCells;
   
@@ -295,6 +310,13 @@ function App() {
       <AdBanner slot="" style={{ marginBottom: '20px' }} />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Explainer and shortlist, homepage only. Once a template is loaded
+            the person is mid-task, so this gets out of the way. */}
+        <HomeIntro
+          show={!hasActiveTemplate}
+          onSelectTemplate={handleAddSamplePhrases}
+        />
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
           {/* Left Column - Phrase Input */}
@@ -333,6 +355,7 @@ function App() {
               phraseInput={phraseInput}
               phrases={phrases}
               onPhraseInputChange={handlePhraseInputChange}
+              activeSlug={activeSlug}
               onAddSamplePhrases={handleAddSamplePhrases}
               onClearAll={handleClearAll}
             />
