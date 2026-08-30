@@ -1314,7 +1314,7 @@ export const templateContent = {
       "book-reading",
       "workout-fitness",
       "crafting-fiber-arts",
-      "alyssa-outside-voice",
+      "acclaimed-books",
       "bouldering-gym"
     ]
   },
@@ -1371,7 +1371,7 @@ export const templateContent = {
       "bouldering-gym",
       "progression-fantasy",
       "book-reading",
-      "alyssa-outside-voice",
+      "artists-2026",
       "workout-fitness"
     ]
   },
@@ -1402,34 +1402,6 @@ export const templateContent = {
       "enchantments-day",
       "backpacking-gear",
       "snow-camping-winter"
-    ]
-  },
-  "alyssa-outside-voice": {
-    "intro": "Alyssa Outside Voice Bingo is a printable card built from my own running jokes and hiking-trip catchphrases: princess throne, passenger princess, yap yell screech, gorpcore Patagonia, microdosing retirement. If you've been on a trail or road trip with me, you already know half these bits, and if you haven't, it's still a fun, slightly absurd card to fill out. Free, no signup, print it for the next trip or keep it open on your phone and mark it as the bits happen.",
-    "faq": [
-      {
-        "q": "What is this bingo card actually about?",
-        "a": "It's personal. These are inside jokes, nicknames, and catchphrases from my own hiking trips and friend group, not generic hiking terms."
-      },
-      {
-        "q": "Do I need to know Alyssa to play?",
-        "a": "It helps, but you don't have to. It's still fun and weird even if half the squares mean nothing to you yet."
-      },
-      {
-        "q": "Can I customize it?",
-        "a": "Yes, use it as a template and swap in your own group's bits on the free bingo card maker."
-      },
-      {
-        "q": "Is it free?",
-        "a": "Completely free, no signup. If you want the more normal version of this, regular Hiking Adventures Bingo is a good one to try."
-      }
-    ],
-    "related": [
-      "hiking",
-      "washington-trails",
-      "after-work-seattle",
-      "san-juan-islands",
-      "multi-day-backpacking"
     ]
   },
   "backpacking-gear": {
