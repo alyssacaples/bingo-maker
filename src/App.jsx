@@ -224,6 +224,30 @@ function App() {
     }
   }, [title, unknownTemplate]);
 
+  // Browser Back/Forward. pushState is used when a template is picked, but
+  // nothing listened for popstate, so going Back changed the URL while the card
+  // kept the previous template's title and phrases: the address bar and the
+  // page disagreed, and a reload would then show something different again.
+  useEffect(() => {
+    const onPopState = () => {
+      const slug = getTemplateSlugFromPath();
+      if (slug && templateTitles[slug]) {
+        setUnknownTemplate(false);
+        addSamplePhrases(slug);
+        setTitle(templateTitles[slug]);
+      } else if (slug) {
+        setUnknownTemplate(true);
+      } else {
+        // Back to the homepage: return the card to its empty state.
+        setUnknownTemplate(false);
+        clearAll();
+        setTitle('BINGO');
+      }
+    };
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, [addSamplePhrases, clearAll, setTitle]);
+
   // Check the URL (path or legacy query param) on load to populate template
   useEffect(() => {
     const pathSlug = getTemplateSlugFromPath();

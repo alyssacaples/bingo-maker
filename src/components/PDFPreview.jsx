@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { pdf } from '@react-pdf/renderer';
 import { Eye, X, Download, Settings } from 'lucide-react';
 import CardCustomization from './CardCustomization';
+import useModalBehavior from '../hooks/useModalBehavior';
 import { trackPdfDownload } from '../utils/analytics';
 
 const PDFPreview = ({ 
@@ -71,6 +72,7 @@ const PDFPreview = ({
   // pdfUrl by an effect: revocation has to be able to run outside React's
   // render cycle.
   const pdfUrlRef = useRef(null);
+  const { panelRef, onBackdropClick } = useModalBehavior(isOpen, onClose);
 
   // Regenerate whenever the modal is open and any setting changes.
   //
@@ -163,13 +165,22 @@ const PDFPreview = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-ink/60 flex items-center justify-center z-50 p-4">
-      <div className={`bg-surface border-2 border-ink ${showCustomization ? 'max-w-7xl' : 'max-w-5xl'} max-h-[95vh] w-full flex flex-col`}>
+    <div
+      className="fixed inset-0 bg-ink/60 flex items-center justify-center z-50 p-4"
+      onClick={onBackdropClick}
+    >
+      <div
+        ref={panelRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="pdf-preview-heading"
+        className={`bg-surface border-2 border-ink ${showCustomization ? 'max-w-7xl' : 'max-w-5xl'} max-h-[95vh] w-full flex flex-col`}
+      >
         {/* Header */}
         <div className="flex justify-between items-center px-4 py-3 border-b-2 border-ink bg-ground-2">
           <div className="flex items-center space-x-2">
             <Eye className="w-4 h-4 text-accent" />
-            <h3 className="font-display text-[14px] uppercase text-ink">PDF Preview</h3>
+            <h3 id="pdf-preview-heading" className="font-display text-[14px] uppercase text-ink">PDF Preview</h3>
           </div>
           
           <div className="flex items-center space-x-2">

@@ -178,8 +178,8 @@ const CardCustomization = ({
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="title-input-label">Title Font</label>
-              <select
+              <label className="title-input-label" htmlFor="cc-title-font">Title Font</label>
+              <select id="cc-title-font"
                 value={titleFont}
                 onChange={(e) => setTitleFont(e.target.value)}
                 disabled={printerFriendly}
@@ -191,8 +191,8 @@ const CardCustomization = ({
               </select>
             </div>
             <div>
-              <label className="title-input-label">Cell Font</label>
-              <select
+              <label className="title-input-label" htmlFor="cc-cell-font">Cell Font</label>
+              <select id="cc-cell-font"
                 value={cellFont}
                 onChange={(e) => setCellFont(e.target.value)}
                 disabled={printerFriendly}
@@ -207,9 +207,9 @@ const CardCustomization = ({
 
           <div className="grid grid-cols-3 gap-3">
             <div>
-              <label className="title-input-label">Title</label>
+              <label className="title-input-label" htmlFor="cc-title">Title</label>
               <div className="flex items-center space-x-1">
-                <input
+                <input id="cc-title"
                   type="color"
                   value={titleColor}
                   onChange={(e) => setTitleColor(e.target.value)}
@@ -221,9 +221,9 @@ const CardCustomization = ({
             </div>
 
             <div>
-              <label className="title-input-label">Subtitle</label>
+              <label className="title-input-label" htmlFor="cc-subtitle">Subtitle</label>
               <div className="flex items-center space-x-1">
-                <input
+                <input id="cc-subtitle"
                   type="color"
                   value={subtitleColor}
                   onChange={(e) => setSubtitleColor(e.target.value)}
@@ -235,9 +235,9 @@ const CardCustomization = ({
             </div>
 
             <div>
-              <label className="title-input-label">Cell Text</label>
+              <label className="title-input-label" htmlFor="cc-cell-text">Cell Text</label>
               <div className="flex items-center space-x-1">
-                <input
+                <input id="cc-cell-text"
                   type="color"
                   value={cellTextColor}
                   onChange={(e) => setCellTextColor(e.target.value)}
@@ -258,9 +258,9 @@ const CardCustomization = ({
         </h4>
         <div className="space-y-4">
           <div>
-            <label className="title-input-label">Grid Border Color</label>
+            <label className="title-input-label" htmlFor="cc-grid-border-color">Grid Border Color</label>
             <div className="flex items-center space-x-3">
-              <input
+              <input id="cc-grid-border-color"
                 type="color"
                 value={borderColor}
                 onChange={(e) => setBorderColor(e.target.value)}
@@ -322,8 +322,8 @@ const CardCustomization = ({
         </h4>
         <div className="space-y-4">
           <div>
-            <label className="title-input-label">Background Mode</label>
-            <select
+            <label className="title-input-label" htmlFor="cc-background-mode">Background Mode</label>
+            <select id="cc-background-mode"
               value={cellBackgroundMode}
               onChange={(e) => setCellBackgroundMode(e.target.value)}
               disabled={printerFriendly}
@@ -337,9 +337,9 @@ const CardCustomization = ({
 
           {cellBackgroundMode !== 'white' && (
             <div>
-              <label className="title-input-label">Cell Tint Color</label>
+              <label className="title-input-label" htmlFor="cc-cell-tint-color">Cell Tint Color</label>
               <div className="flex items-center space-x-3">
-                <input
+                <input id="cc-cell-tint-color"
                   type="color"
                   value={cellBackgroundTint}
                   onChange={(e) => setCellBackgroundTint(e.target.value)}
@@ -367,8 +367,8 @@ const CardCustomization = ({
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="title-input-label">Label Preset</label>
-              <select
+              <label className="title-input-label" htmlFor="cc-label-preset">Label Preset</label>
+              <select id="cc-label-preset"
                 value={freeSpacePreset}
                 onChange={(e) => handleFreeSpacePresetChange(e.target.value)}
                 className="input-field text-sm py-2"
@@ -381,8 +381,8 @@ const CardCustomization = ({
 
             {freeSpacePreset === 'custom' && (
               <div>
-                <label className="title-input-label">Custom Text</label>
-                <input
+                <label className="title-input-label" htmlFor="cc-custom-text">Custom Text</label>
+                <input id="cc-custom-text"
                   type="text"
                   value={freeSpaceLabel}
                   onChange={(e) => handleCustomLabelChange(e.target.value)}
@@ -396,9 +396,9 @@ const CardCustomization = ({
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="title-input-label">Background</label>
+              <label className="title-input-label" htmlFor="cc-background">Background</label>
               <div className="flex items-center space-x-1">
-                <input
+                <input id="cc-background"
                   type="color"
                   value={freeSpaceBackgroundColor}
                   onChange={(e) => setFreeSpaceBackgroundColor(e.target.value)}
@@ -410,9 +410,9 @@ const CardCustomization = ({
             </div>
 
             <div>
-              <label className="title-input-label">Font Color</label>
+              <label className="title-input-label" htmlFor="cc-font-color">Font Color</label>
               <div className="flex items-center space-x-1">
-                <input
+                <input id="cc-font-color"
                   type="color"
                   value={freeSpaceFontColor}
                   onChange={(e) => setFreeSpaceFontColor(e.target.value)}
@@ -445,9 +445,9 @@ const CardCustomization = ({
 
           {!useGradient ? (
             <div>
-              <label className="title-input-label">Solid Color</label>
+              <label className="title-input-label" htmlFor="cc-solid-color">Solid Color</label>
               <div className="flex items-center space-x-3">
-                <input
+                <input id="cc-solid-color"
                   type="color"
                   value={backgroundColor}
                   onChange={(e) => setBackgroundColor(e.target.value)}
@@ -466,8 +466,8 @@ const CardCustomization = ({
           ) : (
             <div className="space-y-3 bg-ground-2 p-3 border border-rule">
               <div>
-                <label className="title-input-label">Direction</label>
-                <select
+                <label className="title-input-label" htmlFor="cc-direction">Direction</label>
+                <select id="cc-direction"
                   value={gradientDirection}
                   onChange={(e) => setGradientDirection(e.target.value)}
                   disabled={printerFriendly}
@@ -480,9 +480,9 @@ const CardCustomization = ({
               </div>
 
               <div>
-                <label className="title-input-label">Color 1 (Start)</label>
+                <label className="title-input-label" htmlFor="cc-color-1-start">Color 1 (Start)</label>
                 <div className="flex items-center space-x-2">
-                  <input
+                  <input id="cc-color-1-start"
                     type="color"
                     value={gradientColor1}
                     onChange={(e) => setGradientColor1(e.target.value)}
@@ -500,9 +500,9 @@ const CardCustomization = ({
               </div>
 
               <div>
-                <label className="title-input-label">Color 2 (Middle)</label>
+                <label className="title-input-label" htmlFor="cc-color-2-middle">Color 2 (Middle)</label>
                 <div className="flex items-center space-x-2">
-                  <input
+                  <input id="cc-color-2-middle"
                     type="color"
                     value={gradientColor2}
                     onChange={(e) => setGradientColor2(e.target.value)}
@@ -536,9 +536,9 @@ const CardCustomization = ({
 
               {use3rdColor && (
                 <div>
-                  <label className="title-input-label">Color 3 (End)</label>
+                  <label className="title-input-label" htmlFor="cc-color-3-end">Color 3 (End)</label>
                   <div className="flex items-center space-x-2">
-                    <input
+                    <input id="cc-color-3-end"
                       type="color"
                       value={gradientColor3 || '#C7D2FE'}
                       onChange={(e) => setGradientColor3(e.target.value)}
@@ -581,8 +581,8 @@ const CardCustomization = ({
           </div>
 
           <div>
-            <label className="title-input-label">Repeating Pattern</label>
-            <select
+            <label className="title-input-label" htmlFor="cc-repeating-pattern">Repeating Pattern</label>
+            <select id="cc-repeating-pattern"
               value={backgroundPattern || ""}
               onChange={(e) => setBackgroundPattern(e.target.value || null)}
               disabled={printerFriendly}

@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import useModalBehavior from '../hooks/useModalBehavior';
 import { X, Bug, Send, AlertCircle } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 const BugReportModal = ({ isOpen, onClose }) => {
+  const { panelRef, onBackdropClick } = useModalBehavior(isOpen, onClose);
   const [formData, setFormData] = useState({
     description: '',
     stepsToReproduce: '',
@@ -88,15 +90,25 @@ const BugReportModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-ink/60 flex items-center justify-center z-50 p-4">
-      <div className="bg-surface border-2 border-ink max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+    <div
+      className="fixed inset-0 bg-ink/60 flex items-center justify-center z-50 p-4"
+      onClick={onBackdropClick}
+    >
+      <div
+        ref={panelRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="bug-report-heading"
+        className="bg-surface border-2 border-ink max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+      >
         <div className="flex items-center justify-between px-5 py-4 border-b-2 border-ink bg-ground-2">
           <div className="flex items-center space-x-3">
             <Bug className="w-4 h-4 text-accent" />
-            <h2 className="font-display text-[14px] uppercase text-ink">Report a Bug</h2>
+            <h2 id="bug-report-heading" className="font-display text-[14px] uppercase text-ink">Report a Bug</h2>
           </div>
           <button
             onClick={onClose}
+            aria-label="Close"
             className="text-ink-2 hover:text-ink"
           >
             <X className="w-6 h-6" />
