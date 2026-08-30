@@ -195,6 +195,10 @@ const travelOptions = [
   {
     "key": "vietnam-travel",
     "label": "Vietnam"
+  },
+  {
+    "key": "vietnam-trip",
+    "label": "Vietnam Trip"
   }
 ];
 
@@ -206,6 +210,10 @@ const bookOptions = [
   {
     "key": "acclaimed-books",
     "label": "Acclaimed Books"
+  },
+  {
+    "key": "hs-literature",
+    "label": "High School Literature"
   },
   {
     "key": "summer-stories-and-feelings",
@@ -409,17 +417,16 @@ const PhraseInput = ({
   phrases, 
   onPhraseInputChange, 
   onAddSamplePhrases, 
-  onClearAll 
+  onClearAll,
+  activeSlug
 }) => {
-  const [selectedTemplate, setSelectedTemplate] = useState(null);
+  const [selectedTemplate, setSelectedTemplate] = useState(activeSlug ?? null);
 
+  // Follow whatever App says is loaded, so a template picked from the homepage
+  // shortlist, or arrived at directly by URL, highlights its button here too.
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const template = params.get('template');
-    if (template) {
-      setSelectedTemplate(template);
-    }
-  }, []);
+    setSelectedTemplate(activeSlug ?? null);
+  }, [activeSlug]);
 
   const handleSampleClick = (templateKey) => {
     // Single funnel for all 155 template buttons and the category dropdowns,
@@ -637,6 +644,27 @@ const PhraseInput = ({
                   Party Icebreakers
                 </button>
                 <button
+                  onClick={() => handleSampleClick('party-2026')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'party-2026' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  2026 Party
+                </button>
+                <button
+                  onClick={() => handleSampleClick('girls-night-out')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'girls-night-out' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Girls&apos; Night Out
+                </button>
+                <button
+                  onClick={() => handleSampleClick('bar-crawl')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'bar-crawl' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Bar Crawl
+                </button>
+                <button
                   onClick={() => handleSampleClick('deep-questions')}
                   className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'deep-questions' ? 'selected' : ''}`}
                 >
@@ -656,6 +684,13 @@ const PhraseInput = ({
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   College Life
+                </button>
+                <button
+                  onClick={() => handleSampleClick('alma-maters')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'alma-maters' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Alma Maters
                 </button>
               </div>
             </div>
@@ -685,6 +720,48 @@ const PhraseInput = ({
                   Classroom Fun
                 </button>
                 <button
+                  onClick={() => handleSampleClick('elementary-fall')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'elementary-fall' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Elementary School Fall
+                </button>
+                <button
+                  onClick={() => handleSampleClick('middle-school-fall')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'middle-school-fall' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Middle School Fall
+                </button>
+                <button
+                  onClick={() => handleSampleClick('high-school-fall')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'high-school-fall' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  High School Fall
+                </button>
+                <button
+                  onClick={() => handleSampleClick('fall-semester')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'fall-semester' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Fall Semester
+                </button>
+                <button
+                  onClick={() => handleSampleClick('world-history')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'world-history' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  World History
+                </button>
+                <button
+                  onClick={() => handleSampleClick('hs-math')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'hs-math' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  High School Math
+                </button>
+                <button
                   onClick={() => handleSampleClick('holiday-traditions')}
                   className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'holiday-traditions' ? 'selected' : ''}`}
                 >
@@ -710,6 +787,20 @@ const PhraseInput = ({
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Fall Activities
+                </button>
+                <button
+                  onClick={() => handleSampleClick('family-fall')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'family-fall' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Family Fall
+                </button>
+                <button
+                  onClick={() => handleSampleClick('halloween-party')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'halloween-party' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Halloween Party
                 </button>
                 <button
                   onClick={() => handleSampleClick('winter-activities')}
@@ -824,6 +915,27 @@ const PhraseInput = ({
                   Foodie Adventures
                 </button>
                 <button
+                  onClick={() => handleSampleClick('cocktails')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'cocktails' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Cocktail Orders
+                </button>
+                <button
+                  onClick={() => handleSampleClick('fast-food-brands')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'fast-food-brands' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Fast Food Chains
+                </button>
+                <button
+                  onClick={() => handleSampleClick('vacation-styles')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'vacation-styles' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Types of Vacation
+                </button>
+                <button
                   onClick={() => handleSampleClick('numbers')}
                   className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'numbers' ? 'selected' : ''}`}
                 >
@@ -898,6 +1010,20 @@ const PhraseInput = ({
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Seattle Freeze
+                </button>
+                <button
+                  onClick={() => handleSampleClick('seattle-restaurants')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'seattle-restaurants' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Seattle Restaurants
+                </button>
+                <button
+                  onClick={() => handleSampleClick('seattle-coffee')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'seattle-coffee' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Seattle Coffee Shops
                 </button>
                 <button
                   onClick={() => handleSampleClick('road-trip-west')}
@@ -1103,6 +1229,20 @@ const PhraseInput = ({
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   2026 Artists
+                </button>
+                <button
+                  onClick={() => handleSampleClick('basic-fall-girl')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'basic-fall-girl' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Basic Fall Girl
+                </button>
+                <button
+                  onClick={() => handleSampleClick('new-yuppie')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'new-yuppie' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  New Yuppie
                 </button>
                 <button
                   onClick={() => handleSampleClick('albums-forward-2026')}

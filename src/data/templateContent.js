@@ -1115,6 +1115,585 @@ export const templateContent = {
       "holiday-traditions"
     ]
   },
+  "alma-maters": {
+    "intro": "Alma Mater Bingo is a printable card of 25 schools people actually rep, from Harvard and Michigan to Spelman, RISD, Ole Miss and Berklee. Use it as an icebreaker when nobody in the room knows each other yet, or at a reunion where everyone knows each other far too well and will argue about football regardless. Free, no signup. Print a stack before people arrive, or pull it up on your phone and start asking.",
+    "faq": [
+      {
+        "q": "What schools are on an alma mater bingo card?",
+        "a": "The pool holds 57: the Ivies and their neighbors, big public flagships like Michigan and UT Austin, SEC football powers, small liberal arts colleges, HBCUs including Spelman and Howard, and art schools like RISD and Juilliard. Each card draws 25, so no two come out the same."
+      },
+      {
+        "q": "How many people do you need to play?",
+        "a": "It works from about six upward, and it gets better the more mixed the room is, because you need real range to fill a card. At a smaller dinner, play it as a conversation starter rather than a race to five in a row."
+      },
+      {
+        "q": "Can I swap in different schools?",
+        "a": "Yes. Edit the list before you print. Drop in the schools that actually turn up in your circle, add your regional favorites, or narrow the whole thing down to one conference if that is the crowd."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Completely free, no signup and no account. If your group has more schools in common than not, College Life Bingo asks about the experience instead of the name on the diploma."
+      }
+    ],
+    "related": [
+      "college-life",
+      "icebreakers",
+      "party-icebreakers",
+      "deep-questions",
+      "office-party"
+    ]
+  },
+  "fast-food-brands": {
+    "intro": "Fast Food Chains Bingo is a printable card of 25 places you have definitely eaten at, from McDonald's and Taco Bell to In-N-Out, Whataburger, Cook Out and Portillo's. Use it on a road trip to mark off every sign you pass, or at a party to settle once and for all which regional chain is genuinely the best. Free, no signup needed. Print it before you leave, or keep it open on your phone from the passenger seat.",
+    "faq": [
+      {
+        "q": "What chains are on the card?",
+        "a": "44 in the pool: the national giants, the ones that top customer satisfaction surveys like Jersey Mike's and Culver's, regional cult favorites including Whataburger, Cook Out and Bojangles, and newer arrivals like Dave's Hot Chicken, CAVA and Mixue."
+      },
+      {
+        "q": "Is this better on a road trip or at a party?",
+        "a": "Both, and they play differently. On the road you are marking off signs as they go past, which rewards a long drive. At a party you are marking off what people have actually eaten, which turns into an argument about regional loyalty almost immediately."
+      },
+      {
+        "q": "Can I add local chains?",
+        "a": "Yes, and you should. The card is far funnier with the places only your area has. Edit the phrase list before printing and swap the national names for whatever counts as a landmark where you live."
+      },
+      {
+        "q": "Does it cost anything?",
+        "a": "No, it is free with no signup. For something broader than drive-thrus, Foodie Adventures Bingo covers everything people have eaten rather than where they bought it."
+      }
+    ],
+    "related": [
+      "food-adventures",
+      "travel-experiences",
+      "road-trip-west",
+      "summer-bucketlist",
+      "icebreakers",
+      "party-icebreakers"
+    ]
+  },
+  "vacation-styles": {
+    "intro": "Types of Vacation Bingo is a printable card of 25 ways to take a trip, from a bachelorette weekend and a river cruise to a silent retreat, a gap year and full bleisure. Use it to work out what kind of traveler everyone in the group actually is, or as an icebreaker that gets people telling stories instead of listing job titles. Free and no signup. Print it for the trip, or open it on your phone over dinner.",
+    "faq": [
+      {
+        "q": "What counts as a vacation style?",
+        "a": "47 of them are in the pool, covering who you go with, how you get there and why. Girls trips and family reunions, RV trips and train journeys and sailing charters, safaris and silent retreats, plus the modern ones like set-jetting, digital nomad stints and sports tourism built around the World Cup or the Olympics."
+      },
+      {
+        "q": "Is this for planning a trip or playing at one?",
+        "a": "Either. As a planning tool it surfaces the kind of trip nobody thought to suggest. As a game it works best at a dinner where people have traveled differently, because every marked square comes with a story attached."
+      },
+      {
+        "q": "Can I make my own version?",
+        "a": "Yes. Edit the list before you print and keep only the styles your group would realistically consider, or go the other way and load it with the trips nobody has taken yet and treat it as a bucket list."
+      },
+      {
+        "q": "Is it free to use?",
+        "a": "Free, no signup. If you would rather track the things you did on a trip than the kind of trip it was, Travel Experiences Bingo covers that instead."
+      }
+    ],
+    "related": [
+      "travel-experiences",
+      "road-trip-west",
+      "summer-bucketlist",
+      "food-adventures",
+      "christmas-bucketlist",
+      "icebreakers"
+    ]
+  },
+  "seattle-restaurants": {
+    "intro": "Seattle Restaurants Bingo is a printable card of 25 places worth eating at in Seattle, from Canlis and Musang to Paseo, Biscuit Bitch and The Walrus and the Carpenter. No chains on it anywhere. Use it to plan a year of dinners, or hand it to someone who just moved here and wants a real list instead of the first search result. Free, no signup. Print it for the fridge or keep it open on your phone.",
+    "faq": [
+      {
+        "q": "Which restaurants are on the card?",
+        "a": "43 in the pool, mixing bucket-list rooms like Canlis and Cafe Juanita, recent James Beard nominees including Homer, Musang and Pancita, whatever Resy is pushing this season, and the institutions nobody argues about: The Pink Door, Salumi, Paseo, Ezell's. Every card draws 25, so no two are the same."
+      },
+      {
+        "q": "Is this only for people who live here?",
+        "a": "It works either way. Locals treat it as a checklist of the places they keep meaning to try. Visitors get a shortlist that came from someone who actually eats here rather than from a list of the top ten results."
+      },
+      {
+        "q": "Can I add my own spots?",
+        "a": "Please do. Neighborhood loyalty is the whole point of a card like this, so edit the list before printing and put your corner place on it. Cutting it down to one neighborhood makes a good version too."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free, no signup and no account. If you want the coffee equivalent, Seattle Coffee Shops Bingo covers the roasters and cafes with Starbucks left off entirely."
+      }
+    ],
+    "related": [
+      "seattle-coffee",
+      "seattle-travel",
+      "after-work-seattle",
+      "battling-seattle-freeze",
+      "washington-state-highlights",
+      "food-adventures"
+    ]
+  },
+  "seattle-coffee": {
+    "intro": "Seattle Coffee Shops Bingo is a printable card of 25 local roasters and cafes, from Victrola and Espresso Vivace to Boon Boona, Monorail Espresso and Ghost Alley. Starbucks is not on it, which is the entire point in the city that invented the problem. Use it as a slow tour of the neighborhoods, or as a competition with whoever you drink coffee with. Free and no signup needed.",
+    "faq": [
+      {
+        "q": "Why is Starbucks not on the card?",
+        "a": "Because marking it off proves nothing here. The 35 places in the pool are independent roasters and cafes: the institutions like Vivace and Caffe Vita, newer rooms like Gloom and Nudibranch, and the walk-up windows including Monorail Espresso and Ghost Alley by the gum wall."
+      },
+      {
+        "q": "How long does it take to fill a card?",
+        "a": "Longer than you would think, which is the fun of it. Most people play it over a season rather than a weekend. If you want it faster, print a 3x3 instead of a 5x5 and it turns into a very achievable Saturday."
+      },
+      {
+        "q": "Can I swap in my neighborhood spots?",
+        "a": "Yes. Edit the list before you print. Seattle has far more good coffee than fits on one card, so building a Ballard or Beacon Hill version of this is a better card than the citywide one."
+      },
+      {
+        "q": "Does it cost anything?",
+        "a": "No, it is free with no signup. Seattle Restaurants Bingo is the same idea for dinner, also with no chains on it."
+      }
+    ],
+    "related": [
+      "seattle-restaurants",
+      "seattle-travel",
+      "after-work-seattle",
+      "battling-seattle-freeze",
+      "washington-trails",
+      "pacific-northwest-books"
+    ]
+  },
+  "cocktails": {
+    "intro": "Cocktail Order Bingo is a printable card of 25 drinks to order or make, from an Old Fashioned and a Hugo Spritz to a hot toddy, a mezcal margarita and a genuinely good mocktail. Use it across a season of nights out, or as a way to stop ordering the same thing every single time. Free, no signup. Print it for the bar cart or keep it on your phone.",
+    "faq": [
+      {
+        "q": "What drinks are on the card?",
+        "a": "36 in the pool: the classics people actually order, the spritz family that took over every summer menu, cold-weather drinks like mulled wine and an apple butter Old Fashioned, and the modern bar tricks including milk-washed cocktails and colour-changing ones. Low-ABV and mocktail squares are in there too."
+      },
+      {
+        "q": "Is this for a bar or for making drinks at home?",
+        "a": "Both, and they play at different speeds. At bars it turns into a slow game across a season. At home it becomes a list of things to learn, which is a better use of a bottle of Campari than letting it sit there for two years."
+      },
+      {
+        "q": "Can I make a version without alcohol?",
+        "a": "Yes. Edit the list before you print and build it entirely out of mocktails, spritzes without the prosecco, and the tea and citrus drinks. The card works exactly the same way."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free with no signup. If you would rather track the night than the drink, Girls' Night Out Bingo covers what actually happens once everyone is out."
+      }
+    ],
+    "related": [
+      "food-adventures",
+      "office-party",
+      "party-icebreakers",
+      "icebreakers",
+      "travel-experiences",
+      "after-work-seattle"
+    ]
+  },
+  "basic-fall-girl": {
+    "intro": "Basic Fall Girl 2026 Bingo is a printable card of 25 things that happen every autumn without fail: the matcha latte, the barn jacket, the Hugo Spritz, someone announcing Sober October, Wuthering Heights appearing on a nightstand. Play it on a group chat through September, or bring it to the apple orchard where roughly nine of these will happen in one afternoon. Free, no signup. Print it or keep it on your phone.",
+    "faq": [
+      {
+        "q": "What is on a Basic Fall Girl card?",
+        "a": "34 squares in the pool, covering the outfit (corduroy blazer, ballet flats and slouchy socks, bows on everything), the drinks, the content (apple picking shoot, curated bookshelf pic, fall candle unboxing) and the announcements, from the silent walk to the Substack subscription."
+      },
+      {
+        "q": "Is this making fun of people?",
+        "a": "Affectionately, and mostly of ourselves. Every square is something a lot of us have genuinely done. It plays best in a group where everyone will get caught by at least four of them."
+      },
+      {
+        "q": "When is the best time to play it?",
+        "a": "September through early November, which is when the density of these peaks. It works over a whole season in a group chat, or in a single afternoon at a pumpkin patch."
+      },
+      {
+        "q": "Can I change the squares?",
+        "a": "Yes, and your friend group will have its own tells. Edit the list before you print. Free with no signup, and 2026 Party Bingo covers the same energy indoors."
+      }
+    ],
+    "related": [
+      "party-2026",
+      "girls-night-out",
+      "new-yuppie",
+      "icebreakers",
+      "trends-2025",
+      "cocktails"
+    ]
+  },
+  "new-yuppie": {
+    "intro": "New Yuppie Bingo is a printable card of 25 signs of the 1980s banker revival: the Patagonia vest, the Zyn, the Whoop, cottage cheese in Tupperware, someone saying Zone 2 out loud. Play it in an open-plan office, at a bachelor party in Nashville, or anywhere a half-zip pullover is doing the talking. Free and no signup needed.",
+    "faq": [
+      {
+        "q": "What counts as new yuppie?",
+        "a": "34 squares covering the uniform (vest, half-zip, white New Balances, loafers with no socks), the optimisation (CGM, cold plunge, creatine in the coffee, marathon training), and the money talk, from Bloomberg to the DraftKings notification to the G-Wagon in the lot."
+      },
+      {
+        "q": "Where does this play best?",
+        "a": "Anywhere finance, consulting or tech people gather in numbers. An office, a wedding, a Miami trip. The card fills alarmingly fast at a bachelor party."
+      },
+      {
+        "q": "Can I make a version for my own office?",
+        "a": "Yes, and it will be funnier than this one. Edit the list before printing and put in the specific things your coworkers actually do."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free, no signup. Office Party Bingo is the same idea aimed at the holiday party rather than the desk."
+      }
+    ],
+    "related": [
+      "office-party",
+      "party-2026",
+      "basic-fall-girl",
+      "cocktails",
+      "icebreakers",
+      "college-life"
+    ]
+  },
+  "girls-night-out": {
+    "intro": "Girls' Night Out Bingo is a printable card of 25 things that happen on every single one of them: the 4pm what are we wearing text, the espresso martini before anyone has seen a menu, the group photo on take three, the fries ordered for the table and eaten by one person. Play it at dinner, or fill it in over brunch the next morning. Free, no signup required.",
+    "faq": [
+      {
+        "q": "What is on the card?",
+        "a": "30 squares running the whole night: the logistics (someone 30 minutes late, the Resy booked three weeks ago, can we split evenly), the content (ring light in the bathroom, Hinge screenshot passed around, soft launch spotted) and the 2am portion, which is mostly skincare talk and a lost card."
+      },
+      {
+        "q": "Do you play it during the night or after?",
+        "a": "Either works and they are different games. Marking squares live turns the table into a scoreboard. Filling it in at brunch the next day is a better way to reconstruct what actually happened."
+      },
+      {
+        "q": "How many people do you need?",
+        "a": "Three or more. Below that you lose the group text, the split bill and the photo on take three, which is most of the card."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free with no signup. Cocktail Order Bingo pairs with it if you want to track what everyone actually drank."
+      }
+    ],
+    "related": [
+      "cocktails",
+      "party-2026",
+      "bar-crawl",
+      "basic-fall-girl",
+      "party-icebreakers",
+      "icebreakers"
+    ]
+  },
+  "party-2026": {
+    "intro": "2026 Party Bingo is a printable card of 25 things that happen at every party: someone takes over the aux, the ice runs out, the kitchen becomes the actual party, someone Irish exits, and one person is still standing at 4am. Hand it out at the door, or fill it in the next day from the photo dump. Free, no signup, print as many as you have guests.",
+    "faq": [
+      {
+        "q": "What is on a party bingo card?",
+        "a": "35 squares covering the arc of a night: the setup (charcuterie board with figs, honey and one weird cheese, the Costco cake), the conversation (someone brings up their Substack, their startup, or the marathon they ran) and the late stage, from the playlist coup to the wrong shoes going home."
+      },
+      {
+        "q": "Should guests get their own card?",
+        "a": "That is the better version. Print one per guest and the randomised squares mean everyone is watching for something different, which turns the whole room into the game."
+      },
+      {
+        "q": "Can I write my own squares?",
+        "a": "Yes, and you should for a specific crowd. Edit the list before printing and add the things only your friends do. The inside jokes are what make it land."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free, no signup and no account. Bar Crawl Bingo is the version for a night that moves between venues."
+      }
+    ],
+    "related": [
+      "bar-crawl",
+      "girls-night-out",
+      "cocktails",
+      "office-party",
+      "party-icebreakers",
+      "new-yuppie"
+    ]
+  },
+  "bar-crawl": {
+    "intro": "Bar Crawl Bingo is a printable card of 25 things that happen once a night starts moving: a group member lost by bar two, the $6 beer that becomes a $22 espresso martini, the eight blocks walked in the wrong direction, the wrong pin dropped in the group chat. Play it across the whole crawl, or settle it over late-night pizza. Free and no signup.",
+    "faq": [
+      {
+        "q": "What is on the card?",
+        "a": "30 squares built around a night that keeps moving: the logistics failures (wrong pin, wrong jacket, wrong direction), the money (cash-only cover surprise, Ubers split three ways) and the people, from the adopted new friends to the crush on a stranger who ends up in the group photo."
+      },
+      {
+        "q": "How many bars does it take to fill one?",
+        "a": "Three or four, honestly. The squares are dense enough that a proper crawl fills most of a card, which is either impressive or a warning depending on how you look at it."
+      },
+      {
+        "q": "Can I customise it for my city?",
+        "a": "Yes. Edit the list before you print and swap in your local specifics, the dive everyone ends up at and the late-night food that is actually available at 2am where you live."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free, no signup. Cocktail Order Bingo works alongside it if you want to track the drinks as well as the night."
+      }
+    ],
+    "related": [
+      "party-2026",
+      "girls-night-out",
+      "cocktails",
+      "office-party",
+      "icebreakers",
+      "food-adventures"
+    ]
+  },
+  "elementary-fall": {
+    "intro": "Elementary School Fall Bingo is a printable card of 25 things that happen in a K through 5 classroom every autumn: the handprint turkey, the pumpkin patch field trip, the costume parade, the candy corn guessing jar. Use it as a class activity through October and November, or send it home so families can play along. Free, no signup, print one per student.",
+    "faq": [
+      {
+        "q": "What age is this for?",
+        "a": "Kindergarten through fifth grade. The 30 squares are all classroom-scale things: leaf rubbing art, the Scholastic book order, reading Five Little Pumpkins, pumpkin bowling, the fall party with cider and donuts."
+      },
+      {
+        "q": "How do teachers usually run it?",
+        "a": "One card per student, marked off across the season rather than in a single lesson. Because the squares shuffle, every child is watching for a different thing, which keeps them paying attention to what the class is actually doing."
+      },
+      {
+        "q": "Can I take out the Halloween squares?",
+        "a": "Yes, and plenty of schools need to. Edit the list before printing and drop the costume parade and class party, and there are still well over 25 squares left for a card."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free with no signup and no account, which matters when it is going home in thirty backpacks. Classroom Activities Bingo covers the rest of the school year."
+      }
+    ],
+    "related": [
+      "classroom-activities",
+      "family-fall",
+      "middle-school-fall",
+      "kids-summer-reading-bingo",
+      "fall-activities",
+      "thanksgiving"
+    ]
+  },
+  "middle-school-fall": {
+    "intro": "Middle School Fall Bingo is a printable card of 25 things that define a sixth through eighth grade autumn: the first school dance, spirit week, a Stanley on every desk, the group Halloween costume, the first C panic. Play it across the season with a class or a friend group. Free and no signup needed.",
+    "faq": [
+      {
+        "q": "What is on the card?",
+        "a": "30 squares covering the social side (locker decorating, sharing an AirPod at lunch, a new friend group forming, a TikTok trend moving through the halls) and the school side, from student council elections to the permission slip lost in the backpack."
+      },
+      {
+        "q": "Is this for teachers or for students?",
+        "a": "Either. Advisory periods and homerooms use it as a low-effort seasonal activity, and friend groups play it on their own, which is usually funnier."
+      },
+      {
+        "q": "Can I add things specific to our school?",
+        "a": "Yes, and it lands much better that way. Edit the list before printing and put in your spirit week themes, your rival school, the specific substitute everyone knows."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free, no signup. High School Fall Bingo is the same idea a few years older."
+      }
+    ],
+    "related": [
+      "high-school-fall",
+      "elementary-fall",
+      "classroom-activities",
+      "middle-school-summer-picks",
+      "fall-activities",
+      "teen-summer-reading"
+    ]
+  },
+  "high-school-fall": {
+    "intro": "High School Fall Bingo is a printable card of 25 things that happen every autumn between the first football game and Thanksgiving break: homecoming week, the student section going wild, Common App essay stress, the senior parking spot getting painted, a hoodie worn every single day. Play it across the season. Free, no signup required.",
+    "faq": [
+      {
+        "q": "What is on the card?",
+        "a": "30 squares spanning the whole term: the events (homecoming parade and dance, powderpuff, fall play auditions, NHS induction), the academic grind (first quarter progress report, midterm week, group project drama) and the small stuff, like the locker nobody ever actually uses."
+      },
+      {
+        "q": "Who plays this?",
+        "a": "Students across a friend group, and advisors looking for something seasonal that takes no preparation. It also works as a yearbook or student-newspaper activity."
+      },
+      {
+        "q": "How is this different from Fall Semester Bingo?",
+        "a": "They overlap a lot. This one leans into the student experience and the small daily details. Fall Semester Bingo tracks the calendar of events more strictly and runs through finals."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free with no signup. Edit the list before printing to add your school's own traditions."
+      }
+    ],
+    "related": [
+      "fall-semester",
+      "middle-school-fall",
+      "college-life",
+      "high-school-summer-picks",
+      "fall-activities",
+      "classroom-activities"
+    ]
+  },
+  "hs-literature": {
+    "intro": "High School Literature Bingo is a printable card of 25 books English teachers keep assigning, from To Kill a Mockingbird and The Great Gatsby to Beloved, Persepolis and four different Shakespeare plays. Use it to see how much of the canon you actually got through, or hand it to a class at the start of the year as a map of what is coming. Free, no signup.",
+    "faq": [
+      {
+        "q": "Which books are on the card?",
+        "a": "34 in the pool: the unavoidable ones (Mockingbird, Gatsby, Lord of the Flies, 1984), the Shakespeare rotation, the American canon from Steinbeck to Hurston to Morrison, and the newer assignments including Persepolis and The Perks of Being a Wallflower."
+      },
+      {
+        "q": "Is this for students or for adults?",
+        "a": "Both, and they play it differently. Students use it to see what is ahead. Adults use it to find out how many they actually finished versus how many they have simply absorbed enough about to nod along."
+      },
+      {
+        "q": "Can I build a version for my syllabus?",
+        "a": "Yes. Edit the list before printing so it matches what your department actually assigns, which turns it into a genuinely useful first-day handout."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free, no signup. Acclaimed Books Bingo covers prize winners and modern literary fiction if you want something past the syllabus."
+      }
+    ],
+    "related": [
+      "acclaimed-books",
+      "book-reading",
+      "teen-summer-reading",
+      "nyt-fiction-bestsellers",
+      "high-school-fall",
+      "classroom-activities"
+    ]
+  },
+  "world-history": {
+    "intro": "World History Bingo is a printable card of 25 eras and events from the standard survey course, from Mesopotamia and the Silk Road to the Treaty of Versailles and the fall of the Soviet Union. Use it as a review activity before an exam, or as a term-long card students mark off as each unit gets covered. Free and no signup.",
+    "faq": [
+      {
+        "q": "What does it cover?",
+        "a": "40 entries running the full sweep: the ancient world, the Middle Ages and the plague, the Renaissance and Reformation, revolutions from French to Industrial, both world wars, the Cold War and decolonisation."
+      },
+      {
+        "q": "How do teachers use it?",
+        "a": "Two ways. As a review game before a unit test, where students mark squares as terms come up. Or as a term-long card, marked off as each topic is taught, which gives the course a visible shape."
+      },
+      {
+        "q": "Can I narrow it to one unit?",
+        "a": "Yes, and for a single test that works better. Edit the list before printing and keep only the era you are covering, then use a 4x4 grid instead of a 5x5."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free with no signup. High School Math Bingo does the same job for the maths department."
+      }
+    ],
+    "related": [
+      "hs-math",
+      "hs-literature",
+      "classroom-activities",
+      "high-school-fall",
+      "college-life",
+      "fall-semester"
+    ]
+  },
+  "hs-math": {
+    "intro": "High School Math Bingo is a printable card of 25 concepts from Algebra 1 through Calculus: the quadratic formula, SOHCAHTOA, the unit circle, two-column proofs, limits and derivatives. Use it as a review activity, or as a card students mark off across four years to see how far they have come. Free, no signup needed.",
+    "faq": [
+      {
+        "q": "Which classes does it cover?",
+        "a": "35 entries across the whole sequence: Algebra 1 and 2, Geometry, Trigonometry, Pre-Calculus, Calculus and AP Statistics. Everything from FOIL and factoring to chain rule, matrices and standard deviation."
+      },
+      {
+        "q": "Is this a review game or a long-term card?",
+        "a": "It works as both. For a single class, edit it down to that course's topics and use it as an end-of-unit review. Across four years it becomes a record of everything a student has actually been taught."
+      },
+      {
+        "q": "Can I make one for a single course?",
+        "a": "Yes, and that is the better classroom version. Cut the list to one course before printing so every square is something the class has genuinely covered."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free, no signup. World History Bingo is the same idea for the history classroom."
+      }
+    ],
+    "related": [
+      "world-history",
+      "classroom-activities",
+      "hs-literature",
+      "high-school-fall",
+      "college-life",
+      "fall-semester"
+    ]
+  },
+  "fall-semester": {
+    "intro": "Fall Semester Bingo is a printable card of 25 milestones between schedule pickup and finals: the first football game, the tailgate, homecoming, picture retakes, the Common App deadline, midterms, and the semester grade panic that follows. Play it across the whole term, marking squares as the calendar delivers them. Free, no signup, print one per person and let the shuffle give everyone a different card.",
+    "faq": [
+      {
+        "q": "What is on the card?",
+        "a": "32 squares following the term in order: the opening weeks, football season and the marching band halftime show, the full homecoming run from parade to king and queen, then the academic stretch through midterms and into fall semester finals."
+      },
+      {
+        "q": "How is this different from High School Fall Bingo?",
+        "a": "They share a lot of squares. This one tracks the calendar of events and runs all the way through finals. High School Fall Bingo leans more into the day-to-day student experience and stops at Thanksgiving break."
+      },
+      {
+        "q": "Can I customise it for our school?",
+        "a": "Yes. Edit the list before printing and swap in your own spirit week themes, your rivalry game and whatever your school does that nobody else does."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free with no signup or account."
+      }
+    ],
+    "related": [
+      "high-school-fall",
+      "middle-school-fall",
+      "college-life",
+      "classroom-activities",
+      "fall-activities",
+      "world-history"
+    ]
+  },
+  "family-fall": {
+    "intro": "Family Fall Bingo is a printable card of 25 things to do together before winter: the pumpkin patch, the corn maze, carving pumpkins, trick-or-treating, Hocus Pocus, a bonfire with s'mores, and Thanksgiving at the end of it. Use it as a season-long bucket list stuck to the fridge, and let everyone mark off what the family actually gets to. Free, no signup.",
+    "faq": [
+      {
+        "q": "What is on the card?",
+        "a": "35 squares covering the whole season: the outings (apple picking, hayride, foliage drive, trunk-or-treat), the kitchen (apple pie, pumpkin bread, caramel apples, cider on the stove), the Halloween run from costumes to handing out candy, and Thanksgiving and the turkey trot at the end."
+      },
+      {
+        "q": "What ages does it work for?",
+        "a": "Most of it works from toddlers up, and the older kids tend to take over marking the card. Families with young children usually swap the later Thanksgiving squares for more Halloween ones."
+      },
+      {
+        "q": "Is it a game or a bucket list?",
+        "a": "Mostly a bucket list, which is why it goes on the fridge rather than the table. Some families race two cards against each other, one per parent, which is a good way to get things actually planned."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free, no signup. Elementary School Fall Bingo covers the classroom version of the same season."
+      }
+    ],
+    "related": [
+      "elementary-fall",
+      "fall-activities",
+      "thanksgiving",
+      "christmas-bucketlist",
+      "holiday-traditions",
+      "classroom-activities"
+    ]
+  },
+  "halloween-party": {
+    "intro": "Halloween Party Bingo is a printable card of 25 things that happen at every Halloween party: the costume that needs explaining, the group costume missing a member, the fog machine setting off the smoke alarm, and someone quoting Hocus Pocus by 10pm. Hand one to each guest at the door, or fill it in the next morning from the photos. Free, no signup, print as many as you need.",
+    "faq": [
+      {
+        "q": "What is on a Halloween party bingo card?",
+        "a": "34 squares in the pool, covering the costumes (the pun one, the last-minute closet build, the couples costume one half regrets), the party itself (Monster Mash opening the playlist, the candy bowl raided by an adult, trick-or-treaters at the door mid-party) and the aftermath, including decorations still up in November."
+      },
+      {
+        "q": "Is this for adults or for kids?",
+        "a": "Adults and older teenagers, since it is built around a house party rather than trick-or-treating. For younger children, Family Fall Bingo covers the pumpkin patch and trick-or-treating side of the season, and Elementary School Fall Bingo covers the classroom party."
+      },
+      {
+        "q": "When should I hand them out?",
+        "a": "At the door, one per guest. The squares shuffle, so everyone is watching for something different, which turns the whole room into the game instead of a card sitting on a table."
+      },
+      {
+        "q": "Can I write my own squares?",
+        "a": "Yes, and a card built around your specific friends is always funnier. Edit the list before printing and add the person who wears the same costume every year. Free either way, no signup."
+      }
+    ],
+    "related": [
+      "family-fall",
+      "elementary-fall",
+      "party-2026",
+      "fall-activities",
+      "cocktails",
+      "girls-night-out"
+    ]
+  },
   "outdoor-winter-adult": {
     "intro": "Outdoor Winter Activities (Adult) Bingo is a printable card of 25 cold-weather adventures, like backcountry ski touring, ice climbing, dog sledding, and chasing the Northern Lights. Use it to plan out an ambitious winter of trip ideas, or turn it into a challenge with your ski buddies to see who checks off the most. Free, no account required. Print it before the season starts or save it to your phone for trip planning.",
     "faq": [
@@ -3889,7 +4468,7 @@ export const templateContent = {
     ]
   },
   "artists-2026": {
-    "intro": "2026 Artists Right Now Bingo is a printable card of 25 names dominating the charts and playlists: Bruno Mars, Taylor Swift, Bad Bunny, Sabrina Carpenter, Kendrick Lamar, SZA, Doja Cat. Use it on a road trip with the radio on shuffle, or turn it into a party game where whoever guesses the artist first wins. Free, no signup required. Print it before your next drive or pull it up on your phone at the next playlist party.",
+    "intro": "2026 Artists Right Now Bingo is a printable card of 25 names dominating the charts and playlists: Sabrina Carpenter, Bad Bunny, Chappell Roan, Kendrick Lamar, Tate McRae, Zara Larsson, Doja Cat. Use it on a road trip with the radio on shuffle, or turn it into a party game where whoever guesses the artist first wins. Free, no signup required. Print it before your next drive or pull it up on your phone at the next playlist party.",
     "faq": [
       {
         "q": "What's on the 2026 artists right now bingo card?",

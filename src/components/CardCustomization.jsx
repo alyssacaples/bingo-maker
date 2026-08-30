@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Palette, Layers, Grid, Sliders, Type, Printer } from 'lucide-react';
 import { themes, applyTheme } from '../utils/themes';
+import { TITLE_FONT_OPTIONS, CELL_FONT_OPTIONS } from '../utils/pdfFontOptions';
 
 const CardCustomization = ({
   titleFont,
@@ -86,18 +87,8 @@ const CardCustomization = ({
     setUse3rdColor(theme.gradientColor3 !== null && theme.gradientColor3 !== undefined);
   };
 
-  const fontOptions = [
-    { value: 'Helvetica-Bold', label: 'Helvetica Bold' },
-    { value: 'Helvetica', label: 'Helvetica' },
-    { value: 'Times-Roman', label: 'Times Roman' },
-    { value: 'Courier', label: 'Courier' }
-  ];
-
-  const cellFontOptions = [
-    { value: 'Helvetica', label: 'Helvetica' },
-    { value: 'Times-Roman', label: 'Times Roman' },
-    { value: 'Courier', label: 'Courier' }
-  ];
+  const fontOptions = TITLE_FONT_OPTIONS;
+  const cellFontOptions = CELL_FONT_OPTIONS;
 
   const freeSpacePresets = [
     { value: 'FREE SPACE', label: 'FREE SPACE' },
