@@ -1,8 +1,9 @@
-import { useCallback, useEffect, lazy, Suspense } from 'react';
+import { useCallback, useEffect } from 'react';
 import './App.css';
 
 // Import custom hooks
 import usePhraseManager from './hooks/usePhraseManager';
+import { trackTemplateView, trackPdfPreview } from './utils/analytics';
 import useBingoConfiguration from './hooks/useBingoConfiguration';
 
 // Import components
@@ -12,10 +13,13 @@ import GridConfiguration from './components/GridConfiguration';
 import ProTips from './components/ProTips';
 import BugReportButton from './components/BugReportButton';
 import AdBanner from './components/AdBanner';
+import PrintAffiliateButton from './components/PrintAffiliateButton';
+import EmailCapture from './components/EmailCapture';
 
-// @react-pdf/renderer is a large dependency; defer it to its own chunk
-// so it's only downloaded once someone actually generates/previews a PDF.
-const PDFSection = lazy(() => import('./components/PDFSection'));
+// @react-pdf/renderer is a large dependency. PDFSectionLoader owns the lazy
+// import and holds it back until someone signals intent to make a PDF; see the
+// note in that file for why the plain lazy() here wasn't enough.
+import PDFSectionLoader from './components/PDFSectionLoader';
 
 // Reads the template slug from a real /templates/<slug> path, if present.
 const getTemplateSlugFromPath = () => {
@@ -200,6 +204,9 @@ function App() {
     const queryTemplate = new URLSearchParams(window.location.search).get('template');
     const slug = pathSlug || queryTemplate;
     if (slug) {
+      // GA4 records the pageview on its own; this adds the slug, which is the
+      // dimension that tells us which of the 155 templates people arrive on.
+      trackTemplateView(slug, document.title);
       const timer = setTimeout(() => {
         handleAddSamplePhrases(slug);
       }, 0);
@@ -289,14 +296,8 @@ function App() {
             />
 
             {/* PDF Generator */}
-            <Suspense fallback={
-              <div className="card">
-                <div className="card-body text-center font-mono text-[10px] text-ink-2 py-6">
-                  Loading PDF tools...
-                </div>
-              </div>
-            }>
-            <PDFSection
+            <PDFSectionLoader
+              onPreviewIntent={() => trackPdfPreview(title, gridSize)}
               hasEnoughPhrases={hasEnoughPhrases}
               requiredCells={requiredCells}
               gridSize={gridSize}
@@ -356,7 +357,13 @@ function App() {
               backgroundPatternOpacity={backgroundPatternOpacity}
               setBackgroundPatternOpacity={setBackgroundPatternOpacity}
             />
-            </Suspense>
+
+            {/* Order printed cards (renders only once the affiliate
+                programme is configured) */}
+            <PrintAffiliateButton title={title} />
+
+            {/* Weekly template list (renders only once a provider is set) */}
+            <EmailCapture source="sidebar" />
 
             {/* Pro Tips */}
             <ProTips />

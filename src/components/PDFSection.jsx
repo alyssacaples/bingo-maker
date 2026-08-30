@@ -63,6 +63,7 @@ const PDFSection = ({
   setBackgroundPattern,
   backgroundPatternOpacity,
   setBackgroundPatternOpacity,
+  autoOpenPreview = false,
 }) => {
   // Create BingoDocument component with current settings
   const BingoDocumentWithProps = useCallback(() => (
@@ -103,6 +104,7 @@ const PDFSection = ({
 
   return (
     <PDFGenerator
+      autoOpenPreview={autoOpenPreview}
       hasEnoughPhrases={hasEnoughPhrases}
       requiredCells={requiredCells}
       gridSize={gridSize}

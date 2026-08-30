@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { Download, Eye } from 'lucide-react';
 import PDFPreview from './PDFPreview';
+import { trackPdfDownload, trackPdfPreview } from '../utils/analytics';
 
 const PDFGenerator = ({ 
+  autoOpenPreview = false,
   hasEnoughPhrases, 
   requiredCells, 
   gridSize, 
@@ -63,6 +65,13 @@ const PDFGenerator = ({
 }) => {
   const [showPreview, setShowPreview] = useState(false);
 
+  // Someone clicked "Preview" on the lightweight placeholder and waited for
+  // this chunk to arrive. Honour that click instead of making them click again.
+  // The loader already reported the event, so this path stays untracked.
+  useEffect(() => {
+    if (autoOpenPreview) setShowPreview(true);
+  }, [autoOpenPreview]);
+
   return (
     <>
       <div className="card">
@@ -73,6 +82,7 @@ const PDFGenerator = ({
                 document={<BingoDocument />}
                 fileName={`${title || 'Bingo'}_Cards.pdf`}
                 className="btn-download"
+                onClick={() => trackPdfDownload(title, gridSize, phrases.length)}
               >
                 {({ loading }) => (
                   loading ? 'Preparing PDF…' : (
@@ -85,7 +95,10 @@ const PDFGenerator = ({
               </PDFDownloadLink>
 
               <button
-                onClick={() => setShowPreview(true)}
+                onClick={() => {
+                  trackPdfPreview(title, gridSize);
+                  setShowPreview(true);
+                }}
                 className="btn-secondary w-full"
               >
                 <Eye className="w-3.5 h-3.5 mr-2" aria-hidden="true" />

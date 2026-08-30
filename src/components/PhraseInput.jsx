@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FileText, Plus, Trash2 } from 'lucide-react';
+import { trackTemplateSelect } from '../utils/analytics';
 
 const travelOptions = [
   {
@@ -420,6 +421,9 @@ const PhraseInput = ({
   }, []);
 
   const handleSampleClick = (templateKey) => {
+    // Single funnel for all 155 template buttons and the category dropdowns,
+    // so one call here covers every way a template gets picked.
+    trackTemplateSelect(templateKey);
     setSelectedTemplate(templateKey);
     onAddSamplePhrases(templateKey);
   };
