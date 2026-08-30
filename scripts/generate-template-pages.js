@@ -284,3 +284,62 @@ const wellKnownDistDir = join(distDir, '.well-known');
 mkdirSync(wellKnownDistDir, { recursive: true });
 writeFileSync(join(wellKnownDistDir, 'llms.txt'), llmsTxt);
 console.log(`generate-template-pages: wrote llms.txt with ${llmsSlugs.length} templates`);
+
+// --- Pre-render the homepage too --------------------------------------------
+//
+// The homepage was shipping as a bare SPA shell: fetching it returned zero
+// characters of body text. Template pages have been server-rendered since
+// Block 1, but nothing linked to them from the strongest page on the domain, so
+// a crawler that does not execute JS could only find templates through
+// sitemap.xml and llms.txt. No internal links meant no link equity flowing to
+// the pages that carry all the content.
+//
+// This injects the same kind of static block the template pages get: a
+// direct-answer paragraph and a link to every generated template. Same
+// after('#root') placement, for the same reason. React's createRoot would wipe
+// a child, and putting it before pushes it above the whole app.
+{
+  const $ = cheerio.load(baseHtml);
+
+  // baseHtml is captured before any writes, so this cannot double up within a
+  // single run. It can if the script is run twice against the same dist without
+  // a fresh vite build, which is easy to do by accident.
+  $('#static-content').remove();
+
+  const alphabetical = [...slugsToGenerate].sort((a, b) =>
+    plainTitle(templateTitles[a]).localeCompare(plainTitle(templateTitles[b]))
+  );
+
+  const links = alphabetical
+    .map(slug => `<li><a href="/templates/${slug}">${escapeHtml(plainTitle(templateTitles[slug]))}</a></li>`)
+    .join('\n        ');
+
+  const homeStatic = `
+  <div id="static-content" class="static-content">
+    <div class="static-card">
+      <div class="static-card-header">About</div>
+      <div class="static-card-body">
+        <h1>Free printable bingo card generator</h1>
+        <p class="static-intro">MakeBingoCard is a free printable bingo card generator for parties, classrooms and office get-togethers. Put in your own phrases or start from one of ${slugsToGenerate.length} ready-made templates, pick a 3x3, 4x4 or 5x5 grid, and download a print-ready PDF. Every copy shuffles the squares, so a stack of cards is a real game rather than the same card printed twenty times. No account and no signup.</p>
+
+        <h2>All ${slugsToGenerate.length} templates</h2>
+        <ul class="static-board-items">
+        ${links}
+        </ul>
+      </div>
+    </div>
+  </div>`;
+
+  $('#root').after(homeStatic);
+
+  // These must match the defaults in App.jsx exactly. React rewrites the title
+  // and description on mount, so anything different here is overwritten for
+  // crawlers that run JS and kept for those that do not, which is the worst of
+  // both: two different titles for one page.
+  $('title').text('Free Bingo Card Maker - Create Custom Printable Bingo Cards');
+  setMetaTag($, 'meta[name="description"]', { name: 'description' },
+    'Create, customize, and print your own custom bingo cards for free. Generate PDF files with randomized squares for any event or theme.');
+
+  writeFileSync(distIndexPath, $.html());
+  console.log(`generate-template-pages: pre-rendered the homepage with ${alphabetical.length} template links`);
+}
