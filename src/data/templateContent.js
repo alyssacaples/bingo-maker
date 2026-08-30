@@ -1276,7 +1276,7 @@ export const templateContent = {
       },
       {
         "q": "Is it free?",
-        "a": "Free with no signup. If you would rather track the night than the drink, Office Party Bingo covers what actually happens once everyone is out."
+        "a": "Free with no signup. If you would rather track the night than the drink, Girls' Night Out Bingo covers what actually happens once everyone is out."
       }
     ],
     "related": [
@@ -1286,6 +1286,151 @@ export const templateContent = {
       "icebreakers",
       "travel-experiences",
       "after-work-seattle"
+    ]
+  },
+  "basic-fall-girl": {
+    "intro": "Basic Fall Girl 2026 Bingo is a printable card of 25 things that happen every autumn without fail: the matcha latte, the barn jacket, the Hugo Spritz, someone announcing Sober October, Wuthering Heights appearing on a nightstand. Play it on a group chat through September, or bring it to the apple orchard where roughly nine of these will happen in one afternoon. Free, no signup. Print it or keep it on your phone.",
+    "faq": [
+      {
+        "q": "What is on a Basic Fall Girl card?",
+        "a": "34 squares in the pool, covering the outfit (corduroy blazer, ballet flats and slouchy socks, bows on everything), the drinks, the content (apple picking shoot, curated bookshelf pic, fall candle unboxing) and the announcements, from the silent walk to the Substack subscription."
+      },
+      {
+        "q": "Is this making fun of people?",
+        "a": "Affectionately, and mostly of ourselves. Every square is something a lot of us have genuinely done. It plays best in a group where everyone will get caught by at least four of them."
+      },
+      {
+        "q": "When is the best time to play it?",
+        "a": "September through early November, which is when the density of these peaks. It works over a whole season in a group chat, or in a single afternoon at a pumpkin patch."
+      },
+      {
+        "q": "Can I change the squares?",
+        "a": "Yes, and your friend group will have its own tells. Edit the list before you print. Free with no signup, and 2026 Party Bingo covers the same energy indoors."
+      }
+    ],
+    "related": [
+      "party-2026",
+      "girls-night-out",
+      "new-yuppie",
+      "icebreakers",
+      "trends-2025",
+      "cocktails"
+    ]
+  },
+  "new-yuppie": {
+    "intro": "New Yuppie Bingo is a printable card of 25 signs of the 1980s banker revival: the Patagonia vest, the Zyn, the Whoop, cottage cheese in Tupperware, someone saying Zone 2 out loud. Play it in an open-plan office, at a bachelor party in Nashville, or anywhere a half-zip pullover is doing the talking. Free and no signup needed.",
+    "faq": [
+      {
+        "q": "What counts as new yuppie?",
+        "a": "34 squares covering the uniform (vest, half-zip, white New Balances, loafers with no socks), the optimisation (CGM, cold plunge, creatine in the coffee, marathon training), and the money talk, from Bloomberg to the DraftKings notification to the G-Wagon in the lot."
+      },
+      {
+        "q": "Where does this play best?",
+        "a": "Anywhere finance, consulting or tech people gather in numbers. An office, a wedding, a Miami trip. The card fills alarmingly fast at a bachelor party."
+      },
+      {
+        "q": "Can I make a version for my own office?",
+        "a": "Yes, and it will be funnier than this one. Edit the list before printing and put in the specific things your coworkers actually do."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free, no signup. Office Party Bingo is the same idea aimed at the holiday party rather than the desk."
+      }
+    ],
+    "related": [
+      "office-party",
+      "party-2026",
+      "basic-fall-girl",
+      "cocktails",
+      "icebreakers",
+      "college-life"
+    ]
+  },
+  "girls-night-out": {
+    "intro": "Girls' Night Out Bingo is a printable card of 25 things that happen on every single one of them: the 4pm what are we wearing text, the espresso martini before anyone has seen a menu, the group photo on take three, the fries ordered for the table and eaten by one person. Play it at dinner, or fill it in over brunch the next morning. Free, no signup required.",
+    "faq": [
+      {
+        "q": "What is on the card?",
+        "a": "30 squares running the whole night: the logistics (someone 30 minutes late, the Resy booked three weeks ago, can we split evenly), the content (ring light in the bathroom, Hinge screenshot passed around, soft launch spotted) and the 2am portion, which is mostly skincare talk and a lost card."
+      },
+      {
+        "q": "Do you play it during the night or after?",
+        "a": "Either works and they are different games. Marking squares live turns the table into a scoreboard. Filling it in at brunch the next day is a better way to reconstruct what actually happened."
+      },
+      {
+        "q": "How many people do you need?",
+        "a": "Three or more. Below that you lose the group text, the split bill and the photo on take three, which is most of the card."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free with no signup. Cocktail Order Bingo pairs with it if you want to track what everyone actually drank."
+      }
+    ],
+    "related": [
+      "cocktails",
+      "party-2026",
+      "bar-crawl",
+      "basic-fall-girl",
+      "party-icebreakers",
+      "icebreakers"
+    ]
+  },
+  "party-2026": {
+    "intro": "2026 Party Bingo is a printable card of 25 things that happen at every party: someone takes over the aux, the ice runs out, the kitchen becomes the actual party, someone Irish exits, and one person is still standing at 4am. Hand it out at the door, or fill it in the next day from the photo dump. Free, no signup, print as many as you have guests.",
+    "faq": [
+      {
+        "q": "What is on a party bingo card?",
+        "a": "35 squares covering the arc of a night: the setup (charcuterie board with figs, honey and one weird cheese, the Costco cake), the conversation (someone brings up their Substack, their startup, or the marathon they ran) and the late stage, from the playlist coup to the wrong shoes going home."
+      },
+      {
+        "q": "Should guests get their own card?",
+        "a": "That is the better version. Print one per guest and the randomised squares mean everyone is watching for something different, which turns the whole room into the game."
+      },
+      {
+        "q": "Can I write my own squares?",
+        "a": "Yes, and you should for a specific crowd. Edit the list before printing and add the things only your friends do. The inside jokes are what make it land."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free, no signup and no account. Bar Crawl Bingo is the version for a night that moves between venues."
+      }
+    ],
+    "related": [
+      "bar-crawl",
+      "girls-night-out",
+      "cocktails",
+      "office-party",
+      "party-icebreakers",
+      "new-yuppie"
+    ]
+  },
+  "bar-crawl": {
+    "intro": "Bar Crawl Bingo is a printable card of 25 things that happen once a night starts moving: a group member lost by bar two, the $6 beer that becomes a $22 espresso martini, the eight blocks walked in the wrong direction, the wrong pin dropped in the group chat. Play it across the whole crawl, or settle it over late-night pizza. Free and no signup.",
+    "faq": [
+      {
+        "q": "What is on the card?",
+        "a": "30 squares built around a night that keeps moving: the logistics failures (wrong pin, wrong jacket, wrong direction), the money (cash-only cover surprise, Ubers split three ways) and the people, from the adopted new friends to the crush on a stranger who ends up in the group photo."
+      },
+      {
+        "q": "How many bars does it take to fill one?",
+        "a": "Three or four, honestly. The squares are dense enough that a proper crawl fills most of a card, which is either impressive or a warning depending on how you look at it."
+      },
+      {
+        "q": "Can I customise it for my city?",
+        "a": "Yes. Edit the list before you print and swap in your local specifics, the dive everyone ends up at and the late-night food that is actually available at 2am where you live."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free, no signup. Cocktail Order Bingo works alongside it if you want to track the drinks as well as the night."
+      }
+    ],
+    "related": [
+      "party-2026",
+      "girls-night-out",
+      "cocktails",
+      "office-party",
+      "icebreakers",
+      "food-adventures"
     ]
   },
   "outdoor-winter-adult": {

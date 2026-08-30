@@ -636,6 +636,27 @@ const PhraseInput = ({
                   Party Icebreakers
                 </button>
                 <button
+                  onClick={() => handleSampleClick('party-2026')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'party-2026' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  2026 Party
+                </button>
+                <button
+                  onClick={() => handleSampleClick('girls-night-out')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'girls-night-out' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Girls&apos; Night Out
+                </button>
+                <button
+                  onClick={() => handleSampleClick('bar-crawl')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'bar-crawl' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Bar Crawl
+                </button>
+                <button
                   onClick={() => handleSampleClick('deep-questions')}
                   className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'deep-questions' ? 'selected' : ''}`}
                 >
@@ -1144,6 +1165,20 @@ const PhraseInput = ({
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   2026 Artists
+                </button>
+                <button
+                  onClick={() => handleSampleClick('basic-fall-girl')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'basic-fall-girl' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Basic Fall Girl
+                </button>
+                <button
+                  onClick={() => handleSampleClick('new-yuppie')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'new-yuppie' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  New Yuppie
                 </button>
                 <button
                   onClick={() => handleSampleClick('albums-forward-2026')}

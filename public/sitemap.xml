@@ -221,6 +221,31 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://makebingocard.com/templates/basic-fall-girl</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://makebingocard.com/templates/new-yuppie</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://makebingocard.com/templates/girls-night-out</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://makebingocard.com/templates/party-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://makebingocard.com/templates/bar-crawl</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://makebingocard.com/templates/outdoor-winter-adult</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
