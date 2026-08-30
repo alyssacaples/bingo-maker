@@ -657,6 +657,13 @@ const PhraseInput = ({
                   <Plus className="w-4 h-4 mr-1" />
                   College Life
                 </button>
+                <button
+                  onClick={() => handleSampleClick('alma-maters')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'alma-maters' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Alma Maters
+                </button>
               </div>
             </div>
 
@@ -822,6 +829,20 @@ const PhraseInput = ({
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Foodie Adventures
+                </button>
+                <button
+                  onClick={() => handleSampleClick('fast-food-brands')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'fast-food-brands' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Fast Food Chains
+                </button>
+                <button
+                  onClick={() => handleSampleClick('vacation-styles')}
+                  className={`btn-secondary text-sm sample-btn ${selectedTemplate === 'vacation-styles' ? 'selected' : ''}`}
+                >
+                  <Plus className="w-4 h-4 mr-1" />
+                  Types of Vacation
                 </button>
                 <button
                   onClick={() => handleSampleClick('numbers')}

@@ -1115,6 +1115,92 @@ export const templateContent = {
       "holiday-traditions"
     ]
   },
+  "alma-maters": {
+    "intro": "Alma Mater Bingo is a printable card of 25 schools people actually rep, from Harvard and Michigan to Spelman, RISD, Ole Miss and Berklee. Use it as an icebreaker when nobody in the room knows each other yet, or at a reunion where everyone knows each other far too well and will argue about football regardless. Free, no signup. Print a stack before people arrive, or pull it up on your phone and start asking.",
+    "faq": [
+      {
+        "q": "What schools are on an alma mater bingo card?",
+        "a": "The pool holds 57: the Ivies and their neighbors, big public flagships like Michigan and UT Austin, SEC football powers, small liberal arts colleges, HBCUs including Spelman and Howard, and art schools like RISD and Juilliard. Each card draws 25, so no two come out the same."
+      },
+      {
+        "q": "How many people do you need to play?",
+        "a": "It works from about six upward, and it gets better the more mixed the room is, because you need real range to fill a card. At a smaller dinner, play it as a conversation starter rather than a race to five in a row."
+      },
+      {
+        "q": "Can I swap in different schools?",
+        "a": "Yes. Edit the list before you print. Drop in the schools that actually turn up in your circle, add your regional favorites, or narrow the whole thing down to one conference if that is the crowd."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Completely free, no signup and no account. If your group has more schools in common than not, College Life Bingo asks about the experience instead of the name on the diploma."
+      }
+    ],
+    "related": [
+      "college-life",
+      "icebreakers",
+      "party-icebreakers",
+      "deep-questions",
+      "office-party"
+    ]
+  },
+  "fast-food-brands": {
+    "intro": "Fast Food Chains Bingo is a printable card of 25 places you have definitely eaten at, from McDonald's and Taco Bell to In-N-Out, Whataburger, Cook Out and Portillo's. Use it on a road trip to mark off every sign you pass, or at a party to settle once and for all which regional chain is genuinely the best. Free, no signup needed. Print it before you leave, or keep it open on your phone from the passenger seat.",
+    "faq": [
+      {
+        "q": "What chains are on the card?",
+        "a": "44 in the pool: the national giants, the ones that top customer satisfaction surveys like Jersey Mike's and Culver's, regional cult favorites including Whataburger, Cook Out and Bojangles, and newer arrivals like Dave's Hot Chicken, CAVA and Mixue."
+      },
+      {
+        "q": "Is this better on a road trip or at a party?",
+        "a": "Both, and they play differently. On the road you are marking off signs as they go past, which rewards a long drive. At a party you are marking off what people have actually eaten, which turns into an argument about regional loyalty almost immediately."
+      },
+      {
+        "q": "Can I add local chains?",
+        "a": "Yes, and you should. The card is far funnier with the places only your area has. Edit the phrase list before printing and swap the national names for whatever counts as a landmark where you live."
+      },
+      {
+        "q": "Does it cost anything?",
+        "a": "No, it is free with no signup. For something broader than drive-thrus, Food Adventures Bingo covers everything people have eaten rather than where they bought it."
+      }
+    ],
+    "related": [
+      "food-adventures",
+      "travel-experiences",
+      "road-trip-west",
+      "summer-bucketlist",
+      "icebreakers",
+      "party-icebreakers"
+    ]
+  },
+  "vacation-styles": {
+    "intro": "Types of Vacation Bingo is a printable card of 25 ways to take a trip, from a bachelorette weekend and a river cruise to a silent retreat, a gap year and full bleisure. Use it to work out what kind of traveler everyone in the group actually is, or as an icebreaker that gets people telling stories instead of listing job titles. Free and no signup. Print it for the trip, or open it on your phone over dinner.",
+    "faq": [
+      {
+        "q": "What counts as a vacation style?",
+        "a": "47 of them are in the pool, covering who you go with, how you get there and why. Girls trips and family reunions, RV trips and train journeys and sailing charters, safaris and silent retreats, plus the modern ones like set-jetting, digital nomad stints and sports tourism built around the World Cup or the Olympics."
+      },
+      {
+        "q": "Is this for planning a trip or playing at one?",
+        "a": "Either. As a planning tool it surfaces the kind of trip nobody thought to suggest. As a game it works best at a dinner where people have traveled differently, because every marked square comes with a story attached."
+      },
+      {
+        "q": "Can I make my own version?",
+        "a": "Yes. Edit the list before you print and keep only the styles your group would realistically consider, or go the other way and load it with the trips nobody has taken yet and treat it as a bucket list."
+      },
+      {
+        "q": "Is it free to use?",
+        "a": "Free, no signup. If you would rather track the things you did on a trip than the kind of trip it was, Travel Experiences Bingo covers that instead."
+      }
+    ],
+    "related": [
+      "travel-experiences",
+      "road-trip-west",
+      "summer-bucketlist",
+      "food-adventures",
+      "christmas-bucketlist",
+      "icebreakers"
+    ]
+  },
   "outdoor-winter-adult": {
     "intro": "Outdoor Winter Activities (Adult) Bingo is a printable card of 25 cold-weather adventures, like backcountry ski touring, ice climbing, dog sledding, and chasing the Northern Lights. Use it to plan out an ambitious winter of trip ideas, or turn it into a challenge with your ski buddies to see who checks off the most. Free, no account required. Print it before the season starts or save it to your phone for trip planning.",
     "faq": [
@@ -3889,7 +3975,7 @@ export const templateContent = {
     ]
   },
   "artists-2026": {
-    "intro": "2026 Artists Right Now Bingo is a printable card of 25 names dominating the charts and playlists: Bruno Mars, Taylor Swift, Bad Bunny, Sabrina Carpenter, Kendrick Lamar, SZA, Doja Cat. Use it on a road trip with the radio on shuffle, or turn it into a party game where whoever guesses the artist first wins. Free, no signup required. Print it before your next drive or pull it up on your phone at the next playlist party.",
+    "intro": "2026 Artists Right Now Bingo is a printable card of 25 names dominating the charts and playlists: Sabrina Carpenter, Bad Bunny, Chappell Roan, Kendrick Lamar, Tate McRae, Zara Larsson, Doja Cat. Use it on a road trip with the radio on shuffle, or turn it into a party game where whoever guesses the artist first wins. Free, no signup required. Print it before your next drive or pull it up on your phone at the next playlist party.",
     "faq": [
       {
         "q": "What's on the 2026 artists right now bingo card?",
