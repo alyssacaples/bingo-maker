@@ -104,7 +104,7 @@ const BugReportModal = ({ isOpen, onClose }) => {
         <div className="flex items-center justify-between px-5 py-4 border-b-2 border-ink bg-ground-2">
           <div className="flex items-center space-x-3">
             <Bug className="w-4 h-4 text-accent" />
-            <h2 id="bug-report-heading" className="font-display text-[14px] uppercase text-ink">Report a Bug</h2>
+            <h2 id="bug-report-heading" className="font-display font-bold text-[14px] uppercase tracking-[0.12em] text-ink">Report a Bug</h2>
           </div>
           <button
             onClick={onClose}
@@ -191,7 +191,7 @@ const BugReportModal = ({ isOpen, onClose }) => {
                 className="input-field"
                 placeholder="your@email.com"
               />
-              <p className="font-mono text-[10px] text-ink-2 mt-1">For follow-up questions only</p>
+              <p className="text-[13px] text-ink-2 mt-1">For follow-up questions only</p>
             </div>
           </div>
 

@@ -24,7 +24,7 @@
 
   .card-header {
     @apply px-4 py-3 border-b border-rule bg-ground-2
-           font-mono text-[10px] uppercase tracking-[0.1em] text-ink-2;
+           font-display font-bold text-[12px] uppercase tracking-[0.12em] text-ink;
   }
 
   .card-body {
@@ -36,7 +36,7 @@
   }
 
   .title-input-label {
-    @apply block font-mono text-[10px] uppercase tracking-[0.1em] text-ink-2 mb-1.5;
+    @apply block font-display font-semibold text-[11px] uppercase tracking-[0.13em] text-ink-2 mb-1.5;
   }
 
   /* ---------- header ---------- */
@@ -46,7 +46,7 @@
   }
 
   .header-title {
-    @apply font-display text-3xl md:text-[2.6rem] text-ink uppercase;
+    @apply font-display font-black text-3xl md:text-[2.6rem] text-ink uppercase;
     line-height: 0.94;
     letter-spacing: -0.025em;
     margin: 0;
@@ -68,14 +68,14 @@
   }
 
   .header-subtitle {
-    @apply font-mono text-[10px] tracking-[0.08em] text-ink-2;
+    @apply font-display font-normal text-[12px] uppercase tracking-[0.13em] text-ink-2;
     margin: 0.55rem 0 0;
   }
 
   /* ---------- buttons ---------- */
   .btn-primary {
     @apply inline-flex items-center justify-center px-5 py-3
-           font-display text-sm uppercase
+           font-display font-extrabold text-sm uppercase
            bg-accent text-on-accent border-2 border-paper-ink
            focus:outline-none focus-visible:ring-2 focus-visible:ring-accent
            focus-visible:ring-offset-2;
@@ -88,7 +88,7 @@
 
   .btn-download {
     @apply block w-full text-center px-5 py-4
-           font-display text-base uppercase
+           font-display font-extrabold text-base uppercase
            bg-accent text-on-accent border-2 border-paper-ink
            focus:outline-none focus-visible:ring-2 focus-visible:ring-accent
            focus-visible:ring-offset-2;
@@ -210,9 +210,6 @@
   }
   .pro-tips-header {
     @apply card-header;
-  }
-  .pro-tips-title {
-    @apply font-display text-[12px] uppercase tracking-[0.03em] text-ink flex items-center;
   }
   .pro-tips-body {
     @apply p-4;

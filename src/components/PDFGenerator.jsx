@@ -146,7 +146,7 @@ const PDFGenerator = ({
             </>
           ) : (
             <div className="border border-rule p-3">
-              <p className="font-display text-[12px] uppercase text-accent m-0">
+              <p className="font-display font-bold text-[12px] uppercase tracking-[0.1em] text-accent m-0">
                 Need {requiredCells} phrases
               </p>
               <p className="text-[13px] text-ink-2 mt-1 mb-0">

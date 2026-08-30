@@ -180,7 +180,7 @@ const PDFPreview = ({
         <div className="flex justify-between items-center px-4 py-3 border-b-2 border-ink bg-ground-2">
           <div className="flex items-center space-x-2">
             <Eye className="w-4 h-4 text-accent" />
-            <h3 id="pdf-preview-heading" className="font-display text-[14px] uppercase text-ink">PDF Preview</h3>
+            <h3 id="pdf-preview-heading" className="font-display font-bold text-[14px] uppercase tracking-[0.12em] text-ink">PDF Preview</h3>
           </div>
           
           <div className="flex items-center space-x-2">
@@ -280,13 +280,13 @@ const PDFPreview = ({
               <div className="text-center">
                 <div className="animate-spin rounded-full h-7 w-7 border-b-2 border-accent mx-auto mb-4"></div>
                 <div className="text-ink">Generating preview…</div>
-                <div className="font-mono text-[10px] text-ink-2 mt-1">This may take a moment</div>
+                <div className="text-[13px] text-ink-2 mt-1">This may take a moment</div>
               </div>
             </div>
           ) : error ? (
             <div className="flex items-center justify-center h-96">
               <div className="text-center">
-                <div className="font-display text-[12px] uppercase text-accent mb-2">Preview error</div>
+                <div className="font-display font-bold text-[12px] uppercase tracking-[0.1em] text-accent mb-2">Preview error</div>
                 <div className="text-[13px] text-ink-2">{error}</div>
                 <button
                   onClick={generatePreview}
@@ -318,7 +318,7 @@ const PDFPreview = ({
         {/* Footer */}
         {pdfUrl && (
           <div className="border-t border-rule bg-ground-2 px-4 py-2.5">
-            <div className="font-mono text-[10px] tracking-[0.06em] text-ink-2 text-center">
+            <div className="text-[12px] text-ink-2 text-center">
               Use the PDF viewer controls above to page through and zoom
             </div>
           </div>

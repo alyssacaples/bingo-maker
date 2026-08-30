@@ -127,7 +127,7 @@ const CardCustomization = ({
           <Printer className="w-4 h-4 text-accent" />
           <div>
             <h4 className="text-[13px] font-semibold text-ink">Printer-Friendly Mode</h4>
-            <p className="font-mono text-[10px] text-ink-2">Strips background colors & prints ink-safe B&W</p>
+            <p className="text-[12px] text-ink-2">Strips background colors & prints ink-safe B&W</p>
           </div>
         </div>
         <input
@@ -140,7 +140,7 @@ const CardCustomization = ({
 
       {/* 1. Theme Presets */}
       <div>
-        <h4 className="flex items-center font-display text-[12px] uppercase tracking-[0.03em] text-ink mb-3">
+        <h4 className="flex items-center font-display font-normal text-[13px] uppercase tracking-[0.13em] text-ink-2 mb-3">
           <Palette className="w-3.5 h-3.5 mr-2 text-accent" /> Theme Presets
         </h4>
         <div className="grid grid-cols-4 gap-2">
@@ -162,7 +162,7 @@ const CardCustomization = ({
                   <div className="flex-1" style={{ backgroundColor: theme.gradientColor2 || theme.backgroundColor }} />
                 </div>
                 <div className="h-1/3 flex border-t border-paper-ink bg-paper items-center justify-center">
-                  <span className="font-mono text-[8px] text-paper-ink truncate px-1">{theme.name}</span>
+                  <span className="font-medium text-[8px] text-paper-ink truncate px-1">{theme.name}</span>
                 </div>
               </div>
             </button>
@@ -172,7 +172,7 @@ const CardCustomization = ({
 
       {/* 2. Typography & Colors */}
       <div className="border-t border-rule pt-4">
-        <h4 className="flex items-center font-display text-[12px] uppercase tracking-[0.03em] text-ink mb-3">
+        <h4 className="flex items-center font-display font-normal text-[13px] uppercase tracking-[0.13em] text-ink-2 mb-3">
           <Type className="w-3.5 h-3.5 mr-2 text-accent" /> Typography & Colors
         </h4>
         <div className="space-y-4">
@@ -253,7 +253,7 @@ const CardCustomization = ({
 
       {/* 3. Grid Borders & Corners */}
       <div className="border-t border-rule pt-4">
-        <h4 className="flex items-center font-display text-[12px] uppercase tracking-[0.03em] text-ink mb-3">
+        <h4 className="flex items-center font-display font-normal text-[13px] uppercase tracking-[0.13em] text-ink-2 mb-3">
           <Grid className="w-3.5 h-3.5 mr-2 text-accent" /> Grid Layout
         </h4>
         <div className="space-y-4">
@@ -317,7 +317,7 @@ const CardCustomization = ({
 
       {/* 4. Cell Background Config */}
       <div className="border-t border-rule pt-4">
-        <h4 className="flex items-center font-display text-[12px] uppercase tracking-[0.03em] text-ink mb-3">
+        <h4 className="flex items-center font-display font-normal text-[13px] uppercase tracking-[0.13em] text-ink-2 mb-3">
           <Layers className="w-3.5 h-3.5 mr-2 text-accent" /> Cell Styles
         </h4>
         <div className="space-y-4">
@@ -361,7 +361,7 @@ const CardCustomization = ({
 
       {/* 5. Free Space Customizable Text */}
       <div className="border-t border-rule pt-4">
-        <h4 className="flex items-center font-display text-[12px] uppercase tracking-[0.03em] text-ink mb-3">
+        <h4 className="flex items-center font-display font-normal text-[13px] uppercase tracking-[0.13em] text-ink-2 mb-3">
           <Palette className="w-3.5 h-3.5 mr-2 text-accent" /> Free Space Cell
         </h4>
         <div className="space-y-4">
@@ -428,7 +428,7 @@ const CardCustomization = ({
 
       {/* 6. Background Gradients & Colors */}
       <div className="border-t border-rule pt-4">
-        <h4 className="flex items-center font-display text-[12px] uppercase tracking-[0.03em] text-ink mb-3">
+        <h4 className="flex items-center font-display font-normal text-[13px] uppercase tracking-[0.13em] text-ink-2 mb-3">
           <Sliders className="w-3.5 h-3.5 mr-2 text-accent" /> Background style
         </h4>
         <div className="space-y-4">
@@ -562,7 +562,7 @@ const CardCustomization = ({
 
       {/* 7. Card Frame & Repeating Patterns */}
       <div className="border-t border-rule pt-4">
-        <h4 className="flex items-center font-display text-[12px] uppercase tracking-[0.03em] text-ink mb-3">
+        <h4 className="flex items-center font-display font-normal text-[13px] uppercase tracking-[0.13em] text-ink-2 mb-3">
           <Layers className="w-3.5 h-3.5 mr-2 text-accent" /> Frame & Patterns
         </h4>
         <div className="space-y-4">
@@ -630,7 +630,7 @@ const CardCustomization = ({
       <div className="card-header">
         <div className="flex items-center space-x-2">
           <Palette className="w-4 h-4 text-accent" />
-          <h3 className="font-display text-[14px] uppercase text-ink">Card Customization</h3>
+          <h3 className="font-display font-bold text-[14px] uppercase tracking-[0.12em] text-ink">Card Customization</h3>
         </div>
       </div>
       {content}
