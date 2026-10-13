@@ -51,6 +51,8 @@ const CardCustomization = ({
   setBackgroundPattern,
   backgroundPatternOpacity,
   setBackgroundPatternOpacity,
+  bingoHeader,
+  setBingoHeader,
   compact = false
 }) => {
   const [activeTheme, setActiveTheme] = useState(null);
@@ -248,6 +250,20 @@ const CardCustomization = ({
           <Grid className="w-3.5 h-3.5 mr-2 text-accent" /> Grid Layout
         </h4>
         <div className="space-y-4">
+          <div className="flex items-center justify-between p-2 hover:bg-ground-2">
+            <div>
+              <span className="text-[13px] text-ink block">B-I-N-G-O Letter Row</span>
+              <span className="text-[12px] text-ink-2">One letter per column, above the grid</span>
+            </div>
+            <input
+              type="checkbox"
+              checked={bingoHeader}
+              onChange={(e) => setBingoHeader(e.target.checked)}
+              className="custom-checkbox w-4 h-4 cursor-pointer"
+              aria-label="Show a B-I-N-G-O letter row above the grid"
+            />
+          </div>
+
           <div>
             <label className="title-input-label" htmlFor="cc-grid-border-color">Grid Border Color</label>
             <div className="flex items-center space-x-3">
