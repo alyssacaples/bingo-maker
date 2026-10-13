@@ -416,8 +416,14 @@ const stateOptions = [
 // rough order of when each occasion actually happens.
 const holidaySeasonalOptions = [
   { key: 'thanksgiving', label: 'Thanksgiving' },
+  { key: 'friendsgiving', label: 'Friendsgiving' },
+  { key: 'hanukkah', label: 'Hanukkah' },
   { key: 'christmas-bucketlist', label: 'Christmas Bucket List' },
+  { key: 'holiday-baking', label: 'Holiday Baking' },
+  { key: 'christmas-movies', label: 'Christmas Movie Marathon' },
   { key: 'family-gathering', label: 'Family Gathering' },
+  { key: 'new-years-eve', label: "New Year's Eve Party" },
+  { key: 'winter-break-kids', label: 'Winter Break With Kids' },
   { key: 'indoor-winter-adult', label: 'Indoor Winter (Adult)' },
   { key: 'indoor-winter-family', label: 'Indoor Winter (Family)' },
   { key: 'outdoor-winter-adult', label: 'Outdoor Winter (Adult)' },
