@@ -4410,11 +4410,11 @@ export const templateContent = {
     ]
   },
   "movies-out-now-2026": {
-    "intro": "2026 Movies Out Now Bingo is a printable card of 25 movies currently in theaters: Michael, Project Hail Mary, The Mandalorian and Grogu, Wuthering Heights, Scream 7, Dog Man, Hamnet. Use it to plan your next theater run, or turn it into a game where you mark off titles as trailers roll. Free to use, no signup. Print it before your next multiplex trip or send it to the group chat on your way in.",
+    "intro": "2026 Movies Out Now Bingo is a printable card of 25 movies that have already opened this year: Project Hail Mary, The Super Mario Galaxy Movie, The Mandalorian and Grogu, Toy Story 5, The Odyssey, Spider-Man: Brand New Day. Use it to track what you have caught so far, or turn it into a game where you mark off titles as the trailers roll. Free to use, no signup. Print it before your next multiplex trip or send it to the group chat on your way in.",
     "faq": [
       {
         "q": "What's on the 2026 movies out now bingo card?",
-        "a": "25 movies currently playing in theaters, from Michael and Project Hail Mary to Scream 7 and Dog Man."
+        "a": "25 movies that have already played in theaters this year, from Scream 7 and Project Hail Mary in the spring to Toy Story 5 and The Odyssey over the summer."
       },
       {
         "q": "Is this for a solo moviegoer or a group?",
@@ -4439,11 +4439,11 @@ export const templateContent = {
     ]
   },
   "movies-coming-soon-2026": {
-    "intro": "2026 Movies Coming Soon Bingo is a printable card of 25 movies on the way: Toy Story 5, Avengers Doomsday, Dune Part Three, Moana live-action, Spider-Man Brand New Day, Jumanji Open World. Use it to track what's worth getting excited about, or turn it into a prediction game with friends over who actually shows up in theaters. No cost, no login. Print it now or save it on your phone to check off as release dates roll around.",
+    "intro": "2026 Movies Coming Soon Bingo is a printable card of 25 movies still on the way: Avengers: Doomsday, Dune: Part Three, The Hunger Games: Sunrise on the Reaping, Jumanji: Open World, Street Fighter, Clayface. Use it to track what's worth getting excited about, or turn it into a prediction game with friends over which ones actually make their date. No cost, no login. Print it now or save it on your phone to check off as release dates roll around.",
     "faq": [
       {
         "q": "What's on the 2026 movies coming soon bingo card?",
-        "a": "25 upcoming movies, from Toy Story 5 and Avengers Doomsday to Dune Part Three and Spider-Man Brand New Day."
+        "a": "25 movies still ahead of their release date, from Street Fighter and The Cat in the Hat this autumn to Avengers: Doomsday and Dune: Part Three in December."
       },
       {
         "q": "Is this for one person or a group?",
