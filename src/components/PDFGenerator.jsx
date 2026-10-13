@@ -63,7 +63,9 @@ const PDFGenerator = ({
   backgroundPattern,
   setBackgroundPattern,
   backgroundPatternOpacity,
-  setBackgroundPatternOpacity
+  setBackgroundPatternOpacity,
+  bingoHeader,
+  setBingoHeader
 }) => {
   const [showPreview, setShowPreview] = useState(false);
 
@@ -214,6 +216,8 @@ const PDFGenerator = ({
         setBackgroundPattern={setBackgroundPattern}
         backgroundPatternOpacity={backgroundPatternOpacity}
         setBackgroundPatternOpacity={setBackgroundPatternOpacity}
+        bingoHeader={bingoHeader}
+        setBingoHeader={setBingoHeader}
       />
     </>
   );

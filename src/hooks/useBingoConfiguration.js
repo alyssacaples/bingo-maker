@@ -34,6 +34,7 @@ const useBingoConfiguration = () => {
   const [cardMatEnabled, setCardMatEnabled] = useState(false);
   const [backgroundPattern, setBackgroundPattern] = useState(null);
   const [backgroundPatternOpacity, setBackgroundPatternOpacity] = useState(0.15);
+  const [bingoHeader, setBingoHeader] = useState(false);
 
   const shuffleArray = useCallback((array) => {
     const shuffled = [...array];
@@ -177,6 +178,8 @@ const useBingoConfiguration = () => {
     setBackgroundPattern,
     backgroundPatternOpacity,
     setBackgroundPatternOpacity,
+    bingoHeader,
+    setBingoHeader,
     generateBingoCard,
     requiredCells,
     hasCenter,

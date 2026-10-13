@@ -108,6 +108,8 @@ function App() {
     setBackgroundPattern,
     backgroundPatternOpacity,
     setBackgroundPatternOpacity,
+    bingoHeader,
+    setBingoHeader,
     generateBingoCard,
     requiredCells,
     hasCenter,
@@ -454,6 +456,8 @@ function App() {
               setBackgroundPattern={setBackgroundPattern}
               backgroundPatternOpacity={backgroundPatternOpacity}
               setBackgroundPatternOpacity={setBackgroundPatternOpacity}
+              bingoHeader={bingoHeader}
+              setBingoHeader={setBingoHeader}
             />
 
             {/* Order printed cards (renders only once the affiliate
