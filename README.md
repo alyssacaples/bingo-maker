@@ -34,7 +34,7 @@ State lives in two hooks:
 
 These are two distinct concepts, both selectable in the UI, easy to confuse:
 
-- **Templates** = pre-written phrase sets (173 of them) in [`src/data/templates.js`](src/data/templates.js), covering things like book/movie lists, seasonal activities, travel destinations, etc. Each one lives at `/templates/<slug>` (the older `?template=<slug>` query param still loads one too), and each is its own indexable landing page with a static, crawler-readable version in `dist/templates/<slug>/index.html`.
+- **Templates** = pre-written phrase sets in [`src/data/templates.js`](src/data/templates.js), a couple of hundred of them and growing (`npm run build` prints the current count), covering things like book/movie lists, seasonal activities, travel destinations, etc. Each one lives at `/templates/<slug>` (the older `?template=<slug>` query param still loads one too), and each is its own indexable landing page with a static, crawler-readable version in `dist/templates/<slug>/index.html`.
 - **Themes** = visual color/gradient presets (Christmas, Ocean, Midnight, etc.) in [`src/utils/themes.js`](src/utils/themes.js), applied via `CardCustomization`.
 
 ### Adding a new template
