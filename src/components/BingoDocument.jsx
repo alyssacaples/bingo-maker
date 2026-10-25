@@ -159,6 +159,29 @@ const createStyles = (customization = {}) => {
       width: '100%',
       maxWidth: '520pt',
     },
+    // Wraps the letter row and the grid so the two share one width and the
+    // letters sit over their own columns.
+    gridBlock: {
+      flexDirection: 'column',
+      width: '100%',
+      maxWidth: '500pt',
+      alignSelf: 'center',
+    },
+    headerRow: {
+      flexDirection: 'row',
+      marginBottom: 6,
+    },
+    headerCell: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    headerLetter: {
+      fontSize: 30,
+      fontFamily: titleFont,
+      color: actualTitleColor,
+      fontWeight: 'bold',
+    },
     grid: {
       flexDirection: 'column',
       border: `${actualGridBorderWidth}pt solid ${actualBorderColor}`,
@@ -240,7 +263,8 @@ const BingoCard = ({
   gradientColor3,
   cardMatEnabled,
   backgroundPattern,
-  backgroundPatternOpacity
+  backgroundPatternOpacity,
+  bingoHeader
 }) => {
   const styles = createStyles({
     titleFont,
@@ -308,6 +332,10 @@ const BingoCard = ({
     }
   }
 
+  // 5x5 gets the full word, smaller grids get as many letters as they have
+  // columns, so the row always has exactly one letter per column.
+  const headerLetters = bingoHeader ? 'BINGO'.slice(0, gridSize).split('') : [];
+
   const gridContent = (
     <View style={styles.grid}>
       {Array.from({ length: gridSize }, (_, rowIndex) => (
@@ -345,6 +373,21 @@ const BingoCard = ({
     </View>
   );
 
+  const gridBlock = (
+    <View style={styles.gridBlock}>
+      {headerLetters.length > 0 && (
+        <View style={styles.headerRow}>
+          {headerLetters.map((letter, i) => (
+            <View key={i} style={styles.headerCell}>
+              <Text style={styles.headerLetter}>{letter}</Text>
+            </View>
+          ))}
+        </View>
+      )}
+      {gridContent}
+    </View>
+  );
+
   return (
     <Page size="Letter" style={styles.page}>
       {actualUseGradient && (
@@ -370,9 +413,9 @@ const BingoCard = ({
       <View style={styles.pageContent}>
         {actualCardMatEnabled ? (
           <View style={styles.cardMat}>
-            {gridContent}
+            {gridBlock}
           </View>
-        ) : gridContent}
+        ) : gridBlock}
       </View>
       <Text style={styles.footer}>
         Generated with makebingocard.com • Card {cardIndex + 1} of {copies}
@@ -413,7 +456,8 @@ const BingoDocument = ({
   gradientColor3,
   cardMatEnabled,
   backgroundPattern,
-  backgroundPatternOpacity
+  backgroundPatternOpacity,
+  bingoHeader
 }) => (
   <Document>
     {Array.from({ length: copies }, (_, index) => (
@@ -451,6 +495,7 @@ const BingoDocument = ({
         cardMatEnabled={cardMatEnabled}
         backgroundPattern={backgroundPattern}
         backgroundPatternOpacity={backgroundPatternOpacity}
+        bingoHeader={bingoHeader}
       />
     ))}
   </Document>

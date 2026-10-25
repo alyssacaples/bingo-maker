@@ -61,7 +61,9 @@ const PDFPreview = ({
   backgroundPattern,
   setBackgroundPattern,
   backgroundPatternOpacity,
-  setBackgroundPatternOpacity
+  setBackgroundPatternOpacity,
+  bingoHeader,
+  setBingoHeader
 }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -85,7 +87,7 @@ const PDFPreview = ({
     if (isOpen && BingoDocument) {
       generatePreview();
     }
-  }, [isOpen, BingoDocument, subtitle, titleFont, titleColor, cellFont, backgroundColor, useGradient, gradientColor1, gradientColor2, borderColor, freeSpaceBackgroundColor, freeSpaceFontColor, cellTextColor, subtitleColor, borderWidth, gridBorderRadius, cellBackgroundMode, cellBackgroundTint, freeSpaceLabel, printerFriendly, gradientDirection, gradientColor3, cardMatEnabled, backgroundPattern, backgroundPatternOpacity]);
+  }, [isOpen, BingoDocument, subtitle, titleFont, titleColor, cellFont, backgroundColor, useGradient, gradientColor1, gradientColor2, borderColor, freeSpaceBackgroundColor, freeSpaceFontColor, cellTextColor, subtitleColor, borderWidth, gridBorderRadius, cellBackgroundMode, cellBackgroundTint, freeSpaceLabel, printerFriendly, gradientDirection, gradientColor3, cardMatEnabled, backgroundPattern, backgroundPatternOpacity, bingoHeader]);
 
   // Dragging a slider in the customization panel fires this on every change,
   // and each render takes long enough that several are in flight at once. The
@@ -267,6 +269,8 @@ const PDFPreview = ({
                   setBackgroundPattern={setBackgroundPattern}
                   backgroundPatternOpacity={backgroundPatternOpacity}
                   setBackgroundPatternOpacity={setBackgroundPatternOpacity}
+                  bingoHeader={bingoHeader}
+                  setBingoHeader={setBingoHeader}
                   compact={true}
                 />
               </div>

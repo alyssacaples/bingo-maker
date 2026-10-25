@@ -63,6 +63,8 @@ const PDFSection = ({
   setBackgroundPattern,
   backgroundPatternOpacity,
   setBackgroundPatternOpacity,
+  bingoHeader,
+  setBingoHeader,
   autoOpenPreview = false,
   autoStartDownload = false,
 }) => {
@@ -100,8 +102,9 @@ const PDFSection = ({
       cardMatEnabled={cardMatEnabled}
       backgroundPattern={backgroundPattern}
       backgroundPatternOpacity={backgroundPatternOpacity}
+      bingoHeader={bingoHeader}
     />
-  ), [copies, title, subtitle, gridSize, freeSpace, dynamicResize, fontSize, generateBingoCard, phrases, titleFont, titleColor, cellFont, backgroundColor, useGradient, gradientColor1, gradientColor2, borderColor, freeSpaceBackgroundColor, freeSpaceFontColor, cellTextColor, subtitleColor, borderWidth, gridBorderRadius, cellBackgroundMode, cellBackgroundTint, freeSpaceLabel, printerFriendly, gradientDirection, gradientColor3, cardMatEnabled, backgroundPattern, backgroundPatternOpacity]);
+  ), [copies, title, subtitle, gridSize, freeSpace, dynamicResize, fontSize, generateBingoCard, phrases, titleFont, titleColor, cellFont, backgroundColor, useGradient, gradientColor1, gradientColor2, borderColor, freeSpaceBackgroundColor, freeSpaceFontColor, cellTextColor, subtitleColor, borderWidth, gridBorderRadius, cellBackgroundMode, cellBackgroundTint, freeSpaceLabel, printerFriendly, gradientDirection, gradientColor3, cardMatEnabled, backgroundPattern, backgroundPatternOpacity, bingoHeader]);
 
   return (
     <PDFGenerator
@@ -163,6 +166,8 @@ const PDFSection = ({
       setBackgroundPattern={setBackgroundPattern}
       backgroundPatternOpacity={backgroundPatternOpacity}
       setBackgroundPatternOpacity={setBackgroundPatternOpacity}
+      bingoHeader={bingoHeader}
+      setBingoHeader={setBingoHeader}
     />
   );
 };

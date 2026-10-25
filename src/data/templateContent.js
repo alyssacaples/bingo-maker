@@ -4410,11 +4410,11 @@ export const templateContent = {
     ]
   },
   "movies-out-now-2026": {
-    "intro": "2026 Movies Out Now Bingo is a printable card of 25 movies currently in theaters: Michael, Project Hail Mary, The Mandalorian and Grogu, Wuthering Heights, Scream 7, Dog Man, Hamnet. Use it to plan your next theater run, or turn it into a game where you mark off titles as trailers roll. Free to use, no signup. Print it before your next multiplex trip or send it to the group chat on your way in.",
+    "intro": "2026 Movies Out Now Bingo is a printable card of 25 movies that have already opened this year: Project Hail Mary, The Super Mario Galaxy Movie, The Mandalorian and Grogu, Toy Story 5, The Odyssey, Spider-Man: Brand New Day. Use it to track what you have caught so far, or turn it into a game where you mark off titles as the trailers roll. Free to use, no signup. Print it before your next multiplex trip or send it to the group chat on your way in.",
     "faq": [
       {
         "q": "What's on the 2026 movies out now bingo card?",
-        "a": "25 movies currently playing in theaters, from Michael and Project Hail Mary to Scream 7 and Dog Man."
+        "a": "25 movies that have already played in theaters this year, from Scream 7 and Project Hail Mary in the spring to Toy Story 5 and The Odyssey over the summer."
       },
       {
         "q": "Is this for a solo moviegoer or a group?",
@@ -4439,11 +4439,11 @@ export const templateContent = {
     ]
   },
   "movies-coming-soon-2026": {
-    "intro": "2026 Movies Coming Soon Bingo is a printable card of 25 movies on the way: Toy Story 5, Avengers Doomsday, Dune Part Three, Moana live-action, Spider-Man Brand New Day, Jumanji Open World. Use it to track what's worth getting excited about, or turn it into a prediction game with friends over who actually shows up in theaters. No cost, no login. Print it now or save it on your phone to check off as release dates roll around.",
+    "intro": "2026 Movies Coming Soon Bingo is a printable card of 25 movies still on the way: Avengers: Doomsday, Dune: Part Three, The Hunger Games: Sunrise on the Reaping, Jumanji: Open World, Street Fighter, Clayface. Use it to track what's worth getting excited about, or turn it into a prediction game with friends over which ones actually make their date. No cost, no login. Print it now or save it on your phone to check off as release dates roll around.",
     "faq": [
       {
         "q": "What's on the 2026 movies coming soon bingo card?",
-        "a": "25 upcoming movies, from Toy Story 5 and Avengers Doomsday to Dune Part Three and Spider-Man Brand New Day."
+        "a": "25 movies still ahead of their release date, from Street Fighter and The Cat in the Hat this autumn to Avengers: Doomsday and Dune: Part Three in December."
       },
       {
         "q": "Is this for one person or a group?",
@@ -5044,6 +5044,186 @@ export const templateContent = {
       "midwest-books",
       "popular-book-club-picks",
       "acclaimed-books"
+    ]
+  },
+  "friendsgiving": {
+    "intro": "Friendsgiving Bingo is a printable card of 25 things that happen when your friends host Thanksgiving instead of your family: two people bring the same side dish, the host runs out of oven space, a folding chair comes out of somebody's trunk, a pie shows up store-bought and unapologetic. Hand a card to everyone as they walk in and see who fills a row first, or leave a stack on the counter for the slow stretch between courses. Free, and there is nothing to sign up for.",
+    "faq": [
+      {
+        "q": "What is Friendsgiving bingo?",
+        "a": "A printable card of 25 Friendsgiving moments, from the dish that arrives still in its grocery bag to the toast nobody asked for. Mark a square whenever one actually happens."
+      },
+      {
+        "q": "How many people can play?",
+        "a": "Any number. Print one card per guest so everyone gets a different arrangement, or share a single card and mark it as a table."
+      },
+      {
+        "q": "Can I swap in my own squares?",
+        "a": "Yes. Load the template on the card maker and edit any line to match your group's running jokes before you print."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Completely free, no account. If you host the family dinner too, Thanksgiving Bingo covers that table."
+      }
+    ],
+    "related": [
+      "thanksgiving",
+      "family-gathering",
+      "holiday-baking",
+      "christmas-bucketlist",
+      "holiday-traditions",
+      "new-years-eve",
+      "office-party"
+    ]
+  },
+  "hanukkah": {
+    "intro": "Hanukkah Bingo is a printable card of 25 things that happen across eight nights: the shamash gets lit first, the whole house smells like frying oil, a dreidel spins off the table, somebody loses count of which night it is. Use it with kids while the candles burn down, or set it out at a latke party so guests have something to do between rounds of dreidel. It costs nothing and needs no account. Print one per guest or pass a single card around.",
+    "faq": [
+      {
+        "q": "What's on a Hanukkah bingo card?",
+        "a": "Candle lighting, latkes, dreidel and gelt, plus the family moments around them, like the leftover candles that turn up in a drawer every single year."
+      },
+      {
+        "q": "Is it good for kids?",
+        "a": "Yes. Every square is something a kid can spot, so it gives them a reason to watch the table instead of the clock."
+      },
+      {
+        "q": "Can I change the squares?",
+        "a": "Yes, edit any line on the free card maker so the card matches your own traditions."
+      },
+      {
+        "q": "Does it cost anything?",
+        "a": "No, it is free with no signup. Holiday Traditions Bingo is a good companion if your December covers more than one holiday."
+      }
+    ],
+    "related": [
+      "holiday-traditions",
+      "family-gathering",
+      "holiday-baking",
+      "winter-family-all",
+      "indoor-winter-family",
+      "christmas-bucketlist",
+      "friendsgiving"
+    ]
+  },
+  "holiday-baking": {
+    "intro": "Holiday Baking Bingo is a printable card of 25 things that go wrong and right during a December baking day: the butter is not softened, royal icing comes out runny, a gingerbread wall slides off, somebody eats raw dough. Use it on a cookie-decorating afternoon with kids, or run it as a side game at a cookie exchange so the people waiting on an oven have something to do. Nothing to pay and no login. Print a card for every baker in the kitchen.",
+    "faq": [
+      {
+        "q": "What is holiday baking bingo for?",
+        "a": "It turns a long baking day into a game. The squares are the small disasters and rituals of holiday baking, so a card fills up on its own as you work."
+      },
+      {
+        "q": "Can kids play?",
+        "a": "Yes, and it keeps them at the counter longer. The squares are easy to spot, like sprinkles landing everywhere except the cookie."
+      },
+      {
+        "q": "Does it work for a cookie exchange?",
+        "a": "It does. Print a card for each person who brings a tin and mark squares while everyone trades."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Yes, free with no account required. Generate it, download the PDF, print as many as you need."
+      }
+    ],
+    "related": [
+      "christmas-bucketlist",
+      "friendsgiving",
+      "holiday-traditions",
+      "family-gathering",
+      "winter-family-all",
+      "indoor-winter-family",
+      "hanukkah"
+    ]
+  },
+  "christmas-movies": {
+    "intro": "Christmas Movie Marathon Bingo is a printable card of 25 tropes that turn up in nearly every holiday movie: the big-city career woman heading back to her hometown, the cocoa mug nobody drinks from, fake snow that is obviously not snow, a developer threatening something the whole town loves. Use it for a marathon with friends, or keep one card running across a season of made-for-TV romances. No signup and no cost. Print a few and hand them out before you press play.",
+    "faq": [
+      {
+        "q": "How does Christmas movie bingo work?",
+        "a": "Put on any holiday movie and mark a square whenever one of the tropes shows up. Cards fill faster than most people expect."
+      },
+      {
+        "q": "Does it work for one movie or a whole marathon?",
+        "a": "Both. A single movie usually covers a row or two, and a full marathon tends to fill the card."
+      },
+      {
+        "q": "Can I add my own tropes?",
+        "a": "Yes, every square is editable on the free card maker, so you can add the ones your household already shouts at the screen."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free, with no account. Popular Movies Bingo is there if you would rather have a card of real titles than tropes."
+      }
+    ],
+    "related": [
+      "christmas-bucketlist",
+      "holiday-traditions",
+      "movies-2025",
+      "indoor-winter-family",
+      "indoor-winter-adult",
+      "friendsgiving",
+      "holiday-baking"
+    ]
+  },
+  "new-years-eve": {
+    "intro": "New Year's Eve Party Bingo is a printable card of 25 things that happen on either side of midnight: somebody starts the countdown too early, paper crowns come out of a cheap party kit, a phone dies from taking videos, confetti lands that will still be there in March. Use it at a house party to fill the slow stretch from ten to twelve, or keep score with the group that always stays up. Free, and no signup to get the PDF.",
+    "faq": [
+      {
+        "q": "What's on a New Year's Eve bingo card?",
+        "a": "Party moments and midnight rituals: the toast to someone who could not make it, the resolution that involves the gym, the friend who posts a recap before midnight."
+      },
+      {
+        "q": "Is it for adults or families?",
+        "a": "Either. The squares stay mild, so the same card works at a dinner party and at a house full of kids trying to stay awake."
+      },
+      {
+        "q": "Can I customize it?",
+        "a": "Yes, swap any square on the free card maker to fit your own group before printing."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Yes, no cost and no account. Ultra Specific Resolutions Bingo pairs well with it on January 1."
+      }
+    ],
+    "related": [
+      "ultra-specific-resolutions",
+      "resolutions-2025",
+      "party-icebreakers",
+      "friendsgiving",
+      "christmas-bucketlist",
+      "holiday-traditions",
+      "winter-adult-all"
+    ]
+  },
+  "winter-break-kids": {
+    "intro": "Winter Break With Kids Bingo is a printable card of 25 things that happen in the two weeks school is out: bored before 9am, one glove missing, a blanket fort taking over the living room, snow pants that take ten minutes to get on, a nap that happens for a parent. Leave it on the fridge and let the whole house mark squares, or print one per kid so every card is different. Free, no account needed.",
+    "faq": [
+      {
+        "q": "What age is this for?",
+        "a": "Mostly elementary and middle school, though the squares are written so the adults in the house get something out of it too."
+      },
+      {
+        "q": "How do you play it over two weeks?",
+        "a": "Leave a card somewhere visible and mark squares as things happen. A row usually goes within a few days."
+      },
+      {
+        "q": "Can I swap squares for our own routines?",
+        "a": "Yes, edit any line on the free card maker so it matches how your break actually goes."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free, with no signup. Indoor Winter Activities (Family) Bingo is the one to grab on the days nobody wants to go outside."
+      }
+    ],
+    "related": [
+      "indoor-winter-family",
+      "winter-family-all",
+      "outdoor-winter-family",
+      "family-gathering",
+      "holiday-baking",
+      "classroom-activities",
+      "christmas-bucketlist"
     ]
   }
 };
