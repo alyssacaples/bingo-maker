@@ -1264,7 +1264,7 @@ export const templateContent = {
     "faq": [
       {
         "q": "What drinks are on the card?",
-        "a": "36 in the pool: the classics people actually order, the spritz family that took over every summer menu, cold-weather drinks like mulled wine and an apple butter Old Fashioned, and the modern bar tricks including milk-washed cocktails and colour-changing ones. Low-ABV and mocktail squares are in there too."
+        "a": "36 in the pool: the classics people actually order, the spritz family that took over every summer menu, cold-weather drinks like mulled wine and an apple butter Old Fashioned, and the modern bar tricks including milk-washed cocktails and color-changing ones. Low-ABV and mocktail squares are in there too."
       },
       {
         "q": "Is this for a bar or for making drinks at home?",
@@ -1416,7 +1416,7 @@ export const templateContent = {
         "a": "Three or four, honestly. The squares are dense enough that a proper crawl fills most of a card, which is either impressive or a warning depending on how you look at it."
       },
       {
-        "q": "Can I customise it for my city?",
+        "q": "Can I customize it for my city?",
         "a": "Yes. Edit the list before you print and swap in your local specifics, the dive everyone ends up at and the late-night food that is actually available at 2am where you live."
       },
       {
@@ -1554,7 +1554,7 @@ export const templateContent = {
     "faq": [
       {
         "q": "What does it cover?",
-        "a": "40 entries running the full sweep: the ancient world, the Middle Ages and the plague, the Renaissance and Reformation, revolutions from French to Industrial, both world wars, the Cold War and decolonisation."
+        "a": "40 entries running the full sweep: the ancient world, the Middle Ages and the plague, the Renaissance and Reformation, revolutions from French to Industrial, both world wars, the Cold War and decolonization."
       },
       {
         "q": "How do teachers use it?",
@@ -1619,7 +1619,7 @@ export const templateContent = {
         "a": "They share a lot of squares. This one tracks the calendar of events and runs all the way through finals. High School Fall Bingo leans more into the day-to-day student experience and stops at Thanksgiving break."
       },
       {
-        "q": "Can I customise it for our school?",
+        "q": "Can I customize it for our school?",
         "a": "Yes. Edit the list before printing and swap in your own spirit week themes, your rivalry game and whatever your school does that nobody else does."
       },
       {

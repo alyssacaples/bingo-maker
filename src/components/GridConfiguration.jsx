@@ -5,7 +5,15 @@ import { AlertTriangle } from 'lucide-react';
 // rebuilt the checkbox each time one was toggled and focus fell back to <body>.
 // Toggling with the keyboard meant losing your place on every single option.
 const Option = ({ label, hint, checked, onChange, disabled }) => (
-  <div className="flex items-start justify-between gap-3 py-2.5 border-b border-rule last:border-b-0">
+  // A label, not a div. As a div the only tap target was the 16px checkbox,
+  // which is under the 24px minimum and meant tapping the words "Free space in
+  // center" did nothing. Wrapping the row makes the whole thing the target and
+  // associates the text with the input for screen readers at the same time.
+  <label
+    className={`flex items-start justify-between gap-3 py-2.5 border-b border-rule last:border-b-0 ${
+      disabled ? 'cursor-not-allowed' : 'cursor-pointer'
+    }`}
+  >
     <span className="flex flex-col">
       <span className="text-[14px] text-ink">{label}</span>
       {hint && <span className="text-[12px] text-ink-2 mt-0.5">{hint}</span>}
@@ -17,7 +25,7 @@ const Option = ({ label, hint, checked, onChange, disabled }) => (
       onChange={(e) => onChange(e.target.checked)}
       className="custom-checkbox mt-0.5 flex-none disabled:opacity-40 disabled:cursor-not-allowed"
     />
-  </div>
+  </label>
 );
 
 const GridConfiguration = ({

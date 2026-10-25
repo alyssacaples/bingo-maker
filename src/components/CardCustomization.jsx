@@ -115,7 +115,7 @@ const CardCustomization = ({
     <div className={compact ? "space-y-6" : "card-body space-y-6"}>
       
       {/* 0. Printer Friendly Override */}
-      <div className="border border-ink p-3 flex items-center justify-between">
+      <label className="border border-ink p-3 flex items-center justify-between cursor-pointer">
         <div className="flex items-center space-x-3">
           <Printer className="w-4 h-4 text-accent" />
           <div>
@@ -127,9 +127,9 @@ const CardCustomization = ({
           type="checkbox"
           checked={printerFriendly}
           onChange={(e) => setPrinterFriendly(e.target.checked)}
-          className="custom-checkbox w-4 h-4 cursor-pointer"
+          className="custom-checkbox cursor-pointer"
         />
-      </div>
+      </label>
 
       {/* 1. Theme Presets */}
       <div>
@@ -250,19 +250,18 @@ const CardCustomization = ({
           <Grid className="w-3.5 h-3.5 mr-2 text-accent" /> Grid Layout
         </h4>
         <div className="space-y-4">
-          <div className="flex items-center justify-between p-2 hover:bg-ground-2">
-            <div>
+          <label className="flex items-center justify-between p-2 hover:bg-ground-2 cursor-pointer">
+            <span>
               <span className="text-[13px] text-ink block">B-I-N-G-O Letter Row</span>
               <span className="text-[12px] text-ink-2">One letter per column, above the grid</span>
-            </div>
+            </span>
             <input
               type="checkbox"
               checked={bingoHeader}
               onChange={(e) => setBingoHeader(e.target.checked)}
-              className="custom-checkbox w-4 h-4 cursor-pointer"
-              aria-label="Show a B-I-N-G-O letter row above the grid"
+              className="custom-checkbox cursor-pointer"
             />
-          </div>
+          </label>
 
           <div>
             <label className="title-input-label" htmlFor="cc-grid-border-color">Grid Border Color</label>
@@ -439,16 +438,16 @@ const CardCustomization = ({
           <Sliders className="w-3.5 h-3.5 mr-2 text-accent" /> Background style
         </h4>
         <div className="space-y-4">
-          <div className="flex items-center justify-between p-2 hover:bg-ground-2">
+          <label className="flex items-center justify-between p-2 hover:bg-ground-2 cursor-pointer">
             <span className="text-[13px] text-ink">Use Gradient Background</span>
             <input
               type="checkbox"
               checked={useGradient}
               onChange={(e) => setUseGradient(e.target.checked)}
               disabled={printerFriendly}
-              className="custom-checkbox w-4 h-4 cursor-pointer"
+              className="custom-checkbox cursor-pointer"
             />
-          </div>
+          </label>
 
           {!useGradient ? (
             <div>
@@ -526,7 +525,7 @@ const CardCustomization = ({
                 </div>
               </div>
 
-              <div className="flex items-center justify-between py-1.5 border-t border-rule mt-2">
+              <label className="flex items-center justify-between py-1.5 border-t border-rule mt-2 cursor-pointer">
                 <span className="text-[12px] text-ink-2">Use 3-Stop Gradient</span>
                 <input
                   type="checkbox"
@@ -537,9 +536,9 @@ const CardCustomization = ({
                     else if (!gradientColor3) setGradientColor3('#C7D2FE'); // Default nice pastel stop
                   }}
                   disabled={printerFriendly}
-                  className="custom-checkbox w-4 h-4 cursor-pointer"
+                  className="custom-checkbox cursor-pointer"
                 />
-              </div>
+              </label>
 
               {use3rdColor && (
                 <div>
@@ -573,19 +572,19 @@ const CardCustomization = ({
           <Layers className="w-3.5 h-3.5 mr-2 text-accent" /> Frame & Patterns
         </h4>
         <div className="space-y-4">
-          <div className="flex items-center justify-between p-2 hover:bg-ground-2">
-            <div>
+          <label className="flex items-center justify-between p-2 hover:bg-ground-2 cursor-pointer">
+            <span>
               <span className="text-[13px] text-ink block">Card Mat Frame</span>
               <span className="text-[12px] text-ink-2">Adds white borders around the grid card</span>
-            </div>
+            </span>
             <input
               type="checkbox"
               checked={cardMatEnabled}
               onChange={(e) => setCardMatEnabled(e.target.checked)}
               disabled={printerFriendly}
-              className="custom-checkbox w-4 h-4 cursor-pointer"
+              className="custom-checkbox cursor-pointer"
             />
-          </div>
+          </label>
 
           <div>
             <label className="title-input-label" htmlFor="cc-repeating-pattern">Repeating Pattern</label>

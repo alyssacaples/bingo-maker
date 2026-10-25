@@ -1768,7 +1768,7 @@ export const samplePhrases = {
       "A mezcal margarita",
       "A yuzu cocktail",
       "A lychee martini",
-      "A colour-changing cocktail",
+      "A color-changing cocktail",
       "A whipped espresso martini",
       "Something low-ABV",
       "A proper mocktail",

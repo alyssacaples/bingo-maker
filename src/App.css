@@ -155,7 +155,7 @@
 
   /* ---------- form controls ---------- */
   .custom-checkbox {
-    @apply w-4 h-4 border border-rule cursor-pointer;
+    @apply w-5 h-5 border border-rule cursor-pointer;
     accent-color: rgb(var(--accent));
   }
 
