@@ -417,6 +417,8 @@ const stateOptions = [
 const holidaySeasonalOptions = [
   { key: 'thanksgiving', label: 'Thanksgiving' },
   { key: 'friendsgiving', label: 'Friendsgiving' },
+  { key: 'black-friday', label: 'Black Friday' },
+  { key: 'ugly-sweater', label: 'Ugly Sweater Party' },
   { key: 'hanukkah', label: 'Hanukkah' },
   { key: 'christmas-bucketlist', label: 'Christmas Bucket List' },
   { key: 'holiday-baking', label: 'Holiday Baking' },

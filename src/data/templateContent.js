@@ -1694,6 +1694,64 @@ export const templateContent = {
       "girls-night-out"
     ]
   },
+  "black-friday": {
+    "intro": "Black Friday Shopping Bingo is a printable card of 25 things that happen every year between the doorbuster ad and the regret: the cart loaded at 11pm, the thing that sells out while it is in that cart, the free shipping threshold math, the air fryer nobody planned to buy. Play it across the weekend with whoever you shop with, or fill it in Monday once the damage is clear. Free, no signup.",
+    "faq": [
+      {
+        "q": "What is on a Black Friday bingo card?",
+        "a": "33 squares in the pool, covering the planning (store map, price tracker, deal alert posted to the family chat), the day itself (parking lot full before 7am, checkout page crashing, the promo code that does not work) and the aftermath, from the abandoned cart email to Cyber Monday turning out cheaper."
+      },
+      {
+        "q": "Do you have to actually go out to play?",
+        "a": "No, and most of the card works better if you do not. Plenty of the squares are online shopping: the filler item added to hit free shipping, the thing bought purely because it was seventy percent off, the package that goes missing off the porch."
+      },
+      {
+        "q": "When should we start marking squares?",
+        "a": "Thanksgiving evening, when the first ads land, through Cyber Monday. It plays well in a group chat across the whole weekend because everyone is shopping separately and reporting back."
+      },
+      {
+        "q": "Can I make my own version?",
+        "a": "Yes. Edit the list before printing and put in the stores your family actually goes to. Free with no signup. Thanksgiving Bingo covers the day before, if you want the pair."
+      }
+    ],
+    "related": [
+      "thanksgiving",
+      "friendsgiving",
+      "christmas-bucketlist",
+      "holiday-baking",
+      "office-party",
+      "winter-break-kids"
+    ]
+  },
+  "ugly-sweater": {
+    "intro": "Ugly Sweater Party Bingo is a printable card of 25 things you will see at one: the hot glue gun build, the sweater that lights up, the visible battery pack, the person who is far too hot by 9pm, and the one a grandma genuinely made. Hand one to each guest at the door, or play it at the office version where the dress code gets complicated. Free, no signup required.",
+    "faq": [
+      {
+        "q": "What is on the card?",
+        "a": "32 squares covering the sweaters (store-bought, homemade, light-up, pun-based, the thrift store find, the one that is genuinely nice), the people wearing them, and the party itself: the contest with a real prize, the group photo arranged by ugliness, the lights that stop working halfway through."
+      },
+      {
+        "q": "Does this work for an office party?",
+        "a": "Yes, and several squares are written for it, including the dress code caveat and the photo taken for the company Slack. It gives people something to do that is not standing near the food."
+      },
+      {
+        "q": "Should everyone get the same card?",
+        "a": "Print one per guest and let the squares shuffle. Everyone then watches for something different, which is what turns the room into the game rather than a card sitting on a table."
+      },
+      {
+        "q": "Is it free?",
+        "a": "Free, no signup and no account. Office Party Bingo covers the rest of the work holiday party if the sweaters are only part of it."
+      }
+    ],
+    "related": [
+      "office-party",
+      "christmas-bucketlist",
+      "holiday-baking",
+      "christmas-movies",
+      "winter-activities",
+      "new-years-eve"
+    ]
+  },
   "outdoor-winter-adult": {
     "intro": "Outdoor Winter Activities (Adult) Bingo is a printable card of 25 cold-weather adventures, like backcountry ski touring, ice climbing, dog sledding, and chasing the Northern Lights. Use it to plan out an ambitious winter of trip ideas, or turn it into a challenge with your ski buddies to see who checks off the most. Free, no account required. Print it before the season starts or save it to your phone for trip planning.",
     "faq": [

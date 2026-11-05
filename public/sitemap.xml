@@ -291,6 +291,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://makebingocard.com/templates/black-friday</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://makebingocard.com/templates/ugly-sweater</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://makebingocard.com/templates/outdoor-winter-adult</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
