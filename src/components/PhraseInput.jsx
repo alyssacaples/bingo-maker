@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FileText, Plus, Trash2 } from 'lucide-react';
+import { FileText, Plus, Trash2, AlertTriangle, Layers } from 'lucide-react';
 import { trackTemplateSelect } from '../utils/analytics';
 import { templateTitles } from '../data/templates';
 
@@ -440,7 +440,12 @@ const PhraseInput = ({
   onPhraseInputChange, 
   onAddSamplePhrases, 
   onClearAll,
-  activeSlug
+  activeSlug,
+  integrity,
+  onDedupe,
+  canUndoDedupe,
+  onUndoDedupe,
+  lastRemovedCount
 }) => {
   const [selectedTemplate, setSelectedTemplate] = useState(activeSlug ?? null);
 
@@ -546,6 +551,86 @@ const PhraseInput = ({
                 </div>
               </div>
             </div>
+          )}
+
+          {/* Card integrity. Deliberately a strip and never a gate: the
+              generator's own "Need N phrases" block is the only thing allowed
+              to stand between someone and a download. This reports, and offers
+              the one fix it can actually perform. */}
+          {integrity && (
+            <div
+              className={`border p-3 space-y-3 ${
+                integrity.level === 'severe' ? 'border-accent' : 'border-rule'
+              }`}
+            >
+              {integrity.duplicateCount > 0 && (
+                <div className="flex items-start gap-2">
+                  <AlertTriangle
+                    className="w-4 h-4 text-accent flex-none mt-0.5"
+                    aria-hidden="true"
+                  />
+                  <div className="min-w-0">
+                    <p className="text-[13px] text-ink font-semibold m-0">
+                      {integrity.duplicateCount === 1
+                        ? 'One phrase is in the list twice'
+                        : `${integrity.duplicateCount} phrases are in the list twice`}
+                    </p>
+                    <p className="text-[13px] text-ink-2 mt-1 mb-0">
+                      A repeat can land on the same card twice, which makes a win hard to prove.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={onDedupe}
+                      className="text-[12px] text-accent underline inline-block mt-1 py-1"
+                    >
+                      {integrity.duplicateCount === 1
+                        ? 'Remove the repeat'
+                        : `Remove ${integrity.duplicateCount} repeats`}
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {integrity.level && (
+                <div className="flex items-start gap-2">
+                  <Layers
+                    className={`w-4 h-4 flex-none mt-0.5 ${
+                      integrity.level === 'severe' ? 'text-accent' : 'text-ink-2'
+                    }`}
+                    aria-hidden="true"
+                  />
+                  <div className="min-w-0">
+                    <p className="text-[13px] text-ink font-semibold m-0">
+                      {integrity.level === 'severe'
+                        ? 'Your copies will play as the same card'
+                        : 'Your copies will share most squares'}
+                    </p>
+                    <p className="text-[13px] text-ink-2 mt-1 mb-0">
+                      Each of the {integrity.copies} copies uses {integrity.contentCells} of your{' '}
+                      {integrity.uniquePhraseCount} different phrases, so any two share about{' '}
+                      {integrity.expectedShared}.
+                      {integrity.suggestedPool > integrity.uniquePhraseCount &&
+                        ` Another ${integrity.suggestedPool - integrity.uniquePhraseCount} would bring that down to about ${integrity.improvedShared}.`}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {canUndoDedupe && (
+            <p className="text-[12px] text-ink-2 m-0">
+              {lastRemovedCount === 1
+                ? 'Removed one repeated phrase.'
+                : `Removed ${lastRemovedCount} repeated phrases.`}{' '}
+              <button
+                type="button"
+                onClick={onUndoDedupe}
+                className="text-accent underline inline-block py-1"
+              >
+                Undo
+              </button>
+            </p>
           )}
           
           <div className="space-y-3">

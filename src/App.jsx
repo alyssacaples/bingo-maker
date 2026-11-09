@@ -38,7 +38,13 @@ function App() {
     phrases,
     handlePhraseInputChange,
     addSamplePhrases,
-    clearAll
+    clearAll,
+    duplicateCount,
+    uniquePhraseCount,
+    dedupePhrases,
+    undoDedupe,
+    canUndoDedupe,
+    lastRemovedCount
   } = usePhraseManager();
 
   const {
@@ -113,7 +119,8 @@ function App() {
     generateBingoCard,
     requiredCells,
     hasCenter,
-    getTextOverflowWarning
+    getTextOverflowWarning,
+    getCardIntegrityReport
   } = useBingoConfiguration();
 
   // True when the URL points at /templates/<slug> for a slug we don't have.
@@ -312,6 +319,12 @@ function App() {
   // Get text overflow warning
   const textOverflowWarning = getTextOverflowWarning();
 
+  // Repeated phrases, and how alike the copies will be. Deliberately not fed
+  // into hasEnoughPhrases above: a pool of 30 lines holding 6 repeats still
+  // fills a 24 square card, and refusing the download over it would put a new
+  // gate in front of the one button people came for.
+  const cardIntegrity = getCardIntegrityReport(uniquePhraseCount, duplicateCount);
+
   return (
     <div className="App min-h-screen bg-ground">
       <Header activeTitle={title} />
@@ -368,6 +381,11 @@ function App() {
               activeSlug={activeSlug}
               onAddSamplePhrases={handleAddSamplePhrases}
               onClearAll={handleClearAll}
+              integrity={cardIntegrity}
+              onDedupe={dedupePhrases}
+              canUndoDedupe={canUndoDedupe}
+              onUndoDedupe={undoDedupe}
+              lastRemovedCount={lastRemovedCount}
             />
           </div>
 
