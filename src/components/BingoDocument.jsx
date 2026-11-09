@@ -424,10 +424,119 @@ const BingoCard = ({
   );
 };
 
+// The caller's sheet, added to the back of the PDF for a called game.
+//
+// Without it the host has to read squares off one of the player cards, which
+// spoils that card and only ever shows them 24 of the phrases. This lists the
+// whole pool, numbered, with a box to tick as each one is called.
+//
+// Deliberately not themed. Gradients, patterns and card mats are there to make
+// the cards look like something; this is a working document the host holds, and
+// plain black on white is both the most readable and the cheapest to print.
+const callerStyles = StyleSheet.create({
+  page: {
+    flexDirection: 'column',
+    backgroundColor: '#FFFFFF',
+    padding: 40,
+    fontFamily: 'Helvetica',
+  },
+  heading: {
+    fontSize: 18,
+    fontFamily: 'Helvetica-Bold',
+    marginBottom: 4,
+  },
+  // The card's own title sits under the heading rather than inside it. Most of
+  // these titles already end in "Bingo!", and folding one into a sentence gives
+  // you "Family Gathering Bingo! caller's sheet" or a doubled full stop.
+  cardTitle: {
+    fontSize: 11,
+    color: '#000000',
+    marginBottom: 2,
+  },
+  standfirst: {
+    fontSize: 10,
+    color: '#444444',
+    marginBottom: 16,
+  },
+  // One View per pair, rather than one wrapping flex container for everything.
+  // react-pdf breaks a page between sibling blocks, so a pool long enough to
+  // overflow spills onto a second sheet instead of being clipped.
+  row: {
+    flexDirection: 'row',
+    width: '100%',
+  },
+  item: {
+    flexDirection: 'row',
+    width: '50%',
+    paddingRight: 12,
+    paddingVertical: 3,
+    alignItems: 'flex-start',
+  },
+  box: {
+    width: 8,
+    height: 8,
+    border: '0.75pt solid #000000',
+    marginRight: 6,
+    marginTop: 2,
+  },
+  num: {
+    fontSize: 8,
+    color: '#777777',
+    width: 16,
+  },
+  phrase: {
+    fontSize: 9,
+    flex: 1,
+  },
+  footer: {
+    position: 'absolute',
+    bottom: 20,
+    left: 40,
+    right: 40,
+    textAlign: 'center',
+    fontSize: 8,
+    color: '#777777',
+  },
+});
+
+const CallerSheet = ({ title, phrases, copies }) => {
+  const pairs = [];
+  for (let i = 0; i < phrases.length; i += 2) {
+    pairs.push(phrases.slice(i, i + 2));
+  }
+
+  return (
+    <Page size="Letter" style={callerStyles.page}>
+      <Text style={callerStyles.heading}>{'Caller\u2019s sheet'}</Text>
+      <Text style={callerStyles.cardTitle}>{title || 'BINGO'}</Text>
+      <Text style={callerStyles.standfirst}>
+        {`${phrases.length} items across ${copies} card${copies === 1 ? '' : 's'}. `}
+        {'Read them in any order and tick each one as you call it.'}
+      </Text>
+      {pairs.map((pair, rowIndex) => (
+        <View key={rowIndex} style={callerStyles.row} wrap={false}>
+          {pair.map((phrase, colIndex) => (
+            <View key={colIndex} style={callerStyles.item}>
+              <View style={callerStyles.box} />
+              <Text style={callerStyles.num}>{rowIndex * 2 + colIndex + 1}</Text>
+              <Text style={callerStyles.phrase}>{phrase}</Text>
+            </View>
+          ))}
+        </View>
+      ))}
+      <Text style={callerStyles.footer} fixed>
+        makebingocard.com
+      </Text>
+    </Page>
+  );
+};
+
 const BingoDocument = ({ 
   copies, 
   title,
   subtitle,
+  gameMode,
+  phrases = [],
   gridSize, 
   freeSpace, 
   dynamicResize, 
@@ -498,7 +607,10 @@ const BingoDocument = ({
         bingoHeader={bingoHeader}
       />
     ))}
+    {gameMode === 'called' && phrases.length > 0 ? (
+      <CallerSheet title={title} phrases={phrases} copies={copies} />
+    ) : null}
   </Document>
 );
 
-export { BingoDocument, BingoCard };
+export { BingoDocument, BingoCard, CallerSheet };

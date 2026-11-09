@@ -30,6 +30,27 @@ State lives in two hooks:
 
 `@react-pdf/renderer` is a large dependency (~1.4MB), so `PDFSection` is loaded via `React.lazy()` behind a `Suspense` boundary in `App.jsx` rather than imported at the top level — this keeps it out of the initial page bundle.
 
+## Game modes
+
+Three games get played with these cards, and they need different instructions
+printed on them. [`src/utils/gameModes.js`](src/utils/gameModes.js) holds all
+three:
+
+- **Signature hunt** - squares describe people, and players collect signatures.
+- **Spot it** - players cross off squares as things happen. Most of the library.
+- **Called game** - a host reads items out. This one also appends a **caller's
+  sheet** to the PDF: every phrase in the pool, numbered, with a box to tick.
+
+The mode sets the card's subtitle and nothing else, so picking the wrong one
+costs a click. Switching mode rewrites the subtitle only while it is still one
+of the shipped defaults, so anything typed by hand survives.
+
+A template declares its mode in `templateModes` in
+[`src/data/templates.js`](src/data/templates.js). **Only the exceptions are
+listed there**; anything absent is a "spot it" card, which is what most of this
+library is. A card with no template behind it starts on the signature hunt,
+which is what this app did before modes existed.
+
 ## Templates vs. themes
 
 These are two distinct concepts, both selectable in the UI, easy to confuse:
@@ -48,6 +69,10 @@ Three files, then the build does the rest.
 `npm run build` then runs [`scripts/generate-template-pages.js`](scripts/generate-template-pages.js), which writes the static template page, regenerates `public/sitemap.xml` and `public/.well-known/llms.txt`, and re-renders the homepage with a link to every template. Never hand-edit those three generated files. The script also validates the new entry and fails the build on a missing title, an empty phrase list, a missing intro, an `faq` that is not exactly 4 pairs, fewer than 5 `related` slugs, or a `related` slug that has no content of its own to link to.
 
 Optional: [`src/data/popularTemplates.js`](src/data/popularTemplates.js) is the homepage "Most popular" row. Keep it to three slugs.
+
+Optional: `templateModes` in `src/data/templates.js`, if the new template is a
+signature hunt or a called game rather than a "spot it" card. See **Game modes**
+above.
 
 ### Adding a new theme
 

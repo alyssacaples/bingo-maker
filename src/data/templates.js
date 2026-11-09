@@ -6528,3 +6528,44 @@ export const samplePhrases = {
       "Everyone falls asleep on the couch at once"
     ]
 };
+
+// Which game each template is for. See src/utils/gameModes.js.
+//
+// Only the exceptions are listed. The default below is "observation" because
+// that is what most of this library is: travel, books, films, trails, bucket
+// lists, things you cross off as you go. Listing all 181 by hand would be 181
+// chances to get one wrong, and a wrong entry here is worse than no entry,
+// because it looks deliberate.
+//
+// Note this default differs from DEFAULT_GAME_MODE, which is what a card with
+// no template behind it gets. That one stays on the signature hunt so the
+// homepage behaves exactly as it always has.
+//
+// A signature hunt describes PEOPLE in the third person, so a player can find
+// someone it fits and ask them to sign: "Has a hidden talent", "Knows the bride
+// from college". A called game is a list short enough for a host to read aloud,
+// which in practice means classroom drill and music bingo.
+export const templateModes = {
+  icebreakers: 'signature',
+  'party-icebreakers': 'signature',
+  'classroom-activities': 'signature',
+  'office-party': 'signature',
+  'wedding-reception': 'signature',
+  'baby-shower': 'signature',
+  'travel-experiences': 'signature',
+  'food-adventures': 'signature',
+  'holiday-traditions': 'signature',
+  'workout-fitness': 'signature',
+  'college-life': 'signature',
+  'alma-maters': 'signature',
+  thanksgiving: 'signature',
+
+  numbers: 'called',
+  'hs-math': 'called',
+  'world-history': 'called',
+  'hit-songs-2026': 'called',
+  'artists-2026': 'called',
+  'albums-forward-2026': 'called',
+};
+
+export const getTemplateMode = (slug) => templateModes[slug] || 'observation';

@@ -13,6 +13,7 @@ const PDFSection = ({
   title,
   subtitle,
   setSubtitle,
+  gameMode,
   copies,
   dynamicResize,
   fontSize,
@@ -74,6 +75,8 @@ const PDFSection = ({
       copies={copies}
       title={title}
       subtitle={subtitle}
+      gameMode={gameMode}
+      phrases={phrases}
       gridSize={gridSize}
       freeSpace={freeSpace}
       dynamicResize={dynamicResize}
@@ -104,7 +107,7 @@ const PDFSection = ({
       backgroundPatternOpacity={backgroundPatternOpacity}
       bingoHeader={bingoHeader}
     />
-  ), [copies, title, subtitle, gridSize, freeSpace, dynamicResize, fontSize, generateBingoCard, phrases, titleFont, titleColor, cellFont, backgroundColor, useGradient, gradientColor1, gradientColor2, borderColor, freeSpaceBackgroundColor, freeSpaceFontColor, cellTextColor, subtitleColor, borderWidth, gridBorderRadius, cellBackgroundMode, cellBackgroundTint, freeSpaceLabel, printerFriendly, gradientDirection, gradientColor3, cardMatEnabled, backgroundPattern, backgroundPatternOpacity, bingoHeader]);
+  ), [copies, title, subtitle, gameMode, gridSize, freeSpace, dynamicResize, fontSize, generateBingoCard, phrases, titleFont, titleColor, cellFont, backgroundColor, useGradient, gradientColor1, gradientColor2, borderColor, freeSpaceBackgroundColor, freeSpaceFontColor, cellTextColor, subtitleColor, borderWidth, gridBorderRadius, cellBackgroundMode, cellBackgroundTint, freeSpaceLabel, printerFriendly, gradientDirection, gradientColor3, cardMatEnabled, backgroundPattern, backgroundPatternOpacity, bingoHeader]);
 
   return (
     <PDFGenerator

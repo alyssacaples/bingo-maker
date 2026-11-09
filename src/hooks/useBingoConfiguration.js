@@ -1,8 +1,31 @@
 import { useState, useCallback } from 'react';
+import {
+  DEFAULT_GAME_MODE,
+  getModeSubtitle,
+  MODE_SUBTITLES
+} from '../utils/gameModes';
 
 const useBingoConfiguration = () => {
   const [title, setTitle] = useState('BINGO');
-  const [subtitle, setSubtitle] = useState('Walk around the room and get signatures of others who agree with the item in the box.');
+  const [gameMode, setGameModeState] = useState(DEFAULT_GAME_MODE);
+  // Same string as before this existed; it is now the signature hunt's own
+  // subtitle rather than a hardcoded line that happened to apply to one game.
+  const [subtitle, setSubtitle] = useState(getModeSubtitle(DEFAULT_GAME_MODE));
+
+  // Switching game replaces the instruction line, but only while it is still
+  // one this app wrote. Anything typed is the user's, and silently overwriting
+  // someone's own wording because they tried a different game would be the kind
+  // of thing you only notice after printing thirty copies.
+  //
+  // Comparing against the shipped defaults does this without a "has the user
+  // edited it" flag to keep in sync, and types the default back in by hand are
+  // treated as untouched again, which is the behaviour people expect.
+  const setGameMode = useCallback((nextMode) => {
+    setGameModeState(nextMode);
+    setSubtitle((current) =>
+      MODE_SUBTITLES.includes(current) ? getModeSubtitle(nextMode) : current
+    );
+  }, []);
   const [gridSize, setGridSize] = useState(5);
   const [freeSpace, setFreeSpace] = useState(true);
   const [randomize, setRandomize] = useState(true);
@@ -172,6 +195,8 @@ const useBingoConfiguration = () => {
   }, [requiredCells, copies, randomize, identicalCopies]);
 
   return {
+    gameMode,
+    setGameMode,
     title,
     setTitle,
     subtitle,

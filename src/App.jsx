@@ -4,7 +4,8 @@ import './App.css';
 // Import custom hooks
 import usePhraseManager from './hooks/usePhraseManager';
 import { trackTemplateView, trackPdfPreview } from './utils/analytics';
-import { templateTitles } from './data/templates';
+import { templateTitles, getTemplateMode } from './data/templates';
+import { GAME_MODES, getGameMode, DEFAULT_GAME_MODE } from './utils/gameModes';
 import { templateContent } from './data/templateContent';
 import { metaDescription } from './utils/metaDescription';
 import useBingoConfiguration from './hooks/useBingoConfiguration';
@@ -48,6 +49,8 @@ function App() {
   } = usePhraseManager();
 
   const {
+    gameMode,
+    setGameMode,
     title,
     setTitle,
     subtitle,
@@ -140,18 +143,23 @@ function App() {
     const suggestedTitle = addSamplePhrases(type);
     setTitle(suggestedTitle);
     setActiveSlug(type);
+    // The template knows which game it is for, so the instruction line on the
+    // card is right on arrival instead of telling a Paris Travel player to go
+    // and collect signatures.
+    setGameMode(getTemplateMode(type));
 
     // Normalize the URL to the real template path (idempotent if already there).
     window.history.pushState({}, '', `/templates/${type}`);
-  }, [addSamplePhrases, setTitle]);
+  }, [addSamplePhrases, setTitle, setGameMode]);
 
   // Enhanced clear handler
   const handleClearAll = useCallback(() => {
     clearAll();
     setTitle('BINGO');
     setActiveSlug(null);
+    setGameMode(DEFAULT_GAME_MODE);
     window.history.pushState({}, '', '/');
-  }, [clearAll, setTitle]);
+  }, [clearAll, setTitle, setGameMode]);
 
   // Synchronize document title, description, canonical link, and Open Graph tags for SEO
   useEffect(() => {
@@ -262,6 +270,7 @@ function App() {
         setUnknownTemplate(false);
         addSamplePhrases(slug);
         setTitle(templateTitles[slug]);
+        setGameMode(getTemplateMode(slug));
       } else if (slug) {
         setUnknownTemplate(true);
       } else {
@@ -270,11 +279,12 @@ function App() {
         clearAll();
         setTitle('BINGO');
         setActiveSlug(null);
+        setGameMode(DEFAULT_GAME_MODE);
       }
     };
     window.addEventListener('popstate', onPopState);
     return () => window.removeEventListener('popstate', onPopState);
-  }, [addSamplePhrases, clearAll, setTitle]);
+  }, [addSamplePhrases, clearAll, setTitle, setGameMode]);
 
   // Check the URL (path or legacy query param) on load to populate template
   useEffect(() => {
@@ -348,6 +358,29 @@ function App() {
             <div className="title-card">
               <div className="card-header">Your card</div>
               <div className="card-body space-y-3.5">
+                {/* Which game this is. Sets the instruction line printed on the
+                    card and, for a called game, adds a caller's sheet to the
+                    PDF. Preselected from the template, so it is something to
+                    change rather than a step to complete. */}
+                <div>
+                  <label className="title-input-label">Game</label>
+                  <div className="grid grid-cols-3 gap-0.5">
+                    {GAME_MODES.map((mode) => (
+                      <button
+                        key={mode.id}
+                        type="button"
+                        onClick={() => setGameMode(mode.id)}
+                        aria-pressed={gameMode === mode.id}
+                        className={`grid-size-btn ${gameMode === mode.id ? 'selected' : ''}`}
+                      >
+                        {mode.label}
+                      </button>
+                    ))}
+                  </div>
+                  <p className="text-[12px] text-ink-2 mt-1.5 mb-0">
+                    {getGameMode(gameMode).hint}
+                  </p>
+                </div>
                 <div>
                   <label className="title-input-label" htmlFor="card-title">Title</label>
                   <input
@@ -424,6 +457,7 @@ function App() {
               title={title}
               subtitle={subtitle}
               setSubtitle={setSubtitle}
+              gameMode={gameMode}
               copies={copies}
               dynamicResize={dynamicResize}
               fontSize={fontSize}
